@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/default.css">
+</head>
+<body>
+    <div class="topnav" id="myTopnav">
+
+        <a href="index.html" class="brand">DASi</a>
+  
+      <div class="menu">
+        <a href="#">About Dasi</a>
+        <a href="#">업사이클 디자인</a>
+        <a href="#">주문제작 가이드</a>
+        <a href="#">주문제작 견적문의</a>
+        <a href="#">자주 묻는 질문</a>
+      </div>
+  
+  
+        <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
+  
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a> 
+    </div>
+ <!-- pages -->
+ <div class="page">
+    <div class="questionarea">
+        <h1 class="question"> 1:1문의</h1>
+        <h3 class="tel">Tel:010-1234-5678<br>평일 09시00분 ~ 18시00분</h3>
+    </div>
+<br><br>
+<h3 class="eachtitle">문의제목</h3> 
+<div class="questiontitle">
+    <input class="input" placeholder="기존 내용"/>
+</div>
+<h3 class="eachtitle">문의유형</h3> 
+<select class="select">
+    <option class="option">문의 유형을 선택해 주세요. </option>
+    <option class="option">상품문의</option>
+    <option class="option">불량/하자</option>
+    <option class="option">A/S</option>
+</select>
+<hr>
+<h3 class="eachtitle">문의내용</h3> 
+<form>
+    <p><textarea cols="70" rows="10"></textarea></p>    
+</form>
+<h3 class="eachtitle">사진</h3> 
+<input type="file" id="file" accept="image/png, image/jpeg, image/jpg">
+ 
+  <form action="" method="POST">
+    <input type="submit" value="수정">
+   </form>
+   <form action="" method="POST">
+    <input type="submit" value="삭제">
+   </form>
+
+</div>
+
+     <!-- footer -->
+ 
+<footer>
+    <div class="page">
+      <div class="items_container ic2">
+        <div class="item">
+          <h3 class="text-white">이용약관</h3>
+          <hr>
+          <ul>
+            <li>회사소개</li>
+            <li>이용약관</li>
+            <li>개인정보처리방침</li>
+          </ul>
+
+        </div>
+        <div class="item">
+          <h3 class="text-white">(주)다시</h3>
+          <hr>
+          <ul>
+            <li>대표자 : 천재만재</li>
+            <li><a href="tel:010-4666-8627" class="text-white">010-1234-5678</a></li>
+            <li><a href="mailto:vaguewords@gmail.com?subject=문의메일 제목" class="text-white">aaaa@bbbb.com</a></li>
+          </ul>
+        </div>
+    </div>
+    </div>
+
+  </footer>
+  <script src="js/header.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/default.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>
