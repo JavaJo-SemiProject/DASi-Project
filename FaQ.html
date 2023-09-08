@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/font-awesome.min.css">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/default.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" /> 
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -38,16 +40,46 @@
         <h1 class="question">자주 묻는 질문</h1>
         <h3 class="tel">Tel:010-1234-5678<br>평일 09시00분 ~ 18시00분</h3>
     </div>
+
+
     <div class="questionsearch">
         <div class="input-group">
             <input class="input" placeholder="궁금하신 내용을 입력해주세요"/>
-            <button class="button button-dark">버튼</button>
+            <button class="button button-dark">
+                <i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         </div>
-        <button class="button button-light" onClick="">주문제작</button>
-        <button class="button button-light" onClick="">결제 및 배송</button>
-        <button class="button button-light" onClick="">asdf</button>
-        <button class="button button-light" onClick="">기타</button>
+
+
+        <div class="div1"><button class="button button-lg button-light">주문제작</button></div>
+        <div class="div2"><button class="button button-lg button-light">결제 및 배송</button></div>
+        <div class="div3"><button class="button button-lg button-light">기타</button></div>
+
+
+       
+
+        
+
+        <!-- <ul class="form-inline-list srchCategory faq-category-list">
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="radio-1-1" class="radio-btn-rud3" name="category" value="" checked><label for="radio-3-1">주문제작</label>
+                </div>
+            </li>
+            
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="radio-1-2" class="radio-btn-rud3" name="category" value="F001" ><label for="radio-3-2">결제 및 배송</label>
+                </div>
+            </li>
+            <li>
+                <div class="custom-radio">
+                    <input type="radio" id="radio-1-3" class="radio-btn-rud3" name="category" value="F005" ><label for="radio-3-7">기타</label>
+                </div>
+            </li>
+    </ul> -->
+
+
         </div>
 
 
@@ -70,22 +102,25 @@
                     <!-- 질문 영역 -->
                     <a href="javascript:;" class="title-div ui-accordion-click">
                         <div class="subject">
-                            <span class="classify">주문제작</span>
-                            <p class="txt">주문제작 상품은 언제 배송되나요?</p>
+                            <span class="classify">결제 및 배송</span>
+                            <p class="txt">상품이 주문한 것과 다르게 배송되었습니다.</p>
                         </div>
                         <div class="right">
-                            <i class="ico-arr-toggle"><span class="blind">내용보기</span></i>
+                            <i class="fa-solid fa-caret-up"><span class="blind">내용보기</span></i>
                         </div>
                     </a><!-- title-div -->
                     <div class="ui-accordion-view hide">
                         <!-- 답변 영역 -->
                         <div class="answer">
+                            <span class="classify">답변</span>
                             <p class="txt">
-                                답변<br />
-                                답변</p>
+                               이용에 불편을 드려 죄송합니다.<br />
+                               받으신 제품의 사진을 찍어 1:!문의, 고객센터로 연락주시면 확인 후 안내드리겠습니다.<br />
+                                <br>
+                                (* 누락, 오배송의 경우 상품 수령 후 2주 이내에 교환 가능합니다).<br /><br />
+                                </p>
                         </div><!--// answer :: 답변 영역 -->
                     </div><!--// ui-accordion-view -->
-
                     <hr>
 
                 </li>
@@ -97,7 +132,7 @@
                             <p class="txt">주문제작 현황 문의는 어떻게 작성하나요? </p>
                         </div>
                         <div class="right">
-                            <i class="ico-arr-toggle"><span class="blind">내용보기</span></i>
+                            <i class="fa-solid fa-caret-up"><span class="blind">내용보기</span></i>
                         </div>
                     </a><!-- title-div -->
                     <div class="ui-accordion-view hide">
@@ -105,12 +140,8 @@
                         <div class="answer">
                             <span class="classify">답변</span>
                             <p class="txt">
-                               제작이 승인되어 [제작중]으로 표기된 주문 제작 상품은<br />
-                                대개 평일 기준으로 평균 10일 이내 출고됩니다.<br />
-                                출고 일정이 확정된 경우, 상품 상세페이지에서 확인이 가능합니다.<br /><br />
-                                * 평일 기준 출고로 연휴 및 공휴일은 배송일에서 제외됩니다.<br />
-                                * 출고 후에도 실제 도착까지는 기간이 더 소요될 수 있습니다. <br />
-                                * 제작 중 주문 정보(옵션) 변경 및 취소가 어렵습니다.<br /><br />
+                              DASI(다시) 고객센터 상담시간은 아래와 같습니다. 상담을 원하시는 고객님께서는 해당 시간을 참고하여<br>
+                              연락 주시면 친절히 안내해 드리겠습니다. [전화 업무] 평일 09시00분 ~ 18시00분 
                                 </p>
                         </div><!--// answer :: 답변 영역 -->
                     </div><!--// ui-accordion-view -->
@@ -122,19 +153,20 @@
                     <!-- 질문 영역 -->
                     <a href="javascript:;" class="title-div ui-accordion-click">
                         <div class="subject">
-                            <span class="classify">회원 등급</span>
-                            <p class="txt">회원 등급에 따라 어떤 혜택을 받을 수 있나요?</p>
+                            <span class="classify">기타</span>
+                            <p class="txt">1:1문의는 어떻게 하나요?</p>
                         </div>
                         <div class="right">
-                            <i class="ico-arr-toggle"><span class="blind">내용보기</span></i>
+                            <i class="fa-solid fa-caret-up"><span class="blind">내용보기</span></i>
                         </div>
                     </a><!-- title-div -->
                     <div class="ui-accordion-view hide">
                         <!-- 답변 영역 -->
                         <div class="answer">
                             <p class="txt">
-                                답변<br />
-                                답변</p>
+                                마이페이지 카테고리 중 1:1문의 메뉴가 있습니다. 이 메뉴의 '1:1문의하기'버튼을 클릭하시면<br>
+                            질문에 대한 내용을 바로 작성하실 수 있습니다. 문의내용을 확인 후 해당 내용에 대한 답변을<br>
+                        답글로 안내드리거나 유선 상담을 통해 해결해드리고 있습니다.</p>
                         </div><!--// answer :: 답변 영역 -->
                     </div><!--// ui-accordion-view -->
                 </li>
@@ -146,18 +178,18 @@
                     <a href="javascript:;" class="title-div ui-accordion-click">
                         <div class="subject">
                             <span class="classify">결제 및 배송</span>
-                            <p class="txt">오류로 결제가 안돼요</p>
+                            <p class="txt">이미 결제를 했는데 결제 방식을 바꾸고 싶습니다.</p>
                         </div>
                         <div class="right">
-                            <i class="ico-arr-toggle"><span class="blind">내용보기</span></i>
+                            <i class="fa-solid fa-caret-up"><span class="blind">내용보기</span></i>
                         </div>
                     </a><!-- title-div -->
                     <div class="ui-accordion-view hide">
                         <!-- 답변 영역 -->
                         <div class="answer">
                             <p class="txt">
-                                답변<br />
-                                답변</p>
+                                결제 완료 후에는 결제방식 변경 가능여부 확인을 위해 고객센터 또는 1:1문의를 주시길 바랍니다.<br>
+                            변경이 가능한 경우 기존 주문건을 취소하시고 재주문을 통해 결제 방법 변경이 가능합니다.</p>
                         </div><!--// answer :: 답변 영역 -->
                     </div><!--// ui-accordion-view -->
                 </li>
@@ -168,6 +200,21 @@
 
 
     </div>
+</div>
+
+<div class="pagging-wrap page-area">       
+    <div class="page-number">    
+        <div class="pagination mt20">  
+            <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span class="blind">이전</span></a>
+            <a href="#" class="current"><span>1</span></a>
+            <a href="javascript:CmPageMove('2')" data-page="2" ><span>2</span></a>
+            <a href="javascript:CmPageMove('3')" data-page="3" ><span>3</span></a>
+            <a href="javascript:CmPageMove('4')" data-page="4" ><span>4</span></a>
+            <a href="javascript:CmPageMove('5')" data-page="5" ><span>5</span></a>
+            <a href="javascript:CmPageMove('5')" data-page="5" class='btn-page next'><span class="blind">다음</span></a>
+    </div>
+</div>
+
 </div>
 
 <!-- footer -->
