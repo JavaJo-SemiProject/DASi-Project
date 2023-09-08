@@ -18,7 +18,12 @@
 		justify-content: space-between;
 		align-items: center;
 	}
+	.topnav ul li {
+		display: inline;
+	}
 }
+
+
 
 
   /* Style the links inside the navigation bar */
@@ -81,7 +86,9 @@
 	  float: right;
 	  display: block;
 	}
-
+	.topnav ul li {
+		display: none;
+	}
   }
   
   /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
@@ -91,6 +98,9 @@
 	  position: absolute;
 	  right: 0;
 	  top: 0;
+	}
+	.topnav.responsive ul li {
+		display: block;
 	}
 	.topnav.responsive a {
 	  float: none;
