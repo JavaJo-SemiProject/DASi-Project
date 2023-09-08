@@ -86,6 +86,9 @@ body {
     font-family: 'Pretendard Variable', sans-serif;
 }
 
+.wrap {
+  min-height: 100vh;
+}
 
 /*a, input, li*/
 a, a:link {
@@ -425,6 +428,10 @@ h6 {
 }
 
 .h-100 {
+  height: 100%!important
+}
+
+vh-100 {
   height: 100vh!important
 }
 
@@ -477,6 +484,12 @@ h6 {
 
 .items_container.ic2 {
   grid-template-columns: repeat(2, minmax(100px, 1fr));
+  grid-gap: 0.625rem;
+  gap: 0.625rem;
+}
+
+.items_container.ic2_auto {
+  grid-template-columns: repeat(2, minmax(100px, auto));
   grid-gap: 0.625rem;
   gap: 0.625rem;
 }
@@ -557,6 +570,13 @@ h6 {
   max-width: 100%!important;
   max-height: 400px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item .item-thumb img:hover {
+  transform: scale(1.1)
 }
 
 img {
@@ -668,6 +688,12 @@ select:focus, select:active {
 
 .input-group > .input {
   padding-right: 0
+}
+
+.input-group label {
+  min-width: 75px;
+  font-weight: 700;
+  margin-right: 1rem
 }
 
 /*button*/
