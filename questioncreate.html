@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/default.css">
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+
+    <a href="index.html" class="brand">DASi</a>
+
+    <div class="menu">
+        <a href="#">About Dasi</a>
+        <a href="#">업사이클 디자인</a>
+        <a href="#">주문제작 가이드</a>
+        <a href="#">주문제작 견적문의</a>
+        <a href="#">자주 묻는 질문</a>
+    </div>
+
+
+    <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<!-- pages -->
+<div class="page">
+    <div class="questionarea">
+        <h1 class="question"> 1:1문의 작성</h1>
+        <h3 class="comment">답변이 완료된 문의는 수정 또는 삭제가 불가능합니다. </h3>
+        <h6 class="littlecomment">
+            제품 사용, 오염, 전용 박스 손상, 라벨 제거, 사은품 및 부속 사용/분식 시, 교환/환불이 불가능합니다.<br>
+        고객님의 주문내역을 선택, 질문이 필요한 상품을 선택하시면 1:1상담이 가능합니다<br>
+        주문취소/교환/환불은 <u>마이페이지>주문내역</u>에서 신청하실 수 있습니다.<br>
+            1:1문의 처리 내역은 <u>마이페이지>1:1문의</u>를 통해 확인하실 수 있습니다.<br>
+            상품 정보(사이즈, 실측, 예상 배송일 등) 관련 문의는 해당 상품 문의에 남기셔야 빠른 답변이 가능합니다.
+        </h6>
+        <br> <br> <br> <br> <br>
+    </div>
+    <br><br>
+    <h3 class="eachtitle">문의제목</h3>
+    <div class="questiontitle">
+        <input class="input" placeholder="기존 내용"/>
+    </div>
+    <h3 class="eachtitle">문의유형</h3>
+    <select class="select">
+        <option class="option">문의 유형을 선택해 주세요. </option>
+        <option class="option">상품문의</option>
+        <option class="option">불량/하자</option>
+        <option class="option">A/S</option>
+    </select>
+    <hr>
+    <h3 class="eachtitle">문의내용</h3>
+    <form>
+        <p><textarea cols="70" rows="10"></textarea></p>
+    </form>
+    <h3 class="eachtitle">사진</h3>
+    <input type="file" id="file" accept="image/png, image/jpeg, image/jpg">
+
+    <form action="" method="POST" class="black-box">
+        <input type="submit" value="글쓰기">
+    </form>
+    <button type="button" onclick="alert('등록하시겠습니까?')">글쓰기</button>
+    <button type="button" onclick="alert('등록되었습니다')">글쓰기</button>
+
+
+
+    <button onclick="goBack()">취소</button>
+
+
+
+
+    <!--랭킹닭컴 사이트에서 가져온 취소/작성하기 버튼 코드-->
+    <div class="btn-bottom-area">
+        <button type="button" class="button button-dark" onclick=" goSave();"><span>글쓰기</span></button>
+        <button type="button" class="button button-light" onclick="javascript:history.back();"><span>취소</span></button>
+    </div>
+
+
+
+    <!-- footer -->
+
+    <footer>
+        <div class="page">
+            <div class="items_container ic2">
+                <div class="item">
+                    <h3 class="text-white">이용약관</h3>
+                    <hr>
+                    <ul>
+                        <li>회사소개</li>
+                        <li>이용약관</li>
+                        <li>개인정보처리방침</li>
+                    </ul>
+
+                </div>
+                <div class="item">
+                    <h3 class="text-white">(주)다시</h3>
+                    <hr>
+                    <ul>
+                        <li>대표자 : 천재만재</li>
+                        <li><a href="tel:010-4666-8627" class="text-white">010-1234-5678</a></li>
+                        <li><a href="mailto:vaguewords@gmail.com?subject=문의메일 제목" class="text-white">aaaa@bbbb.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <script src="js/header.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/default.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>
