@@ -17,20 +17,22 @@
 <body>
 
   <!-- header -->
-  <div class="topnav" id="myTopnav">
+  <header class="topnav" id="myTopnav">
     <a href="index.html" class="brand">DASi</a>
-  <div class="menu">
-    <a href="#">About Dasi</a>
-    <a href="#">업사이클 디자인</a>
-    <a href="#">주문제작 가이드</a>
-    <a href="#">주문제작 견적문의</a>
-    <a href="#">자주 묻는 질문</a>
-  </div>
-    <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-      <i class="fa fa-bars"></i>
-    </a>
-</div>
+     <nav class="menu">
+       <ul>
+         <li><a href="about.html" class="active">About Dasi</a></li>
+         <li><a href="portfolio.html">업사이클 디자인</a></li>
+         <li><a href="custom_guide.html">주문제작 가이드</a></li>
+         <li><a href="custom_ask.html">주문제작 견적문의</a></li>
+         <li><a href="faq.html">자주 묻는 질문</a></li>
+       </ul>
+     </nav>
+     <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
+     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+       <i class="fa fa-bars"></i>
+     </a>
+ </header>
 
   <!-- pages -->
   <div class="page pseudo_padding">
@@ -54,8 +56,8 @@
  
     <hr>
 
-    <p>page(전체 1600px짜리) 안에 items-container(div여러개 끼워넣는 공간) 안에 item 넣으시면 됩니다.</p>
-    <p>메뉴바 상단 고정한 만큼 공간 확보해주기 위해 메뉴바 바로 밑에 있는 div에는 pseudo-padding 클래스 추가해 주세요(메뉴바 길이(60px)만큼 padding 추가)</p>
+    <p>page(전체 피그마 기준 1600px, html에서는 viewport 계산) 안에 items-container(div여러개 끼워넣는 공간) 안에 item 넣으시면 됩니다.</p>
+    <p>메뉴바 상단 고정한 만큼 공간 확보해주기 위해 메뉴바 바로 밑에 있는 div에는 pseudo-padding 클래스 추가해 주세요(메뉴바 길이만큼 padding 추가)</p>
 
     <h3>5칸짜리</h3>
     <p>div 기본 패딩, 마진은 없음</p>
