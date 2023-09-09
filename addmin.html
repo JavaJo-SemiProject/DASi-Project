@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/default.css">
 <link rel="stylesheet" href="css/carousel.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/addmin.css">
 </head>
 <body>
     <header>
@@ -31,14 +32,14 @@
         <h2>회원정보 통계</h2>
         <div class="part"><!--전체회원&신규회원 시작-->
             <div class="part1"><!--전체 회원 시작-->
-                <p>전체 회원</p>
+                <p class="all_member">전체 회원</p>
                 <h3>1025<strong>명</strong></h3>
-                <p>2023년08월01일 00:00 ~ 2023년08월01일 23:59</p>
+                <p class="date">2023년08월01일 00:00 ~ 2023년08월01일 23:59</p>
             </div><!--전체 회원 끝-->
             <div class="part2"><!--신규 회원 시작-->
-                <p>신규 회원</p>
+                <p class="all_member">신규 회원</p>
                 <h3>1025<strong>명</strong></h3>
-                <p>2023년08월01일 00:00 ~ 2023년08월01일 23:59</p>
+                <p class="date">2023년08월01일 00:00 ~ 2023년08월01일 23:59</p>
             </div><!--신규회원 끝-->
         </div><!--전체회원&신규회원 끝-->
         <hr>
@@ -46,8 +47,10 @@
             <h2>회원정보 조회</h2>
             <p>조회할 회원 ID를 입력하세요.</p>
         <div class="search"><!--조회 그룹 시작-->
-            <input class="input" placeholder="input"><!--조회 박스-->
-            <button class="button button-dark">조회</button> <!--조회 버튼-->
+          <div class="input-group" style="width:80%;" >
+            <input class="input" placeholder="required">
+            <button class="button button-dark">조회</button>
+        </div>
         </div> <!--조회 박스 끝-->
         <div class="table_1"><!--테이블 시작-->
             <div class="items_container ic1">
@@ -134,7 +137,7 @@
                 <li><a href="#">4</a></li>
                 <li><a href="#">5</a></li>
             </ul>
-        </div><!--페이지 넘기기 끝!-->
+        </div><!--페이지 넘기기 끝-->
         <div class="fooetrWrap">
             <footer>
                 <div class="page">
