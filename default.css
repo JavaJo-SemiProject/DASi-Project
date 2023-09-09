@@ -579,6 +579,15 @@ vh-100 {
   transform: scale(1.1)
 }
 
+
+.file-thumb img {
+  opacity: 0.5
+}
+
+.file-thumb img:hover {
+  opacity: 1;
+}
+
 img {
   max-width: 100%; height: auto;
   overflow: hidden;
@@ -758,6 +767,7 @@ table {
   border-spacing: 0;
   width: 100%;
   border: solid 1px var(--color-secondary);
+
 }
 
 /* Style table headers and table data */
@@ -765,6 +775,7 @@ th, td {
   text-align: center;
   padding: 1rem;
   border: solid 1px var(--color-secondary);
+  vertical-align: middle;
 }
 
 th:first-child, td:first-child {
@@ -779,6 +790,20 @@ tr:nth-child(even) {
 tr:nth-child(even):hover {
   background-color: var(--color-light-hover)
 }
+
+td .td-thumb {
+
+}
+
+.table-simple
+{ border: 0!important}
+
+.table-simple tr,
+.table-simple th,
+.table-simple td { 
+  text-align: left;
+  border-left: 0!important;
+  border-right: 0!important}
 
 
 .fa-check {
