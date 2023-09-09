@@ -10,6 +10,49 @@
 <link rel="stylesheet" href="css/carousel.css">
 <link rel="stylesheet" href="css/header.css">
 
+<style>
+  .form_radio_btn {
+              width: 47%;
+              height : 45px;
+              border: 1px solid #000;
+          }
+          .form_radio_btn input[type=radio] {
+              display: none;
+          }
+          .form_radio_btn label {
+              display: block;
+                 margin: 0 auto;
+              text-align: center;
+              height: -webkit-fill-available;
+              line-height: 45px;
+          }
+           
+          /* Checked */
+          .form_radio_btn input[type=radio]:checked + label {
+              background: #000;
+              color: #fff;
+          }
+           
+          /* Hover */
+          .form_radio_btn label:hover {
+              color: #fff;
+          }
+           
+          /* Disabled */
+          .form_radio_btn input[type=radio] + label {
+              background: #fff;
+              color: #000;
+          }
+          
+          /* Textarea Size */
+          textarea {
+            resize: none;
+          }
+
+
+
+</style>
+
 
 </head>
 <body>
@@ -17,13 +60,13 @@
   <header>
   <div class="topnav" id="myTopnav">
 
-      <a href="orderRequestPage.html" class="brand">DASi</a>
+      <a href="index.html" class="brand">DASi</a>
 
     <div class="menu">
       <a href="#">About Dasi</a>
       <a href="#">업사이클 디자인</a>
-      <a href="#">주문제작 가이드</a>
-      <a href="#">주문제작 견적문의</a>
+      <a href="orderGuidePage.html">주문제작 가이드</a>
+      <a href="orderRequestPage.html">주문제작 견적문의</a>
       <a href="#">자주 묻는 질문</a>
     </div>
 
@@ -38,17 +81,12 @@
 
   </div>
 
-
-  <div class="item-thumb">
-    <img src="img/main/sub1.jpg">
-  </div>
-
   <div class="page">
 
         <h1>주문제작 견적문의</h1>
         <hr>
-        <form action="*">
-            <button class="button button-lg button-dark" style="width: 100%;" onclick="location.href='*'"> DASi 주문제작이 처음이신가요?</button> 
+        <form>
+            <button class="button button-lg button-dark" style="width: 100%;" onclick="location.href='orderGuidePage.html'" >주문제작이 처음이신가요?</button> 
         </form>
         <hr>
 
@@ -73,48 +111,15 @@
                 
             </div>
         </form>
-        <style>
-        .form_radio_btn {
-                    width: 47%;
-                    height : 45px;
-                    border: 1px solid #000;
-                }
-                .form_radio_btn input[type=radio] {
-                    display: none;
-                }
-                .form_radio_btn label {
-                    display: block;
-                       margin: 0 auto;
-                    text-align: center;
-                    height: -webkit-fill-available;
-                    line-height: 45px;
-                }
-                 
-                /* Checked */
-                .form_radio_btn input[type=radio]:checked + label {
-                    background: #000;
-                    color: #fff;
-                }
-                 
-                /* Hover */
-                .form_radio_btn label:hover {
-                    color: #fff;
-                }
-                 
-                /* Disabled */
-                .form_radio_btn input[type=radio] + label {
-                    background: #fff;
-                    color: #000;
-                }
-                
-                /* Textarea Size */
-                textarea {
-                  resize: none;
-                }
 
 
-
-</style>
+        <div class="item bg-light p-1">
+          <select class="select">
+              <option class="option">옷</option>
+              <option class="option">신발</option>
+              <option class="option">모자</option>
+          </select>
+      </div>
 <hr>
 
 
