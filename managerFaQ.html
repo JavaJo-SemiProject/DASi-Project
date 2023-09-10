@@ -89,7 +89,8 @@
               <button onlick="" width="10" height="5">수정</button>
               <button onlick="" width="10" height="5">삭제</button>
             </td>
-            </tr> <tr>
+            </tr>
+             <tr>
                 <td width="120">주문제작</td>
                 <td width="70">2</td>
                 <td width="600">주문제작 현황 문의는 어떻게 작성하나요?</td>
@@ -122,6 +123,11 @@
           </tbody>
           </table>
 
+
+
+
+
+
         <!-- <?php
         // board테이블에서 idx를 기준으로 내림차순해서 5개까지 표시
           $sql = mq("select * from board order by hit desc limit 0,3");
@@ -134,7 +140,7 @@
                 //title이 30을 넘어서면 ...표시
                 $title=str_replace($board["title"],mb_substr($board["title"],0,30,"utf-8")."...",$board["title"]);
               }
-        ?> --> 
+        ?> -->
       <!-- <tbody>
         <tr>
           <td width="70"><?php echo $board['idx']; ?></td>
