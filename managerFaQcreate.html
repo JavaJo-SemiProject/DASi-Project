@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/managerFaQcreate.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+
 
 
 </head>
@@ -39,22 +42,9 @@
 
 
 <!--pages-->
-
-
-<div class="manager profile">
-    <img src="img/sub/about/about1-2.png" alt="manager image" height="435"
-         width="775"/>
-    <!--이미지 줄여야 함!!!여기서 직접 줄여지지가 않음-->
-
-
-    <h6>관리자</h6> <br/>
-    <span>회원등급</span>
-    <span>관리자</span>
-</div>
-<hr>
-<br/>
-<div class="button class">
-    <button class="button button-light" onClick="">1:1 문의 관리</button>
+<div class="pages"><!--페이지 시작-->
+<div class="button_class">
+    <button class="button button-light" onClick="" style="margin: 0px 20px;">1:1 문의 관리</button>
     <button class="button button-dark" onClick="">FAQ 관리</button>
 </div>
 
@@ -62,48 +52,57 @@
 <!--내용시작-->
 
 
-<div class="titlewrite_area">
-    <span>글 제목</span>
-    <form enctype="multipart/form-data" action="" method="post">
-        <div id="in_title">
-            <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
-        </div>
-    </form>
-</div>
-
-<div id="selectbox">
-    <select class="select">
-        <option class="option" selected>구분</option>
-        <option class="option"  >주문제작</option>
-        <option class="option" >결제 및 배송</option>
-        <option class="option"  >기타</option>
-    </select>
-</div>
-
-        <div class="response">
-<span>답변</span>
-<form enctype="multipart/form-data" action="" method="post">
-
-        <textarea name="title" id="response" rows="3
-        0" cols="100" placeholder="" maxlength="100" required></textarea>
+<div class="table">
+    <div class="first">
+        <p>
+            글제목
+        </p>
+        <input class="input" placeholder="input" style="width:60%">
+        <select class="select" style="width: 30%;">
+            <option class="option" selected>구분</option>
+            <option class="option" value="">주문제작</option>
+            <option class="option" value="">결제 및 배송</option>
+            <option class="option" value="">기타</option>
+        </select>
+    </div><!--first끝-->
+    <div class="second">
+        <p>
+            답변
+        </p>
+        <input class="input input-lg" placeholder="input 큰거" style="width: 80%;">
     </div>
-</form>
-</div>
+        </div>
+
+<div class="btn">
+    
+
+<!-- <button type="button" onclick="alert('등록하시겠습니까?')">등록</button>
+<button type="button" onclick="alert('등록되었습니다')">등록</button> -->
 
 
-</ul>
-
-<hr>
-
-<button type="button" onclick="alert('등록하시겠습니까?')">등록</button>
-<button type="button" onclick="alert('등록되었습니다')">등록</button>
-
-
-<button type="button" onclick="alert('취소되었습니다')">취소</button>
+<!-- <button type="button" onclick="alert('취소되었습니다')">취소</button> -->
 <div class="btn-bottom-area">
     <button type="button" class="button button-dark" onclick="goSave();"><span>등록</span></button>
     <button type="button" class="button button-light" onclick="javascript:history.back();"><span>취소</span></button>
 </div>
+</div>
+
+
+
+
+
+
+
+   
+    <!-- <form enctype="multipart/form-data" action="" method="post">
+        <div id="in_title">
+            <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
+        </div>
+    </form>
+</div> -->
+
+
+      
 
 
 
@@ -112,6 +111,8 @@
 
 
 
+
+</div>
 </body>
 
 
