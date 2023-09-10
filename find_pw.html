@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아이디 찾기</title>
-    <script>(()=>{const d=document.documentElement;d.classList.remove("Noscript"),d.classList.add("Script")})();</script>
+    <title>비밀번호 찾기</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/find_id.css">
+    <link rel="stylesheet" href="css//find_pw.css">
 </head>
 <body>
-    <div class="wrap"><!--wrap시작-->
-        <div class="headerWrap">
-              <!-- header -->
+    <div class="wrap"><!--wrap 시작-->
+        <div class="headerWrap"><!--headerWrap 시작-->
+             <!-- header -->
   <div class="topnav" id="myTopnav">
     <a href="index.html" class="brand">DASi</a>
   <div class="menu">
@@ -29,38 +28,32 @@
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
       <i class="fa fa-bars"></i>
     </a>
-</div>
-        </div><!--headerWrap끝-->
-        <div class="search"><!--search시작-->
-            <h3>
-                <a href="index.html" class="brand">DASi</a>
-            </h3>
-            <div class="find"><!--find시작-->
-              <a href="find_id.html">
-                <button class="button button-dark" style="width: 100%;">아이디 칮기</button>
-              </a>
-              <a href="find_pw.html">
-                <button class="button button-light" style="width: 100%;">비밀번호 찾기</button>
-              </a>
-            </div><!--find끝-->
-            <div class="mail">
-                <p>이메일</p>
-                    <div class="input-group">
-                                <input class="input" placeholder="찾으려는 아이디">
-                                <button class="button button-dark" style="width: 20%;">버튼</button>
-                            </div>
-                </div><!--mail끝-->
-                <div class="mail">
-                <p>인증번호</p>
-                <div class="Certified"><!--Certified시작-->
-                    <input class="input" placeholder="이메일로 받으신 6자리 인증번호를 입력하세요." maxlength="6">
-                </div><!--Certified끝-->
-                </div>
-                <div class="find_btn">
-                <button class="button button-dark" style="width: 50%;">아이디 찾기</button>
-                </div>
-
-        </div><!--search끝-->
+  </div>
+        </div><!--herderWrap끝-->
+        <div class="serach" style="text-align: center;">
+        <h3 style="text-align: center;">
+            <a href="index.html" class="brand">DASi</a>
+        </h3>
+        <div class="find"><!--find시작-->
+            <a href="find_id.html">
+                <button class="button button-light" style="width: 100%;">아이디 칮기</button>
+            </a>
+            <a href="find_pw.html">
+                <button class="button button-dark" style="width: 100%;">비밀번호 찾기</button>
+            </a>
+            
+        </div><!--find끝-->
+        </div>
+        <div class="find_pw">
+            <p>비밀번호를 찾으려는 아이디</p>
+            <div class="input-group">
+                <input class="input" placeholder="이메일을 입력해주세요">
+                <button class="button button-dark" style="width: 20%;">인증요청</button>
+            </div>
+        </div>
+        <div class="btn">
+            <button class="button button-dark" style="width: 50%;">비밀번호 찾기</button>
+        </div>
         <div class="footerWrap">
             <footer>
                 <div class="page">
@@ -88,12 +81,9 @@
                 </div>
             
               </footer>
-              <script src="js/header.js"></script>
-            <script src="js/carousel.js"></script>
-            <script src="js/default.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         </div>
-    </div><!--wrap끝-->
+
+    </div><!--Wrap 끝-->
     
 </body>
 </html>
