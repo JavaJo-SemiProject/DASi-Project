@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>managerQuestion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+
+
+
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+
+    <a href="index.html" class="brand">DASi</a>
+
+    <div class="menu">
+        <a href="#">About Dasi</a>
+        <a href="#">회원 관리</a>
+        <a href="#">주문 내역 관리</a>
+        <a href="#">제작 상품 관리</a>
+        <a href="#">문의 관리</a>
+        <a href="#">쿠폰 관리</a>
+    </div>
+
+
+    <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+
+<!--pages-->
+
+
+<div class="manager profile">
+    <img src="img/main/main1.jpg" alt="manager image" width="50" height="50">
+    <h6>관리자</h6> <br/>
+    <span>회원등급</span>
+    <span>관리자</span>
+</div>
+<hr>
+<br/>
+<div class="button class">
+    <button class="button button-light" onClick="">1:1 문의 관리</button>
+    <button class="button button-dark" onClick="">FAQ 관리</button>
+</div>
+
+<div class="calendar">
+<input type="date" id="date">
+<span> - </span>
+<input type="date" id="date1">
+</div>
+<button class="button button-dark">기간별 조회</button>
+
+
+<!--<div class="calendar">-->
+<!--    <label for="date">-->
+<!--        <input type="date"-->
+<!--               id="dateFrom"-->
+<!--               max="2023-09-06"-->
+<!--               min="2000-08-06"-->
+<!--               value="2023-08-06">-->
+<!--    </label>-->
+<!--<span> - </span>-->
+<!--<label for="date">-->
+<!--    <input type="date"-->
+<!--           id="date"-->
+<!--           max="2023-09-06"-->
+<!--           min="2000-09-06"-->
+<!--           value="2023-09-06">-->
+<!--</label></div><br>-->
+
+
+<ul>
+<li>
+        <div class="subject">
+            <span class="status">답변상태</span>
+            <span class="questionnumber">문의번호</span>
+            <span class="classify">구분</span>
+            <span  class="txt">제목</span>
+            <span class="writer">작성자</span>
+            <span  class="update">작성날짜</span>
+            <span  class="updatemake">답변등록</span>
+        </div>
+</li>
+
+
+<!-- 내용물1 -->
+
+    <li class="" id="li_2023083102">
+        <div class="question">
+            <span class="state-done">답변대기</span>
+            <span class="questionnumber">2023083102</span>
+            <span class="classify">상품관련</span>
+            <span class="txt">이미 결제를 했는데 결제 방식을 바꾸고 싶습니다.</span>
+            <span class="questionid">baksc01</span>
+            <span  class="update">2023.08.31</span>
+            <a href="javascript:void(0)" onClick="javascript:goPost()"> <i class="fa-solid fa-caret-down"></i></a>
+        </div>
+    </li>
+
+<hr>
+
+    <!-- 내용물2 -->
+
+    <li class="" id="li_2023083101">
+        <div class="question">
+                <span class="state-done">답변완료</span>
+            <span class="questionnumber">2023083101</span>
+            <span class="classify">상품관련</span>
+            <span class="txt">주문제작 대량으로도 가능한가요???</span>
+            <span class="questionid">sdfkn23</span>
+            <span  class="update">2023.08.31</span>
+           <i class="fa-solid fa-caret-down"></i></a>
+        </div>
+    </li>
+
+</ul>
+
+<hr>
+
+
+
+<div class="pagging-wrap page-area">
+    <div class="page-number">
+        <div class="pagination mt20">
+            <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span class="blind">이전</span></a>
+            <a href="#" class="current"><span>1</span></a>
+            <a href="javascript:CmPageMove('2')" data-page="2" ><span>2</span></a>
+            <a href="javascript:CmPageMove('3')" data-page="3" ><span>3</span></a>
+            <a href="javascript:CmPageMove('3')" data-page="3" class='btn-page next'><span class="blind">다음</span></a>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+<script>
+    $('#date', '#date1').datepicker({dateFormat: 'yy-mm-dd});
+</script>
+
+<script>
+    function goPost(){
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', 'managerQuestionCreate.html');
+    document.body.appendChild(f);
+    f.submit();
+}
+</script>
+
+</body>
+
+
+
+<!-- footer -->
+
+<footer>
+    <div class="page">
+        <div class="items_container ic2">
+            <div class="item">
+                <h3 class="text-white">이용약관</h3>
+                <hr>
+                <ul>
+                    <li>회사소개</li>
+                    <li>이용약관</li>
+                    <li>개인정보처리방침</li>
+                </ul>
+
+            </div>
+            <div class="item">
+                <h3 class="text-white">(주)다시</h3>
+                <hr>
+                <ul>
+                    <li>대표자 : 천재만재</li>
+                    <li><a href="tel:010-4666-8627" class="text-white">010-1234-5678</a></li>
+                    <li><a href="mailto:vaguewords@gmail.com?subject=문의메일 제목" class="text-white">aaaa@bbbb.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="js/header.js"></script>
+<script src="js/carousel.js"></script>
+<script src="js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+
+</html>
+
+
