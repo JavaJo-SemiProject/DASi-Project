@@ -1,39 +1,36 @@
 <!DOCTYPE html>
-<html lang="ko" class="Noscript">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <title>DASi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(()=>{const d=document.documentElement;d.classList.remove("Noscript"),d.classList.add("Script")})();</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/default.css">
 <link rel="stylesheet" href="css/carousel.css">
 <link rel="stylesheet" href="css/header.css">
+
 </head>
 <body>
 
   <!-- header -->
-  <div class="topnav" id="myTopnav">
-
-      <a href="index.html" class="brand">DASi</a>
-
-    <div class="menu">
-      <a href="#">About Dasi</a>
-      <a href="#">업사이클 디자인</a>
-      <a href="#">주문제작 가이드</a>
-      <a href="#">주문제작 견적문의</a>
-      <a href="#">자주 묻는 질문</a>
-    </div>
-
-
-      <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
-
+  <header class="topnav" id="myTopnav">
+     <a href="index.html" class="brand">DASi</a>
+      <nav class="menu">
+        <ul>
+          <li><a href="about.html" class="active">About Dasi</a></li>
+          <li><a href="portfolio.html">업사이클 디자인</a></li>
+          <li><a href="orderGuidePage.html">주문제작 가이드</a></li>
+          <li><a href="orderRequestPage.html">주문제작 견적문의</a></li>
+          <li><a href="faq.html">자주 묻는 질문</a></li>
+        </ul>
+      </nav>
+      <a href="#" class="user"><i class="fa fa-user-circle"></i></a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
-
-
-  </div>
+  </header>
+  
   <main class="Main pseudo_margin">
     <section class="Carousel" id="carousel" tabindex="-1">
       <h2 class="Hidden">Carousel</h2>
@@ -150,25 +147,67 @@
   </main>
 
   <!-- pages -->
-  <div class="page">
+  <div class="page pb-3">
     <h1>반려견을 위한 업사이클링 공방,<br>DASi에 오신 것을 환영합니다.</h1>
     <hr>
-    <h3>Does Another Sustainable Innovation,<br>DASi</h3>
+    <h5><span class="text-thin">Does Another Sustainable Innovation,</span><br>DASi</h5>
+    <hr class="pb-3">
+
+
+    
     <div class="items_container ic2">
       <div class="item">
-        <div class="item-thumb">
-          <img src="img/main/sub1.jpg" title="상품1" alt="상품1 설명">
-        </div>
+        <a href="about.html">
+          <div class="item-thumb">
+            <img src="img/main/sub1.png" title="상품1" alt="상품1 설명">
+          </div>
+          <h5 class="pt-2">About DASi</h5>
+          주문제작 전문 업사이클링 공방, DASi
+        </a>
       </div>
       <div class="item">
+        <a href="custom.html">
         <div class="item-thumb">
-          <img src="img/main/sub2.jpg" title="상품1" alt="상품1 설명">
+          <img src="img/main/sub2.png" title="상품1" alt="상품1 설명">
         </div>
+        <h5 class="pt-2">주문제작 안내</h5>
+        DASi 주문제작이 처음이신가요?
+       </a>
       </div>
      
     </div>
   </div>
-
+  <div class="page pb-3 mb-3">
+    <h1>주문제작 사례</h1>
+    <hr>
+    <h5 class="pb-3"><span class="text-thin">소중한 반려견을 위한</span><br>세상에 단 하나뿐인 주문제작품</h5>
+    <div class="items_container ic3">
+      <div class="item">
+        <a href="portfolio-detail.html">
+          <div class="item-thumb">
+            <img src="img/sub/portfolio/product1/thumb.jpg" title="상품1" alt="상품1 설명">
+          </div>
+        </a>
+      </div>
+      <div class="item">
+        <a href="portfolio-detail.html">
+        <div class="item-thumb">
+          <img src="img/sub/portfolio/product2/thumb.jpg" title="상품2" alt="상품2 설명">
+        </div>
+       </a>
+      </div>
+      <div class="item">
+        <a href="portfolio-detail.html">
+        <div class="item-thumb">
+          <img src="img/sub/portfolio/product3/thumb.png" title="상품3" alt="상품3 설명">
+        </div>
+       </a>
+      </div>
+    </div>
+    <div class="items_contaier ic3 py-3">
+      <a href="portfolio.html"><button class="button button-light w-100">모두 보기</button></a>
+    </div>
+  </div>
   <footer>
     <div class="page">
       <div class="items_container ic2">
@@ -199,5 +238,6 @@
   <script src="js/carousel.js"></script>
   <script src="js/default.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 </body>
 </html>
