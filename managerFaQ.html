@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/managerFaQ.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 </head>
 <body>
@@ -46,11 +47,11 @@
 <hr>
 <br/>
 <div class="button class">
-    <button class="button button-light" onClick="">1:1 문의 관리</button>
-    <button class="button button-dark" onClick="">FAQ 관리</button>
-</div
-<div>
-    <h3 class="eachtitle">구분</h3>
+    <button class="button button-light" onClick="location.href='managerQuestion.html'">1:1 문의 관리</button>
+    <button class="button button-dark" >FAQ 관리</button>
+</div>
+<div class="selecttitle">
+    <h3 class="selecttitle1">구분</h3>
     <select class="select">
         <option class="option" selected>전체</option>
         <option class="option" value='' onclick="">주문제작</option>
@@ -61,137 +62,99 @@
 
 <br> <br>
 <hr>
-<div class="board-list ui-accordion">
-    <ul class="accordion-list type2 ui-accordion-list">
-        <li>
-            <a href="javascript:;" class="title-div ui-accordion-click">
-                <div class="subject">
 
-                    <span class="classify">구분</span>
-                    <span  class="txt">제목</span>
-                    <span  class="number">글번호</span>
-                    <span  class="update">update</span>
-                    <span  class="updatedelete">수정 및 삭제</span>
-                </div>
-        </li>
+<table class="managerFaQ">
 
 
-        <hr>
 
 
-        <li><!-- 활성화시 addClass active -->
-            <!-- 질문 영역 -->
-            <a href="javascript:;" class="title-div ui-accordion-click">
-                <div class="subject">
-                    <span class="classify">기타</span>
-                    <span class="txt">고객센터 운영 시간이 어떻게 되나요?</span>
-                    <span  class="update">2023.09.08</span>
-                    <button onlick="managerFaQupdate.html" width="10" height="5">수정</button>
-                    <button onlick="" width="10" height="5">삭제</button>
 
-                </div>
+      <table class="list-table">
+      <thead>
+          <tr>
+              <th width="120">구분</th>
+              <th width="70">글번호</th>
+                <th width="600">제목</th>
+                <th width="100">update</th>
+                <th width="100">수정 및 삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td width="120">기타</td>
+              <td width="70">1</td>
+              <td width="600">고객센터 운영 시간이 어떻게 되나요?</td>
+              <td width="100">2023.09.08</td>
+              <td width="100">
+              <button onlick="" width="10" height="5">수정</button>
+              <button onlick="" width="10" height="5">삭제</button>
+            </td>
+            </tr> <tr>
+                <td width="120">주문제작</td>
+                <td width="70">2</td>
+                <td width="600">주문제작 현황 문의는 어떻게 작성하나요?</td>
+                <td width="100">2023.09.08</td>
+                <td width="100">
+                <button onlick="" width="10" height="5">수정</button>
+                <button onlick="" width="10" height="5">삭제</button>
+              </td>
+              </tr>
+              <tr>
+                <td width="120">결제 및 배송</td>
+                <td width="70">3</td>
+                <td width="600">상품이 주문한 것과 다르게 배송되었습니다.</td>
+                <td width="100">2023.09.08</td>
+                <td width="100">
+                <button onlick="" width="10" height="5">수정</button>
+                <button onlick="" width="10" height="5">삭제</button>
+              </td>
+              </tr>
+              <tr>
+                <td width="120">결제 및 배송</td>
+                <td width="50">4</td>
+                <td width="600">이미 결제를 했는데 결제 방식을 바꾸고 싶어요</td>
+                <td width="100">2023.09.08</td>
+                <td width="100">
+                <button onlick="" width="10" height="5">수정</button>
+                <button onlick="" width="10" height="5">삭제</button>
+              </td>
+              </tr>
+          </tbody>
+          </table>
 
-<div class="right">
-    <i class="fa-solid fa-caret-down"><span class="blind">내용보기</span></i>
-</div>
-</a><!-- title-div -->
-<div class="ui-accordion-view hide">
-    <!-- 답변 영역 -->
-    <div class="answer">
-        <p class="txt">
-            DASI(다시) 고객센터 상담시간은 아래와 같습니다. 상담을 원하시는 고객님께서는 해당 시간을 참고하여<br/>
-            연락 주시면 친절히 안내해 드리겠습니다. [전화 업무] 평일 09:00 ~ 18:00</p>
-    </div><!--// answer :: 답변 영역 -->
-</div><!--// ui-accordion-view -->
 
-<hr>
 
-</li>
-<li><!-- 활성화시 addClass active -->
-    <!-- 질문 영역 -->
-    <a href="javascript:;" class="title-div ui-accordion-click">
-        <div class="subject">
-            <span class="classify">주문제작</span>
-            <span class="txt">주문제작 현황 문의는 어떻게 작성하나요? </span>
-            <span  class="update">2023.09.08</span>
-            <button onlick="" width="10" height="5">수정</button>
-            <button onlick="" width="10" height="5">삭제</button>
-        </div>
-        <div class="right">
-            <i class="fa-solid fa-caret-down"><span class="blind">내용보기</span></i>
-        </div>
-    </a><!-- title-div -->
-    <div class="ui-accordion-view hide">
-        <!-- 답변 영역 -->
-        <div class="answer">
-            <span class="classify">답변</span>
-            <p class="txt">
-                제작이 승인되어 [제작중]으로 표기된 주문 제작 상품은<br />
-                대개 평일 기준으로 평균 10일 이내 출고됩니다.<br />
-                출고 일정이 확정된 경우, 상품 상세페이지에서 확인이 가능합니다.<br /><br />
-                * 평일 기준 출고로 연휴 및 공휴일은 배송일에서 제외됩니다.<br />
-                * 출고 후에도 실제 도착까지는 기간이 더 소요될 수 있습니다. <br />
-                * 제작 중 주문 정보(옵션) 변경 및 취소가 어렵습니다.<br /><br />
-            </p>
-        </div><!--// answer :: 답변 영역 -->
-    </div><!--// ui-accordion-view -->
-</li>
 
-<hr>
 
-<li><!-- 활성화시 addClass active -->
-    <!-- 질문 영역 -->
-    <a href="javascript:;" class="title-div ui-accordion-click">
-        <div class="subject">
-            <span class="classify">결제 및 배송</span>
-            <span class="txt">상품이 주문한 것과 다르게 배송되었습니다.</span>
-            <span  class="update">2023.09.08</span>
-            <button onlick="" width="10" height="5">수정</button>
-            <button onlick="" width="10" height="5">삭제</button>
-        </div>
-        <div class="right">
-            <i class="fa-solid fa-caret-down"><span class="blind">내용보기</span></i>
-        </div>
-    </a><!-- title-div -->
-    <div class="ui-accordion-view hide">
-        <!-- 답변 영역 -->
-        <div class="answer">
-            <p class="txt">
-                이용에 불편을 드려 죄송합니다.<br/>
-                받으신 제품의 사진을 찍어 1:1문의, 고객센터로 연락주시면 확인 후 안내드리겠습니다.</br>
-                (※누락, 오배송의 경우 상품 수령 후 2주 이내에 교환 가능합니다.)</p>
-        </div><!--// answer :: 답변 영역 -->
-    </div><!--// ui-accordion-view -->
-</li>
 
-<hr>
+        <!-- <?php
+        // board테이블에서 idx를 기준으로 내림차순해서 5개까지 표시
+          $sql = mq("select * from board order by hit desc limit 0,3");
+            while($board = $sql->fetch_array())
+            {
+              //title변수에 DB에서 가져온 title을 선택
+              $title=$board["title"];
+              if(strlen($title)>30)
+              {
+                //title이 30을 넘어서면 ...표시
+                $title=str_replace($board["title"],mb_substr($board["title"],0,30,"utf-8")."...",$board["title"]);
+              }
+        ?> -->
+      <!-- <tbody>
+        <tr>
+          <td width="70"><?php echo $board['idx']; ?></td>
+          <td width="500"><a href="read.php?board_id=board&idx=<?php echo $board["idx"];?>"><?php echo $title;?></a></td>
+          <td width="120"><?php echo $board['name']?></td>
+          <td width="100"><?php echo $board['date']?></td>
+        </tr>
+      </tbody>
+      <?php } ?>
+    </table> -->
+ 
+    
+    
 
-<li><!-- 활성화시 addClass active -->
-    <!-- 질문 영역 -->
-    <a href="javascript:;" class="title-div ui-accordion-click">
-        <div class="subject">
-            <span class="classify">결제 및 배송</span>
-            <span class="txt">이미 결제를 했는데 결제 방식을 바꾸고 싶어요</span>
-            <span  class="update">2023.09.08</span>
-            <button onlick="" width="10" height="5">수정</button>
-            <button onlick="" width="10" height="5">삭제</button>
-        </div>
-        <div class="right">
-            <i class="fa-solid fa-caret-down"><span class="blind">내용보기</span></i>
-        </div>
-    </a><!-- title-div -->
-    <div class="ui-accordion-view hide">
-        <!-- 답변 영역 -->
-        <div class="answer">
-            <p class="txt">
-                결제 완료 후에는 결제방식 변경 가능여부 확인을 위해 고객센터 또는 1:1문의를 주시길 바랍니다.</br>
-                변경이 가능한 경우 기존 주문건을 취소하시고 재주문을 통해 결제 방법 변경이 가능합니다.</p>
-        </div><!--// answer :: 답변 영역 -->
-    </div><!--// ui-accordion-view -->
-</li>
-</ul>
-
-<button class="button button-dark" onclick="managerFaQcreate.html">FAQ 추가등록</button>
+<button class="button button-dark" onclick="location.href='managerFaQcreate.html'">FAQ 추가등록</button>
 
 
 
