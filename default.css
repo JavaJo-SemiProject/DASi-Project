@@ -194,6 +194,9 @@ h6 {
   text-align: right!important;
 }
 
+pre {
+  white-space: pre-line!important
+}
 
 .text-thin {
   font-weight: 300!important;
