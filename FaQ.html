@@ -1,15 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FaQ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="FaQ.css">
+
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -39,16 +41,19 @@
         <h3 class="tel">Tel:010-1234-5678<br>평일 09시00분 ~ 18시00분</h3>
     </div>
     <div class="questionsearch">
-        <div class="input-group">
+        <div class="input-group" style="width:100%">
             <input class="input" placeholder="궁금하신 내용을 입력해주세요"/>
-            <button class="button button-dark">버튼</button>
+            <button class="button button-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         </div>
-        <button class="button button-light" onClick="">주문제작</button>
-        <button class="button button-light" onClick="">결제 및 배송</button>
-        <button class="button button-light" onClick="">asdf</button>
-        <button class="button button-light" onClick="">기타</button>
+        <div class="btn">
+        <button class="button1"  onClick="" style="width:100%" >주문제작</button>
+        <button class="button2"  onClick="" style="width:100%">결제 및 배송</button>
+        <button class="button3" onClick="" style="width:100%">기타</button>
         </div>
+
+    </div>
+
 
 
         <br> <br> <br> <br> <br>
@@ -59,7 +64,7 @@
                     <a href="javascript:;" class="title-div ui-accordion-click">
                         <div class="subject">
                             <span class="classify">구분</span>
-                            <p class="txt">제목</p>
+                            <span  class="txt">제목</span >
                         </div>
                 </li>
 
@@ -70,19 +75,19 @@
                     <!-- 질문 영역 -->
                     <a href="javascript:;" class="title-div ui-accordion-click">
                         <div class="subject">
-                            <span class="classify">주문제작</span>
-                            <p class="txt">주문제작 상품은 언제 배송되나요?</p>
+                            <span class="classify">기타</span>
+                            <p class="txt">고객센터 운영 시간이 어떻게 되나요?</p>
                         </div>
                         <div class="right">
-                            <i class="ico-arr-toggle"><span class="blind">내용보기</span></i>
+                            <i class="fa-solid fa-caret-down"><span class="blind">내용보기</span></i>
                         </div>
                     </a><!-- title-div -->
                     <div class="ui-accordion-view hide">
                         <!-- 답변 영역 -->
                         <div class="answer">
                             <p class="txt">
-                                답변<br />
-                                답변</p>
+                               DASI(다시) 고객센터 상담시간은 아래와 같습니다. 상담을 원하시는 고객님께서는 해당 시간을 참고하여<br/>
+                                연락 주시면 친절히 안내해 드리겠습니다. [전화 업무] 평일 09:00 ~ 18:00</p>
                         </div><!--// answer :: 답변 영역 -->
                     </div><!--// ui-accordion-view -->
 
@@ -97,7 +102,7 @@
                             <p class="txt">주문제작 현황 문의는 어떻게 작성하나요? </p>
                         </div>
                         <div class="right">
-                            <i class="ico-arr-toggle"><span class="blind">내용보기</span></i>
+                            <i class="fa-solid fa-caret-down"><span class="blind">내용보기</span></i>
                         </div>
                     </a><!-- title-div -->
                     <div class="ui-accordion-view hide">
@@ -122,19 +127,20 @@
                     <!-- 질문 영역 -->
                     <a href="javascript:;" class="title-div ui-accordion-click">
                         <div class="subject">
-                            <span class="classify">회원 등급</span>
-                            <p class="txt">회원 등급에 따라 어떤 혜택을 받을 수 있나요?</p>
+                            <span class="classify">결제 및 배송</span>
+                            <p class="txt">상품이 주문한 것과 다르게 배송되었습니다.</p>
                         </div>
                         <div class="right">
-                            <i class="ico-arr-toggle"><span class="blind">내용보기</span></i>
+                            <i class="fa-solid fa-caret-down"><span class="blind">내용보기</span></i>
                         </div>
                     </a><!-- title-div -->
                     <div class="ui-accordion-view hide">
                         <!-- 답변 영역 -->
                         <div class="answer">
                             <p class="txt">
-                                답변<br />
-                                답변</p>
+                                이용에 불편을 드려 죄송합니다.<br/>
+                                받으신 제품의 사진을 찍어 1:1문의, 고객센터로 연락주시면 확인 후 안내드리겠습니다.</br>
+                                (※누락, 오배송의 경우 상품 수령 후 2주 이내에 교환 가능합니다.)</p>
                         </div><!--// answer :: 답변 영역 -->
                     </div><!--// ui-accordion-view -->
                 </li>
@@ -146,28 +152,43 @@
                     <a href="javascript:;" class="title-div ui-accordion-click">
                         <div class="subject">
                             <span class="classify">결제 및 배송</span>
-                            <p class="txt">오류로 결제가 안돼요</p>
+                            <p class="txt">이미 결제를 했는데 결제 방식을 바꾸고 싶어요</p>
                         </div>
                         <div class="right">
-                            <i class="ico-arr-toggle"><span class="blind">내용보기</span></i>
+                            <i class="fa-solid fa-caret-down"><span class="blind">내용보기</span></i>
                         </div>
                     </a><!-- title-div -->
                     <div class="ui-accordion-view hide">
                         <!-- 답변 영역 -->
                         <div class="answer">
                             <p class="txt">
-                                답변<br />
-                                답변</p>
+                                결제 완료 후에는 결제방식 변경 가능여부 확인을 위해 고객센터 또는 1:1문의를 주시길 바랍니다.</br>
+                                변경이 가능한 경우 기존 주문건을 취소하시고 재주문을 통해 결제 방법 변경이 가능합니다.</p>
                         </div><!--// answer :: 답변 영역 -->
                     </div><!--// ui-accordion-view -->
                 </li>
-
-                <hr>
-
+            </ul>
 
 
 
+
+
+
+
+
+
+
+<div class="pagging-wrap page-area">
+    <div class="page-number">
+        <div class="pagination mt20">
+            <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span class="blind">이전</span></a>
+            <a href="#" class="current"><span>1</span></a>
+            <a href="javascript:CmPageMove('2')" data-page="2" ><span>2</span></a>
+            <a href="javascript:CmPageMove('3')" data-page="3" ><span>3</span></a>
+            <a href="javascript:CmPageMove('3')" data-page="3" class='btn-page next'><span class="blind">다음</span></a>
+        </div>
     </div>
+
 </div>
 
 <!-- footer -->
@@ -202,5 +223,6 @@
 <script src="js/carousel.js"></script>
 <script src="js/default.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 </body>
 </html>
