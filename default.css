@@ -658,6 +658,30 @@ img {
   
 }
 
+.checkbox_radio{
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.input-form-area {
+  margin-bottom: 1.5rem
+}
+
+.input-form {
+  display: grid;
+  grid-gap: 0.25rem;
+
+}
+
+.hyphen {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 0.625rem;
+}
+
+
 /*select, select option*/
 
 select {
@@ -756,10 +780,8 @@ select:focus, select:active {
 }
 
 /*modal*/
-.modal a {
-  display: inline-block!important;
-  padding: 7px 14px 7px 14px;
-  border-radius: 0.5rem;
+.modal {
+  border-radius: 0;
 }
 
 
@@ -892,5 +914,48 @@ footer {
   justify-content: center;
     
   align-items: center;
+}
+
+/*pagination*/
+.pagination {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.pagination,
+.pagination li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+.pagination ul {
+  border-collapse: collapse;
+}
+
+.pagination li {
+  list-style: none;
+  
+}
+.pagination li a {
+  text-decoration: none;
+  height: 40px;
+  width: 40px;
+  font-size: 1rem;
+  border: 1px solid var(--color-secondary);
+  border-collapse: collapse;
+}
+.pagination li:last-child a {
+}
+.pagination li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-top-color: rgba(0, 0, 0, 0.35);
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+}
+.pagination li a:focus,
+.pagination li a:active {
+  background-color: var(--color-light);
 }
 
