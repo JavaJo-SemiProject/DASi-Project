@@ -1,0 +1,87 @@
+@charset "UTF-8";
+.dasi{
+    margin-top: 1.5em;
+    text-align: center;
+    font-size: 40px;
+}
+.dasi > p {
+    font-size: 24px;
+}
+.bigBox{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: dense;
+    gap: 0.625rem;
+}
+.join{
+    margin-right: 25px;
+}
+.input-font{
+    margin: 0 1.3rem 0 0;
+    font-size: 1rem;   
+}
+
+.input-caption {
+    font-size: 0.9rem;
+
+}
+
+.check_policy{
+    overflow: auto;
+    font-size: 1rem;
+    border: 1px solid #111111;
+    width: 100%;
+    height: 25rem;
+    padding: 1rem
+}
+
+
+.agree{
+    margin-right: 25px;
+}
+.bigFont{
+    font-size: 16px;
+    color: #111111;
+    /* margin: 10px 0px 0px 0px; */
+}
+.input-group{
+    /* margin-top: 30px; */
+}
+.Calendar{
+    width: 100%;
+    height: 40px;
+    padding: 0 7px;
+    border: solid 1px var(--color-secondary);
+}
+.birth{
+
+    
+}
+.checkbox_radio{
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.number{
+    width: 31%;
+    height: 40px;
+    border: solid #cccc;
+}
+
+.join-form-area {
+    margin-bottom: 1.5rem
+}
+
+.join-form {
+    display: grid;
+    grid-gap: 0.25rem;
+
+}
+
+.hyphen {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.625rem;
+}
