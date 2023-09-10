@@ -10,17 +10,7 @@
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/addmin.css">
-
-    <style>
-        tr{ height: 10%;}
-        td{ border: 1px solid #000;}
-        #orderCol {
-                    background-color: #E6E6E6;
-                    border: 1px solid #000;
-                }
-
-       
-      </style>    
+    <link rel="stylesheet" href="css/order.css">    
 
     </head>
     <body>
@@ -58,7 +48,7 @@
         
         <h5>주문 정보</h5>
         <table>
-            <tr>
+            <tr id="table_tr">
                 <th id="orderCol" style="text-align: center;">주문 일자</th><td>2023-09-08</td>
                 <th id="orderCol" style="text-align: center;">주문 ID</th><td>000001</td>
                 <th id="orderCol" style="text-align: center;">회원 ID</th><td>GOD123</td>
@@ -68,15 +58,15 @@
 
         <h5>요청 정보</h5>
         <table>
-            <tr>
+          <tr id="table_tr">
                 <th id="orderCol" style="text-align: center;">상품 ID</th><td>00003</td>
-                <th id="orderCol" style="text-align: center;">사이즈 정보</th><td class="ic1">목둘레~목둘레~~~~~목둘레~목둘레~~~~~<br>목둘레~목둘레~~~~~목둘레~목둘레~~~~~</td>
+                <th id="orderCol" style="text-align: center;">사이즈 정보</th><td class="#table_td">목둘레~목둘레~~~~~목둘레~목둘레~~~~~<br>목둘레~목둘레~~~~~목둘레~목둘레~~~~~</td>
             </tr>
         </table>
 
         <h5>결제 정보</h5>
         <table>
-            <tr>
+          <tr id="table_tr">
                 <th id="orderCol" style="text-align: center;">결제 번호</th><td>00003</td>
                 <th id="orderCol" style="text-align: center;">결제일</th><td >2023-09-09</td>
                 <th id="orderCol" style="text-align: center;">결제 시간</th><td >13:13:00</td>
@@ -90,12 +80,12 @@
         <div class="item" style="position: absolute;"><button class="button button-dark" onclick="location.href=''">배송 조회</button></div>
         </div>
         <table>
-            <tr>
+          <tr id="table_tr">
                 <th id="orderCol" style="text-align: center;">수령인</th><td>배승수</td>
                 <th id="orderCol" style="text-align: center;">전화번호</th><td>010-1234-5678</td>
                 <th id="orderCol" style="text-align: center;">주소</th><td>서울특별시 강북구 수유1동</td>
             </tr>
-            <tr>
+            <tr id="table_tr">
                 <th id="orderCol" style="text-align: center;">배송 일자</th><td>2023-09-09</td>
                 <th id="orderCol" style="text-align: center;">송장번호</th><td>555555555</td>
             </tr>

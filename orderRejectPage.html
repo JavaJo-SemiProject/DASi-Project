@@ -5,19 +5,12 @@
         <title>DASi ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/addmin.css">
-
-    <style>
-         textarea {
-          width: 100%;
-          height: 100vh;
-            resize: none;
-          }
-    </style>
+    <link rel="stylesheet" href="css/order.css>">
 
     </head>
     <body>
@@ -44,16 +37,16 @@
         <h1> 취소 사유</h1>
         <hr>
             <div>
-            <textarea placeholder="취소 사유 작성해주세요."></textarea>
+            <textarea id="rejectText" placeholder="취소 사유 작성해주세요."></textarea>
         </div>
             <div class="items_container" style="display: flex;">
                 <div class="item" style="width: 100%;">
-            <button class="button button-lg button-light" style="width: 100%;">취소</button>
+            <button class="button button-lg button-light" style="width: 100%;" onclick="location.href='adminOrderDetail'">취소</button>
         </div>
         <div class="item" style="width: 100%;">
             <button class="button button-lg button-dark" style="width: 100%;" id="confirm">등록</button>
         </div>
-        </div>
+        </div>  
             
       </div>
 
@@ -87,10 +80,6 @@
       <script src="js/carousel.js"></script>
       <script src="js/default.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-      
-
-
 
     </body>
     </html>
