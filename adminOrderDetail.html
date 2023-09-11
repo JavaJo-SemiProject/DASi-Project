@@ -10,7 +10,12 @@
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/addmin.css">
-    <link rel="stylesheet" href="css/order.css">    
+    <link rel="stylesheet" href="css/order.css">   
+    
+    <style>
+      td{ border: 1px solid #000;}
+      textarea{ resize: none;}
+    </style>
 
     </head>
     <body>
@@ -36,7 +41,7 @@
       <div class="page">
         <h1> 주문 상세 내역</h1>
         <hr>
-            <h5>요청 이미지</h5>
+          <h5 style="margin-bottom: 5px;">요청 이미지</h5>
             <div class="Card--photo" style="display: flex;">
             <img src ="img/main/sub1.jpg" alt="requestProduct" style="display:block; width:30vh; margin: 0px 10px 0px 10px;" 
             class="mx-auto" onclick="window.open(this.src)">
@@ -44,11 +49,11 @@
             class="mx-auto" onclick="window.open(this.src)">
             <img src ="img/main/sub1.jpg" alt="requestProduct" style="display:block; width:30vh; margin: 0px 10px 0px 10px;" 
             class="mx-auto" onclick="window.open(this.src)">
-        </div>
+            </div>
         
-        <h5>주문 정보</h5>
+        <h5 style="margin-bottom: 5px;">주문 정보</h5>
         <table>
-            <tr id="table_tr">
+            <tr>
                 <th id="orderCol" style="text-align: center;">주문 일자</th><td>2023-09-08</td>
                 <th id="orderCol" style="text-align: center;">주문 ID</th><td>000001</td>
                 <th id="orderCol" style="text-align: center;">회원 ID</th><td>GOD123</td>
@@ -56,17 +61,17 @@
             </tr>
         </table>
 
-        <h5>요청 정보</h5>
+        <h5 style="margin-bottom: 5px;">요청 정보</h5>
         <table>
-          <tr id="table_tr">
+          <tr>
                 <th id="orderCol" style="text-align: center;">상품 ID</th><td>00003</td>
                 <th id="orderCol" style="text-align: center;">사이즈 정보</th><td class="#table_td">목둘레~목둘레~~~~~목둘레~목둘레~~~~~<br>목둘레~목둘레~~~~~목둘레~목둘레~~~~~</td>
             </tr>
         </table>
 
-        <h5>결제 정보</h5>
+        <h5 style="margin-bottom: 5px;">결제 정보</h5>
         <table>
-          <tr id="table_tr">
+          <tr>
                 <th id="orderCol" style="text-align: center;">결제 번호</th><td>00003</td>
                 <th id="orderCol" style="text-align: center;">결제일</th><td >2023-09-09</td>
                 <th id="orderCol" style="text-align: center;">결제 시간</th><td >13:13:00</td>
@@ -76,25 +81,26 @@
         </table>
 
         <div class="items_container" style="display: flex; align-items: center;">
-        <div class="item"><h5>배송 정보</h5></div>
-        <div class="item" style="position: absolute;"><button class="button button-dark" onclick="location.href=''">배송 조회</button></div>
+        <div class="item"><h5 style="margin-bottom: 5px;">배송 정보</h5></div>
+        <div class="item" style="margin-left: 100vh;"><button class="button button-dark" onclick="location.href=''">배송 조회</button></div>
         </div>
         <table>
-          <tr id="table_tr">
+          <tr>
                 <th id="orderCol" style="text-align: center;">수령인</th><td>배승수</td>
                 <th id="orderCol" style="text-align: center;">전화번호</th><td>010-1234-5678</td>
                 <th id="orderCol" style="text-align: center;">주소</th><td>서울특별시 강북구 수유1동</td>
             </tr>
-            <tr id="table_tr">
+            <tr>
                 <th id="orderCol" style="text-align: center;">배송 일자</th><td>2023-09-09</td>
-                <th id="orderCol" style="text-align: center;">송장번호</th><td>555555555</td>
+                <th id="orderCol" style="text-align: center;">송장번호</th><td colspan="3">555555555</td>
             </tr>
         </table>
 
-        <h5>진행 사항</h5>
+        <div>
+        <h5 style="margin-bottom: 5px;">진행 사항</h5>
         <div>
         <div class="process-container">
-            <div class="item"><h3><i class="fa-solid fa-pen-to-square"></i></h3><h6>제작 요청</h6></div>
+            <div class="item"><h3><i class="fa-solid fa-pen-to-square"></i></h3>제작요청</div>
             <div class="item"><i class="fa-solid fa-angle-right text-sec"></i></div>
             <div class="item"><h3><i class="fa-solid fa-clipboard-check"></i></h3>제작 승인</div>
             <div class="item"><i class="fa-solid fa-angle-right text-sec"></i></div>
@@ -110,6 +116,12 @@
             <div class="item"><i class="fa-solid fa-angle-right text-sec"></i></div>
             <div class="item"><h3><i class="fa-solid fa-house"></i></h3>배송 완료</div>
           </div>
+        </div>
+
+        <div>
+          <h5 style="margin-bottom: 5px;">취소 사유</h5>
+          <textarea placeholder="-" style="width: 100%; height: 10vh;" readonly></textarea>
+        </div>
         </div>
         
         
