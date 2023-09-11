@@ -2,12 +2,10 @@
 name: "\U0001F41C Bug report"
 about: BUG 발생 시 작성해주세요.
 title: ''
-labels: ''
+labels: bug
 assignees: ''
 
 ---
-
-* * *
 
 ## Description
 * * *
