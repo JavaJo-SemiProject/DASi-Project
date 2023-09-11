@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/managerQuestion.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -41,19 +42,14 @@
 
 
 <!--pages-->
-
-
-<div class="manager profile">
-    <img src="img/main/main1.jpg" alt="manager image" width="50" height="50">
-    <h6>관리자</h6> <br/>
-    <span>회원등급</span>
-    <span>관리자</span>
-</div>
-<hr>
-<br/>
+<br>
+<br>
+<div class="pages">
+<h1>관리자1:1조회페이지</h1>
+<br>
 <div class="button class">
     <button class="button button-light" onClick="">1:1 문의 관리</button>
-    <button class="button button-dark" onClick="">FAQ 관리</button>
+    <button class="button button-dark" onClick="location.href='managerFaQ.html'">FAQ 관리</button>
 </div>
 
 <div class="calendar">
@@ -82,55 +78,46 @@
 <!--</label></div><br>-->
 
 
-<ul>
-<li>
-        <div class="subject">
-            <span class="status">답변상태</span>
-            <span class="questionnumber">문의번호</span>
-            <span class="classify">구분</span>
-            <span  class="txt">제목</span>
-            <span class="writer">작성자</span>
-            <span  class="update">작성날짜</span>
-            <span  class="updatemake">답변등록</span>
-        </div>
-</li>
 
 
-<!-- 내용물1 -->
-
-    <li class="" id="li_2023083102">
-        <div class="question">
-            <span class="state-done">답변대기</span>
-            <span class="questionnumber">2023083102</span>
-            <span class="classify">상품관련</span>
-            <span class="txt">이미 결제를 했는데 결제 방식을 바꾸고 싶습니다.</span>
-            <span class="questionid">baksc01</span>
-            <span  class="update">2023.08.31</span>
+<table class="ttable">
+<thead>
+   <tr>
+        <th class="status" width="70px">답변상태</th>
+       <th class="questionnumber" width="10px">문의번호</th>
+       <th class= "classify" width="3px">구분</th>
+       <th class="txt" width="1100">제목</th>
+        <th class="writer" width="90">작성자</th>
+        <th class="update" width="90">작성날짜</th>
+        <th class="updatemake" width="20">답변등록</th>
+   </tr>
+</thead>
+<tbody>
+    <tr>
+        <td class="status" width="50">답변대기</th>
+        <td class="questionnumber" width="20">2023083102</th>
+        <td class= "classify" width="600">상품관련</th>
+        <td class="txt" width="100">이미 결제를 했는데 결제 방식을 바꾸고 싶습니다.</th>
+         <td class="writer" width="100">baksc01</th>
+         <td class="update" width="100">2023.08.31</th>
+         <td class="updatemake" width="100">
             <a href="javascript:void(0)" onClick="javascript:goPost()"> <i class="fa-solid fa-caret-down"></i></a>
-        </div>
-    </li>
-
-<hr>
-
-    <!-- 내용물2 -->
-
-    <li class="" id="li_2023083101">
-        <div class="question">
-                <span class="state-done">답변완료</span>
-            <span class="questionnumber">2023083101</span>
-            <span class="classify">상품관련</span>
-            <span class="txt">주문제작 대량으로도 가능한가요???</span>
-            <span class="questionid">sdfkn23</span>
-            <span  class="update">2023.08.31</span>
-           <i class="fa-solid fa-caret-down"></i></a>
-        </div>
-    </li>
-
-</ul>
-
-<hr>
-
-
+         </td>
+    </tr>
+  
+    <tr>
+        <td class="status" width="30">답변완료</th>
+        <td class="questionnumber" width="70">2023083101</th>
+        <td class= "classify" width="600">상품관련</th>
+        <td class="txt" width="100">주문제작 대량으로도 가능한가요???</th>
+         <td class="writer" width="100">sdfkn23</th>
+         <td class="update" width="100">2023.08.31</th>
+         <td class="updatemake" width="100">
+            <a href="javascript:void(0)" onClick="javascript:goPost()"> <i class="fa-solid fa-caret-down"></i></a>
+         </td>
+    </tr>
+</tbody>
+    </table>
 
 <div class="pagging-wrap page-area">
     <div class="page-number">
@@ -144,9 +131,12 @@
     </div>
 
 
-
-
 </div>
+   </tbody>
+
+
+
+
 
 
 
@@ -166,10 +156,10 @@
 }
 </script>
 
+
 </body>
 
-
-
+// 추가
 <!-- footer -->
 
 <footer>

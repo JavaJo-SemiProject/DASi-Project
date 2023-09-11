@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="styl esheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <link rel="stylesheet" href="css/managerFaQupdate.css">
+
+    <style>
+        textarea{
+            resize: none;
+        }
+    </style>
+
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -37,14 +44,11 @@
 
 <!--pages-->
 
-<div class="manager profile">
-    <img src="img/main/main1.jpg" alt="manager image" width="50" height="50">
-    <h6>관리자</h6> <br/>
-    <span>회원등급</span>
-    <span>관리자</span>
-</div>
-<hr>
-<br/>
+<div class="page">
+    <br>
+    <br>
+    <h1>FAQ 수정</h1>
+    <br>
 <div class="button class">
     <button class="button button-light" onClick="">1:1 문의 관리</button>
     <button class="button button-dark" onClick="">FAQ 관리</button>
@@ -69,9 +73,33 @@
           <td>고객센터 운영 시간이 어떻게 되나요?</td>
           <td>2023.09.08</td>
         </tr>
-        <
+        
     </tbody>
       </table>
+
+      <div style="display: flex;">
+        <div style="margin-right: 30px;"><h5> 글 제목 </h5></div>
+            <textarea placeholder="고객센터 운영 시간이 어떻게 되나요?" style="width: 80%;" ></textarea>
+            <div style="margin-left: 10px;">
+                <select>
+                    <option>주문제작</option>
+                    <option>결제 및 배송</option>
+                    <option>기타</option>
+                </select>
+              </div>
+        </div>
+
+        <div style="display: flex; margin-top: 10px;" >
+            <div style="margin-right: 50px;"><h5> 답변 </h5></div>
+                <textarea placeholder="그만그만그만~" style="width: 89%; height: 50vh;" ></textarea>
+            </div>
+
+        
+            <div class="btn-bottom-area" style="text-align: right; margin-top: 10px; width: 96%;">
+                <button type="button" class="button button-light" onclick="alert('취소되었습니다');javascript:history.back();"><span>취소</span></button>
+                <button type="button" class="button button-dark" onclick=" alert('수정되었습니다'); location.href='managerFaQ.html';"><span>수정</span></button>
+            </div>
+    </div>
 
 
     <!-- <div class="board-list ui-accordion">
@@ -130,24 +158,12 @@
                             <!-------------------->
 
 
-                            <button type="button" onclick="alert('수정하시겠습니까?')">수정</button>
-                            <button type="button" onclick="alert('수정되었습니다')">수정</button>
-
-
-                            <button type="button" onclick="alert('취소되었습니다')">취소</button>
-
-
-                            <!--랭킹닭컴 사이트에서 가져온 취소/작성하기 버튼 코드-->
-                            <div class="btn-bottom-area">
-                                <button type="button" class="button button-dark" onclick="goSave();"><span>수정</span></button>
-                                <button type="button" class="button button-light" onclick="javascript:history.back();"><span>취소</span></button>
+                            <!--랭킹닭컴 사이트에서 가져온 취소/작성하기 버튼 코드
                             </div>
+                            -->
 
+                            
 
-
-
-
-        </div>
 
         <!-- footer -->
 
