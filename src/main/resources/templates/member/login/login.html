@@ -4,31 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>로그인</title>
-  <link rel="stylesheet" href="/../css/reset.css">
+  <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/../css/default.css">
-  <link rel="stylesheet" href="/../css/carousel.css">
-  <link rel="stylesheet" href="/../css/header.css">
-  <link rel="stylesheet" href="/../css/login.css">
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/carousel.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/login.css">
   </head>
 <body>
-  <header>
-    <!-- header -->
-  <div class="topnav" id="myTopnav">
-    <a href="index.html" class="brand">DASi</a>
-  <div class="menu">
-    <a href="#">About Dasi</a>
-    <a href="#">업사이클 디자인</a>
-    <a href="#">주문제작 가이드</a>
-    <a href="#">주문제작 견적문의</a>
-    <a href="#">자주 묻는 질문</a>
-  </div>
-    <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-      <i class="fa fa-bars"></i>
-    </a>
-</div>
-  </header>
+  <div th:insert="/common/header.html"></div>
   <div class="login"><!--로그인 페이지 시작-->
     <div class="DasiLog"><!--로고 시작-->
       <a href="index.html" class="brand" style="font-size: 75px;">DASi</a>
@@ -56,34 +40,10 @@
       </ul>
     </div><!--아이디 비밀번호 찾기 끝-->
     <div class="footerWrap"><!--footer 시작-->
-      <footer>
-        <div class="page">
-          <div class="items_container ic2">
-            <div class="item">
-              <h3 class="text-white">이용약관</h3>
-              <hr>
-              <ul>
-                <li>회사소개</li>
-                <li>이용약관</li>
-                <li>개인정보처리방침</li>
-              </ul>
-    
-            </div>
-            <div class="item">
-              <h3 class="text-white">(주)다시</h3>
-              <hr>
-              <ul>
-                <li>대표자 : 천재만재</li>
-                <li><a href="tel:010-4666-8627" class="text-white">010-1234-5678</a></li>
-                <li><a href="mailto:vaguewords@gmail.com?subject=문의메일 제목" class="text-white">aaaa@bbbb.com</a></li>
-              </ul>
-            </div>
-        </div>
-        </div>    
-      </footer>
-      <script src="js/header.js"></script>
-      <script src="js/carousel.js"></script>
-      <script src="js/default.js"></script>
+      <div th:insert="/common/footer.html"></div>
+      <script src="/js/header.js"></script>
+      <script src="/js/carousel.js"></script>
+      <script src="/js/default.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     </div><!--Footer 끝-->
