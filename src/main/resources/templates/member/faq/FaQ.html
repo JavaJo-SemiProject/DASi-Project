@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/faq.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+ 
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+<body>
+<div th:insert="/common/header.html"></div>
+
+<!-- pages -->
+<div class="page">
+    <div class="FaQ">
+        <h1 class="question">자주 묻는 질문</h1>
+        <h3 class="tel">Tel:010-1234-5678<br>평일 09시00분 ~ 18시00분</h3>
+    </div>
+
+    <div class="questionsearch" style="margin-bottom:30px">
+        <div class="input-group">
+            <input class="input" placeholder="궁금하신 내용을 입력해주세요"/>
+            <button class="button button-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        </div>
+
+        <div class="btn" style="display:flex;">
+        <button class="button button-light" onClick="location.href=''" style="width: 100%;">주문제작</button>
+        <button class="button button-light"  onClick="location.href=''" style="width: 100%; margin-right:30px; margin-left:30px;">결제 및 배송</button>
+        <button class="button button-light" onClick="location.href=''" style="width: 100%;">기타</button>
+        </div>
+    </div>
+
+        <div id="Accordion_wrap">
+            <div class="que">
+             <span>고객센터 운영시간이 어떻게 되나요?</span>
+              <div class="arrow-wrap">
+                <span class="arrow-top">↑</span>
+               <span class="arrow-bottom">↓</span>
+              </div>
+             
+            </div>
+            <div class="anw">
+             <span>DASI(다시) 고객센터 상담시간은 아래와 같습니다.<br>
+                상담을 원하시는 고객님께서는 해당 시간을 참고하여
+                연락 주시면 친절히 안내해 드리겠습니다.<br>
+                [전화 업무] 평일 09:00 ~ 18:00</span>
+            </div>
+             <div class="que">
+             <span>주문제작 현황 문의는 어떻게 작성하나요?</span>
+             <div class="arrow-wrap">
+                <span class="arrow-top">↑</span>
+               <span class="arrow-bottom">↓</span>
+              </div>
+            </div>
+            <div class="anw">
+             <span>제작이 승인되어 [제작중]으로 표기된 주문 제작 상품은
+                대개 평일 기준으로 평균 10일 이내 출고됩니다.<br>
+                출고 일정이 확정된 경우, 상품 상세페이지에서 확인이 가능합니다.<br>
+                
+                * 평일 기준 출고로 연휴 및 공휴일은 배송일에서 제외됩니다.<br>
+                * 출고 후에도 실제 도착까지는 기간이 더 소요될 수 있습니다.<br>
+                * 제작 중 주문 정보(옵션) 변경 및 취소가 어렵습니다.</span>
+            </div>
+             <div class="que">
+             <span>상품이 주문한 것과 다르게 배송되었습니다.</span>
+        
+             <div class="arrow-wrap">
+                <span class="arrow-top">↑</span>
+               <span class="arrow-bottom">↓</span>
+              </div>           
+             </div>
+            <div class="anw">
+             <span>이용에 불편을 드려 죄송합니다.<br>
+                받으신 제품의 사진을 찍어 1:1문의, 고객센터로 연락주시면 확인 후 안내드리겠습니다.<br>  
+                (※누락, 오배송의 경우 상품 수령 후 2주 이내에 교환 가능합니다.)</span>
+            </div>
+            <div class="que">
+                <span>이미 결제를 했는데 결제 방식을 바꾸고 싶어요</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                   <span class="arrow-bottom">↓</span>
+                  </div>
+            </div>
+               <div class="anw">
+                <span>결제 완료 후에는 결제방식 변경 가능여부 확인을 위해 고객센터 또는 1:1문의를 주시길 바랍니다.<br>
+                    변경이 가능한 경우 기존 주문건을 취소하시고 재주문을 통해 결제 방법 변경이 가능합니다.</span>
+               </div>
+            <div class="que">
+                <span>이미 결제를 했는데 결제 방식을 바꾸고 싶어요</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+                <span>결제 완료 후에는 결제방식 변경 가능여부 확인을 위해 고객센터 또는 1:1문의를 주시길 바랍니다.<br>
+                    변경이 가능한 경우 기존 주문건을 취소하시고 재주문을 통해 결제 방법 변경이 가능합니다.</span>
+            </div>
+            <div class="que">
+                <span>이미 결제를 했는데 결제 방식을 바꾸고 싶어요</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+                <span>결제 완료 후에는 결제방식 변경 가능여부 확인을 위해 고객센터 또는 1:1문의를 주시길 바랍니다.<br>
+                    변경이 가능한 경우 기존 주문건을 취소하시고 재주문을 통해 결제 방법 변경이 가능합니다.</span>
+            </div>
+            <div class="que">
+                <span>이미 결제를 했는데 결제 방식을 바꾸고 싶어요</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+                <span>결제 완료 후에는 결제방식 변경 가능여부 확인을 위해 고객센터 또는 1:1문의를 주시길 바랍니다.<br>
+                    변경이 가능한 경우 기존 주문건을 취소하시고 재주문을 통해 결제 방법 변경이 가능합니다.</span>
+            </div>
+            <div class="que">
+                <span>이미 결제를 했는데 결제 방식을 바꾸고 싶어요</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+                <span>결제 완료 후에는 결제방식 변경 가능여부 확인을 위해 고객센터 또는 1:1문의를 주시길 바랍니다.<br>
+                    변경이 가능한 경우 기존 주문건을 취소하시고 재주문을 통해 결제 방법 변경이 가능합니다.</span>
+            </div>
+            <div class="que">
+                <span>이미 결제를 했는데 결제 방식을 바꾸고 싶어요</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+                <span>결제 완료 후에는 결제방식 변경 가능여부 확인을 위해 고객센터 또는 1:1문의를 주시길 바랍니다.<br>
+                    변경이 가능한 경우 기존 주문건을 취소하시고 재주문을 통해 결제 방법 변경이 가능합니다.</span>
+            </div>
+            <div class="que">
+                <span>이미 결제를 했는데 결제 방식을 바꾸고 싶어요</span>
+                <div class="arrow-wrap">
+                    <span class="arrow-top">↑</span>
+                    <span class="arrow-bottom">↓</span>
+                </div>
+            </div>
+            <div class="anw">
+                <span>결제 완료 후에는 결제방식 변경 가능여부 확인을 위해 고객센터 또는 1:1문의를 주시길 바랍니다.<br>
+                    변경이 가능한 경우 기존 주문건을 취소하시고 재주문을 통해 결제 방법 변경이 가능합니다.</span>
+            </div>
+       </div>
+
+
+<!--페이지처리-->
+<div class="paggingArea" align="center">
+<!--    맨 앞으로 이동 버튼-->
+    <button onclick="location.href=">맨앞으로</button>
+<!--    이전페이지 버튼 -->
+    <button onclick="location.href=">이전</button>
+    <!--숫자버튼-->
+    <button onclick="location.href="></button>
+    <button onclick="location.href="></button>
+            <a href="#" class="current"><span>1</span></a>
+<!-- 다음 페이지 버튼-->
+    <button onclick="location.href=">다음</button>
+    <!--맨 마지막 이동 버튼-->
+    <button onclick="location.href=">마지막 페이지로 이동 버튼</button>
+
+
+        </div>
+    </div>
+
+</div>
+
+<!-- footer -->
+
+<div th:insert="/common/footer.html"></div>
+<script src="/js/header.js"></script>
+<script src="/js/carousel.js"></script>
+<script src="/js/default.js"></script>
+<script src="/js/FaQ.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+</body>
+</html>

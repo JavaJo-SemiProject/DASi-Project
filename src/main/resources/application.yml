@@ -1,0 +1,13 @@
+server:
+  port: 8000
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql.coffit.today
+    username: HIkdt6
+    password: HIkdt6
+
+  mvc:
+    view:
+      suffix: .html
