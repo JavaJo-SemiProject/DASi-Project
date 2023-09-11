@@ -1,0 +1,16 @@
+<header class="topnav" id="myTopnav">
+    <a th:href="@{/}" class="brand">DASi</a>
+    <nav class="menu">
+        <ul>
+            <li><a href="/member/about" class="active">About Dasi</a></li>
+            <li><a th:href="@{/member/portfolio/portfolio}">업사이클 디자인</a></li>
+            <li><a th:href="@{/member/order/orderGuidePage}">주문제작 가이드</a></li>
+            <li><a th:href="@{/member/order/orderRequestPage}">주문제작 견적문의</a></li>
+            <li><a th:href="@{/member/faq/faq}">자주 묻는 질문</a></li>
+        </ul>
+    </nav>
+    <a href="/member/login/login" class="user"><i class="fa fa-user-circle"></i></a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</header>
