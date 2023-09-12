@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>문제가 발생했습니다. 관리자에게 문의하세요</h1>
+    <h3>예외메시지 : [[${exception}]]</h3>
+
+    <a th:href="@{/}">메인으로 돌아기기</a>
+</body>
+</html>

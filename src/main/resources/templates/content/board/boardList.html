@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+    <th:block layout:fragment="content">
+        <div class="container-fluid">
+
+            <div class="outer outer-board-list">
+
+                <br>
+                <h2 style="text-align: center">게시판</h2>
+                <div class="table-area">
+
+                    <table style="align: center" id="listArea">
+                        <tr>
+                            <th style="width: 100px">글번호</th>
+                            <th style="width: 100px">카테고리</th>
+                            <th style="width: 300px">글제목</th>
+                            <th style="width: 100px">작성자</th>
+                            <th style="width: 100px">조회수</th>
+                            <th style="width: 150px">작성일</th>
+                        </tr>
+
+                        <tr
+                            th:each="board : ${ boardList }"
+                        >
+                            <td th:text="${board.no}"></td>
+                            <td th:text="${board.category.name}"></td>
+                            <td th:text="${board.title}"></td>
+                            <td th:text="${board.writer.nickname}"></td>
+                            <td th:text="${board.count}"></td>
+                            <td th:text="${board.createdDate}"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- 페이지 처리 -->
+                <div class="pagingArea" align="center">
+                    <!-- 맨 앞으로 이동 버튼 -->
+                    <button
+                            th:onclick="'location.href=\'/board/list?currentPage='+ @{${selectCriteria.startPage}} + '\''"
+                            th:disabled="${selectCriteria.pageNo == 1}"
+                    >
+                        <<
+                    </button>
+                    <!-- 이전 페이지 버튼 -->
+                    <button
+                            th:onclick="'location.href=\'/board/list?currentPage='+ @{${selectCriteria.pageNo - 1}} + '\''"
+                            th:disabled="${selectCriteria.pageNo == 1}"
+                    >
+                        <
+                    </button>
+                    <!-- 숫자 버튼 -->
+                    <th:block th:each="page : ${#numbers.sequence(selectCriteria.startPage, selectCriteria.endPage)}">
+                        <button
+                                th:text="${ page }"
+                                th:onclick="'location.href=\'/board/list?currentPage='+ @{${page}} + '\''"
+                                th:disabled="${ selectCriteria.pageNo eq page }">
+                        </button>
+                    </th:block>
+
+                    <!-- 다음 페이지 버튼 -->
+                    <button
+                            th:onclick="'location.href=\'/board/list?currentPage='+ @{${selectCriteria.pageNo + 1}} + '\''"
+                            th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
+                    >
+                        >
+                    </button>
+                    <!-- 마지막 페이지로 이동 버튼 -->
+                    <button
+                            th:onclick="'location.href=\'/board/list?currentPage='+ @{${selectCriteria.maxPage}} + '\''"
+                            th:disabled="${selectCriteria.pageNo == selectCriteria.maxPage}"
+                    >
+                        >>
+                    </button>
+                </div>
+
+                <!-- 검색 폼 -->
+                <div class="search-area" align="center">
+
+                    <form id="searchForm"
+                          th:action="@{/board/list}"
+                          method="get"
+                          style="display: inline-block"
+                    >
+                        <input type="hidden" name="currentPage" value="1">
+                        <select id="searchCondition" name="searchCondition">
+                            <option value="category">카테고리</option>
+                            <option value="writer">작성자</option>
+                            <option value="title">제목</option>
+                            <option value="content">내용</option>
+                        </select>
+                        <input type="search" id="searchValue" name="searchValue">
+
+                        <button class="btn btn-bs" type="submit">검색하기</button>
+                    </form>
+
+                    <!-- 로그인 한 경우에만 버튼이 보여짐 -->
+                    <th:block sec:authorize="isAuthenticated()">
+                        <button class="btn btn-or" id="writeBoard">작성하기</button>
+                    </th:block>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script th:inline="javascript">
+
+            /*<![CDATA[*/
+
+            let message = '[[${message}]]';
+
+            if(message != null && message !== 'null') {
+                alert(message);
+            }
+
+            /*]]>*/
+
+            /* 게시글 리스트에서 해당 게시글에 마우스를 올릴 떄에 대한 스타일 처리 */
+            if (document.querySelectorAll("#listArea td")) {
+                const $tds = document.querySelectorAll("#listArea td");
+                for (let i = 0; i < $tds.length; i++) {
+
+                    $tds[i].onmouseenter = function() {
+                        this.parentNode.style.backgroundColor = "orangered";
+                        this.parentNode.style.cursor = "pointer";
+                    }
+
+                    $tds[i].onmouseout = function() {
+                        this.parentNode.style.backgroundColor = "black";
+                    }
+
+                    $tds[i].onclick = function() {
+                        const no = this.parentNode.children[0].innerText;
+                        location.href = "/board/detail?no=" + no;
+                    }
+                }
+            }
+        </script>
+    </th:block>
+
+
+
+</html>

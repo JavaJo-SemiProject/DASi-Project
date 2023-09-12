@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/error/error.css}">
+    <script type="text/javascript" th:src="@{/js/event.js}"></script>
+</head>
+
+    <th:block>
+        <div class="error-container">
+            <h1>잘못된 접근입니다.</h1>
+            <button type="button" class="error-btn" th:onclick="|location.href='@{/}'|">돌아가기</button>
+        </div>
+    </th:block>
+
+</html>

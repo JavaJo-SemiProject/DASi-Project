@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+    <th:block layout:fragment="content">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+
+            <div class="outer outer-thumbnail-list">
+                <br>
+                <h2 align="center">사진게시판</h2>
+
+                <div class="thumbnail-area" id="thumbnailArea">
+
+                    <th:block th:each="thumbnail : ${ thumbnailList }">
+                        <div class="thumb-list" align="center">
+                            <div>
+                                <img th:src="@{|/thumbPath${thumbnail.attachmentList[0].getThumbnailPath()}|}" width="200px" height="150px">
+                            </div>
+                            <p>No. <label th:text="${ thumbnail.no }"></label> <span th:text="${ thumbnail.title }"></span><br>
+                                조회수 : <span th:text="${ thumbnail.count }"></span>
+                            </p>
+                        </div>
+                    </th:block>
+
+                </div>
+
+                <div class="search-area" align="center">
+                    <select id="searchCondition" name="searchCondition">
+                        <option value="writer">작성자</option>
+                        <option value="title">제목</option>
+                        <option value="content">내용</option>
+                    </select>
+                    <input type="search">
+                    <button class="btn btn-bs" type="submit">검색하기</button>
+
+                    <!-- 로그인 한 경우에만 버튼이 보여짐 -->
+                    <th:block sec:authorize="isAuthenticated()">
+                        <button class="btn btn-or" id="writeThumbnail">작성하기</button>
+                    </th:block>
+                </div>
+            </div>
+
+
+        </div>
+
+        <script th:inline="javascript">
+
+            /*<![CDATA[*/
+
+            let message = '[[${message}]]';
+
+            if(message != null && message !== 'null') {
+                alert(message);
+            }
+
+            /*]]>*/
+
+
+            $("#thumbnailArea > div").click(function(){
+                const no = $(this).find("label").text();
+                console.log(no);
+                location.href = "/thumbnail/detail?no=" + no;
+            });
+
+
+        </script>
+
+    </th:block>
+
+
+
+
+</html>
