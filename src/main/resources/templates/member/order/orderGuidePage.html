@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DASi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+</head>
+
+<body>
+
+<div th:insert="/common/header"></div>
+
+</div>
+<div class="masthead pseudo_margin " style="background-image: url('img/guide/make-image.jpg')">
+    <div class="page text-c" style="text-align: left;">
+        <h1 class="text-white" style="text-align: left;">DASi<br>주문제작 가이드</h1></div>
+</div>
+
+<div class="page">
+
+    <h1> Does Another Sustainable Innovation,<br>
+        DASi</h1>
+    <h5>
+        주문제작 견적문의가 처음이신가요?<br>
+        안내를 숙지하시면 더욱 원활한 주문제작이 가능합니다.</h5>
+    <hr>
+
+
+    <section class="Carousel" id="orderPageCarousel" tabindex="-1">
+        <div></div>
+        <h2 class="Hidden">Carousel</h2>
+        <article class="Card Card--overlay Card--wide" id="card-1" style="width: 100%;">
+            <div class="Card__media">
+                <img class="Card__image" alt="Card image description" width="480" height="480" loading="lazy"
+                     src="/img/guide/category-image.jpg">
+            </div>
+            <div class="Card__main">
+                <h1 class="Card__heading">1.주문제작 기본설정
+                </h1>
+                주문제작을 원하시는 상품 분류를 확정하는 과정입니다.
+                <br>
+                <hr>
+                <br>
+                <ul>
+                    <li> &#8901 주문제작을 원하시는 상품 카테고리를 지정합니다.</li>
+                    <li> &#8901 상품 카테고리는 DASi 상품 포토폴리오 중 의뢰자께서 원하시는 카테고리를 의미합니다. 해당 상품 카테고리와 유사한 형태의 물품을 제작하실 수 있습니다.
+                    </li>
+                    <li> &#8901 DASi에서 제공하지 않은 상품 카테고리 제작을 원하실 경우 문의해주시기 바랍니다.
+                    </li>
+                </ul>
+            </div>
+        </article>
+        <!--/Card-->
+        <article class="Card Card--overlay Card--wide" id="card-2" style="width: 100%;">
+            <div class="Card__media">
+                <img class="Card__image" alt="Card image description" width="720" height="480" loading="lazy"
+                     src="/img/guide/engraving-image.jpg">
+            </div>
+
+            <div class="Card__main">
+
+                <h1 class="Card__heading">2.Customize with your own style
+                </h1>
+                상품을 커스텀하는 단계이며, 내가 원하시는 스타일을 지정합니다.
+                <br>
+                <hr>
+                <br>
+                <ul>
+                    <li> &#8901 나의 강아지만을 위한 문구를 지정할 수 있습니다.</li>
+                    <li> &#8901 다양한 이미지를 활용할 수 있습니다.</li>
+                    <li> &#8901 DASi에서 제공하지 않은 커스텀을 원하실 경우 문의해주시기 바랍니다.
+                    </li>
+                </ul>
+
+            </div>
+        </article>
+        <!--/Card-->
+
+    </section>
+
+    <nav class="Pagination">
+        <h2 class="Hidden">orderPageCarousel</h2>
+        <button class="Arrow" type="button" aria-controls="orderPageCarousel">
+            <svg width="16" height="16" viewBox="0 0 16 16" role="presentation">
+                <path fill-rule="evenodd"
+                      d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"></path>
+            </svg>
+            <span class="Hidden">Previous slide</span>
+        </button>
+        <button class="Arrow" type="button" aria-controls="orderPageCarousel">
+            <svg width="16" height="16" viewBox="0 0 16 16" role="presentation">
+                <path fill-rule="evenodd"
+                      d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"></path>
+            </svg>
+            <span class="Hidden">Next slide</span>
+        </button>
+        <div class="Dots">
+            <a href="#card-1" class="Dot" tabindex="-1"><span class="Hidden">Slide 1</span></a>
+            <a href="#card-2" class="Dot" tabindex="-1"><span class="Hidden">Slide 2</span></a>
+        </div>
+    </nav>
+</div>
+
+<div th:insert="/common/footer.html"></div>
+
+<script src="/js/header.js"></script>
+<script src="/js/carousel.js"></script>
+<script src="/js/default.js"></script>
+</body>
+</html>
