@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>faq</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/default.css">
@@ -12,11 +13,9 @@
     <link rel="stylesheet" href="/css/header.css">
  
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-
-
-    
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 </head>
 <body>
@@ -24,39 +23,43 @@
 
 <!-- pages -->
 <div class="page">
+
     <div class="FaQ">
         <h1 class="question">자주 묻는 질문</h1>
         <h3 class="tel">Tel:010-1234-5678<br>평일 09시00분 ~ 18시00분</h3>
     </div>
-    <div class="questionsearch">
+
+    <div class="questionsearch" style="margin-bottom:30px">
         <div class="input-group">
             <input class="input" placeholder="궁금하신 내용을 입력해주세요"/>
             <button class="button button-dark"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         </div>
-        <div class="btn">
-        <button class="button button-light" onClick="" style="width: 100%;">주문제작</button>
-        <button class="button button-light" onClick="" style="width: 100%;">결제 및 배송</button>
-        <button class="button button-light" onClick="" style="width: 100%;">기타</button>
+
+        <div class="btn" style="display:flex;">
+        <button class="button button-light" onClick="location.href=''" style="width: 100%;">주문제작</button>
+        <button class="button button-light"  onClick="location.href=''" style="width: 100%; margin-right:30px; margin-left:30px;">결제 및 배송</button>
+        <button class="button button-light" onClick="location.href=''" style="width: 100%;">기타</button>
         </div>
     </div>
+
         <div id="Accordion_wrap">
-            <div class="que">
-             <span>고객센터 운영시간이 어떻게 되나요?</span>
+
+            <div class="que" th:each="faq : ${ faqList }" >
+             <span th:text="${ faq.faqTitle }">고객센터 운영시간이 어떻게 되나요?</span>
               <div class="arrow-wrap">
                 <span class="arrow-top">↑</span>
                <span class="arrow-bottom">↓</span>
-              </div>
-             
+            </div>
             </div>
             <div class="anw">
-             <span>DASI(다시) 고객센터 상담시간은 아래와 같습니다.<br>
+             <span th:text=" ${ faq.faqContent }">DASI(다시) 고객센터 상담시간은 아래와 같습니다.<br>
                 상담을 원하시는 고객님께서는 해당 시간을 참고하여
                 연락 주시면 친절히 안내해 드리겠습니다.<br>
                 [전화 업무] 평일 09:00 ~ 18:00</span>
             </div>
              <div class="que">
-             <span>주문제작 현황 문의는 어떻게 작성하나요?</span>
+             <span th:text="${ faq.faqTitle }">주문제작 현황 문의는 어떻게 작성하나요?</span>
              <div class="arrow-wrap">
                 <span class="arrow-top">↑</span>
                <span class="arrow-bottom">↓</span>
@@ -73,11 +76,10 @@
             </div>
              <div class="que">
              <span>상품이 주문한 것과 다르게 배송되었습니다.</span>
-        
              <div class="arrow-wrap">
                 <span class="arrow-top">↑</span>
                <span class="arrow-bottom">↓</span>
-              </div>           
+              </div>
              </div>
             <div class="anw">
              <span>이용에 불편을 드려 죄송합니다.<br>
@@ -89,37 +91,48 @@
                 <div class="arrow-wrap">
                     <span class="arrow-top">↑</span>
                    <span class="arrow-bottom">↓</span>
-                  </div>
             </div>
+                </div>
                <div class="anw">
                 <span>결제 완료 후에는 결제방식 변경 가능여부 확인을 위해 고객센터 또는 1:1문의를 주시길 바랍니다.<br>
                     변경이 가능한 경우 기존 주문건을 취소하시고 재주문을 통해 결제 방법 변경이 가능합니다.</span>
                </div>
+           
        </div>
+<!--타임리프로 해서 포이치 문 돌리라고 하심. 스판으로 묶었어도 불러올 수 있다고 하심.-->
+
+<!--페이지처리-->
+<div class="paggingArea" align="center">
+<!--    맨 앞으로 이동 버튼-->
+    <button onclick="location.href=">맨앞으로</button>
+<!--    이전페이지 버튼 -->
+    <button onclick="location.href=">이전</button>
+    <!--숫자버튼-->
+    <button onclick="location.href=">1</button>
+    <button onclick="location.href=">2</button>
+            <a href="#" class="current"><span>2</span></a>
+<!-- 다음 페이지 버튼-->
+    <button onclick="location.href=">다음</button>
+    <!--맨 마지막 이동 버튼-->
+    <button onclick="location.href=">마지막 페이지로 이동 버튼</button>
 
 
-
-<div class="pagging-wrap page-area">
-    <div class="page-number">
-        <div class="pagination mt20">
-            <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span class="blind">이전</span></a>
-            <a href="#" class="current"><span>1</span></a>
-            <a href="javascript:CmPageMove('2')" data-page="2" ><span>2</span></a>
-            <a href="javascript:CmPageMove('3')" data-page="3" ><span>3</span></a>
-            <a href="javascript:CmPageMove('3')" data-page="3" class='btn-page next'><span class="blind">다음</span></a>
         </div>
     </div>
 
 </div>
-<!--수정했다~!!-->
+
 <!-- footer -->
 
 <div th:insert="/common/footer.html"></div>
-
 <script src="/js/header.js"></script>
-<script src="/js/carousel.js"></script>
+<!--<script src="/js/carousel.js"></script>-->
 <script src="/js/default.js"></script>
-<script src="/js/faQ.js"></script>
+<script src="/js/FaQ.js"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
 </body>
 </html>

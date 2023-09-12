@@ -11,11 +11,10 @@ spring:
   mvc:
     view:
       suffix: .html
+
   servlet:
     multipart:
       max-file-size: 50MB
       max-request-size: 300MB
       location: D://upload
-
-
 
