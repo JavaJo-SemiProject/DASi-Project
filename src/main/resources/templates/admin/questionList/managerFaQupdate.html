@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>managerFaQupdate</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/carousel.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/default.css">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/default.css">
     <link rel="styl esheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-    <link rel="stylesheet" href="css/managerFaQupdate.css">
+    <link rel="stylesheet" href="/css/managerFaQupdate.css">
+
 
     <style>
         textarea{
@@ -20,27 +22,8 @@
 
 </head>
 <body>
-<div class="topnav" id="myTopnav">
 
-    <a href="index.html" class="brand">DASi</a>
-
-    <div class="menu">
-        <a href="#">About Dasi</a>
-        <a href="#">회원 관리</a>
-        <a href="#">주문 내역 관리</a>
-        <a href="#">제작 상품 관리</a>
-        <a href="#">문의 관리</a>
-        <a href="#">쿠폰 관리</a>
-    </div>
-
-
-    <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
-
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-    </a>
-</div>
-
+<div th:insert="/common/adminHeader.html"></div>
 
 <!--pages-->
 
@@ -79,8 +62,16 @@
 
       <div style="display: flex;">
         <div style="margin-right: 30px;"><h5> 글 제목 </h5></div>
-            <textarea placeholder="고객센터 운영 시간이 어떻게 되나요?" style="width: 80%;" ></textarea>
-            <div style="margin-left: 10px;">
+
+
+          <table class="bringtitle">
+              <tr>
+                  <td class="bringtitle2">
+                      <input type="text" name="title" id="title" class="title-control" placeholder="고객센터 운영 시간이 어떻게 되나요?">
+                  </td>
+              </tr>
+          </table>
+
                 <select>
                     <option>주문제작</option>
                     <option>결제 및 배송</option>
@@ -90,14 +81,24 @@
         </div>
 
         <div style="display: flex; margin-top: 10px;" >
-            <div style="margin-right: 50px;"><h5> 답변 </h5></div>
-                <textarea placeholder="그만그만그만~" style="width: 89%; height: 50vh;" ></textarea>
+
+            <div class=bringtitle3; style="margin-right: 50px;"><h5> 답변 </h5></div>
+                <textarea cols="10" name="contents" id="contents" class="form-control" placeholder="그만그만그만~" style="width: 89%; height: 50vh;" ></textarea>
             </div>
 
-        
+
+<!--수정/취소 버튼-->
             <div class="btn-bottom-area" style="text-align: right; margin-top: 10px; width: 96%;">
-                <button type="button" class="button button-light" onclick="alert('취소되었습니다');javascript:history.back();"><span>취소</span></button>
-                <button type="button" class="button button-dark" onclick=" alert('수정되었습니다'); location.href='managerFaQ.html';"><span>수정</span></button>
+
+                <a th:href=@{/admin/questionList/managerFaq}>
+                    <button type="button" class="button button-light" onclick="alert('수정되었습니다')">수정</button></a>
+                <!--                <button type="button" class="button button-dark" onclick=" alert('수정되었습니다'); location.href='managerFaQ.html';"><span>수정</span></button>-->
+                <a th:href=@{/admin/questionList/managerFaq}>
+                    <button type="button" class="button button-light" onclick="alert('취소되었습니다')">취소</button></a>
+
+<!--  <button type="button" class="button button-light" onclick="alert('취소되었습니다');javascript:history.back();"><span>취소</span></button>-->
+
+
             </div>
     </div>
 
@@ -167,58 +168,14 @@
 
         <!-- footer -->
 
-        <footer>
-            <div class="page">
-                <div class="items_container ic2">
-                    <div class="item">
-                        <h3 class="text-white">이용약관</h3>
-                        <hr>
-                        <ul>
-                            <li>회사소개</li>
-                            <li>이용약관</li>
-                            <li>개인정보처리방침</li>
-                        </ul>
 
-                    </div>
-                    <div class="item">
-                        <h3 class="text-white">(주)다시</h3>
-                        <hr>
-                        <ul>
-                            <li>대표자 : 천재만재</li>
-                            <li><a href="tel:010-4666-8627" class="text-white">010-1234-5678</a></li>
-                            <li><a href="mailto:vaguewords@gmail.com?subject=문의메일 제목" class="text-white">aaaa@bbbb.com</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+<div th:insert="common/footer.html"></div>
 
-        </footer>
         <script src="js/header.js"></script>
         <script src="js/carousel.js"></script>
         <script src="js/default.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
