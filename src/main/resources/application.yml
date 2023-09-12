@@ -1,11 +1,20 @@
-# oracle config
+server:
+  port: 8000
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/springsecurity
-    username: ohgiraffers
-    password: ohgiraffers
+    url: jdbc:mysql://mysql.coffit.today/dasi
+    username: HIkdt6
+    password: HIkdt6
 
-# mybatis mapper.xml add
-mybatis:
-  mapper-locations: mappers/**/*.xml
+  mvc:
+    view:
+      suffix: .html
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 300MB
+      location: D://upload
+

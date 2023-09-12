@@ -4,14 +4,16 @@
   <meta charset="UTF-8">
   <title>DASi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>(()=>{const d=document.documentElement;d.classList.remove("Noscript"),d.classList.add("Script")})();</script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-<link rel="stylesheet" href="../static/css/reset.css">
-<link rel="stylesheet" href="../static/css/default.css">
-<link rel="stylesheet" href="../static/css/carousel.css">
-<link rel="stylesheet" href="../static/css/header.css">
-<link rel="stylesheet" href="../static/css/order.css">
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/default.css">
+<link rel="stylesheet" href="/css/carousel.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/order.css">
 
 <style>
 /* Textarea Size */
@@ -24,7 +26,7 @@
 
 <body>
 
-  <div th:insert="header.html"></div>
+  <div th:insert="/common/header.html"></div>
 
 
   </div>
@@ -35,12 +37,12 @@
 
         <h1>주문제작 견적문의</h1>
         <hr>
-        <form>
-            <button class="button button-lg button-dark" style="width: 100%;" onclick="location.href='orderGuidePage.html'" >주문제작이 처음이신가요?</button> 
+        <form action="/member/order/orderGuidePage">
+            <button class="button button-lg button-dark" style="width: 100%;" onclick="location.href='/member/order/orderGuidePage'" >주문제작이 처음이신가요?</button>
         </form>
         <hr>
 
-        <label for="productCategory" class="form-label"><h2>카테고리 선택</h2></label>
+       <label class="form-label"><h2>카테고리 선택</h2></label>
         <form>
             <div class="form_toggle row-vh d-flex flex-row justify-content-between" style="display: flex;"  >
                 
@@ -73,7 +75,7 @@
 <hr>
 
 
-<label for="productSize" class="form-label"><h2>사이즈 작성</h2></label>
+<label class="form-label"><h2>사이즈 작성</h2></label>
 <from>
 <p><textarea placeholder="사이즈를 작성해주세요." style="width: 100%; height:200px;"></textarea></p>
 </from>
@@ -85,7 +87,7 @@
 
   <hr>
 
-  <label for="productText" class="form-label"><h2>이니셜 또는 커스텀 문구</h2></label>
+  <label class="form-label"><h2>이니셜 또는 커스텀 문구</h2></label>
   <from>
   <p><textarea id="writeContent" name="writeContent" cols="30" rows="10" placeholder="이니셜 또는 커스텀 문구 10글자 이내로 작성해주세요." style="width: 100%; height:200px;" maxlength="10"></textarea></p>
   <div id="writeContent_cnt">(0 / 10)</div>
@@ -94,9 +96,11 @@
   <hr>
 
 
-  <label for="productFiles" class="form-label"><h2>첨부파일</h2></label>
+  <label class="form-label"><h2>첨부파일</h2></label>
   <p>최대 3장</p>
-<form action="*" enctype="multipart/form-data">
+
+<form action="multiFile" method="post" enctype="multipart/form-data">
+
 <input type="file" accept="image/png,image/jpg, image/jpeg" multiple>
 <!--- 업로드 파일 보이도록 설정--->>
 <div class="file-list">
@@ -105,7 +109,7 @@
 </form>
 <hr>
 
-<label for="productSize" class="form-label"><h2>요청사항</h2></label>
+<label class="form-label"><h2>요청사항</h2></label>
 <ul>
     <li> 원하시는 사항을 자유롭게 서술해 주세요.</li>
     <li> 자세히 설명해 주실수록 제작이 용이합니다.</li>
@@ -115,42 +119,16 @@
 <div id="requestOrder_cnt">(0 / 200)</div>
 </from>
 
-<form action="*">
-    <button class="button button-lg button-dark" style="width: 100%;" type="submit" onclick="location.href='orderRequestCheck.html'">등록</button> 
+<form action="/member/order/orderRequestCheck" th:object="${orderInfo}" method="post">
+    <button class="button button-lg button-dark" style="width: 100%;" type="submit" onclick="location.href='/member/order/orderRequestCheck'">등록</button>
 </form>
   </div>
 
-  <footer>
-    <div class="page">
-      <div class="items_container ic2">
-        <div class="item">
-          <h3 class="text-white">이용약관</h3>
-          <hr>
-          <ul>
-            <li>회사소개</li>
-            <li>이용약관</li>
-            <li>개인정보처리방침</li>
-          </ul>
-
-        </div>
-        <div class="item">
-          <h3 class="text-white">(주)다시</h3>
-          <hr>
-          <ul>
-            <li>대표자 : 천재만재</li>
-            <li><a href="tel:010-4666-8627" class="text-white">010-1234-5678</a></li>
-            <li><a href="mailto:vaguewords@gmail.com?subject=문의메일 제목" class="text-white">aaaa@bbbb.com</a></li>
-          </ul>
-        </div>
-    </div>
-    </div>
-
-  </footer>
-  <script src="../static/js/header.js"></script>
-  <script src="../static/js/carousel.js"></script>
-  <script src="../static/js/default.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="../static/js/textLetterLim.js"></script>
+  <div th:insert="/common/footer.html"></div>
+  <script src="/js/header.js"></script>
+  <script src="/js/carousel.js"></script>
+  <script src="/js/default.js"></script>
+  <script src="/js/textLetterLim.js"></script>
 
   </body>
   </html>
