@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dasi.admin.memberInfo.dao.UserInfoMapper">
+
+    <resultMap id="userInfoResultMap" type="com.project.dasi.admin.memberInfo.dto.UserInfoDTO">
+        <id property="userCode" column="USER_CODE"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="userPwd" column="USER_PWD"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="birthDate" column="BIRTH_DATE"/>
+        <result property="email" column="BIRTH_DATE"/>
+        <result property="tel" column="TEL"/>
+        <result property="gender" column="GENDER"/>
+        <result property="marketingStatus" column="MARKETING_STATUS"/>
+        <result property="joinDate" column="JOIN_DATE"/>
+        <result property="withdrawStatus" column="WITHDRAW_STATUS"/>
+        <result property="withdrawDate" column="WITHDRAW_DATE"/>
+
+    </resultMap>
+
+    <select id="selectAllUserInfo" resultMap="userInfoResultMap">
+        SELECT
+        USER_CODE
+        ,USER_ID
+        ,USER_PWD
+        ,USER_NAME
+        ,BIRTH_DATE
+        ,EMAIL
+        ,TEL
+        ,GENDER
+        ,MARKETING_STATUS
+        ,JOIN_DATE
+        ,WITHDRAW_STATUS
+        ,WITHDRAW_DATE
+        FROM USER_INFO
+        <!--WHERE USER_NAME LIKE '%' | #{name} || '%'-->
+        ORDER BY USER_NAME
+    </select>
+
+
+</mapper>
