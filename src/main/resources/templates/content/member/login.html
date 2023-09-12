@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script type="text/javascript" th:src="@{/js/event.js}"></script>
+</head>
+
+<th:block>
+    <div class="error-container">
+
+        <h1>로그인</h1>
+        <!-- 로그인 폼 -->
+        <form id="loginForm" th:action="@{/member/login}" method="post">
+            <table style="margin: 0 auto">
+                <tr>
+                    <td>
+                        <label class="text">ID : </label>
+                    </td>
+                    <td>
+                        <input type="text" name="memberId">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="text">PWD : </label>
+                    </td>
+                    <td>
+                        <input type="password" name="memberPwd">
+                    </td>
+                </tr>
+            </table>
+            <div class="btns">
+                <input type="button" class="btn btn-yg" value="회원가입" id="regist">
+                <input type="submit" class="btn btn-or" value="로그인" id="loginSubmit">
+            </div>
+            <div style="display: flex; justify-content: center">
+                <button type="button" style="width: 100px; border: none; background: none; color: red; cursor: pointer" th:onclick="|location.href='@{/}'|">돌아가기</button>
+            </div>
+        </form>
+    </div>
+</th:block>
+
+</html>

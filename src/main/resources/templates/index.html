@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+    <th:block layout:fragment="content">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+        </div>
+    </th:block>
+
+	<script th:inline="javascript">
+	    let message = '[[${message}]]';
+	
+	    if(message != null && message !== '') {
+	        alert(message);
+	    }
+	</script>
+</html>
+

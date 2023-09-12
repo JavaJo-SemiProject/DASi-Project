@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+    <th:block layout:fragment="content">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <div class="outer outer-notice-list">
+                <br>
+                <h2 style="text-align: center">공지사항</h2>
+                <div class="table-area">
+
+                    <table align="center" id="listArea">
+                        <tr>
+                            <th>글번호</th>
+                            <th style="width: 300px">글제목</th>
+                            <th style="width: 100px">작성자</th>
+                            <th>조회수</th>
+                            <th style="width: 100px">작성일</th>
+                        </tr>
+
+                        <tr
+                            th:each="notice : ${ noticeList }"
+                        >
+                            <td th:text="${ notice.no }"></td>
+                            <td th:text="${ notice.title }"></td>
+                            <td th:text="${ notice.writer.nickname }"></td>
+                            <td th:text="${ notice.count }"></td>
+                            <td th:text="${ notice.createdDate }"></td>
+                        </tr>
+
+
+                    </table>
+                </div>
+
+                <div class="search-area" align="center">
+
+                    <select id="searchCondition" name="searchCondition">
+                        <option value="writer">작성자</option>
+                        <option value="title">제목</option>
+                        <option value="content">내용</option>
+                    </select> <input type="search">
+                    <button class="btn btn-bs" type="submit">검색하기</button>
+
+                    <!-- 관리자인 경우에만 버튼이 보여짐 -->
+                    <th:block sec:authorize="hasRole('ADMIN')">
+                        <button class="btn btn-or" id="writeNotice">작성하기</button>
+                    </th:block>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <script th:inline="javascript">
+
+            /*<![CDATA[*/
+
+            let message = '[[${message}]]';
+
+            if(message != null && message !== 'null') {
+                alert(message);
+            }
+
+            /*]]>*/
+
+            /* 게시글 리스트에서 해당 게시글에 마우스를 올릴 떄에 대한 스타일 처리 */
+            if (document.querySelectorAll("#listArea td")) {
+                const $tds = document.querySelectorAll("#listArea td");
+                for (let i = 0; i < $tds.length; i++) {
+
+                    $tds[i].onmouseenter = function() {
+                        this.parentNode.style.backgroundColor = "orangered";
+                        this.parentNode.style.cursor = "pointer";
+                    }
+
+                    $tds[i].onmouseout = function() {
+                        this.parentNode.style.backgroundColor = "black";
+                    }
+
+                    $tds[i].onclick = function() {
+                        const no = this.parentNode.children[0].innerText;
+                        location.href = "/notice/detail?no=" + no;
+                    }
+                }
+            }
+        </script>
+    </th:block>
+
+
+
+
+
+</html>
