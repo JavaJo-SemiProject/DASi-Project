@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>managerQuestionCreate</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/carousel.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -16,7 +16,26 @@
 
 </head>
 <body>
-<div th:insert="/common/header.html"></div>
+<div class="topnav" id="myTopnav">
+
+    <a href="index.html" class="brand">DASi</a>
+
+    <div class="menu">
+        <a href="#">About Dasi</a>
+        <a href="#">회원 관리</a>
+        <a href="#">주문 내역 관리</a>
+        <a href="#">제작 상품 관리</a>
+        <a href="#">문의 관리</a>
+        <a href="#">쿠폰 관리</a>
+    </div>
+
+
+    <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
 
 
 <!--pages-->
@@ -121,7 +140,32 @@
 
 <!-- footer -->
 
-<div th:insert="common/footer.html"></div>
+<footer>
+    <div class="page">
+        <div class="items_container ic2">
+            <div class="item">
+                <h3 class="text-white">이용약관</h3>
+                <hr>
+                <ul>
+                    <li>회사소개</li>
+                    <li>이용약관</li>
+                    <li>개인정보처리방침</li>
+                </ul>
+
+            </div>
+            <div class="item">
+                <h3 class="text-white">(주)다시</h3>
+                <hr>
+                <ul>
+                    <li>대표자 : 천재만재</li>
+                    <li><a href="tel:010-4666-8627" class="text-white">010-1234-5678</a></li>
+                    <li><a href="mailto:vaguewords@gmail.com?subject=문의메일 제목" class="text-white">aaaa@bbbb.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</footer>
 <script src="js/header.js"></script>
 <script src="js/carousel.js"></script>
 <script src="js/default.js"></script>

@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <title>DASi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/default.css">
-<link rel="stylesheet" href="/css/carousel.css">
-<link rel="stylesheet" href="/css/header.css">
-<link rel="stylesheet" href="/css/order.css">
+<script>(()=>{const d=document.documentElement;d.classList.remove("Noscript"),d.classList.add("Script")})();</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../static/css/reset.css">
+<link rel="stylesheet" href="../static/css/default.css">
+<link rel="stylesheet" href="../static/css/carousel.css">
+<link rel="stylesheet" href="../static/css/header.css">
+<link rel="stylesheet" href="../static/css/order.css">
 
 <style>
 /* Textarea Size */
@@ -24,7 +23,7 @@ tr{ border: 1px solid #000; height: 10%;}
 </head>
 <body>
 
-  <div th:insert="/common/header.html"></div>
+  <div th:insert="header.html"></div>
 
 
   </div>
@@ -66,9 +65,9 @@ tr{ border: 1px solid #000; height: 10%;}
   <div>
     <h2>첨부파일 확인</h2>
     <div style="display: flex;">
-        <img src ="/img/main/sub1.jpg" alt="..." style="display:block; width:30vh; margin: 0px 10px 0px 10px;">
-        <img src ="/img/main/sub1.jpg" alt="..." style="display:block; width:30vh; margin: 0px 10px 0px 10px;">
-        <img src ="/img/main/sub1.jpg" alt="..." style="display:block; width:30vh; margin: 0px 10px 0px 10px;">
+        <img src ="img/main/sub1.jpg" alt="..." style="display:block; width:30vh; margin: 0px 10px 0px 10px;">
+        <img src ="img/main/sub1.jpg" alt="..." style="display:block; width:30vh; margin: 0px 10px 0px 10px;">
+        <img src ="img/main/sub1.jpg" alt="..." style="display:block; width:30vh; margin: 0px 10px 0px 10px;">
     </div>  
 </div>
 
@@ -77,14 +76,40 @@ tr{ border: 1px solid #000; height: 10%;}
         <textarea style="width: 100%; height: 5em;" placeholder="잘 부탁드립니다." readonly></textarea>
       </form>
 </div>
-<form action="/member/order/orderSuccessPage">
-    <button class="button button-lg button-dark" style="width: 100%;" onclick="location.href='/member/order/orderSuccessPage'"> 요청하기</button>
+<form action="*">
+    <button class="button button-lg button-dark" style="width: 100%;" onclick="location.href='*'"> 요청하기</button> 
 </form>
   </div>
 
-  <div th:insert="/common/footer.html"></div>
-  <script src="/js/header.js"></script>
-  <script src="/js/carousel.js"></script>
-  <script src="/js/default.js"></script>
+  <footer>
+    <div class="page">
+      <div class="items_container ic2">
+        <div class="item">
+          <h3 class="text-white">이용약관</h3>
+          <hr>
+          <ul>
+            <li>회사소개</li>
+            <li>이용약관</li>
+            <li>개인정보처리방침</li>
+          </ul>
+
+        </div>
+        <div class="item">
+          <h3 class="text-white">(주)다시</h3>
+          <hr>
+          <ul>
+            <li>대표자 : 천재만재</li>
+            <li><a href="tel:010-4666-8627" class="text-white">010-1234-5678</a></li>
+            <li><a href="mailto:vaguewords@gmail.com?subject=문의메일 제목" class="text-white">aaaa@bbbb.com</a></li>
+          </ul>
+        </div>
+    </div>
+    </div>
+
+  </footer>
+  <script src="../static/js/header.js"></script>
+  <script src="../static/js/carousel.js"></script>
+  <script src="../static/js/default.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </body>
   </html>
