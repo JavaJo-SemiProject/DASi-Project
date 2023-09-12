@@ -1,0 +1,56 @@
+@charset "UTF-8";
+.join-title{
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.input-font{
+    margin: 0 1.3rem 0 0;
+    font-size: 1rem;   
+}
+
+.input-caption {
+    font-size: 0.9rem;
+}
+
+.check_policy{
+    overflow: auto;
+    overflow-x: hidden;
+    font-size: 1rem;
+    border: 1px solid var(--color-secondary);
+    width: 100%;
+    height: 25rem;
+    padding: 1rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.625rem
+}
+
+.Calendar{
+    width: 100%;
+    height: 40px;
+    padding: 0 7px;
+    border: solid 1px var(--color-secondary);
+}
+
+.checkbox_radio{
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.join-form-area {
+    margin-bottom: 1.5rem
+}
+
+.join-form {
+    display: grid;
+    grid-gap: 0.25rem;
+}
+
+.hyphen {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.625rem;
+}
+
