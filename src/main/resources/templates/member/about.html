@@ -5,15 +5,15 @@
   <title>DASi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<link rel="stylesheet" href="../static/css/reset.css">
-<link rel="stylesheet" href="../static/css/default.css">
-<link rel="stylesheet" href="../static/css/carousel.css">
-<link rel="stylesheet" href="../static/css/header.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/carousel.css">
+  <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
 
   <!-- header -->
-  <div th:insert="header.html"></div>
+  <div th:insert="/common/header.html"></div>
 
   <div class="masthead pseudo_margin " style="background-image: url('img/sub/about/banner.jpg')">
     <div class="page text-c">
@@ -72,7 +72,7 @@
           <div class="items_container ic2 g-gap2 pt-1 pb-3">
             <div class="item">
               <div class="item-thumb">
-                <img src="img/sub/about/about1-1.png" title="" alt=""/>
+                <img src="/img/sub/about/about1-1.png" title="" alt=""/>
               </div>`
             </div>
             <div class="item">
@@ -98,14 +98,14 @@
             </div>
             <div class="item">
               <div class="item-thumb">
-                <img src="img/sub/about/about1-2.png" title="" alt=""/>
+                <img src="/img/sub/about/about1-2.png" title="" alt=""/>
               </div>
             </div>
           </div>
           <div class="items_container ic2 g-gap2 py-3">
             <div class="item">
               <div class="item-thumb">
-                <img src="img/sub/about/about1-3.png" title="" alt=""/>
+                <img src="/img/sub/about/about1-3.png" title="" alt=""/>
               </div>
             </div>
             <div class="item">
@@ -137,7 +137,7 @@
         <div class="items_container ic2 g-gap2 pt-1 pb-3">
           <div class="item">
             <div class="item-thumb">
-              <img src="img/sub/about/about2-1.png" title="" alt=""/>
+              <img src="/img/sub/about/about2-1.png" title="" alt=""/>
             </div>
           </div>
           <div class="item">
@@ -164,14 +164,14 @@
           </div>
           <div class="item">
             <div class="item-thumb">
-              <img src="img/sub/about/about2-2.png" title="" alt=""/>
+              <img src="/img/sub/about/about2-2.png" title="" alt=""/>
             </div>
           </div>
         </div>
         <div class="items_container ic2 g-gap2 py-3">
           <div class="item">
             <div class="item-thumb">
-              <img src="img/sub/about/about2-3.png" title="" alt=""/>
+              <img src="/img/sub/about/about2-3.png" title="" alt=""/>
             </div>
           </div>
           <div class="item">
@@ -194,7 +194,7 @@
       <div class="items_container ic2 g-gap2 pt-1 pb-3">
         <div class="item">
           <div class="item-thumb">
-            <img src="img/sub/about/about3-1.png" title="" alt=""/>
+            <img src="/img/sub/about/about3-1.png" title="" alt=""/>
           </div>
         </div>
         <div class="item">
@@ -215,7 +215,7 @@
         </div>
         <div class="item">
           <div class="item-thumb">
-            <img src="img/sub/about/about3-2.png" title="" alt=""/>
+            <img src="/img/sub/about/about3-2.png" title="" alt=""/>
           </div>
         </div>
       </div>
@@ -249,35 +249,11 @@
 
 
 
-  <footer>
-    <div class="page">
-      <div class="items_container ic2">
-        <div class="item">
-          <h3 class="text-white">이용약관</h3>
-          <hr>
-          <ul>
-            <li>회사소개</li>
-            <li>이용약관</li>
-            <li>개인정보처리방침</li>
-          </ul>
+  <div th:insert="/common/footer.html"></div>
 
-        </div>
-        <div class="item">
-          <h3 class="text-white">(주)다시</h3>
-          <hr>
-          <ul>
-            <li>대표자 : 천재만재</li>
-            <li><a href="tel:010-4666-8627" class="text-white">010-1234-5678</a></li>
-            <li><a href="mailto:vaguewords@gmail.com?subject=문의메일 제목" class="text-white">aaaa@bbbb.com</a></li>
-          </ul>
-        </div>
-    </div>
-    </div>
-
-  </footer>
-  <script src="../static/js/header.js"></script>
-  <script src="../static/js/carousel.js"></script>
-  <script src="../static/js/default.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/default.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 </body>
