@@ -17,6 +17,11 @@
         <result property="qcategory" column="QCATEGORY"/>
     </resultMap>-->
 
+    <resultMap id="faqListMap"  type="com.project.dasi.member.faq.dto.FaqDTO" >
+        <id property="faqNum" column="FAQ_NUM"/>
+        <result property="faqContent" column="FAQ_CONTENT"/>
+        <result property="faqTitle" column="FAQ_TITLE"/>
+    </resultMap>
 
 
     <select id="faqList" resultMap="faqListMap">
