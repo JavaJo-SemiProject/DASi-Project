@@ -1,7 +1,9 @@
 package com.project.dasi.member.faq.dto;
 
-public class FaqDTO extends FaqCategoryDTO {  /*FaqCategoryDTO를 상속받아서 FaqCategoryDTO의 것들을
+public class FaqDTO {  /*FaqCategoryDTO를 상속받아서 FaqCategoryDTO의 것들을
 상속받아서 쓴다.FaqCategoryDTO랑 연결되는거라서 FaqCategoryDTO를 갖다쓸거니까 이렇게해야함*/
+
+    private Integer qcateCode;
     private Integer faqNum;
     private String faqTitle;
     private String faqContent;
@@ -9,10 +11,19 @@ public class FaqDTO extends FaqCategoryDTO {  /*FaqCategoryDTO를 상속받아�
     public FaqDTO() {
     }
 
-    public FaqDTO(Integer faqNum, String faqTitle, String faqContent) {
+    public FaqDTO(Integer qcateCode, Integer faqNum, String faqTitle, String faqContent) {
+        this.qcateCode = qcateCode;
         this.faqNum = faqNum;
         this.faqTitle = faqTitle;
         this.faqContent = faqContent;
+    }
+
+    public Integer getQcateCode() {
+        return qcateCode;
+    }
+
+    public void setQcateCode(Integer qcateCode) {
+        this.qcateCode = qcateCode;
     }
 
     public Integer getFaqNum() {
@@ -42,7 +53,8 @@ public class FaqDTO extends FaqCategoryDTO {  /*FaqCategoryDTO를 상속받아�
     @Override
     public String toString() {
         return "FaqDTO{" +
-                "faqNum=" + faqNum +
+                "qcateCode=" + qcateCode +
+                ", faqNum=" + faqNum +
                 ", faqTitle='" + faqTitle + '\'' +
                 ", faqContent='" + faqContent + '\'' +
                 '}';

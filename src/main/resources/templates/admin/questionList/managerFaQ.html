@@ -18,7 +18,7 @@
 
 
 <!--pages-->
-
+<div class="pages">
 
 <div class="button class">
     <button class="button button-light" onClick="location.href='managerQuestion.html'">1:1 문의 관리</button>
@@ -35,7 +35,8 @@
 </div>
 
 <br> <br>
-<hr>
+
+
 
 <table class="managerFaQ">
 
@@ -46,50 +47,51 @@
       <table class="list-table">
       <thead>
           <tr>
-              <th width="120">구분</th>
-              <th width="70">글번호</th>
-                <th width="600">제목</th>
-                <th width="100">update</th>
-                <th width="100">수정 및 삭제</th>
+              <th style="width: 50px">구분</th>
+              <th style="width: 30px">글번호</th>
+                <th style="width: 150px">제목</th>
+                <th style="width: 70px">수정 및 삭제</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-              <td width="120">기타</td>
-              <td width="70">1</td>
-              <td width="600">고객센터 운영 시간이 어떻게 되나요?</td>
-              <td width="100">2023.09.08</td>
-              <td width="100">
+            <tr th:each="faq : ${ faqList }">
+              <td th:text="${faq.}" style="width: 50px">기타</td> <!--이거다른테이블인데어캄?-->
+              <td th:text="${ faq.faqNum }"  style="width: 30px">1</td>
+              <td th:text=" ${faq.faqTitle}" style="width: 150px">고객센터 운영 시간이 어떻게 되나요?</td>
+              <td style="width: 70px">
               <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
               <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
             </td>
-            </tr>
              <tr>
-                <td width="120">주문제작</td>
-                <td width="70">2</td>
-                <td width="600">주문제작 현황 문의는 어떻게 작성하나요?</td>
-                <td width="100">2023.09.08</td>
-                <td width="100">
+                <td style="width: 50px">주문제작</td>
+                <td th:text="${ faq.faqNum }" style="width: 30px">2</td>
+                <td th:text="${ faq.faqTitle }" style="width: 150px">주문제작 현황 문의는 어떻게 작성하나요?</td>
+                <td style="width: 70px">
+                <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
+                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
+              </td>
+              </tr>
+
+
+
+
+
+
+
+              <tr>
+                <td style="width: 50px">결제 및 배송</td>
+                <td style="width: 30px">3</td>
+                <td style="width: 150px">상품이 주문한 것과 다르게 배송되었습니다.</td>
+                <td style="width: 70px">
                 <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
                 <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
               </td>
               </tr>
               <tr>
-                <td width="120">결제 및 배송</td>
-                <td width="70">3</td>
-                <td width="600">상품이 주문한 것과 다르게 배송되었습니다.</td>
-                <td width="100">2023.09.08</td>
-                <td width="100">
-                <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
-                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
-              </td>
-              </tr>
-              <tr>
-                <td width="120">결제 및 배송</td>
-                <td width="50">4</td>
-                <td width="600">이미 결제를 했는데 결제 방식을 바꾸고 싶어요</td>
-                <td width="100">2023.09.08</td>
-                <td width="100">
+                <td style="width: 50px">결제 및 배송</td>
+                <td style="width: 30px">4</td>
+                <td style="width: 150px">이미 결제를 했는데 결제 방식을 바꾸고 싶어요</td>
+                <td style="width: 70px">
                 <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
                 <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
               </td>
@@ -133,16 +135,6 @@
 
 
 
-<div class="pagging-wrap page-area">
-    <div class="page-number">
-        <div class="pagination mt20">
-            <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span class="blind">이전</span></a>
-            <a href="#" class="current"><span>1</span></a>
-            <a href="javascript:CmPageMove('2')" data-page="2" ><span>2</span></a>
-            <a href="javascript:CmPageMove('3')" data-page="3" class='btn-page next'><span class="blind">다음</span></a>
-        </div>
-    </div>
-
 </div>
 
 <!-- footer -->
@@ -155,7 +147,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
-
+</div>
 </body>
 </html>
 
