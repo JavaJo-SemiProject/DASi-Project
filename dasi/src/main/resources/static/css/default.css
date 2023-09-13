@@ -37,13 +37,7 @@
 	font-weight: 45 920;
 	font-style: normal;
 	font-display: swap;
-	src: url('font/PretendardVariable.woff2') format('woff2-variations');
-}
-
-@font-face {
-	font-family: 'Warnes';
-	font-display: swap;
-	src: url('font/Warnes-Regular.ttf') format('truetype');
+	src: url('../font/PretendardVariable.woff2') format('woff2-variations');
 }
 
 html {

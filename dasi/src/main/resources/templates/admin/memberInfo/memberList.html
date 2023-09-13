@@ -1,0 +1,34 @@
+
+      <table>
+          <thead>
+              <tr>
+                  <th>유저번호</th>
+                  <th>아이디</th>
+                  <th>이름</th>
+                  <th>생일</th>
+                  <th>이메일</th>
+                  <th>성별</th>
+                  <th>마케팅동의</th>
+                  <th>가입일</th>
+                  <th>탈퇴여부</th>
+                  <th>탈퇴일</th>
+              </tr>
+          </thead>
+          <tbody>
+          <tr th:each="user : ${memberList}">
+              <td th:text="${user.userCode}"></td>
+              <td th:text="${user.userId}"></td>
+              <td th:text="${user.userName}"></td>
+              <td th:text="${user.birthDate}"></td>
+              <td th:text="${user.email}"></td>
+              <td th:text="${user.tel}"></td>
+              <td th:text="${user.gender}"></td>
+              <td th:text="${user.marketingStatus}"></td>
+              <td th:text="${user.joinDate}"></td>
+              <td th:text="${user.withdrawStatus}"></td>
+              <td th:text="${user.withdrawDate}"></td>
+          </tr>
+
+          </tbody>
+
+      </table>
