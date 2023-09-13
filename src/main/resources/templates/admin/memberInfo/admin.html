@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/default.css">
+<link rel="stylesheet" href="/css/carousel.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/addmin.css">
+</head>
+<body>
+<div th:insert="/common/header.html"></div>
+    <div class="admin"><!--관리자 페이지 시작 ALL-->
+        <h2>회원정보 통계</h2>
+        <div class="part"><!--전체회원&신규회원 시작-->
+            <div class="part1"><!--전체 회원 시작-->
+                <p class="all_member">전체 회원</p>
+                <h3>1025<strong>명</strong></h3>
+                <p class="date">2023년08월01일 00:00 ~ 2023년08월01일 23:59</p>
+            </div><!--전체 회원 끝-->
+            <div class="part2"><!--신규 회원 시작-->
+                <p class="all_member">신규 회원</p>
+                <h3>1025<strong>명</strong></h3>
+                <p class="date">2023년08월01일 00:00 ~ 2023년08월01일 23:59</p>
+            </div><!--신규회원 끝-->
+        </div><!--전체회원&신규회원 끝-->
+        <hr>
+        <div class="inquiry"><!--회원정보 조회 시작-->
+            <h2>회원정보 조회</h2>
+            <p>조회할 회원 ID를 입력하세요.</p>
+        <div class="search"><!--조회 그룹 시작-->
+          <div class="input-group" style=" width: 95%;">
+            <input class="input" placeholder="required">
+            <button class="button button-dark">조회</button>
+        </div>
+        </div> <!--조회 박스 끝-->
+        <div class="table_1"><!--테이블 시작-->
+            <div class="items_container ic1" style="width: 95%; margin: 0px 30px;">
+        <div class="item">
+            <table>
+                <thead>
+                    <tr>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th>전화번호</th>
+                        <th>주소</th>
+                        <th>이메일</th>
+                        <th>마케팅 동의 여부</th>
+                        <th>누적 사용 금액</th>
+                      </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>giant_minboom</td>
+                        <td><i class="name">김민범</i></td>
+                        <td><i class="tell">010-5800-8663</i></td>
+                        <td><i class="addres">서울특별시</i></td>
+                        <td><i class="e-main">minbum0501@naver.com</i></td>
+                        <td><i class="fa fa-check"></i></td>
+                        <td><i class="">100,000,000원</i></td>
+                      </tr>
+                      <tr>
+                        <td>Sample text</td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class="fa fa-check"></i></td>
+                        <td><i class=""></i></td>
+                      </tr>
+                      <tr>
+                        <td>Sample text</td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class="fa fa-check"></i></td>
+                        <td><i class=""></i></td>
+                      </tr>
+                      <tr>
+                        <td>Sample text</td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class="fa fa-check"></i></td>
+                        <td><i class=""></i></td>
+                      </tr>
+                      <tr>
+                        <td>Sample text</td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class="fa fa-check"></i></td>
+                        <td><i class=""></i></td>
+                      </tr>
+                      <tr>
+                        <td>Sample text</td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class=""></i></td>
+                        <td><i class="fa fa-check"></i></td>
+                        <td><i class=""></i></td>
+                      </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+        </div><!--테이블 끝-->
+        </div> <!--회원정보 조회 끝-->
+        <div class="next"> <!--페이지 넘기기-->
+            <ul>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+            </ul>
+        </div><!--페이지 넘기기 끝-->
+
+    </div><!--관리자 페이지 끝-->
+<div th:insert="/common/footer.html"></div>
+</body>
+</html>

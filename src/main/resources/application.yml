@@ -1,0 +1,20 @@
+server:
+  port: 8000
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql.coffit.today:3306/dasi
+    username: HIkdt6
+    password: HIkdt6
+
+  mvc:
+    view:
+      suffix: .html
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 300MB
+      location: D://upload
+
