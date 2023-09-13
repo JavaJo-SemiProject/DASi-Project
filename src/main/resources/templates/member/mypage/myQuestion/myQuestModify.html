@@ -16,27 +16,13 @@
 </head>
 <body>
 <!-- header -->
-<div class="topnav" id="myTopnav">
-
-    <a href="index.html" class="brand">DASi</a>
-
-    <div class="menu">
-        <a href="#">About Dasi</a>
-        <a href="#">업사이클 디자인</a>
-        <a href="#">주문제작 가이드</a>
-        <a href="#">주문제작 견적문의</a>
-        <a href="#">자주 묻는 질문</a>
-    </div>
-
-
-    <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
-
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-    </a>
-
-
-</div>
+<div th:insert="/common/header"></div>
+<br>
+<br>
+<div class="page">
+    <div th:include="/common/mypageId"></div>
+    <br>
+    <div th:include="/common/mypageCategory"></div>
 
 
 <div class="page pseudo_padding">
