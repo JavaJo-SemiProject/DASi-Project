@@ -44,7 +44,7 @@
 
 
         <div id="Accordion_wrap">
-            <div class="que" th:each="faq : ${ faqList }" >
+            <div class="que" th:each="faq : ${ faqList.question_category.category }" >
              <span th:text="${ faq.faqTitle }">고객센터 운영시간이 어떻게 되나요?</span>
               <div class="arrow-wrap">
                 <span class="arrow-top">↑</span>

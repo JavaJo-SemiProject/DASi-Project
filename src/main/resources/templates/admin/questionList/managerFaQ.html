@@ -22,7 +22,7 @@
 
 <div class="button class">
     <button class="button button-light" onClick="location.href='managerQuestion.html'">1:1 문의 관리</button>
-    <button class="button button-dark" >FAQ 관리</button>
+    <button class="button button-dark" onClick="window.print()" >FAQ 관리</button>
 </div>
 <div class="selecttitle">
     <h3 class="selecttitle1">구분</h3>
@@ -53,24 +53,17 @@
                 <th style="width: 70px">수정 및 삭제</th>
             </tr>
         </thead>
-        <tbody>
-            <tr th:each="faq : ${ faqList }">
-              <td th:text="${faq.}" style="width: 50px">기타</td> <!--이거다른테이블인데어캄?-->
-              <td th:text="${ faq.faqNum }"  style="width: 30px">1</td>
-              <td th:text=" ${faq.faqTitle}" style="width: 150px">고객센터 운영 시간이 어떻게 되나요?</td>
-              <td style="width: 70px">
-              <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
-              <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
-            </td>
-             <tr>
-                <td style="width: 50px">주문제작</td>
-                <td th:text="${ faq.faqNum }" style="width: 30px">2</td>
-                <td th:text="${ faq.faqTitle }" style="width: 150px">주문제작 현황 문의는 어떻게 작성하나요?</td>
-                <td style="width: 70px">
-                <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
-                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
-              </td>
-              </tr>
+
+          <tbody>
+      <tr th:each="faq : ${ faqList }">
+         <!--<td th:text="${faq.qcateCode}" style="width: 50px">기타</td>-->
+         <td th:text="${ faq.faqNum }"  style="width: 30px">1</td>
+         <td th:text=" ${faq.faqTitle}" style="width: 150px">고객센터 운영 시간이 어떻게 되나요?</td>
+         <td style="width: 70px">
+             <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
+             <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
+         </td>
+      </tr>
 
 
 
@@ -78,29 +71,73 @@
 
 
 
-              <tr>
-                <td style="width: 50px">결제 및 배송</td>
-                <td style="width: 30px">3</td>
-                <td style="width: 150px">상품이 주문한 것과 다르게 배송되었습니다.</td>
-                <td style="width: 70px">
-                <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
-                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
-              </td>
-              </tr>
-              <tr>
-                <td style="width: 50px">결제 및 배송</td>
-                <td style="width: 30px">4</td>
-                <td style="width: 150px">이미 결제를 했는데 결제 방식을 바꾸고 싶어요</td>
-                <td style="width: 70px">
-                <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
-                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
-              </td>
-              </tr>
-          </tbody>
-          </table>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--        <tbody>-->
+<!--            <tr th:each="faq : ${ faqList }">-->
+<!--              <td th:text="${faq.}" style="width: 50px">기타</td> &lt;!&ndash;이거다른테이블인데어캄?&ndash;&gt;-->
+<!--              <td th:text="${ faq.faqNum }"  style="width: 30px">1</td>-->
+<!--              <td th:text=" ${faq.faqTitle}" style="width: 150px">고객센터 운영 시간이 어떻게 되나요?</td>-->
+<!--              <td style="width: 70px">-->
+<!--              <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>-->
+<!--              <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>-->
+<!--            </td>-->
+<!--             <tr>-->
+<!--                <td style="width: 50px">주문제작</td>-->
+<!--                <td th:text="${ faq.faqNum }" style="width: 30px">2</td>-->
+<!--                <td th:text="${ faq.faqTitle }" style="width: 150px">주문제작 현황 문의는 어떻게 작성하나요?</td>-->
+<!--                <td style="width: 70px">-->
+<!--                <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>-->
+<!--                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>-->
+<!--              </td>-->
+<!--              </tr>-->
+
+<!--              <tr>-->
+<!--                <td style="width: 50px">결제 및 배송</td>-->
+<!--                <td style="width: 30px">3</td>-->
+<!--                <td style="width: 150px">상품이 주문한 것과 다르게 배송되었습니다.</td>-->
+<!--                <td style="width: 70px">-->
+<!--                <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>-->
+<!--                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>-->
+<!--              </td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td style="width: 50px">결제 및 배송</td>-->
+<!--                <td style="width: 30px">4</td>-->
+<!--                <td style="width: 150px">이미 결제를 했는데 결제 방식을 바꾸고 싶어요</td>-->
+<!--                <td style="width: 70px">-->
+<!--                <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>-->
+<!--                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>-->
+<!--              </td>-->
+<!--              </tr>-->
+<!--          </tbody>-->
+<!--          </table>-->
 
 
 
