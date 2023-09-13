@@ -12,5 +12,14 @@ public class MvcConfiguration implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/templates/", "classpath:/static/");
+
+        registry.addResourceHandler("/upload/**")
+                .addResourceLocations("classpath:/upload/");
+
+        registry.addResourceHandler("/thumbPath/**")
+                .addResourceLocations("file:///d:/dasiProject/img/upload/thumbnail/");
+
+        registry.addResourceHandler("/imagePath/**")
+                .addResourceLocations("file:///d:/dasiProject/img/upload/original/");
     }
 }
