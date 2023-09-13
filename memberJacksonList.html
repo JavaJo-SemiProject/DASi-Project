@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/header.css">
+</head>
+<body>
+<div th:insert="common/header.html"></div>
+
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+
+        <div class="items_container ic1">
+            <h3>회원정보 조회</h3>
+            <button id="jacksonListButton">조회(jackson)</button>
+            <script>
+                $("#jacksonListButton").click(function(){
+                    $.ajax({
+                        url: "jacksonList",
+                        success: function(data, status, xhr) {
+                            console.table(data);
+
+                            const $table = $("#jacksonList tbody");
+                            $table.html("");
+
+                            for(let index in data) {
+                                $tr = $("<tr>");
+                                $userCodeTd = $("<td>").text(data[index].userCode);
+                                $userIdTd = $("<td>").text(data[index].userId);
+                                $userNameTd = $("<td>").text(data[index].userName);
+                                $birthDateTd = $("<td>").text(data[index].birthDate);
+                                $emailTd = $("<td>").text(data[index].email);
+                                $telTd = $("<td>").text(data[index].tel);
+                                $genderTd = $("<td>").text(data[index].gender);
+
+
+                                $tr.append($userCodeTd);
+                                $tr.append($userIdTd);
+                                $tr.append($userNameTd);
+                                $tr.append($birthDateTd);
+                                $tr.append($emailTd);
+                                $tr.append($telTd);
+                                $tr.append($genderTd);
+
+
+                                $table.append($tr);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                });
+            </script>
+
+
+            <table id="jacksonList">
+                <thead>
+                <tr>
+                    <th>유저번호</th>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>생일</th>
+                    <th>이메일</th>
+                    <th>성별</th>
+                    <th>마케팅동의</th>
+                    <th>가입일</th>
+                    <th>탈퇴여부</th>
+                    <th>탈퇴일</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div th:insert="/common/footer.html"></div>
+</body>
+</html>
+
+
+
+
+
+
