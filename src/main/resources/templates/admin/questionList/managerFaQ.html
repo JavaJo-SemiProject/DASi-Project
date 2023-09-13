@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>managerFaQ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
@@ -14,19 +15,10 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 </head>
 <body>
-<div th:insert="/common/header.html"></div>
-
+<div th:insert="/common/adminHeader.html"></div>
 
 <!--pages-->
 
-<div class="manager profile">
-    <img src="img/main/main1.jpg" alt="manager image" width="50" height="50">
-    <h6>관리자</h6> <br/>
-    <span>회원등급</span>
-    <span>관리자</span>
-</div>
-<hr>
-<br/>
 <div class="button class">
     <button class="button button-light" onClick="location.href='managerQuestion.html'">1:1 문의 관리</button>
     <button class="button button-dark" >FAQ 관리</button>
@@ -67,8 +59,10 @@
               <td width="600">고객센터 운영 시간이 어떻게 되나요?</td>
               <td width="100">2023.09.08</td>
               <td width="100">
-              <button onlick="" width="10" height="5">수정</button>
-              <button onlick="" width="10" height="5">삭제</button>
+
+              <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
+              <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
+
             </td>
             </tr>
              <tr>
@@ -77,8 +71,10 @@
                 <td width="600">주문제작 현황 문의는 어떻게 작성하나요?</td>
                 <td width="100">2023.09.08</td>
                 <td width="100">
-                <button onlick="" width="10" height="5">수정</button>
-                <button onlick="" width="10" height="5">삭제</button>
+
+                <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
+                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
+
               </td>
               </tr>
               <tr>
@@ -87,8 +83,10 @@
                 <td width="600">상품이 주문한 것과 다르게 배송되었습니다.</td>
                 <td width="100">2023.09.08</td>
                 <td width="100">
-                <button onlick="" width="10" height="5">수정</button>
-                <button onlick="" width="10" height="5">삭제</button>
+
+                <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
+                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
+
               </td>
               </tr>
               <tr>
@@ -97,8 +95,10 @@
                 <td width="600">이미 결제를 했는데 결제 방식을 바꾸고 싶어요</td>
                 <td width="100">2023.09.08</td>
                 <td width="100">
-                <button onlick="" width="10" height="5">수정</button>
-                <button onlick="" width="10" height="5">삭제</button>
+
+                <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
+                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
+
               </td>
               </tr>
           </tbody>
@@ -146,7 +146,7 @@
             <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span class="blind">이전</span></a>
             <a href="#" class="current"><span>1</span></a>
             <a href="javascript:CmPageMove('2')" data-page="2" ><span>2</span></a>
-            <a href="javascript:CmPageMove('3')" data-page="3" ><span>3</span></a>
+
             <a href="javascript:CmPageMove('3')" data-page="3" class='btn-page next'><span class="blind">다음</span></a>
         </div>
     </div>
@@ -155,14 +155,18 @@
 
 <!-- footer -->
 
+
 <div th:insert="common/footer.html"></div>
+
+
 <script src="js/header.js"></script>
 <script src="js/carousel.js"></script>
 <script src="js/default.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+
+
 </body>
 </html>
-
-
 
