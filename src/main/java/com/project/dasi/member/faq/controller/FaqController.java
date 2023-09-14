@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/member/faq")  /*@RequestMapping과 @GetMapping은 같다 */
+@RequestMapping("/member/faq/*")  /*@RequestMapping과 @GetMapping은 같다 */
 public class FaqController {
 
     private final FaqServiceImpl faqService;
@@ -22,9 +22,8 @@ public class FaqController {
     public ModelAndView faqList(ModelAndView mv) {
         List<FaqDTO> faqList = faqService.selectAllFaqList();
         mv.addObject("faqList", faqList);
-        mv.setViewName("/admin/questionList/managerFaq");
+        mv.setViewName("member/faq/faq");
         return mv;
-
     }
 }
 

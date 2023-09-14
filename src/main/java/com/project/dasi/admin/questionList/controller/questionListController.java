@@ -7,13 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class questionListController {
     @RequestMapping("/admin/questionList/managerFaq")
     public void goManagerFaq() {}
-
-    @RequestMapping("/admin/questionList/managerFaq")
-    public String managerInfo(){
-
-    }
-
-
     @RequestMapping("/admin/questionList/managerFaqCreate")
     public void goManagerFaqCreate() {}
     @RequestMapping("/admin/questionList/managerFaqUpdate")
@@ -22,6 +15,4 @@ public class questionListController {
     public void goManagerQuestion() {}
     @RequestMapping("/admin/questionList/managerQuestionCreate")
     public void goManagerQuestionCreate() {}
-
-
 }
