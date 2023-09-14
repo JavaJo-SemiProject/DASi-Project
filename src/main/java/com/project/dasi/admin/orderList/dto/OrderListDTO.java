@@ -12,10 +12,7 @@ public class OrderListDTO implements java.io.Serializable {
     private String statusNum;
     private String payNum;
     private String cancelContent;
-    private String chest;
-    private String neck;
-    private String back;
-    private String head;
+    private String sizeInfo;
     private String phrase;
     private String reqIssues;
     private String orderTime;

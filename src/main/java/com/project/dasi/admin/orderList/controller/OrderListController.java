@@ -1,14 +1,16 @@
 package com.project.dasi.admin.orderList.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/admin/orderList")
 public class OrderListController {
-    @RequestMapping("/admin/orderList/adminOrderDetail")
+    @GetMapping("/adminOrderDetail")
     public void goAdminOrderDetail() {}
-    @RequestMapping("/admin/orderList/adminOrderList")
+    @GetMapping("/adminOrderList")
     public void goAdminOrderList() {}
-    @RequestMapping("/admin/order/orderRejectPage")
+    @GetMapping("/orderRejectPage")
     public void goOrderRejectPage() {}
 }
