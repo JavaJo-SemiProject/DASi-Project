@@ -5,17 +5,17 @@
 
 <mapper namespace="com.project.dasi.member.faq.dao.FaqMapper">
 
-   <!-- <resultMap id="faqListMap" type="FaqDTO" >
+    <!--<resultMap id="faqListMap" type="FaqDTO" >
         <id property="faqNum" column="FAQ_NUM"/>
         <result property="faqContent" column="FAQ_CONTENT"/>
         <result property="faqTitle" column="FAQ_TITLE"/>
         <association property="qcateCode" resultMap="faqCategoryMap"/>
-    </resultMap>
+    </resultMap>-->
 
-    <resultMap id="faqCategoryMap" type="FaqCategoryDTO"  >
+    <resultMap id="faqCategoryMap" type="com.project.dasi.member.faq.dto.FaqCategoryDTO"  >
         <id property="qcateCode"  column="QCATE_CODE"/>
         <result property="qcategory" column="QCATEGORY"/>
-    </resultMap>-->
+    </resultMap>
 
     <resultMap id="faqListMap"  type="com.project.dasi.member.faq.dto.FaqDTO" >
         <id property="faqNum" column="FAQ_NUM"/>
@@ -26,13 +26,13 @@
 
     <select id="faqList" resultMap="faqListMap">
         SELECT <!--com.project.dasi.member.faq.dao.FaqMapper.selectAllFaqList()-->
-            <!--A.QCATE_CODE-->
-            A.FAQ_NUM
-            A.FAQ_TITLE
-            A.FAQ_CONTENT
-            B.QCATEGORY
-        FROM FAQ A
-            JOIN QUESTION_CATEGORY B ON (A.QCATE_CODE = B.QCATE_CODE )
+         <!--   A.QCATE_CODE-->
+            <!--A.-->FAQ_NUM
+            <!--A.-->FAQ_TITLE
+            <!--A.-->FAQ_CONTENT
+            <!--B.QCATEGORY-->
+        FROM FAQ <!--A-->
+         <!--   JOIN QUESTION_CATEGORY B ON (A.QCATE_CODE = B.QCATE_CODE )-->
     </select>
 
     <select id="faqCategoryList" resultMap="faqCategoryMap">

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/faq.css">
     <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
- 
+
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
@@ -43,25 +43,26 @@
         </div>
 
 
-        <div id="Accordion_wrap" th:each="faq : ${ faqList }">
-            <div class="que" >
-             <span th:text="${ faq.faqTitle }"></span>
-              <div class="arrow-wrap">
-                <span class="arrow-top">↑</span>
-               <span class="arrow-bottom">↓</span>
-            </div>
-            </div>
-            <div class="anw">
-             <span th:text=" ${ faq.faqContent }"></span>
-            </div>
-        </div>
+
+    <table class="faqlist-table">
+        <thead>
+        <tr>
+            <th style="width:50px">글번호</th>
+            <th style="width:120px">제목</th>
+            <th style="width:120px">내용</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="faq : ${ faqList }">
+            <td style="width:50px" th:text="${ faq.faqNum }"></td>
+            <td style="width:120px" th:text="${ faq.faqTitle }" ></td>
+            <td style="width:120px" th:text="${ faq.faqContent }"></td>
+        </tr>
+        </tbody>
+    </table>   <!--테이블끝-->
 
 
-
-
-
-
-
+</div>
 
            <!--  <div class="que">
              <span th:text="${ faq.faqTitle }">주문제작 현황 문의는 어떻게 작성하나요?</span>
@@ -74,7 +75,7 @@
              <span th:text=" ${ faq.faqContent }">제작이 승인되어 [제작중]으로 표기된 주문 제작 상품은
                 대개 평일 기준으로 평균 10일 이내 출고됩니다.<br>
                 출고 일정이 확정된 경우, 상품 상세페이지에서 확인이 가능합니다.<br>
-                
+
                 * 평일 기준 출고로 연휴 및 공휴일은 배송일에서 제외됩니다.<br>
                 * 출고 후에도 실제 도착까지는 기간이 더 소요될 수 있습니다.<br>
                 * 제작 중 주문 정보(옵션) 변경 및 취소가 어렵습니다.</span>
@@ -88,7 +89,7 @@
              </div>
             <div class="anw">
              <span th:text=" ${ faq.faqContent }">이용에 불편을 드려 죄송합니다.<br>
-                받으신 제품의 사진을 찍어 1:1문의, 고객센터로 연락주시면 확인 후 안내드리겠습니다.<br>  
+                받으신 제품의 사진을 찍어 1:1문의, 고객센터로 연락주시면 확인 후 안내드리겠습니다.<br>
                 (※누락, 오배송의 경우 상품 수령 후 2주 이내에 교환 가능합니다.)</span>
             </div>
             <div class="que">
@@ -113,7 +114,7 @@
     [전화 업무] 평일 09:00 ~ 18:00</span>-->
 
 
-</div>
+
 
 <!-- footer -->
 

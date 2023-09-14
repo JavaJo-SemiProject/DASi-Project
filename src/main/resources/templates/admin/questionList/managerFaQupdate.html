@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>managerFaQupdate</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="styl esheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <link rel="stylesheet" href="/css/managerFaQupdate.css">
+
 
     <style>
         textarea{
@@ -20,8 +22,8 @@
 
 </head>
 <body>
-<div th:insert="/common/adminHeader.html"></div>
 
+<div th:insert="/common/adminHeader.html"></div>
 
 <!--pages-->
 
@@ -61,6 +63,7 @@
       <div style="display: flex;">
         <div style="margin-right: 30px;"><h5> 글 제목 </h5></div>
 
+
           <table class="bringtitle">
               <tr>
                   <td class="bringtitle2">
@@ -68,6 +71,7 @@
                   </td>
               </tr>
           </table>
+
                 <select>
                     <option>주문제작</option>
                     <option>결제 및 배송</option>
@@ -77,6 +81,7 @@
         </div>
 
         <div style="display: flex; margin-top: 10px;" >
+
             <div class=bringtitle3; style="margin-right: 50px;"><h5> 답변 </h5></div>
                 <textarea cols="10" name="contents" id="contents" class="form-control" placeholder="그만그만그만~" style="width: 89%; height: 50vh;" ></textarea>
             </div>
@@ -163,11 +168,14 @@
 
         <!-- footer -->
 
+
 <div th:insert="common/footer.html"></div>
+
         <script src="js/header.js"></script>
         <script src="js/carousel.js"></script>
         <script src="js/default.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 </body>
+
 </html>
