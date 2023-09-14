@@ -20,6 +20,9 @@
 <br>
 <div class="page">
     <div th:include="/common/mypageId"></div>
+    <br>
+    <div th:include="/common/mypageCategory"></div>
+
 
     <h1> 주문 내역 관리</h1>
     <h5>조회할 주문 ID를 입력하세요.</h5>
@@ -38,14 +41,8 @@
                 <tr>
                     <th>주문 ID</th>
                     <th>주문 날짜</th>
-                    <th>회원 ID</th>
-                    <th>회원 이름</th>
-                    <th>결제 여부</th>
-                    <th>수령인</th>
-                    <th>전화번호</th>
-                    <th>배송 주소</th>
-                    <th>진행 사항</th>
-                    <th>배송 완료일</th>
+                    <th>주문 상태</th>
+                    <th>결제 금액</th>
                     <th>상세 조회</th>
                 </tr>
                 </thead>
@@ -53,135 +50,44 @@
                 <tr>
                     <td>000001</td>
                     <td>2023.09.08</td>
-                    <td>GOD123</td>
-                    <td>HELLO</td>
-                    <td><i class="fa fa-remove"></i></td>
-                    <td>배승수</td>
-                    <td>010-1234-5678</td>
-                    <td>서울특별시 강북구 수유1동 486-281 101호</td>
-                    <td>배송완료</td>
-                    <td>2023-09-09</td>
-                    <td><button class="button button-dark" onclick="location.href='adminOrderDetail.html'">조회</button></td>
+                    <td><button class="button button-dark">제작 요청</button></td>
+                    <td><input type="text" placeholder="3,000" readonly></td>
+                    <td><button class="button button-dark" onclick="location.href='/common/'">조회</button></td>
                 </tr>
                 <tr>
-                    <td>000002</td>
+                    <td>000001</td>
                     <td>2023.09.08</td>
-                    <td>GOD123</td>
-                    <td>HELLO</td>
-                    <td><i class="fa fa-remove"></i></td>
-                    <td>배승수</td>
-                    <td>010-1234-5678</td>
-                    <td>서울특별시 강북구 수유1동 486-281 101호</td>
-                    <td>배송완료</td>
-                    <td>2023-09-09</td>
-                    <td><button class="button button-dark">조회</button></td>
+                    <td><button class="button button-dark">제작 요청</button></td>
+                    <td><input type="text" placeholder="3,000" readonly></td>
+                    <td><button class="button button-dark" onclick="location.href='/common/'">조회</button></td>
                 </tr>
                 <tr>
-                    <td>000003</td>
+                    <td>000001</td>
                     <td>2023.09.08</td>
-                    <td>GOD123</td>
-                    <td>HELLO</td>
-                    <td><i class="fa fa-remove"></i></td>
-                    <td>배승수</td>
-                    <td>010-1234-5678</td>
-                    <td>서울특별시 강북구 수유1동 486-281 101호</td>
-                    <td>배송완료</td>
-                    <td>2023-09-09</td>
-                    <td><button class="button button-dark">조회</button></td>
+                    <td><button class="button button-dark">제작 요청</button></td>
+                    <td><input type="text" placeholder="3,000" readonly></td>
+                    <td><button class="button button-dark" onclick="location.href='/common/'">조회</button></td>
                 </tr>
                 <tr>
-                    <td>000004</td>
+                    <td>000001</td>
                     <td>2023.09.08</td>
-                    <td>GOD123</td>
-                    <td>HELLO</td>
-                    <td><i class="fa fa-remove"></i></td>
-                    <td>배승수</td>
-                    <td>010-1234-5678</td>
-                    <td>서울특별시 강북구 수유1동 486-281 101호</td>
-                    <td>배송완료</td>
-                    <td>2023-09-09</td>
-                    <td><button class="button button-dark">조회</button></td>
+                    <td><button class="button button-dark">제작 요청</button></td>
+                    <td><input type="text" placeholder="3,000" readonly></td>
+                    <td><button class="button button-dark" onclick="location.href='/common/'">조회</button></td>
                 </tr>
                 <tr>
-                    <td>000005</td>
+                    <td>000001</td>
                     <td>2023.09.08</td>
-                    <td>GOD123</td>
-                    <td>HELLO</td>
-                    <td><i class="fa fa-remove"></i></td>
-                    <td>배승수</td>
-                    <td>010-1234-5678</td>
-                    <td>서울특별시 강북구 수유1동 486-281 101호</td>
-                    <td>배송완료</td>
-                    <td>2023-09-09</td>
-                    <td><button class="button button-dark">조회</button></td>
-                </tr>
-                <tr>
-                    <td>000006</td>
-                    <td>2023.09.08</td>
-                    <td>GOD123</td>
-                    <td>HELLO</td>
-                    <td><i class="fa fa-remove"></i></td>
-                    <td>배승수</td>
-                    <td>010-1234-5678</td>
-                    <td>서울특별시 강북구 수유1동 486-281 101호</td>
-                    <td>배송완료</td>
-                    <td>2023-09-09</td>
-                    <td><button class="button button-dark">조회</button></td>
-                </tr>
-                <tr>
-                    <td>000007</td>
-                    <td>2023.09.08</td>
-                    <td>GOD123</td>
-                    <td>HELLO</td>
-                    <td><i class="fa fa-remove"></i></td>
-                    <td>배승수</td>
-                    <td>010-1234-5678</td>
-                    <td>서울특별시 강북구 수유1동 486-281 101호</td>
-                    <td>배송완료</td>
-                    <td>2023-09-09</td>
-                    <td><button class="button button-dark">조회</button></td>
-                </tr>
-                <tr>
-                    <td>000008</td>
-                    <td>2023.09.08</td>
-                    <td>GOD123</td>
-                    <td>HELLO</td>
-                    <td><i class="fa fa-remove"></i></td>
-                    <td>배승수</td>
-                    <td>010-1234-5678</td>
-                    <td>서울특별시 강북구 수유1동 486-281 101호</td>
-                    <td>배송완료</td>
-                    <td>2023-09-09</td>
-                    <td><button class="button button-dark">조회</button></td>
-                </tr>
-                <tr>
-                    <td>000010</td>
-                    <td>2023.09.08</td>
-                    <td>GOD123</td>
-                    <td>HELLO</td>
-                    <td><i class="fa fa-remove"></i></td>
-                    <td>배승수</td>
-                    <td>010-1234-5678</td>
-                    <td>서울특별시 강북구 수유1동 486-281 101호</td>
-                    <td>배송완료</td>
-                    <td>2023-09-09</td>
-                    <td><button class="button button-dark">조회</button></td>
-                </tr>
-                <tr>
-                    <td>000011</td>
-                    <td>2023.09.08</td>
-                    <td>GOD123</td>
-                    <td>HELLO</td>
-                    <td><i class="fa fa-remove"></i></td>
-                    <td>배승수</td>
-                    <td>010-1234-5678</td>
-                    <td>서울특별시 강북구 수유1동 486-281 101호</td>
-                    <td>배송완료</td>
-                    <td>2023-09-09</td>
-                    <td><button class="button button-dark">조회</button></td>
+                    <td><button class="button button-dark">제작 요청</button></td>
+                    <td><input type="text" placeholder="3,000" readonly></td>
+                    <td><button class="button button-dark" onclick="location.href='/common/'">조회</button></td>
+
                 </tr>
                 </tbody>
             </table>
 
- </body>
+            <div th:insert="common/footer.html"></div>
+
+  </body>
+
 </html>

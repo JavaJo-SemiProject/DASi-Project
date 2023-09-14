@@ -1,0 +1,68 @@
+<script>
+    $("#jacksonListButton").click(function(){
+        $.ajax({
+            url: "jackson2",
+            success: function(data, status, xhr) {
+                console.table(data);
+
+                const $table = $("#jacksonList tbody");
+                $table.html("");
+
+                for(let index in data) {
+                    $tr = $("<tr>");
+                    $userCodeTd = $("<td>").text(data[index].userCode);
+                    $userIdTd = $("<td>").text(data[index].userId);
+                    $userNameTd = $("<td>").text(data[index].userName);
+                    $birthDateTd = $("<td>").text(data[index].birthDate);
+                    $emailTd = $("<td>").text(data[index].email);
+                    $telTd = $("<td>").text(data[index].tel);
+                    $genderTd = $("<td>").text(data[index].gender);
+
+
+                    $tr.append($userCodeTd);
+                    $tr.append($userIdTd);
+                    $tr.append($userNameTd);
+                    $tr.append($birthDateTd);
+                    $tr.append($emailTd);
+                    $tr.append($telTd);
+                    $tr.append($genderTd);
+
+
+                    $table.append($tr);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    });
+</script>
+<div class="item">
+    <a href="#jacksonList" id="jacksonButton" class="button button-dark mb-1">정보 조회하기</a>
+</div>
+<div>
+    <table id="jacksonList">
+        <thead>
+        <tr>
+            <th>유저번호</th>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>생일</th>
+            <th>이메일</th>
+            <th>성별</th>
+            <th>마케팅동의</th>
+            <th>가입일</th>
+            <th>탈퇴여부</th>
+            <th>탈퇴일</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        </tbody>
+
+    </table>
+
+</div>
+
+

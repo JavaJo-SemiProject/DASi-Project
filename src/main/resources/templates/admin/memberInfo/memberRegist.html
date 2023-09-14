@@ -1,0 +1,32 @@
+<div class="items-container ic2">
+<form action="memberRegistResult" method="post">
+    <label for="userCode">이름 : </label><input class="input" type="text" name="userCode" id="userCode"/><br>
+    <label for="userId">id : </label><input class="input" type="text" name="userId" id="userId"/><br>
+    <label for="userPwd">id : </label><input class="input" type="text" name="userPwd" id="userPwd"/><br>
+    <label for="userName">id : </label><input class="input" type="text" name="userName" id="userName"/><br>
+    <label for="birthDate">id : </label><input class="input" type="text" name="birthDate" id="birthDate"/><br>
+    <label for="email">id : </label><input class="input" type="text" name="email" id="email"/><br>
+    <label for="tel">id : </label><input class="input" type="text" name="tel" id="tel"/><br>
+    <label for="gender">id : </label><input class="input" type="text" name="gender" id="gender"/><br>
+    <label for="marketingStatus">id : </label><input class="input" type="text" name="marketingStatus" id="marketingStatus"/><br>
+    <label for="joinDate">id : </label><input class="input" type="text" name="joinDate" id="joinDate"/><br>
+    <label for="withdrawStatus">id : </label><input class="input" type="text" name="withdrawStatus" id="withdrawStatus"/><br>
+    <label for="withdrawDate">id : </label><input class="input" type="text" name="withdrawDate" id="withdrawDate"/><br>
+
+    <input type="submit" value="등록">
+</div>
+</form>
+<script>
+    fetch("/admin/memberInfo/memberRegist")
+        .then(res => res.json())
+        .then(data => {
+            const $userCode = document.getElementById('userCode');
+
+            for(let index in data) {
+                const $option = document.createElement('option');
+                $option.value = data[index].userCode;
+                $option.textContent = data[index].userName;
+                $categoryCode.appendChild($option);
+            }
+        });
+</script>
