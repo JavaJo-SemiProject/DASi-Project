@@ -1,6 +1,5 @@
 package com.project.dasi.member.join.controller;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.project.dasi.member.join.dto.MemberDTO;
 import com.project.dasi.common.exception.member.MemberRegistException;
@@ -69,6 +68,7 @@ public class JoinController {
 
         return "member/join/JoinMemberShip";
     }
+
 
 }
 
