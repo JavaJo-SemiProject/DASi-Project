@@ -30,12 +30,10 @@
 
             <div class="member-form">
               <div class="input-form-area">
-                <form class="input-form" id="enterIdForm" action="" method="post">
+                <form class="input-form" id="enterIdForm" th:action="@{login}" method="post">
                   <div class="input-group">
                     <input id="enterId" class="input" type="text" placeholder="id">
                   </div>
-                </form>
-                <form class="input-form" id="findIdFormCode" action="" method="post">
                   <span class="input-font"></span>
                   <div class="input-group">
                     <input id="inputPassword" class="input" type="password" placeholder="password" maxlength="20">
@@ -61,10 +59,20 @@
   </div>
 
   <div th:insert="/common/footer.html"></div>
+  <script>
+    $(function(){
+      $("input[name=userId]").focus();
+
+      $("input[type=submit]").click(function (){
+        $("#enterIdForm").submit();
+      })
+    })
+  </script>
   <script src="js/header.js"></script>
   <script src="js/carousel.js"></script>
   <script src="js/default.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 </body>
 </html>

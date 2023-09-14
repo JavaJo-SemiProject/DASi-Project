@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DASi</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/mypageProfil.css">
+</head>
+
+<body>
+
+<div th:insert="/common/header"></div>
+<br>
+<br>
+<div class="page">
+    <div th:include="/common/mypageId"></div>
+    <br>
+    <div th:include="/common/mypageCategory"></div>
+
+    <h1> 주문 내역 관리</h1>
+    <h5>조회할 주문 ID를 입력하세요.</h5>
+    <div class="item p-1">
+        <div class="input-group">
+            <input class="input" placeholder="검색">
+            <button class="button button-dark">검색</button>
+        </div>
+    </div>
+    <hr>
+
+    <div class="items_container ic1">
+        <div class="item">
+            <table>
+                <thead>
+                <tr>
+                    <th>주문 ID</th>
+                    <th>주문 날짜</th>
+                    <th>주문 상태</th>
+                    <th>결제 금액</th>
+                    <th>상세 조회</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>000001</td>
+                    <td>2023.09.08</td>
+                    <td><button class="button button-dark">제작 요청</button></td>
+                    <td><input type="text" placeholder="3,000" readonly></td>
+                    <td><button class="button button-dark" onclick="location.href='/common/'">조회</button></td>
+                </tr>
+                <tr>
+                    <td>000001</td>
+                    <td>2023.09.08</td>
+                    <td><button class="button button-dark">제작 요청</button></td>
+                    <td><input type="text" placeholder="3,000" readonly></td>
+                    <td><button class="button button-dark" onclick="location.href='/common/'">조회</button></td>
+                </tr>
+                <tr>
+                    <td>000001</td>
+                    <td>2023.09.08</td>
+                    <td><button class="button button-dark">제작 요청</button></td>
+                    <td><input type="text" placeholder="3,000" readonly></td>
+                    <td><button class="button button-dark" onclick="location.href='/common/'">조회</button></td>
+                </tr>
+                <tr>
+                    <td>000001</td>
+                    <td>2023.09.08</td>
+                    <td><button class="button button-dark">제작 요청</button></td>
+                    <td><input type="text" placeholder="3,000" readonly></td>
+                    <td><button class="button button-dark" onclick="location.href='/common/'">조회</button></td>
+                </tr>
+                <tr>
+                    <td>000001</td>
+                    <td>2023.09.08</td>
+                    <td><button class="button button-dark">제작 요청</button></td>
+                    <td><input type="text" placeholder="3,000" readonly></td>
+                    <td><button class="button button-dark" onclick="location.href='/common/'">조회</button></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div th:insert="common/footer.html"></div>
+
+  </body>
+</html>
