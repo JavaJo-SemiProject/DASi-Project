@@ -15,5 +15,4 @@ public class AdminController {
     @GetMapping("/memberRegist")
     public void goMemberRegist() {}*/
 
-
 }
