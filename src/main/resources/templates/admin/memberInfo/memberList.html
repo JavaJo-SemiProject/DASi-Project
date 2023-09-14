@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/header.css">
+</head>
+<body>
+<div th:insert="common/header.html"></div>
+
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+
+
+
+        <div class="items_container ic1">
+            <h3>회원정보 조회</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>유저번호</th>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>생일</th>
+                    <th>이메일</th>
+                    <th>전화번호</th>
+                    <th>성별</th>
+                    <th>마케팅동의</th>
+                    <th>가입일</th>
+                    <th>탈퇴여부</th>
+                    <th>탈퇴일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${memberList}">
+                    <td th:text="${user.userCode}"></td>
+                    <td th:text="${user.userId}"></td>
+                    <td th:text="${user.userName}"></td>
+                    <td th:text="${user.birthDate}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.tel}"></td>
+                    <td th:text="${user.gender}"></td>
+                    <td th:text="${user.marketingStatus}"></td>
+                    <td th:text="${user.joinDate}"></td>
+                    <td th:text="${user.withdrawStatus}"></td>
+                    <td th:text="${user.withdrawDate}"></td>
+                </tr>
+
+                </tbody>
+
+            </table>
+            <div class="pagination">
+                <ul>
+                    <li><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="items_container ic4 pt-1">
+            <button onclick="location.href='memberRegist'" class="button button-light mb-1">등록</button>
+            <form id="searchForm" action="memberList" method="get">
+                <select name="type">
+                    <option value="">--</option>
+                    <option value="userName">name</option>
+                    <option value="email">mail</option>
+                </select> <input type="text" name="keyword" /> <input type="hidden"
+                                                                      name="pageNum" value="${pageMaker.cri.pageNum}" /> <input
+                    type="hidden" name="amount" value="${pageMaker.cri.amount}" />
+                <button class="btn btn-default">검색</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:insert="/common/footer.html"></div>
+</body>
+</html>
