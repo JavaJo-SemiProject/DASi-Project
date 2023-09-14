@@ -22,7 +22,7 @@ public class FaqController {
     public ModelAndView faqList(ModelAndView mv) {
         List<FaqDTO> faqList = faqService.selectAllFaqList();
         mv.addObject("faqList", faqList);
-        mv.setViewName("/admin/questionList/managerFaq");
+        mv.setViewName("member/faq/faq");
         return mv;
     }
 }
