@@ -1,0 +1,53 @@
+.main{
+    padding: 4em;
+}
+.main{
+    height: auto;
+}
+.main > h3{
+    font-size: 95px;
+    text-align: center;
+    margin-top: 1.5em;
+}
+.hi{
+    font-size: 16px;
+    text-align: center;
+    color: #111111;
+}
+.center{
+    text-align: center;
+    margin: 50px;
+}
+.dasi {
+    margin-top: 1.5em;
+    text-align: center;
+    font-size: 40px;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+.dark{
+    margin: 0px 10px;
+}
+.button-dark{
+    width: 295px;
+    height: 40px;
+}
+.button-light{
+    width: 295px;
+    height: 40px;
+}
+.log{
+    background-image: url(/img/main/background.png);
+    background-size: cover;
+}
+.brand{
+    font-size: 72px;
+    margin: 0px 270px;
+}
+.dasi{
+    min-height: calc(100vh -130px);
+    padding: 51px;
+}

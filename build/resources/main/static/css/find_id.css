@@ -1,0 +1,32 @@
+.headerWrap{
+    padding: 3em 0;
+}
+.brand{
+    font-size: 80px;
+    color: #111111;
+    font-weight: 900;
+}
+.search > h3{
+    text-align: center;
+}
+
+.find-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.find{
+    width: 50vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+}
+.mail{
+
+}
+.find_btn{
+    text-align: center;
+
+}
