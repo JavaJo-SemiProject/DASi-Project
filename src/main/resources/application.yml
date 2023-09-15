@@ -12,8 +12,8 @@ spring:
     # username: root 
     # password: 1234
  
-    # username: ohgiraffers
-    # password: ohgiraffers
+    username: ohgiraffers
+    password: ohgiraffers
 
   mvc:
     view:
