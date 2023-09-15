@@ -640,7 +640,7 @@ img {
 }
 
 /*input, select, button*/
-.input, .button, select {
+input, .button, select {
   height: 40px!important;
   cursor: pointer;
 }
@@ -651,7 +651,7 @@ img {
   justify-content: center;
 }
 
-.input {
+input {
   border: solid 1px #ccc;
   border-radius: 0;
   padding: 0 7px;
@@ -721,15 +721,15 @@ select:focus, select:active {
   align-items: stretch;
   width: 100%;
 }
-.input-group > .input,
-.input-group > .select {
+.input-group > input,
+.input-group > select {
   position: relative;
   flex: 1 1 auto;
   width: 1%;
   min-width: 0;
 }
 
-.input-group > .input {
+.input-group > input {
   padding-right: 0
 }
 
@@ -927,24 +927,24 @@ footer {
 .pagination {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-.pagination,
-.pagination li a {
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-
+  width: 100%;
 }
+
+
 
 .pagination ul {
   border-collapse: collapse;
 }
 
-.pagination li {
+.pagination ul li {
   list-style: none;
-  
+  display: inline-block;
+  border-collapse: collapse;
+
 }
 .pagination li a {
   text-decoration: none;
@@ -953,6 +953,9 @@ footer {
   font-size: 1rem;
   border: 1px solid var(--color-secondary);
   border-collapse: collapse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .pagination li:last-child a {
 }
@@ -965,4 +968,3 @@ footer {
 .pagination li a:active {
   background-color: var(--color-light);
 }
-

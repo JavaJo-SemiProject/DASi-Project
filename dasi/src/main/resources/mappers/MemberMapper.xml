@@ -10,21 +10,24 @@
         <result property="userPwd" column="USER_PWD"/>
         <result property="userName" column="USER_NAME"/>
         <result property="birthDate" column="BIRTH_DATE"/>
-        <result property="email" column="BIRTH_DATE"/>
+        <result property="email" column="EMAIL"/>
         <result property="tel" column="TEL"/>
         <result property="gender" column="GENDER"/>
         <result property="marketingStatus" column="MARKETING_STATUS"/>
         <result property="joinDate" column="JOIN_DATE"/>
         <result property="withdrawStatus" column="WITHDRAW_STATUS"/>
         <result property="withdrawDate" column="WITHDRAW_DATE"/>
-
     </resultMap>
 
-    <select id="getMemberList" resultMap="MemberResultMap">
+    <sql id="default">
         SELECT USER_CODE, USER_ID, USER_PWD, USER_NAME, BIRTH_DATE,
         EMAIL, TEL, GENDER, MARKETING_STATUS, JOIN_DATE, WITHDRAW_STATUS, WITHDRAW_DATE
         FROM USER_INFO
-        <!--WHERE USER_NAME LIKE '%' | #{name} || '%'-->
+    </sql>
+
+
+    <select id="getMemberList" resultMap="MemberResultMap">
+        <include refid="default"></include> limit 0, 10
     </select>
 
     <insert id="registMember" parameterType="com.project.dasi.admin.memberInfo.dto.MemberDTO">
@@ -37,7 +40,7 @@
         ,#{ userId }
         ,#{ userPwd }
         ,#{ userName }
-        ,#{ birthCode }
+        ,#{ birthDate }
         ,#{ email }
         ,#{ tel }
         ,#{ gender }
@@ -48,7 +51,42 @@
         )
     </insert>
 
-
-
+    <select id="findUser" resultType="com.project.dasi.admin.memberInfo.dto.MemberDTO" resultMap="MemberResultMap">
+        SELECT USER_CODE, USER_ID, USER_NAME, BIRTH_DATE, EMAIL, TEL, GENDER,
+        MARKETING_STATUS, JOIN_DATE, WITHDRAW_STATUS, WITHDRAW_DATE FROM USER_INFO WHERE
+        <if test="keyword == 'userCode'">
+            USER_CODE LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test="keyword == 'userId'">
+            USER_ID LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test="keyword == 'userName'">
+            USER_NAME LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test="keyword == 'birthDate'">
+            BIRTH_DATE LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test="keyword == 'email'">
+            EMAIL LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test="keyword == 'tel'">
+            TEL LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test="keyword == 'gender'">
+            GENDER LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test="keyword == 'marketingStatus'">
+            MARKETING_STATUS LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test="keyword == 'joinDate'">
+            JOIN_DATE LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test="keyword == 'withdrawStatus'">
+            WITHDRAW_STATUS LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test="keyword == 'withdrawDate'">
+            WITHDRAW_DATE LIKE CONCAT('%',#{search},'%')
+        </if>
+    </select>
 
 </mapper>

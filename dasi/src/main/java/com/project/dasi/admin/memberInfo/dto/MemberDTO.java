@@ -1,11 +1,7 @@
 package com.project.dasi.admin.memberInfo.dto;
 import lombok.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
+
 public class MemberDTO implements java.io.Serializable {
     private String userCode;
     private String userId;
@@ -19,6 +15,24 @@ public class MemberDTO implements java.io.Serializable {
     private String joinDate;
     private String withdrawStatus;
     private String withdrawDate;
+
+    public MemberDTO() {
+    }
+
+    public MemberDTO(String userCode, String userId, String userPwd, String userName, String birthDate, String email, String tel, String gender, String marketingStatus, String joinDate, String withdrawStatus, String withdrawDate) {
+        this.userCode = userCode;
+        this.userId = userId;
+        this.userPwd = userPwd;
+        this.userName = userName;
+        this.birthDate = birthDate;
+        this.email = email;
+        this.tel = tel;
+        this.gender = gender;
+        this.marketingStatus = marketingStatus;
+        this.joinDate = joinDate;
+        this.withdrawStatus = withdrawStatus;
+        this.withdrawDate = withdrawDate;
+    }
 
     public String getUserCode() {
         return userCode;
@@ -114,5 +128,23 @@ public class MemberDTO implements java.io.Serializable {
 
     public void setWithdrawDate(String withdrawDate) {
         this.withdrawDate = withdrawDate;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberDTO{" +
+                "userCode='" + userCode + '\'' +
+                ", userId='" + userId + '\'' +
+                ", userPwd='" + userPwd + '\'' +
+                ", userName='" + userName + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", email='" + email + '\'' +
+                ", tel='" + tel + '\'' +
+                ", gender='" + gender + '\'' +
+                ", marketingStatus='" + marketingStatus + '\'' +
+                ", joinDate='" + joinDate + '\'' +
+                ", withdrawStatus='" + withdrawStatus + '\'' +
+                ", withdrawDate='" + withdrawDate + '\'' +
+                '}';
     }
 }

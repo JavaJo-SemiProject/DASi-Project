@@ -1,21 +1,50 @@
-<div class="items-container ic2">
-<form action="memberRegistResult" method="post">
-    <label for="userCode">이름 : </label><input class="input" type="text" name="userCode" id="userCode"/><br>
-    <label for="userId">id : </label><input class="input" type="text" name="userId" id="userId"/><br>
-    <label for="userPwd">id : </label><input class="input" type="text" name="userPwd" id="userPwd"/><br>
-    <label for="userName">id : </label><input class="input" type="text" name="userName" id="userName"/><br>
-    <label for="birthDate">id : </label><input class="input" type="text" name="birthDate" id="birthDate"/><br>
-    <label for="email">id : </label><input class="input" type="text" name="email" id="email"/><br>
-    <label for="tel">id : </label><input class="input" type="text" name="tel" id="tel"/><br>
-    <label for="gender">id : </label><input class="input" type="text" name="gender" id="gender"/><br>
-    <label for="marketingStatus">id : </label><input class="input" type="text" name="marketingStatus" id="marketingStatus"/><br>
-    <label for="joinDate">id : </label><input class="input" type="text" name="joinDate" id="joinDate"/><br>
-    <label for="withdrawStatus">id : </label><input class="input" type="text" name="withdrawStatus" id="withdrawStatus"/><br>
-    <label for="withdrawDate">id : </label><input class="input" type="text" name="withdrawDate" id="withdrawDate"/><br>
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/header.css">
+</head>
+<body>
+<div th:insert="common/header.html"></div>
 
-    <input type="submit" value="등록">
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <div class="items_container ic1"><h3>신규 회원 등록</h3></div>
+        <form action="/admin/memberInfo/memberRegist" method="post">
+
+            <div class="items_container ic4 g-gap2 mb-1">
+                <div class="item"><label for="userCode">유저번호</label><input class="input" type="text" name="userCode" id="userCode"/></div>
+                <div class="item"><label for="userId">id</label><input class="input" type="text" name="userId" id="userId"/></div>
+                <div class="item"><label for="userPwd">비밀번호</label><input class="input" type="text" name="userPwd" id="userPwd"/></div>
+                <div class="item"><label for="userName">이름</label><input class="input" type="text" name="userName" id="userName"/></div>
+                <div class="item"><label for="birthDate">생일</label><input class="input" type="text" name="birthDate" id="birthDate"/></div>
+                <div class="item"><label for="email">이메일</label><input class="input" type="text" name="email" id="email"/></div>
+                <div class="item"><label for="tel">전화번호</label><input class="input" type="text" name="tel" id="tel"/></div>
+                <div class="item"><label for="gender">성별</label><input class="input" type="text" name="gender" id="gender"/></div>
+                <div class="item"><label for="marketingStatus">마케팅동의여부</label><input class="input" type="text" name="marketingStatus" id="marketingStatus"/></div>
+                <div class="item"><label for="joinDate">가입일</label><input class="input" type="text" name="joinDate" id="joinDate"/></div>
+                <div class="item"><label for="withdrawStatus">탈퇴여부</label><input class="input" type="text" name="withdrawStatus" id="withdrawStatus"/></div>
+                <div class="item"><label for="withdrawDate">탈퇴일</label><input class="input" type="text" name="withdrawDate" id="withdrawDate"/></div>
+            </div>
+            <div class="items_container ic1">
+                <button type="submit" value="등록" class="button-dark button w-100">등록</button>
+            </div>
+
+
+
+        </form>
+
+
+
+    </div>
 </div>
-</form>
+<div th:insert="common/footer.html"></div>
 <script>
     fetch("/admin/memberInfo/memberRegist")
         .then(res => res.json())
@@ -26,7 +55,9 @@
                 const $option = document.createElement('option');
                 $option.value = data[index].userCode;
                 $option.textContent = data[index].userName;
-                $categoryCode.appendChild($option);
+                $userCode.appendChild($option);
             }
         });
 </script>
+</body>
+</html>

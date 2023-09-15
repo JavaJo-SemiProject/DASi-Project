@@ -16,3 +16,13 @@ spring:
 mybatis:
   mapper-locations: mappers/**/*.xml
 
+pagehelper:
+  helper-dialect: mysql
+  auto-dialect: true
+  page-size-zero: false
+  reasonable: true
+  offset-as-page-num: false
+  row-bounds-with-count: false
+  auto-runtime-dialect: false
+  close-conn: true
+  default-count: true
