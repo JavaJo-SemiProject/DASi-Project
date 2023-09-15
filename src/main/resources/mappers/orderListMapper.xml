@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper>
+
+    <resultMap id="orderListMap" type="com.project.dasi.admin.order.model.dao.OrderListMapper">
+        <id property="orderId" column="ORDER_ID" />
+        <result property="productCode" column="PRODUCT_CODE" />
+        <result property="statusNum" column="STATUS_NUM" />
+        <result property="cancelContent" column="CANCEL_CONTENT" />
+        <result property="sizeInfo" column="SIZE_INFO" />
+        <result property="phrase" column="PHRASE" />
+        <result property="reqIssues" column="REQ_ISSUES" />
+        <result property="orderDate" column="ORDER_DATE" />
+        <result property="orderPrice" column="ORDER_PRICE" />
+
+    </resultMap>
+
+
+    <select id="selectAllOrderList" resultMap="orderListMap">
+        <include refid="orderDefault"></include>
+    </select>
+
+    <sql id="orderDefault">
+        SELECT A.ORDER_ID
+                ,A.ORDER_DATE
+                ,A.CANCEL_CONTENT
+                ,B.USER_ID
+                ,
+                ,A.PHRASE
+                ,A.REQ_ISSUES
+                ,A.ORDER_DATE
+                ,A.ORDER_PRICE
+        FROM ORDER_LIST A
+    </sql>
+
+</mapper>
