@@ -13,5 +13,9 @@ public class MainController {
     @GetMapping("/main")
     public void goMain() {
     }
+
+	  @GetMapping("/about")
+    public void goFaq() {
+    }
 }
 
