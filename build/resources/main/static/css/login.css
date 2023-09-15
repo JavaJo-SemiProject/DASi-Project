@@ -1,0 +1,39 @@
+/* .dasi_login{
+    text-align: center;
+    min-height: calc(100vh - 130px);
+    padding: 20rem;
+}
+.find{
+    margin: 40px 0px 0px 40px;
+    text-align: center;
+}
+.find > a{
+    font-size: 16px;
+    color: #111111;
+} */
+.DasiLog{
+    text-align: center;
+    padding:6.5em;
+}
+.login{
+    text-align: center;
+}
+.input{
+    width: 600px;
+    height: 40px;
+    margin: 15px 0px 15px 0px;
+}
+.button-dark{
+    width: 295px;
+    height: 40px;
+}
+.button-light{
+    width: 295px;
+    height: 40px;
+}
+.logBtn{
+    margin: 15px 0px 15px 0px;
+}
+.find{
+    margin: 15px 0px 15px 0px;
+}
