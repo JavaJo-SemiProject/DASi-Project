@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/member/..")  /*@RequestMapping과 @GetMapping은 같다 */
+@RequestMapping("/member")  /*@RequestMapping과 @GetMapping은 같다 */
 public class FaqController {
 
     private final FaqService faqService;
