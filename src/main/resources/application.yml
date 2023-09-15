@@ -9,8 +9,8 @@ spring:
     # username: HIkdt6
     # password: HIkdt6
 
-    # username: root 
-    # password: 1234
+    username: root
+    password: 1234
  
     # username: ohgiraffers
     # password: ohgiraffers

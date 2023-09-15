@@ -9,8 +9,8 @@ spring:
     # username: HIkdt6
     # password: HIkdt6
 
-    # username: root 
-    # password: 1234
+    username: root
+    password: 1234
  
     # username: ohgiraffers
     # password: ohgiraffers
@@ -25,3 +25,16 @@ spring:
       max-request-size: 300MB
       location: D://upload
 
+mybatis:
+  mapper-locations: mappers/**/*.xml
+
+pagehelper:
+  helper-dialect: mysql
+  auto-dialect: true
+  page-size-zero: false
+  reasonable: true
+  offset-as-page-num: false
+  row-bounds-with-count: false
+  auto-runtime-dialect: false
+  close-conn: true
+  default-count: true
