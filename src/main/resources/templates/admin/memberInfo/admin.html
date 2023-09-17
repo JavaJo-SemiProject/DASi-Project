@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <h3>회원 정보 조회</h3>
+        <div class="items_container ic4">
+            <button onclick="location.href='memberList'" class="button button-light">전체 회원 조회</button>
+            <button onclick="location.href='memberRegist'" class="button button-light">신규 회원 등록</button>
+            <div>
+                <form action="memberSearch" method="">
+                    <div class="items_container ic3 mb-1">
+
+                        <div>
+                            <select class="select" name="keyword" id="keyword">
+                                <option value="userCode">유저번호</option>
+                                <option value="userId">id</option>
+                                <option value="userName">이름</option>
+                                <option value="birthDate">생일</option>
+                                <option value="email">이메일</option>
+                                <option value="tel">전화번호</option>
+                                <option value="gender">성별</option>
+                                <option value="marketingStatus">마케팅동의</option>
+                                <option value="joinDate">가입일</option>
+                                <option value="withdrawStatus">탈퇴여부</option>
+                                <option value="withdrawDate">탈퇴일</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="text" id="search" name="search" class="input">
+                        </div>
+                        <div>
+                            <button type="submit" class="button-dark button">검색</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <button onclick="location.href='memberModify'" class="button button-light">회원 정보 수정</button>
+        </div>
+    </div>
+</div>
+
+<div th:insert="/fragments/footer.html"></div>
+</body>
+</html>

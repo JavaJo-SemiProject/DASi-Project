@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.project.dasi.auth.model.entity.Users">
+
+  <resultMap id="MemberResultMap" type="com.project.dasi.auth.dto.UserDTO">
+        <result property="userId" column="userId"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="userRole" column="userRole"/>
+    </resultMap>
+
+</mapper>
