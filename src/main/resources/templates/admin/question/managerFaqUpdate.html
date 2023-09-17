@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>managerFaQupdate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="styl esheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="/css/managerFaQupdate.css">
+
+    <style>
+        textarea{
+            resize: none;
+        }
+    </style>
+
+</head>
+<body>
+<div th:insert="/fragments/header.html"></div>
+
+
+<!--pages-->
+
+<div class="page">
+    <br>
+    <br>
+    <h1>FAQ 수정</h1>
+    <br>
+<div class="button class">
+    <button class="button button-light" onClick="">1:1 문의 관리</button>
+    <button class="button button-dark" onClick="">FAQ 관리</button>
+</div>
+
+    <br> <br>
+
+    
+    <table>
+        <thead>
+          <tr>
+            <td>구분</td>
+          <td class="name2">글번호</td>
+          <td>글 제목</td>
+          <td>UPDATE</td>
+        </tr>
+    </thead>
+        <tbody>
+          <tr>
+            <td>주문관련</td>
+          <td class="name2">01</td>
+          <td>고객센터 운영 시간이 어떻게 되나요?</td>
+          <td>2023.09.08</td>
+        </tr>
+        
+    </tbody>
+      </table>
+
+      <div style="display: flex;">
+        <div style="margin-right: 30px;"><h5> 글 제목 </h5></div>
+            <textarea placeholder="고객센터 운영 시간이 어떻게 되나요?" style="width: 80%;" ></textarea>
+            <div style="margin-left: 10px;">
+                <select>
+                    <option>주문제작</option>
+                    <option>결제 및 배송</option>
+                    <option>기타</option>
+                </select>
+              </div>
+        </div>
+
+        <div style="display: flex; margin-top: 10px;" >
+            <div style="margin-right: 50px;"><h5> 답변 </h5></div>
+                <textarea placeholder="그만그만그만~" style="width: 89%; height: 50vh;" ></textarea>
+            </div>
+
+        
+            <div class="btn-bottom-area" style="text-align: right; margin-top: 10px; width: 96%;">
+                <button type="button" class="button button-light" onclick="alert('취소되었습니다');javascript:history.back();"><span>취소</span></button>
+                <button type="button" class="button button-dark" onclick=" alert('수정되었습니다'); location.href='managerFaQ.html';"><span>수정</span></button>
+            </div>
+    </div>
+
+
+    <!-- <div class="board-list ui-accordion">
+        <ul class="accordion-list type2 ui-accordion-list">
+            <li>
+                <a href="javascript:;" class="title-div ui-accordion-click">
+                    <div class="subject">
+
+                        <span class="classify">구분</span>
+                        <span  class="number">글번호</span>
+                        <span  class="txt">제목</span>
+                        <span  class="update">update</span>
+                    </div>
+            </li>
+
+            <hr>
+
+
+              
+                    <div class="subject">
+                        <span class="classify">기타</span>
+                        <span  class="number">글번호</span>
+                        <span class="txt">고객센터 운영 시간이 어떻게 되나요?</span>
+                        <span  class="update">2023.09.08</span>
+                    </div>
+                </a>
+
+                <div class="ui-accordion-view hide">
+
+                    <div class="answer">
+                        <div>
+                            <span>글제목</span>
+                            <span  class="number">글번호</span>
+                            <div class="questiontitle">
+                                <input class="input" placeholder=""/>
+                            </div>
+                            <select class="select">
+                                <option class="option" selected>구분</option>
+                                <option class="option">상품문의</option>
+                                <option class="option">불량/하자</option>
+                                <option class="option">A/S</option>
+                            </select>
+                            <hr>
+
+                            <div class="answer">
+                                <span class="classify">답변</span>
+                                <form>
+                                    <p><textarea cols="70" rows="10">
+          DASI(다시) 고객센터 상담시간은 아래와 같습니다. 상담을 원하시는 고객님께서는 해당 시간을 참고하여<br/>
+          연락 주시면 친절히 안내해 드리겠습니다. [전화 업무] 평일 09:00 ~ 18:00
+                                </textarea></p>
+                                </form>
+                            </div> -->
+
+
+                            <!-------------------->
+
+
+                            <!--랭킹닭컴 사이트에서 가져온 취소/작성하기 버튼 코드
+                            </div>
+                            -->
+
+                            
+
+
+        <!-- footer -->
+
+<div th:insert="fragments/footer.html"></div>
+        <script src="js/header.js"></script>
+        <script src="js/carousel.js"></script>
+        <script src="js/default.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -85,6 +85,43 @@ body {
   padding-bottom: 3rem
 }
 
+/*spinner*/
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: var(--color-black);
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%, 100% {
+    top: 24px;
+    height: 32px;
+  }
+}
 /*a, input, li*/
 a, a:link {
     color: var(--color-dark);
@@ -640,7 +677,7 @@ img {
 }
 
 /*input, select, button*/
-.input, .button, select {
+.input, .button, .select {
   height: 40px!important;
   cursor: pointer;
 }
@@ -649,6 +686,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.85rem!important;
 }
 
 .input {
@@ -691,7 +729,7 @@ img {
 
 /*select, select option*/
 
-select {
+.select {
   border: solid 1px var(--color-secondary);
   background-color: #fff;
   border-radius: 0;
@@ -706,10 +744,6 @@ select {
   appearance: none;
 }
 
-select:focus, select:active {
-  border: solid 1px var(--color-secondary)!important;
-  border-radius: 0!important;
-}
 
 
 
@@ -907,6 +941,10 @@ footer {
   background-color: var(--color-dark)!important;
   color: var(--color-white);
   line-height: 2;
+}
+
+footer ul li a {
+  color: var(--color-white);
 }
 
 
