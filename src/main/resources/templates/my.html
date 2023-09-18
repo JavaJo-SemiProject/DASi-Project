@@ -11,8 +11,8 @@
     <div class="card mb-3 text-center mx-auto">
         <div class="card-body">
             <div class="container pt-2 text-center" th:object="${userDTO}">
-                <h5><span th:text="${userDTO.userId}">회원</span>님 안녕하세요</h5>
-                <p class="mt-3">권한 : <span th:text="${userDTO.userRole}">회원</span></p>
+                <h5><span th:text="${userDTO.userid}">회원</span>님 안녕하세요</h5>
+                <p class="mt-3">권한 : <span th:text="${userDTO.userrole}">회원</span></p>
                 <form id="logout" action="/logout" method="POST">
                     <input class="btn btn-primary" type="submit" value="로그아웃">
                 </form>

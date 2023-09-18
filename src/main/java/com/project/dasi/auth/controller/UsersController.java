@@ -2,15 +2,16 @@ package com.project.dasi.auth.controller;
 
 import com.project.dasi.auth.PackageDto;
 import com.project.dasi.auth.dto.UserCreateRequest;
+import com.project.dasi.auth.entity.Users;
+import com.project.dasi.auth.handler.CustomLoginFailHandler;
+import com.project.dasi.auth.repository.UserRepository;
 import com.project.dasi.auth.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,5 +41,8 @@ public class UsersController {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         response.sendRedirect("/login");
     }
+
+
+
 
 }

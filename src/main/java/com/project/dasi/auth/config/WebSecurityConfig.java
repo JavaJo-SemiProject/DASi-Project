@@ -1,6 +1,5 @@
 package com.project.dasi.auth.config;
 
-import com.project.dasi.auth.handler.CustomLoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,8 +36,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter { // 정적 
                 .antMatchers("/my").authenticated()             // /my 은 인증이 되야함
                 .and()
                 .formLogin()                                                // form 을 통한 login 활성화
-                .loginPage("/login")                                        // 로그인 페이지 URL 설정 , 설정하지 않는 경우 default 로그인 페이지 노출
-                .successHandler(customLoginSuccessHandler())
+                .loginPage("/login")
+                .usernameParameter("userid")			// 아이디 파라미터명 설정
+                .passwordParameter("password")
+                .successForwardUrl("/success")// 로그인 페이지 URL 설정 , 설정하지 않는 경우 default 로그인 페이지 노출
                 .failureForwardUrl("/fail")                                 // 로그인 실패 URL 설정
                 .and()
                 .logout()
@@ -48,11 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter { // 정적 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public CustomLoginSuccessHandler customLoginSuccessHandler() {
-        return new CustomLoginSuccessHandler();
     }
 
     @Bean
