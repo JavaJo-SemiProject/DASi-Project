@@ -5,11 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,39 +20,63 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Entity
+@DynamicInsert
 public class Users implements UserDetails {
 
-    /*@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="USER_CODE")
-    private String usercode;*/
-    @Id
+    private String usercode;
+
     @Column(name="USER_ID")
     private String userid;
 
-    @Column(name="USER_PWD")
+    @Column(name="PASSWORD")
     private String password;
 
-    /*@Column(name="USER_NAME")
+    @Column(name="USER_NAME")
     private String username;
 
     @Column(name="BIRTH_DATE")
-    private String birthdate;*/
+    private String birthdate;
 
     @Column(name="EMAIL")
     private String email;
+
+    @NotBlank(message = "휴대폰 번호를 입력해 주세요.")
+    @Column(name="TEL")
+    private String tel;
+
+    @Column(name="GENDER")
+    private String gender;
+
+    @Column(name="JOIN_DATE")
+    private String joindate;
+
+    @Column(name="WITHDRAW_STATUS")
+    private String withdrawstatus;
+
+    @Column(name="WITHDRAW_DATE")
+    private String withdrawdate;
 
     @Column(name="USER_ROLE")
     @Enumerated(EnumType.STRING)
     private Userrole userrole;
 
     @Builder
-    private Users(String userid, String password, String email, Userrole userrole) {
+    public Users(String usercode, String userid, String password, String username, String birthdate, String email, String tel, String gender, String marketingstatus, String joindate, String withdrawstatus, String withdrawdate, Userrole userrole) {
+        this.usercode = usercode;
         this.userid = userid;
         this.password = password;
+        this.username = username;
+        this.birthdate = birthdate;
         this.email = email;
+        this.tel = tel;
+        this.gender = gender;
+        this.joindate = joindate;
+        this.withdrawstatus = withdrawstatus;
+        this.withdrawdate = withdrawdate;
         this.userrole = userrole;
-
     }
 
     @Override

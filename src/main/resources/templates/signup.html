@@ -10,9 +10,17 @@
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/joinMembership.css">
+    <link rel="stylesheet" href="/css/signup.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/loader.js"></script>
+
 </head>
 <body>
+<div class="loader-area">
+    <div class="loader">
+    </div>
+</div>
 <!-- header -->
 <div th:insert="fragments/header.html"></div>
 
@@ -33,31 +41,32 @@
                             <div class="join-form">
                                 <span class="input-font"><label for="userid">ID*</label></span>
                                 <div class="input-group">
-                                    <input type="text" class="input" placeholder="userid" id="userid"
-                                           name="userid" maxlength="16" required>
-                                    <button class="button button-dark">중복확인</button>
+                                    <input id="userid" name="userid" type="text" class="input" placeholder="userid" maxlength="16" required>
+                                    <input class="button button-dark" type="button" id="useridOverlay" onclick="useridCheck()" value="중복확인"/>
                                 </div>
                             </div>
                             <span class="input-caption">(영문 소문자/숫자, 4~16자)</span>
                         </div>
+
                         <!---아이디 입력 끝=-->
                         <!--비밀번호 입력-->
                         <div class="join-form-area">
                             <div class="join-form">
                                 <span class="input-font">PASSWORD*</span>
                                 <div class="input-group">
-                                    <input type="password" class="input" placeholder="필수항목입니다" id="password" name="password" maxlength="16" required>
+                                    <input id="password" name="password" type="password" class="input" placeholder="비밀번호" maxlength="16" required>
                                 </div>
                             </div>
                             <span class="input-caption">(영문 대소문자나/숫자/특수문자 중 2가지 이상 조합, 8~16자)를 입력하세요.</span>
                         </div>
                         <!--비밀번호 입력 끝-->
+
                         <!--비밀번호 재입력-->
                         <div class="join-form-area">
                             <div class="join-form">
                                 <span class="input-font">CONFIRM PASSWORD*</span>
                                 <div class="input-group">
-                                    <input id="entedPasswordConfirm" type="password" class="input" placeholder="비밀번호를 재입력해주세요" maxlength="16">
+                                    <input id="passwordConfirm" name="passwordConfirm" type="password" class="input" placeholder="비밀번호를 재입력해주세요" maxlength="16" required>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +76,7 @@
                             <div class="join-form">
                                 <span class="input-font">NAME</span>
                                 <div class="input-group">
-                                    <input id="entedName" type="text" class="input" placeholder="이름을 입력해주세요." maxlength="6">
+                                    <input id="username" name="username" type="text" class="input" placeholder="이름을 입력해주세요." maxlength="15" required>
                                 </div>
                             </div>
                         </div>
@@ -78,50 +87,39 @@
                             <div class="join-form">
                                 <span class="input-font">E-mail*</span>
                                 <div class="input-group">
-                                    <input id="email" type="text" class="input" placeholder="@를 포함한 이메일을 입력해주세요." name="email">
+                                    <input id="email" name="email" type="text" class="input" placeholder="@를 포함한 이메일을 입력해주세요." required>
                                     <button class="button button-dark">인증번호 발송</button>
                                 </div>
                             </div>
                             <div class="join-form pt-1">
                                 <div class="input-group">
-                                    <input id="entedEmailCode" type="text" class="input" placeholder="전송받은 인증번호 6자리를 입력하세요." maxlength="6">
+                                    <input id="emailCode" name="emailCode" type="text" class="input" placeholder="전송받은 인증번호 6자리를 입력하세요." maxlength="6" required>
                                     <button class="button button-dark">확인</button>
                                 </div>
                             </div>
                         </div>
 
                         <!--이메일 입력 끝-->
-                        <!--권한 입력-->
 
-                        <div class="join-form-area" style="display: none">
-                            <div class="join-form">
-                                <select class="form-select" aria-label="Default select example" name="userrole" required>
-                                    <option selected>권한을 선택해주세요</option>
-                                    <option value="USER" selected>회원</option>
-                                    <option value="ADMIN">관리자</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!--권한 입력 끝-->
                         <!--생년월일 및 성별 시작-->
                         <div class="items_container ic2">
                             <div class="join-form-area">
-                                <form class="join-form" id="entedBirthForm" action="" method="post">
+                                <div class="join-form">
                                     <span class="input-font">생년월일</span>
                                     <div class="input-group">
-                                        <input id="entedBirth" type="date" value="2023-01-01" min="1950-01-01" max="2023-01-01" class="Calendar">
+                                        <input id="birthdate" name="birthdate" type="text" class="input"/>
+                                        <!--<input id="birthdate" name="birthdate" type="date" value="2023-01-01" min="1950-01-01" max="2023-01-01" class="Calendar" required>-->
                                     </div>
-                                </form>
+                                </div>
                             </div>
                             <div class="join-form-area" id="enterGender">
                                 <span class="input-font">성별</span>
-                                <div>
-                                    <form id="enterGenderForm" action="" method="">
+                                <form class="join-form" id="gender" action="" method="post">
+                                    <div>
                                         <input type="radio" name="gender" value="man" id="man" checked><label for="man">남</label>
                                         <input type="radio" name="gender" value="woman" id="woman"><label for="woman">여</label>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <!--생년월일 및 성별 끝-->
@@ -129,36 +127,36 @@
 
                         <div class="join-form-area">
                             <span class="input-font">전화번호*</span>
-                            <form class="join-form" id="entedTelForm" action="" method="post">
+                            <div class="join-form">
                                 <div class="input-group">
-                                    <input type="text" class="input" id="enterTel1" maxlength="3">
+                                    <input id="tel" name="tel" type="text" class="input" maxlength="3" required>
+                                    <!--<div class="hyphen">-</div>
+                                    <input type="text" class="input" name="tel" maxlength="4" required>
                                     <div class="hyphen">-</div>
-                                    <input type="text" class="input" id="enterTel2" maxlength="4">
-                                    <div class="hyphen">-</div>
-                                    <input type="text" class="input" id="enterTel3" maxlength="4">
+                                    <input type="text" class="input" name="tel" maxlength="4" required>-->
                                 </div>
-                            </form>
+                            </div>
                         </div>
                         <!--번호 입력 끝-->
 
 
                         <div class="join-form-area">
-                            <form class="join-form" id="entedZipCodeForm" action="" method="post">
+                            <div class="join-form">
                                 <span class="input-font">우편번호*</span>
                                 <div class="input-group">
-                                    <input id="enterZipCode" type="text" class="input" placeholder="우편번호">
+                                    <input id="enterZipCode" name="enterZipCode" type="text" class="input" placeholder="우편번호">
                                     <button class="button button-dark">우편번호 찾기</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
 
                         <div class="join-form-area">
-                            <form class="join-form" id="entedAddrForm" action="" method="post">
+                            <div class="join-form">
                                 <span class="input-font">주소</span>
                                 <div class="input-group">
-                                    <input id="entedAddr" type="text" class="input" placeholder="우편 API 사용 시 자동 입력">
+                                    <input id="address" name="address" type="text" class="input" placeholder="우편 API 사용 시 자동 입력">
                                 </div>
-                            </form>
+                            </div>
                         </div>
 
                         <div class="join-form-area">
@@ -346,7 +344,7 @@
                                     </pre>
                         </div>
                         <span class="input-font">이용약관에 동의하십니까?</span>
-                        <form action="join-form" name="" method="" id="termsOfUseAgree">
+                        <form action="join-form" name="marketingstatus" method="" id="marketingstatus">
                             <input type="radio" name="agre" value="ok" checked>동의함
                             <input type="radio" name="agre" value="no">동의하지 않음
                         </form>

@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.HashMap;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UsersService {
@@ -19,8 +22,41 @@ public class UserServiceImpl implements UsersService {
     @Override
     public UserDTO createUser(UserCreateRequest userCreateRequest) {
         Users users = userRepository.save(
-                Users.builder().userid(userCreateRequest.getUserid()).password(bCryptPasswordEncoder.encode(userCreateRequest.getPassword())).email(userCreateRequest.getEmail()).userrole(userCreateRequest.getUserrole()).build());
-        return UserDTO.builder().userid(users.getUserid()).password(users.getPassword()).email(users.getEmail()).userrole(users.getUserrole()).build();
+                Users.builder()
+                        .usercode(userCreateRequest.getUsercode())
+                        .userid(userCreateRequest.getUserid())
+                        .password(bCryptPasswordEncoder.encode(userCreateRequest.getPassword()))
+                        .username(userCreateRequest.getUsername())
+                        .birthdate(userCreateRequest.getBirthdate())
+                        .email(userCreateRequest.getEmail())
+                        .tel(userCreateRequest.getTel())
+                        .gender(userCreateRequest.getGender())
+                        .joindate(userCreateRequest.getJoindate())
+                        .withdrawstatus(userCreateRequest.getWithdrawstatus())
+                        .withdrawdate(userCreateRequest.getWithdrawdate())
+                        .build());
+        return UserDTO.builder()
+                .usercode(userCreateRequest.getUsercode())
+                .userid(userCreateRequest.getUserid())
+                .password(bCryptPasswordEncoder.encode(userCreateRequest.getPassword()))
+                .username(userCreateRequest.getUsername())
+                .birthdate(userCreateRequest.getBirthdate())
+                .email(userCreateRequest.getEmail())
+                .tel(userCreateRequest.getTel())
+                .gender(userCreateRequest.getGender())
+                .joindate(userCreateRequest.getJoindate())
+                .withdrawstatus(userCreateRequest.getWithdrawstatus())
+                .withdrawdate(userCreateRequest.getWithdrawdate())
+                .build();
     }
+
+    @Override
+    public HashMap<String, Object> useridOverlap(String userid)
+    {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("result", userRepository.existsByUserid(userid));
+        return map;
+    }
+
 
 }

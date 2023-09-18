@@ -5,19 +5,29 @@ import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.UniqueConstraint;
+
 @Getter
 @Setter
 public class UserCreateRequest {
-    @NotNull
+
+
+    private String usercode;
     private String userid;
-
-    @NotNull
     private String password;
-
-    @NotNull
+    private String username;
+    private String birthdate;
     private String email;
-
-    @NotNull
+    private String tel;
+    private String gender;
+    private String joindate;
+    private String withdrawstatus;
+    private String withdrawdate;
     private Userrole userrole;
+
+
 
 }

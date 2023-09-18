@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아이디 찾기</title>
-    <script>(()=>{const d=document.documentElement;d.classList.remove("Noscript"),d.classList.add("Script")})();</script>
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/memberForms.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/loader.js"></script>
 </head>
 <body>
+<div class="loader-area">
+    <div class="loader">
+    </div>
+</div>
 <!-- header -->
 <div th:insert="fragments/header.html"></div>
 <div class="wrap">
@@ -23,7 +29,7 @@
                 <h3>
                     <a th:href="@{/}" class="brand-lg">DASi</a>
                 </h3>
-                <span>[[${errorMessage}]]</span>
+                <span>id, 비밀번호를 확인해 주세요.</span>
             </div>
 
             <div class="member-area-wrapper"><!--find시작-->
