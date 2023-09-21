@@ -41,3 +41,47 @@
     background: #fff;
     color: #000;
 }
+
+/* 썸네일 작성 영역 스타일 지정 */
+.title-img-area {
+    width:350px;
+    height:200px;
+    border:2px dashed darkgray;
+    text-align:center;
+    display:table-cell;
+    vertical-align:middle;
+}
+
+/* 썸네일 이미지 관련 마우스 올렸을 때 설정 */
+.title-img-area:hover, .content-img-area1:hover,
+.content-img-area2:hover, .content-img-area3:hover {
+    cursor:pointer;
+}
+
+/* 이미지 영역 설정 */
+.content-img-area1, .content-img-area2, .content-img-area3 {
+    width:150px;
+    height:100px;
+    border:2px dashed darkgray;
+    text-align:center;
+    display:table-cell;
+    vertical-align:middle;
+}
+
+/* 썸네일 작성 영역 설정 */
+.thumbnail-insert-area {
+    width:500px;
+    height:450px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.thumbnail-btn-area {
+    width:150px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.thumbnail-file-area input[type=file] {
+    display:none;
+}
