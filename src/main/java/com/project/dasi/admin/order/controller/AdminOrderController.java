@@ -29,6 +29,9 @@ public class AdminOrderController {
         List<OrderListDTO> orderList = adminOrderService.selectAllOrderList();
         model.addObject("orderList", orderList);
         model.setViewName("admin/order/adminOrderList");
+
+        System.out.println("orderList : " + orderList);
+
         return model;
     }
     @GetMapping("/adminOrderDetail")

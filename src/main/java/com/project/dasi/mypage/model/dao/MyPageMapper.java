@@ -1,6 +1,6 @@
 package com.project.dasi.mypage.model.dao;
 
-import com.project.dasi.order.model.dto.MemberDTO;
+import com.project.dasi.admin.memberInfo.model.dto.MemberDTO;
 import com.project.dasi.order.model.dto.OrderListDTO;
 
 import java.util.List;
