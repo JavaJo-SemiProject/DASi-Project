@@ -804,7 +804,7 @@ th, td {
 }
 
 th:first-child, td:first-child {
-  text-align: left;
+  text-align: center;
 }
 
 /* Zebra-striped table rows */

@@ -18,7 +18,7 @@
         <collection property="statusNum" resultMap="statusResultMap"/>
     </resultMap>
 
-    <resultMap id="memberResultMap" type="com.project.dasi.order.model.dto.MemberDTO">
+    <resultMap id="memberResultMap" type="com.project.dasi.admin.memberInfo.model.dto.MemberDTO">
         <id property="userCode" column="USER_CODE"/>
         <result property="userId" column="USER_ID"/>
         <result property="userPwd" column="USER_PWD"/>
@@ -83,17 +83,19 @@
         </where>
     </select>
 
+
     <select id="getMemberList" resultMap="memberResultMap">
         SELECT USER_CODE, USER_ID, USER_PWD, USER_NAME, BIRTH_DATE,
         EMAIL, TEL, GENDER, JOIN_DATE
         FROM USERS
     </select>
+    
 
     <update id="editStatus">
         UPDATE ORDER_LIST
         SET CANCEL_CONTENT = #{ cancelContent }
-            ,ORDER_PRICE = #{ orderPrice }
-            ,STATUS_NUM = #{ statusNum }
+        ,ORDER_PRICE = #{ orderPrice }
+        ,STATUS_NUM = #{ statusNum }
         WHERE ORDER_ID = #{ orderId }
     </update>
 

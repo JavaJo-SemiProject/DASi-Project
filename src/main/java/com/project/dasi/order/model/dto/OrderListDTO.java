@@ -1,5 +1,7 @@
 package com.project.dasi.order.model.dto;
 
+
+import com.project.dasi.admin.memberInfo.model.dto.MemberDTO;
 import lombok.*;
 
 import java.util.List;

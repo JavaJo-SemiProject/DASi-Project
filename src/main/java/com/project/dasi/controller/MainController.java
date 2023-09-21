@@ -14,7 +14,7 @@ public class MainController {
     public void goMain() {
     }
 
-	  @GetMapping("/about")
+    @GetMapping("/about")
     public void goFaq() {
     }
 }
