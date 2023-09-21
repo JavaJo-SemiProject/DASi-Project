@@ -19,10 +19,10 @@
 <!--pages-->
 <div class="page">
     <div class="button class">
-        <button class="button button-light" onClick="location.href='managerQuestion.html'">1:1 문의 관리</button>
-        <button class="button button-dark">FAQ 관리</button>
+        <button class="button button-light" th:onclick="'location.href=\'/admin/question/managerQuestion\''">1:1 문의 관리</button>
+        <button class="button button-dark" onclick="location.reload();">FAQ 관리</button>
     </div>
-    <div class="selecttitle">
+    <!--<div class="selecttitle">
         <h3 class="selecttitle1">구분</h3>
         <select class="select">
             <option class="option" selected>전체</option>
@@ -30,7 +30,7 @@
             <option class="option" value='' onclick="">결제 및 배송</option>
             <option class="option" value='' onclick="">기타</option>
         </select>
-    </div>
+    </div>-->
 
     <br> <br>
 
@@ -50,78 +50,30 @@
             <td style="width:120px" th:text="${ faq.faqTitle }"></td>
             <td style="width:120px" th:text="${ faq.faqContent }"></td>
             <td style="width:60px">
-                <button onclick="location.href='managerFaqUpdate.html'" width="10" height="5">수정</button>
-                <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
+                <button th:onclick="|location.href='/admin/question/managerFaqUpdate/${faq.faqNum}'|" width="10"
+                        height="5">수정
+                </button>
+                <!-- <button th:onclick= "|location.href=' @{/admin/question/managerFaqUpdate(num=${ faq.faqNum })}'|" width="10" height="5">수정</button>-->
+                <!--<button th:onclick= "|'location.href=' @{/admin/question/managerFaqUpdate(num=${ faq.faqNum })}'|'|" width="10" height="5">수정</button>-->
+
+
+                <button type="button"
+                        th:onclick="'location.href=\'/admin/question/managerFaqDelete?faqNum='+  @{${ faq.faqNum }} + '\''" width="10"
+                        height="5">삭제
+                    <!--th:onclick="'location.href=\'/notice/delete?no='+ @{${ faq.faqNum }} + '\''"-->
+                <!--<button type="button"
+                        th:onclick="|location.href='/admin/question/managerFaqDelete/${faq.faqNum}'|" width="10"
+                        height="5">삭제-->
+                </button>
             </td>
         </tr>
         </tbody>
     </table>   <!--테이블끝-->
 
+        <button class="button button-dark" th:onclick="|location.href='/admin/question/create'|">FAQ 추가등록</button>
 
-    <!--<tr>
-       <td width="120">주문제작</td>
-       <td width="70">2</td>
-       <td width="600">주문제작 현황 문의는 어떻게 작성하나요?</td>
-       <td width="100">2023.09.08</td>
-       <td width="100">
-
-       <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
-       <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
-
-     </td>
-     </tr>
-     <tr>
-       <td width="120">결제 및 배송</td>
-       <td width="70">3</td>
-       <td width="600">상품이 주문한 것과 다르게 배송되었습니다.</td>
-       <td width="100">2023.09.08</td>
-       <td width="100">
-
-       <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
-       <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
-
-     </td>
-     </tr>
-     <tr>
-       <td width="120">결제 및 배송</td>
-       <td width="50">4</td>
-       <td width="600">이미 결제를 했는데 결제 방식을 바꾸고 싶어요</td>
-       <td width="100">2023.09.08</td>
-       <td width="100">
-       <button onclick="location.href='managerFaQupdate.html'" width="10" height="5">수정</button>
-       <button onclick="javascript:alert('삭제되었습니다')" width="10" height="5">삭제</button>
-     </td>
-     </tr>-->
-
-    <!-- <?php
-    // board테이블에서 idx를 기준으로 내림차순해서 5개까지 표시
-      $sql = mq("select * from board order by hit desc limit 0,3");
-        while($board = $sql->fetch_array())
-        {
-          //title변수에 DB에서 가져온 title을 선택
-          $title=$board["title"];
-          if(strlen($title)>30)
-          {
-            //title이 30을 넘어서면 ...표시
-            $title=str_replace($board["title"],mb_substr($board["title"],0,30,"utf-8")."...",$board["title"]);
-          }
-    ?> -->
-    <!-- <tbody>
-      <tr>
-        <td width="70"><?php echo $board['idx']; ?></td>
-        <td width="500"><a href="read.php?board_id=board&idx=<?php echo $board["idx"];?>"><?php echo $title;?></a></td>
-        <td width="120"><?php echo $board['name']?></td>
-        <td width="100"><?php echo $board['date']?></td>
-      </tr>
-    </tbody>
-    <?php } ?>
-    </table> -->
-
-
-    <button class="button button-dark" onclick="location.href='managerFaQcreate.html'">FAQ 추가등록</button>
-
-
-    <div class="pagging-wrap page-area">
+<!--페이징-->
+   <!-- <div class="pagging-wrap page-area">
         <div class="page-number">
             <div class="pagination mt20">
                 <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span
@@ -134,7 +86,7 @@
             </div>
         </div>
 
-    </div>
+    </div>-->
 
 </div>
 

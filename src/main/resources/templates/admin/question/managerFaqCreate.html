@@ -17,13 +17,10 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 
-
-
 </head>
 <body>
 
 <div th:insert="/fragments/adminHeader.html"></div>
-
 
 
 <!--pages-->
@@ -35,72 +32,64 @@
 
 
     <!--내용시작-->
+    <!-- <select class="select" style="width: 30%;">
+                    <option class="option" selected>구분</option>
+                    <option class="option" value="">주문제작</option>
+                    <option class="option" value="">결제 및 배송</option>
+                    <option class="option" value="">기타</option>
+                </select>-->
+
+    <form id="faqCreate" th:action="@{/admin/question/create}" method="post">
+        <table>
+           <!-- <input
+                    type="hidden"
+                    id="writerMemberNo"
+                    name="writerMemberNo"
+                    th:value="${ #authentication.getPrincipal().getMemberNo() }">-->
+            <!--th:value="${ #authentication.getPrincipal().getMemberNo() }"-->
+            <!--히든인풋에 밸류로 값 넣어서 뒷단으로 옮기는 방법이 있다-->
+            <tr>
+                <td>
+                    <h5>FaQ 글제목</h5>
+                </td>
+                <td>
+                    <input type="text" name="faqTitle" style="width:100%;" placeholder="FAQ 제목을 입력하세요">
+                </td>  <!--name 명과 DTO의 필드 변수명이 같아야한다!!AdminFaqDTO에 담을거니까!!!!!!! 내가 자꾸 까먹는부분-->
+            </tr>
+            <tr>
+                <td>
+                    <h5> FaQ 글 내용</h5>
+                </td>
+                <td><textarea name="faqContent" rows="15" style="width:100%; , resize:none;" placeholder="FAQ 내용을 입력하세요"></textarea> </td>
+            </tr>
+        </table>
 
 
-    <div class="table">
-        <div class="first">
-            <p>
-                글제목
-            </p>
-            <form>
-            <input class="input" placeholder="input" style="width:60%" th:value="아아아">
-           <!-- <select class="select" style="width: 30%;">
-                <option class="option" selected>구분</option>
-                <option class="option" value="">주문제작</option>
-                <option class="option" value="">결제 및 배송</option>
-                <option class="option" value="">기타</option>
-            </select>-->
-            </form>
-        </div><!--first끝-->
-        <div class="second">
-            <p>
-                답변
-            </p>
-            <input class="input input-lg" placeholder="input 큰거" style="width: 80%;">
-        </div>
+
+
+    <!-- <button type="button" onclick="alert('등록하시겠습니까?')">등록</button>
+    <button type="button" onclick="alert('등록되었습니다')">등록</button> -->
+
+
+    <!-- <button type="button" onclick="alert('취소되었습니다')">취소</button> -->
+    <div class="btn-bottom-area">
+        <button type="submit" class="button button-dark">등록</button>
+        <button type="reset" class="button button-light">작성내용 되돌리기</button>
+        <button type="button" class="button button-light" th:onclick="'location.href=\'/admin/question/managerFaq\''">취소</button>
     </div>
-
-    <div class="btn">
-
-
-        <!-- <button type="button" onclick="alert('등록하시겠습니까?')">등록</button>
-        <button type="button" onclick="alert('등록되었습니다')">등록</button> -->
-
-
-        <!-- <button type="button" onclick="alert('취소되었습니다')">취소</button> -->
-        <div class="btn-bottom-area">
-            <button type="button" class="button button-dark" onclick="goSave();"><span>등록</span></button>
-            <button type="button" class="button button-light" onclick="javascript:history.back();"><span>취소</span></button>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-    <!-- <form enctype="multipart/form-data" action="" method="post">
-        <div id="in_title">
-            <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
-        </div>
     </form>
+</div>
+
+
+<!-- <form enctype="multipart/form-data" action="" method="post">
+    <div id="in_title">
+        <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
+    </div>
+</form>
 </div> -->
 
 
-
-
-
-
-
-
-
-
-
-
 </div>
-</body>
 
 
 
@@ -115,9 +104,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
-
+</body>
 </html>
-
 
 
 <!--

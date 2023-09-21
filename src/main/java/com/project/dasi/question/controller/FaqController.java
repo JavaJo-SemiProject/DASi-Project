@@ -1,11 +1,17 @@
 package com.project.dasi.question.controller;
 
 import com.project.dasi.question.model.dto.FaqDTO;
+import com.project.dasi.question.model.dto.QuestionDTO;
 import com.project.dasi.question.model.service.FaqService;
+import com.project.dasi.question.model.service.QuestionService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.List;
@@ -16,8 +22,13 @@ public class FaqController {
 
     private final FaqService faqService;
 
+
+
     public FaqController(FaqService faqService) {this.faqService = faqService;}
     /*여기에 오토와이어드 어노테이션이 자동으로 달린다. 컨트롤러 안에 있는 단 하나의 주입이니까*/
+
+
+
 
     @GetMapping ("/faq")
     public String faqList(Model model) {
@@ -27,5 +38,8 @@ public class FaqController {
 
     }
 
+
+
 }
+
 
