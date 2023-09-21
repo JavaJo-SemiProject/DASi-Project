@@ -1,8 +1,6 @@
-package com.project.dasi.member.order.dto;
+package com.project.dasi.order.model.dto;
 
 import lombok.*;
-
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,11 +9,11 @@ import java.util.List;
 @ToString
 public class OrderFileDTO implements java.io.Serializable{
 
-    private List<OrderListDTO> orderId;
+    private OrderListDTO orderId;
     private String fileCode;
-    private String uploadPath;
     private String originName;
-    private String transferName;
-    private String ext;
+    private String savedName;
+    private String uploadPath;
+    private String savePath;
 
 }

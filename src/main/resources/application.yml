@@ -23,7 +23,7 @@ spring:
     multipart:
       max-file-size: 50MB
       max-request-size: 300MB
-      location: D://upload
+      location: D:/dasi-project/
 
 mybatis:
   mapper-locations: mappers/**/*.xml
@@ -38,3 +38,6 @@ pagehelper:
   auto-runtime-dialect: false
   close-conn: true
   default-count: true
+
+image:
+  image-dir: img

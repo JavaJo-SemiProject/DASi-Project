@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dasi.order.model.dao.OrderMapper">
+
+    <insert id="insertOrderContent">
+        INSERT INTO ORDER_LIST1 (
+                                USER_ID
+                                ,ORDER_DATE
+                                ,STATUS
+                                ,SIZE_INFO
+                                ,PHRASE
+                                ,REQ_ISSUES
+                                ,ORDER_FILES
+        )
+        VALUES (
+                '3'
+                ,DATE_FORMAT(now(),'%Y-%m-%d %H:%i:%s')
+                ,'주문요청'
+                ,#{ sizeInfo }
+                ,#{ phrase }
+                ,#{ reqIssues }
+                ,#{ orderFileList }
+        )
+
+        <selectKey keyProperty="orderId" resultType="String" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+
+
+    </insert>
+
+    <insert id="insertOrderFile">
+        INSERT INTO (
+                        ORDER_ID
+                        , ORIGINAL_NAME
+                        , SAVED_NAME
+                        , SAVE_PATH
+                        , UPLOAD_PATH
+        )
+        VALUES  (
+                    #{ orderId }
+                    , #{ originalName }
+                    , #{ savedName }
+                    , #{ savePath }
+                    , #{ uploadPath }
+        )
+    </insert>
+</mapper>
