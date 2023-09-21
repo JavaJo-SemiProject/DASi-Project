@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>managerFaQcreate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/managerFaQcreate.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+
+
+
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+
+    <a href="index.html" class="brand">DASi</a>
+
+    <div class="menu">
+        <a href="#">About Dasi</a>
+        <a href="#">회원 관리</a>
+        <a href="#">주문 내역 관리</a>
+        <a href="#">제작 상품 관리</a>
+        <a href="#">문의 관리</a>
+        <a href="#">쿠폰 관리</a>
+    </div>
+
+
+    <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
+
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+
+<!--pages-->
+<div class="pages"><!--페이지 시작-->
+<div class="button_class">
+    <button class="button button-light" onClick="" style="margin: 0px 20px;">1:1 문의 관리</button>
+    <button class="button button-dark" onClick="">FAQ 관리</button>
+</div>
+
+
+<!--내용시작-->
+
+
+<div class="table">
+    <div class="first">
+        <p>
+            글제목
+        </p>
+        <input class="input" placeholder="input" style="width:60%">
+        <select class="select" style="width: 30%;">
+            <option class="option" selected>구분</option>
+            <option class="option" value="">주문제작</option>
+            <option class="option" value="">결제 및 배송</option>
+            <option class="option" value="">기타</option>
+        </select>
+    </div><!--first끝-->
+    <div class="second">
+        <p>
+            답변
+        </p>
+        <input class="input input-lg" placeholder="input 큰거" style="width: 80%;">
+    </div>
+        </div>
+
+<div class="btn">
+    
+
+<!-- <button type="button" onclick="alert('등록하시겠습니까?')">등록</button>
+<button type="button" onclick="alert('등록되었습니다')">등록</button> -->
+
+
+<!-- <button type="button" onclick="alert('취소되었습니다')">취소</button> -->
+<div class="btn-bottom-area">
+    <button type="button" class="button button-dark" onclick="goSave();"><span>등록</span></button>
+    <button type="button" class="button button-light" onclick="javascript:history.back();"><span>취소</span></button>
+</div>
+</div>
+
+
+
+
+
+
+
+   
+    <!-- <form enctype="multipart/form-data" action="" method="post">
+        <div id="in_title">
+            <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
+        </div>
+    </form>
+</div> -->
+
+
+      
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+
+
+
+<!-- footer -->
+
+<footer>
+    <div class="page">
+        <div class="items_container ic2">
+            <div class="item">
+                <h3 class="text-white">이용약관</h3>
+                <hr>
+                <ul>
+                    <li>회사소개</li>
+                    <li>이용약관</li>
+                    <li>개인정보처리방침</li>
+                </ul>
+
+            </div>
+            <div class="item">
+                <h3 class="text-white">(주)다시</h3>
+                <hr>
+                <ul>
+                    <li>대표자 : 천재만재</li>
+                    <li><a href="tel:010-4666-8627" class="text-white">010-1234-5678</a></li>
+                    <li><a href="mailto:vaguewords@gmail.com?subject=문의메일 제목" class="text-white">aaaa@bbbb.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="js/header.js"></script>
+<script src="js/carousel.js"></script>
+<script src="js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+
+</html>
+
+
+
+<!--
+
+<div id="write_area">
+    <form enctype="multipart/form-data" action="" method="post">
+        <div id="in_title">
+            <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
+        </div>
+
+        <div class="wi_line"></div>
+        <div id="in_content">
+            <textarea name="content" id="ucontent" placeholder="내용" required></textarea>
+        </div>
+
+        <input type="file" name="SelectFile" />
+    </form>
+</div>-->

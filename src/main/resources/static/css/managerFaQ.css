@@ -1,5 +1,6 @@
 .button-light{
     width: 100%;
+    width: flex!important;
     height: 70px;
     margin: 10px 10px;
 }

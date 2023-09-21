@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>DASi ADMIN</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/addmin.css">
+    <link rel="stylesheet" href="css/order.css">   
+    
+    <style>
+      td{ border: 1px solid #000;}
+      textarea{ resize: none;}
+    </style>
+
+    </head>
+    <body>
+        <header>
+            <!-- header -->
+    <div class="topnav" id="myTopnav">
+        <a href="index.html" class="brand">DASi</a>
+      <div class="menu">
+        <a href="#">회원 관리</a>
+        <a href="adminOrderList.html">주문 내역 관리</a>
+        <a href="#">상품 관리</a>
+        <a href="#">문의 관리</a>
+        <a href="#">레이아웃 관리</a>
+      </div>
+        <a href="#" class="user"><i class="fa fa-sign-in"></i></a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+    </div>
+      </header>
+
+      <br>
+      <div class="page">
+        <h1> 주문 상세 내역</h1>
+        <hr>
+          <h5 style="margin-bottom: 5px;">요청 이미지</h5>
+            <div class="Card--photo" style="display: flex;">
+            <img src ="img/main/sub1.jpg" alt="requestProduct" style="display:block; width:30vh; margin: 0px 10px 0px 10px;" 
+            class="mx-auto" onclick="window.open(this.src)">
+            <img src ="img/main/sub1.jpg" alt="requestProduct" style="display:block; width:30vh; margin: 0px 10px 0px 10px;" 
+            class="mx-auto" onclick="window.open(this.src)">
+            <img src ="img/main/sub1.jpg" alt="requestProduct" style="display:block; width:30vh; margin: 0px 10px 0px 10px;" 
+            class="mx-auto" onclick="window.open(this.src)">
+            </div>
+        
+        <h5 style="margin-bottom: 5px;">주문 정보</h5>
+        <table>
+            <tr>
+                <th id="orderCol" style="text-align: center;">주문 일자</th><td>2023-09-08</td>
+                <th id="orderCol" style="text-align: center;">주문 ID</th><td>000001</td>
+                <th id="orderCol" style="text-align: center;">회원 ID</th><td>GOD123</td>
+                <th id="orderCol" style="text-align: center;">회원 이름</th><td>HELLO</td>
+            </tr>
+        </table>
+
+        <h5 style="margin-bottom: 5px;">요청 정보</h5>
+        <table>
+          <tr>
+                <th id="orderCol" style="text-align: center;">상품 ID</th><td>00003</td>
+                <th id="orderCol" style="text-align: center;">사이즈 정보</th><td class="#table_td">목둘레~목둘레~~~~~목둘레~목둘레~~~~~<br>목둘레~목둘레~~~~~목둘레~목둘레~~~~~</td>
+            </tr>
+        </table>
+
+        <h5 style="margin-bottom: 5px;">결제 정보</h5>
+        <table>
+          <tr>
+                <th id="orderCol" style="text-align: center;">결제 번호</th><td>00003</td>
+                <th id="orderCol" style="text-align: center;">결제일</th><td >2023-09-09</td>
+                <th id="orderCol" style="text-align: center;">결제 시간</th><td >13:13:00</td>
+                <th id="orderCol" style="text-align: center;">결제 금액</th><td >3000</td>
+                <th id="orderCol" style="text-align: center;">결제 수단</th><td >카드</td>
+            </tr>
+        </table>
+
+        <div class="items_container" style="display: flex; align-items: center;">
+        <div class="item"><h5 style="margin-bottom: 5px;">배송 정보</h5></div>
+        <div class="item" style="margin-left: 100vh;"><button class="button button-dark" onclick="location.href=''">배송 조회</button></div>
+        </div>
+        <table>
+          <tr>
+                <th id="orderCol" style="text-align: center;">수령인</th><td>배승수</td>
+                <th id="orderCol" style="text-align: center;">전화번호</th><td>010-1234-5678</td>
+                <th id="orderCol" style="text-align: center;">주소</th><td>서울특별시 강북구 수유1동</td>
+            </tr>
+            <tr>
+                <th id="orderCol" style="text-align: center;">배송 일자</th><td>2023-09-09</td>
+                <th id="orderCol" style="text-align: center;">송장번호</th><td colspan="3">555555555</td>
+            </tr>
+        </table>
+
+        <div>
+        <h5 style="margin-bottom: 5px;">진행 사항</h5>
+        <div>
+        <div class="process-container">
+            <div class="item"><h3><i class="fa-solid fa-pen-to-square"></i></h3>제작요청</div>
+            <div class="item"><i class="fa-solid fa-angle-right text-sec"></i></div>
+            <div class="item"><h3><i class="fa-solid fa-clipboard-check"></i></h3>제작 승인</div>
+            <div class="item"><i class="fa-solid fa-angle-right text-sec"></i></div>
+            <div class="item"><h3><i class="fa-solid fa-sack-dollar"></i></h3>결제 완료</div>
+            <div class="item"><i class="fa-solid fa-angle-right text-sec"></i></div>
+            <div class="item"><h3><i class="fa-solid fa-hammer"></i></h3>제작 중</div>
+            <div class="item"><i class="fa-solid fa-angle-right text-sec"></i></div>
+            <div class="item"><h3><i class="fa-regular fa-face-smile"></i></h3>제작 완료</div>
+            </div>
+            <div class="process-container">
+            <div class="item"><i class="fa-solid fa-angle-right text-sec"></i></div>
+            <div class="item"><h3><i class="fa-solid fa-truck"></i></h3>배송</div>
+            <div class="item"><i class="fa-solid fa-angle-right text-sec"></i></div>
+            <div class="item"><h3><i class="fa-solid fa-house"></i></h3>배송 완료</div>
+          </div>
+        </div>
+
+        <div>
+          <h5 style="margin-bottom: 5px;">취소 사유</h5>
+          <textarea placeholder="-" style="width: 100%; height: 10vh;" readonly></textarea>
+        </div>
+        </div>
+        
+        
+        
+        <div class="items_container" style="display: flex;">
+            <div class="item" style="width: 100%;">
+        <button class="button button-lg button-light" style="width: 100%;" onclick="location.href='orderRejectPage.html'">취소</button>
+    </div>
+    <div class="item" style="width: 100%;">
+        <button class="button button-lg button-dark" style="width: 100%;" >다음 단계</button>
+    </div>
+    </div>
+            
+      </div>
+
+      <footer>
+        <div class="page">
+          <div class="items_container ic2">
+            <div class="item">
+              <h3 class="text-white">이용약관</h3>
+              <hr>
+              <ul>
+                <li>회사소개</li>
+                <li>이용약관</li>
+                <li>개인정보처리방침</li>
+              </ul>
+    
+            </div>
+            <div class="item">
+              <h3 class="text-white">(주)다시</h3>
+              <hr>
+              <ul>
+                <li>대표자 : 천재만재</li>
+                <li><a href="tel:010-4666-8627" class="text-white">010-1234-5678</a></li>
+                <li><a href="mailto:vaguewords@gmail.com?subject=문의메일 제목" class="text-white">aaaa@bbbb.com</a></li>
+              </ul>
+            </div>
+        </div>
+        </div>
+    
+      </footer>
+      <script src="js/header.js"></script>
+      <script src="js/carousel.js"></script>
+      <script src="js/default.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+    </body>
+    </html>
