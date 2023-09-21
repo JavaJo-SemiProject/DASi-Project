@@ -1,9 +1,9 @@
-<header class="topnav" id="myTopnav">
+<header class="topnav" id="myTopnav" xmlns:sec="">
     <a th:href="@{/}" class="brand">DASi</a>
     <nav class="menu" sec:authorize="isAnonymous()">
         <ul>
-            <li><a href="/content/about">About Dasi</a></li>
-            <li><a th:href="@{/content/product/portfolio}">업사이클 디자인</a></li>
+            <li><a th:href="@{/content/about}">About Dasi</a></li>
+            <li><a th:href="@{/content/product/product}">업사이클 디자인</a></li>
             <li><a th:href="@{/content/order/orderGuidePage}">주문제작 가이드</a></li>
             <li><a th:href="@{/content/order/orderRequestPage}">주문제작 견적문의</a></li>
             <li><a th:href="@{/content/question/faq}">자주 묻는 질문</a></li>
@@ -12,8 +12,8 @@
 
     <nav class="menu" sec:authorize="hasRole('USER')">
         <ul>
-            <li><a href="/content/about">About Dasi</a></li>
-            <li><a th:href="@{/content/product/portfolio}">업사이클 디자인</a></li>
+            <li><a th:href="@{/content/about}">About Dasi</a></li>
+            <li><a th:href="@{/content/product/product}">업사이클 디자인</a></li>
             <li><a th:href="@{/content/order/orderGuidePage}">주문제작 가이드</a></li>
             <li><a th:href="@{/content/order/orderRequestPage}">주문제작 견적문의</a></li>
             <li><a th:href="@{/content/question/faq}">자주 묻는 질문</a></li>
@@ -26,6 +26,7 @@
             <li><a th:href="@{/admin/order/adminOrderList}">주문 내역 관리</a></li>
             <li><a th:href="@{/admin/product/adminProduct}">제작 상품 관리</a></li>
             <li><a th:href="@{/admin/question/managerQuestion}">문의 관리</a></li>
+            <li><a th:href="@{/admin/editor/adminLayout}">레이아웃 관리</a></li>
         </ul>
     </nav>
 
@@ -36,9 +37,8 @@
     </span>
 
     <span sec:authorize="isAnonymous()"> <!-- 1 -->
-        <a th:href="@{/login}"><i class="fa fa-user-circle"></i></a>
+        <a th:href="@{/content/member/login}"><i class="fa fa-user-circle"></i></a>
     </span>
-
 
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>

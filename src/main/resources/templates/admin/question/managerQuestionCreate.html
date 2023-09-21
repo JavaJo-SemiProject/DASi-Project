@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>managerQuestionCreate</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/default.css">
+
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -16,23 +18,12 @@
 
 </head>
 <body>
-<div th:insert="/fragments/header.html"></div>
+
+<div th:insert="/fragments/adminHeader.html"></div>
 
 
 <!--pages-->
 
-
-<div class="manager profile">
-    <img src="img/sub/about/about1-2.png" alt="manager image" height="435"
-                     width="775"/>
-    <!--이미지 줄여야 함!!!여기서 직접 줄여지지가 않음-->
-
-
-    <h6>관리자</h6> <br/>
-    <span>회원등급</span>
-    <span>관리자</span>
-</div>
-<hr>
 <br/>
 <div class="button class">
     <button class="button button-light" onClick="">1:1 문의 관리</button>
@@ -71,42 +62,44 @@
     <li class="answer">
 
         <div class="titlediv">
-        <span class="title">글제목</span>
-      <div class="item bg-light p-1"><span class="bringcontent1">
+            <span class="title">글제목</span>
+            <div class="item bg-light p-1"><span class="bringcontent1">
         이미 결제를 했는데 결제 방식을 바꾸고 싶습니다.
       </span>
-    <!--여기 부분, 1:1문의 제목 값을 js(내가 사진찍어둔 사진에 있음)를 통해 불러와야함-->
+                <!--여기 부분, 1:1문의 제목 값을 js(내가 사진찍어둔 사진에 있음)를 통해 불러와야함-->
 
-        </div>
-        <div class="contentdiv">
-            <span class="content">문의내용</span>
-            <div class="item bg-light p-1"><span class="bringcontent2">이미 결제했는데 다른 카드로 결제하고 싶어요. 어떻게 하면 되나요?</span></div>
-        </div>
+            </div>
+            <div class="contentdiv">
+                <span class="content">문의내용</span>
+                <div class="item bg-light p-1"><span class="bringcontent2">이미 결제했는데 다른 카드로 결제하고 싶어요. 어떻게 하면 되나요?</span></div>
+            </div>
 
-      <div class="picturediv">
-          <span class="picture">사진</span>
-          <div class="item bg-light p-1"><span class="bringcontent3">등록된사진가져오기</span></div>
-      </div>
+            <div class="picturediv">
+                <span class="picture">사진</span>
+                <div class="item bg-light p-1"><span class="bringcontent3">등록된사진가져오기</span></div>
+            </div>
 
-     <div class="responsediv">
-       <span class="response">답변내용</span>
-        <div class="item bg-light p-1">  <input class="input input-lg"/></div>
-    </div>
+            <div class="responsediv">
+                <span class="response">답변내용</span>
+                <div class="item bg-light p-1">  <input class="input input-lg"/></div>
+            </div>
     </li>
 
 </ul>
 
- <hr>
+<hr>
 
-            <button type="button" onclick="alert('등록하시겠습니까?')">등록</button>
-            <button type="button" onclick="alert('등록ㅊ되었습니다')">등록</button>
+<button type="button" onclick="alert('등록하시겠습니까?')">등록</button>
+
+<button type="button" onclick="alert('등록되었습니다')">등록</button>
 
 
-            <button type="button" onclick="alert('취소되었습니다')">취소</button>
-            <div class="btn-bottom-area">
-                <button type="button" class="button button-dark" onclick="goSave();"><span>등록</span></button>
-                <button type="button" class="button button-light" onclick="javascript:history.back();"><span>취소</span></button>
-            </div>
+
+<button type="button" onclick="alert('취소되었습니다')">취소</button>
+<div class="btn-bottom-area">
+    <button type="button" class="button button-dark" onclick="goSave();"><span>등록</span></button>
+    <button type="button" class="button button-light" onclick="javascript:history.back();"><span>취소</span></button>
+</div>
 
 
 
@@ -121,7 +114,9 @@
 
 <!-- footer -->
 
+
 <div th:insert="fragments/footer.html"></div>
+
 <script src="js/header.js"></script>
 <script src="js/carousel.js"></script>
 <script src="js/default.js"></script>
@@ -129,6 +124,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
 
+
 </html>
-
-

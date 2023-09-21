@@ -2,37 +2,26 @@ package com.project.dasi.admin.memberInfo.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.project.dasi.admin.memberInfo.model.dto.SearchDTO;
-import com.project.dasi.admin.memberInfo.model.service.MemberService;
-import com.project.dasi.auth.model.dto.UserDTO;
+import com.project.dasi.auth.dto.UserDTO;
+import com.project.dasi.auth.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/memberInfo")
 public class MemberInfoController {
+    @GetMapping("/admin")
+    public void goAdmin() {}
+    private final UserService userService;
 
-    private final MemberService memberService;
-
-    public MemberInfoController(MemberService memberService) {
-        this.memberService = memberService;
+    public MemberInfoController(UserService userService) {
+        this.userService = userService;
     }
 
-
-    @GetMapping("/memberList")
-    public String getMemberList(Model model) {
-
-        List<UserDTO> memberList = memberService.getMemberList();
-
-        model.addAttribute("title", "모든 회원 목록 조회");
-        model.addAttribute("memberList", memberList);
-
-        return "admin/memberInfo/memberList";
-    }
 
     @GetMapping("/memberRegist")
     public void goMemberRegist() {
@@ -40,17 +29,17 @@ public class MemberInfoController {
     @PostMapping("memberRegist")
     public String registMember(UserDTO newMember, RedirectAttributes rttr) {
 
-        memberService.registMember(newMember);
+        userService.registMember(newMember);
         rttr.addFlashAttribute("successMessage", "회원 등록 성공");
 
-        return "redirect:/admin/memberInfo/memberList";
+        return "redirect:/content/member/login";
     }
 
 
     @GetMapping("/memberSearch")
     public String searchMember(@ModelAttribute SearchDTO search,
-                       @RequestParam(required = false, defaultValue = "1") int pageNum, Model model) throws Exception {
-        PageInfo<UserDTO> p = new PageInfo<>(memberService.searchMember(pageNum, search), 10);
+                               @RequestParam(required = false, defaultValue = "1") int pageNum, Model model) throws Exception {
+        PageInfo<UserDTO> p = new PageInfo<>(userService.searchMember(pageNum, search), 10);
         model.addAttribute("users", p);
         System.out.println(search);
         model.addAttribute("search", search);
@@ -62,7 +51,7 @@ public class MemberInfoController {
     @PostMapping("memberModify")
     public String modifyMember(UserDTO member) {
 
-        memberService.modifyMember(member);
+        userService.modifyMember(member);
 
         return "redirect:/admin/memberInfo/memberList";
     }
@@ -73,7 +62,7 @@ public class MemberInfoController {
     @PostMapping("memberDelete")
     public String deleteMember(Map<String, String> parameter) {
 
-        memberService.deleteMember(parameter);
+        userService.deleteMember(parameter);
 
         return "redirect:/admin/memberInfo/memberList";
     }

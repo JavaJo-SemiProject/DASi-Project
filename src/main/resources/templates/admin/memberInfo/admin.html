@@ -19,25 +19,25 @@
     <div class="page pseudo_padding-2">
         <h3>회원 정보 조회</h3>
         <div class="items_container ic4">
-            <button onclick="location.href='memberList'" class="button button-light">전체 회원 조회</button>
+            <form action="/admin/memberInfo/memberSearch" method="">
+                <button type="submit" class="button button-light">전체 회원 조회</button>
+            </form>
+
             <button onclick="location.href='memberRegist'" class="button button-light">신규 회원 등록</button>
             <div>
-                <form action="memberSearch" method="">
+                <form action="/admin/memberInfo/memberSearch" method="">
                     <div class="items_container ic3 mb-1">
 
                         <div>
                             <select class="select" name="keyword" id="keyword">
-                                <option value="usercode">유저번호</option>
-                                <option value="userid">id</option>
-                                <option value="username">이름</option>
-                                <option value="birthdate">생일</option>
+                                <option value="userCode">유저번호</option>
+                                <option value="userId">id</option>
+                                <option value="userName">이름</option>
+                                <option value="birthDate">생일</option>
                                 <option value="email">이메일</option>
                                 <option value="tel">전화번호</option>
                                 <option value="gender">성별</option>
-                                <option value="joindate">가입일</option>
-                                <option value="withdrawstatus">탈퇴여부</option>
-                                <option value="withdrawdate">탈퇴일</option>
-                                <option value="userrole">유저권한</option>
+                                <option value="joinDate">가입일</option>
                             </select>
                         </div>
                         <div>

@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>managerFaQ</title>
+    <title>managerFaq</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/carousel.css">
@@ -14,156 +14,95 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 </head>
 <body>
-<div th:insert="/fragments/header.html"></div>
-
+<div th:insert="/fragments/adminHeader.html"></div>
 
 <!--pages-->
+<div class="page">
+    <div class="button class">
+        <button class="button button-light" th:onclick="'location.href=\'/admin/question/managerQuestion\''">1:1 문의 관리</button>
+        <button class="button button-dark" onclick="location.reload();">FAQ 관리</button>
+    </div>
+    <!--<div class="selecttitle">
+        <h3 class="selecttitle1">구분</h3>
+        <select class="select">
+            <option class="option" selected>전체</option>
+            <option class="option" value='' onclick="">주문제작</option>
+            <option class="option" value='' onclick="">결제 및 배송</option>
+            <option class="option" value='' onclick="">기타</option>
+        </select>
+    </div>-->
 
-<div class="manager profile">
-    <img src="img/main/main1.jpg" alt="manager image" width="50" height="50">
-    <h6>관리자</h6> <br/>
-    <span>회원등급</span>
-    <span>관리자</span>
-</div>
-<hr>
-<br/>
-<div class="button class">
-    <button class="button button-light" onClick="location.href='managerQuestion.html'">1:1 문의 관리</button>
-    <button class="button button-dark" >FAQ 관리</button>
-</div>
-<div class="selecttitle">
-    <h3 class="selecttitle1">구분</h3>
-    <select class="select">
-        <option class="option" selected>전체</option>
-        <option class="option" value='' onclick="">주문제작</option>
-        <option class="option" value='' onclick="">결제 및 배송</option>
-        <option class="option" value='' onclick="">기타</option>
-    </select>
-</div>
-
-<br> <br>
-<hr>
-
-<table class="managerFaQ">
-
-
-
+    <br> <br>
 
 
     <table class="list-table">
         <thead>
         <tr>
-            <th width="120">구분</th>
-            <th width="70">글번호</th>
-            <th width="600">제목</th>
-            <th width="100">update</th>
-            <th width="100">수정 및 삭제</th>
+            <th style="width:50px">글번호</th>
+            <th style="width:120px">제목</th>
+            <th style="width:120px">내용</th>
+            <th style="width:60px">수정 및 삭제</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td width="120">기타</td>
-            <td width="70">1</td>
-            <td width="600">고객센터 운영 시간이 어떻게 되나요?</td>
-            <td width="100">2023.09.08</td>
-            <td width="100">
-                <button onlick="" width="10" height="5">수정</button>
-                <button onlick="" width="10" height="5">삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td width="120">주문제작</td>
-            <td width="70">2</td>
-            <td width="600">주문제작 현황 문의는 어떻게 작성하나요?</td>
-            <td width="100">2023.09.08</td>
-            <td width="100">
-                <button onlick="" width="10" height="5">수정</button>
-                <button onlick="" width="10" height="5">삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td width="120">결제 및 배송</td>
-            <td width="70">3</td>
-            <td width="600">상품이 주문한 것과 다르게 배송되었습니다.</td>
-            <td width="100">2023.09.08</td>
-            <td width="100">
-                <button onlick="" width="10" height="5">수정</button>
-                <button onlick="" width="10" height="5">삭제</button>
-            </td>
-        </tr>
-        <tr>
-            <td width="120">결제 및 배송</td>
-            <td width="50">4</td>
-            <td width="600">이미 결제를 했는데 결제 방식을 바꾸고 싶어요</td>
-            <td width="100">2023.09.08</td>
-            <td width="100">
-                <button onlick="" width="10" height="5">수정</button>
-                <button onlick="" width="10" height="5">삭제</button>
+        <tr th:each="faq : ${ faqList }">
+            <td style="width:50px" th:text="${ faq.faqNum }"></td>
+            <td style="width:120px" th:text="${ faq.faqTitle }"></td>
+            <td style="width:120px" th:text="${ faq.faqContent }"></td>
+            <td style="width:60px">
+                <button th:onclick="|location.href='/admin/question/managerFaqUpdate/${faq.faqNum}'|" width="10"
+                        height="5">수정
+                </button>
+                <!-- <button th:onclick= "|location.href=' @{/admin/question/managerFaqUpdate(num=${ faq.faqNum })}'|" width="10" height="5">수정</button>-->
+                <!--<button th:onclick= "|'location.href=' @{/admin/question/managerFaqUpdate(num=${ faq.faqNum })}'|'|" width="10" height="5">수정</button>-->
+
+
+                <button type="button"
+                        th:onclick="'location.href=\'/admin/question/managerFaqDelete?faqNum='+  @{${ faq.faqNum }} + '\''" width="10"
+                        height="5">삭제
+                    <!--th:onclick="'location.href=\'/notice/delete?no='+ @{${ faq.faqNum }} + '\''"-->
+                <!--<button type="button"
+                        th:onclick="|location.href='/admin/question/managerFaqDelete/${faq.faqNum}'|" width="10"
+                        height="5">삭제-->
+                </button>
             </td>
         </tr>
         </tbody>
-    </table>
+    </table>   <!--테이블끝-->
 
+        <button class="button button-dark" th:onclick="|location.href='/admin/question/create'|">FAQ 추가등록</button>
 
-
-
-
-
-    <!-- <?php
-    // board테이블에서 idx를 기준으로 내림차순해서 5개까지 표시
-      $sql = mq("select * from board order by hit desc limit 0,3");
-        while($board = $sql->fetch_array())
-        {
-          //title변수에 DB에서 가져온 title을 선택
-          $title=$board["title"];
-          if(strlen($title)>30)
-          {
-            //title이 30을 넘어서면 ...표시
-            $title=str_replace($board["title"],mb_substr($board["title"],0,30,"utf-8")."...",$board["title"]);
-          }
-    ?> -->
-    <!-- <tbody>
-      <tr>
-        <td width="70"><?php echo $board['idx']; ?></td>
-        <td width="500"><a href="read.php?board_id=board&idx=<?php echo $board["idx"];?>"><?php echo $title;?></a></td>
-        <td width="120"><?php echo $board['name']?></td>
-        <td width="100"><?php echo $board['date']?></td>
-      </tr>
-    </tbody>
-    <?php } ?>
-  </table> -->
-
-
-
-
-    <button class="button button-dark" onclick="location.href='managerFaQcreate.html'">FAQ 추가등록</button>
-
-
-
-    <div class="pagging-wrap page-area">
+<!--페이징-->
+   <!-- <div class="pagging-wrap page-area">
         <div class="page-number">
             <div class="pagination mt20">
-                <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span class="blind">이전</span></a>
+                <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span
+                        class="blind">이전</span></a>
                 <a href="#" class="current"><span>1</span></a>
-                <a href="javascript:CmPageMove('2')" data-page="2" ><span>2</span></a>
-                <a href="javascript:CmPageMove('3')" data-page="3" ><span>3</span></a>
-                <a href="javascript:CmPageMove('3')" data-page="3" class='btn-page next'><span class="blind">다음</span></a>
+                <a href="javascript:CmPageMove('2')" data-page="2"><span>2</span></a>
+
+                <a href="javascript:CmPageMove('3')" data-page="3" class='btn-page next'><span
+                        class="blind">다음</span></a>
             </div>
         </div>
 
-    </div>
+    </div>-->
 
-    <!-- footer -->
+</div>
 
-    <div th:insert="/fragments/footer.html"></div>
-    <script src="js/header.js"></script>
-    <script src="js/carousel.js"></script>
-    <script src="js/default.js"></script>
+<!-- footer -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+<div th:insert="/fragments/footer.html"></div>
+
+
+<script src="/js/header.js"></script>
+<script src="/js/carousel.js"></script>
+<script src="/js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+
 </body>
 </html>
-
-
 
