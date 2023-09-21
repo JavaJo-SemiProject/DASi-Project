@@ -26,7 +26,7 @@
 
 <body>
 
-<div th:insert="/common/header.html"></div>
+<div th:insert="/fragments/header.html"></div>
 
 
 </div>
@@ -37,49 +37,51 @@
 
     <h1>주문제작 견적문의</h1>
     <hr>
-    <form th:action="@{/member/order/orderGuidePage}">
         <button class="button button-lg button-dark" style="width: 100%;"
-                onclick="location.href='/member/order/orderGuidePage'">주문제작이 처음이신가요?
+                th:onclick="|location.href='@{/content/order/orderGuidePage}'|">주문제작이 처음이신가요?
         </button>
-    </form>
     <hr>
 
-    <form th:action="@{/member/mypage/myo}" th:object="${orderListDTO}" method="post">
+    <form id="orderRegistForm" th:action="@{/content/order/orderRequestPage}" th:method="post" enctype="multipart/form-data">
+        <!--<input type="hidden" id="userId" name="userId" th:value="${ #authentication.get }">-->
+        <input type="hidden" id="userId" name="userId">
+
 
         <label class="form-label"><h2>카테고리 선택</h2></label>
-        <div class="form_toggle row-vh d-flex flex-row justify-content-between" style="display: flex;" th:name="categoryName">
+        <div class="form_toggle row-vh d-flex flex-row justify-content-between" style="display: flex;"
+             name="categoryCode">
 
             <div class="form_radio_btn radio_clothes">
-                <input id="radio-1" type="radio" name="productCategory" value="clothes" checked>
+                <input id="radio-1" type="radio" name="productCategory" value="10" checked>
                 <label for="radio-1">의류</label>
             </div>
 
             <div class="form_radio_btn" style="margin: 0px 10px 0px 10px;">
-                <input id="radio-2" type="radio" name="productCategory" value="play">
+                <input id="radio-2" type="radio" name="productCategory" value="20">
                 <label for="radio-2">놀이용품</label>
             </div>
 
             <div class="form_radio_btn">
-                <input id="radio-3" type="radio" name="productCategory" value="etc">
+                <input id="radio-3" type="radio" name="productCategory" value="30">
                 <label for="radio-3">기타</label>
             </div>
 
         </div>
 
 
-        <div class="item bg-light p-1">
-            <select id="productCategory" class="select">
-                <option class="option">옷</option>
-                <option class="option">신발</option>
-                <option class="option">모자</option>
+       <!-- <div class="item bg-light p-1">
+            <select name="productCode" class="select">
+                <option value="10">옷</option>
+                <option value="20">신발</option>
+                <option value="30">모자</option>
             </select>
-        </div>
+        </div>-->
         <hr>
 
 
         <label class="form-label"><h2>사이즈 작성</h2></label>
 
-        <p><textarea placeholder="사이즈를 작성해주세요." style="width: 100%; height:200px;"></textarea></p>
+        <p><textarea placeholder="사이즈를 작성해주세요." name="sizeInfo" style="width: 100%; height:200px;"></textarea></p>
 
         <ul>
             <li> &#8901 목둘레는 강아지 옷이나 목걸이를 착용하는 부분입니다. 얼굴과 등의 경게선 길이를 측정해 주세요.</li>
@@ -91,7 +93,7 @@
 
         <label class="form-label"><h2>이니셜 또는 커스텀 문구</h2></label>
 
-        <p><textarea id="writeContent" name="writeContent" cols="30" rows="10"
+        <p><textarea id="writeContent" name="phrase" cols="30" rows="10"
                      placeholder="이니셜 또는 커스텀 문구 10글자 이내로 작성해주세요." style="width: 100%; height:200px;"
                      maxlength="10"></textarea></p>
         <div id="writeContent_cnt">(0 / 10)</div>
@@ -102,10 +104,7 @@
         <label class="form-label"><h2>첨부파일</h2></label>
         <p>최대 3장</p>
 
-        <form id="orderImgRegistForm" th:action="@{/member/order/orderRequestPage}" th:method="post"
-              enctype="multipart/form-data">
-
-            <div class="orderImgFileArea">
+            <div class="thumbnail-file-area">
                 <input type="file" id="orderImg1" name="orderImg1" onchange="loadImg(this,1)"
                        accept="image/png,image/jpg, image/jpeg">
                 <input type="file" id="orderImg2" name="orderImg2" onchange="loadImg(this,2)"
@@ -115,7 +114,7 @@
             </div>
 
 
-            <div class="orderImgInsertArea">
+            <div class="thumbnail-insert-area">
                 <table>
                     <tr>
                         <td>
@@ -137,29 +136,102 @@
                 </table>
             </div>
 
-        </form>
         <hr>
 
         <label class="form-label"><h2>요청사항</h2></label>
         <ul>
             <li> 원하시는 사항을 자유롭게 서술해 주세요.</li>
-            <li> 자세히 설명해 주실수록 제작이 용이합니다.</li>
+            <li> 자세히 설명은 제작이 용이하게 합니다.</li>
         </ul>
 
-        <p><textarea id="requestOrder" name="requestOrder" cols="30" rows="10" placeholder="요청사항을 자유롭게 작성해주세요.(200자 이내)"
+        <p><textarea id="requestOrder" name="reqIssues" cols="30" rows="10" placeholder="요청사항을 자유롭게 작성해주세요.(200자 이내)"
                      style="width: 100%; height:200px;" maxlength="200"></textarea></p>
         <div id="requestOrder_cnt">(0 / 200)</div>
-
-        <button class="button button-lg button-dark" style="width: 100%;" type="submit">등록
-        </button>
+        <div class="items_container" style="display: flex;">
+            <button class="button button-lg button-white" style="width: 100%;" type="reset">취소</button>
+            <button class="button button-lg button-dark" style="width: 100%;" type="submit">등록</button>
+        </div>
     </form>
 </div>
 
-<div th:insert="/common/footer.html"></div>
+<div th:insert="/fragments/footer.html"></div>
 <script src="/js/header.js"></script>
 <script src="/js/carousel.js"></script>
 <script src="/js/default.js"></script>
 <script src="/js/textLetterLim.js"></script>
+
+<script>
+    fetch("/order/orderRequestPage")
+        .then(res => res.json())
+        .then(data => {
+            const $userCode = document.getElementById('userId');
+
+            for (let index in data) {
+                const $option = document.createElement('option');
+                $option.value = data[index].userId;
+                $option.textContent = data[index].userName;
+                $userCode.appendChild($option);
+            }
+        });
+</script>
+
+
+
+<script th:inline="javascript">
+
+    /* 이미지 미리보기 관련 스크립트 */
+    const $contentImgArea1 = document.getElementById("contentImgArea1");
+    const $contentImgArea2 = document.getElementById("contentImgArea2");
+    const $contentImgArea3 = document.getElementById("contentImgArea3");
+
+
+    $contentImgArea1.onclick = function() {
+        document.getElementById("orderImg1").click();
+    }
+
+    $contentImgArea2.onclick = function() {
+        document.getElementById("orderImg2").click();
+    }
+
+    $contentImgArea3.onclick = function() {
+        document.getElementById("orderImg3").click();
+    }
+
+    /* 이미지 미리보기 관련 함수(File API 활용하기) */
+    function loadImg(value, num) {
+
+        /* https://developer.mozilla.org/ko/docs/Web/API/FileReader 참고 (MDN 사이트 참고)*/
+        if (value.files && value.files[0]) {			// value.files[0]는 파일 이름
+            const reader = new FileReader();
+
+            /*
+                FileReader 객체는 웹 애플리케이션이 비동기적으로 데이터를 읽기 위하여 읽을 파일을 가리키는 File 혹은 Blob 객체를
+                이용해 파일의 내용을(혹은 raw data버퍼로) 읽고 사용자의 컴퓨터에 저장하는 것을 가능하게 하는 것
+                Blob(Binary large object) : 파일류의 불변하는 미가공 데이터로 텍스트와 이진 데이터의 형태로 읽을 수 있음
+            */
+
+            // reader.readAsText(value.files[0]);			// 텍스트 파일을 읽을 때 사용 (이미지 파일을 텍스트로 읽어서 글자가 깨짐)
+            // reader.readAsArrayBuffer(value.files[0]);	// 데이터를 일정한 크기로 조금씩(파일을 표현하는 ArrayBuffer) 서버로 보낼 때
+            // reader.readAsBinaryString(value.files[0]);	// 이진 데이터를 서버로 보낼 때 사용
+            reader.readAsDataURL(value.files[0]);		// Base64방식으로 파일을 FileReader에 전달 (Base64로 인코딩한 것은 브라우저가 원래 데이터로 만들게 됨)
+
+            /* load 이벤트의 핸들러로 읽기 동작이 성공적으로 완료 되었을 때마다 발생한다. */
+            reader.onload = function(e) {				// load EventListener에 function 등록 (FileReader에서 전달 받은 파일을 다 읽으면 리스너에 등록한 function이 호출 됨)
+                switch(num){
+                    case 1:
+                        document.getElementById("contentImg1").src = e.target.result;
+                        break;
+                    case 2:
+                        document.getElementById("contentImg2").src = e.target.result;
+                        break;
+                    case 3:
+                        document.getElementById("contentImg3").src = e.target.result;
+                        break;
+                }
+            }
+        }
+    }
+</script>
 
 </body>
 </html>
