@@ -1,14 +1,8 @@
-package com.project.dasi.auth.dto;
+package com.project.dasi.auth.model.dto;
 
-import com.project.dasi.auth.enumeration.Userrole;
-import com.sun.istack.NotNull;
+import com.project.dasi.auth.model.enumeration.Userrole;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.UniqueConstraint;
 
 @Getter
 @Setter

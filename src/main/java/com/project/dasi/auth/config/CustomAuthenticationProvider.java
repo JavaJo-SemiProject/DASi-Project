@@ -1,6 +1,6 @@
 package com.project.dasi.auth.config;
 
-import com.project.dasi.auth.entity.Users;
+import com.project.dasi.auth.model.entity.Users;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationProvider;

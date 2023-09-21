@@ -14,7 +14,7 @@ public class MainController {
     @GetMapping("/main")
     public void goMain() {
     }
-    @GetMapping("/member/about")
+    @GetMapping("/content/about")
     public void goAbout() {
     }
     @GetMapping("/content/product/portfolio")

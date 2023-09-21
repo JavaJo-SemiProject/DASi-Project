@@ -1,7 +1,7 @@
-package com.project.dasi.auth.service.impl;
+package com.project.dasi.auth.model.service.impl;
 
-import com.project.dasi.auth.entity.Users;
-import com.project.dasi.auth.repository.UserRepository;
+import com.project.dasi.auth.model.entity.Users;
+import com.project.dasi.auth.model.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;

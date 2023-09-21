@@ -1,4 +1,4 @@
-package com.project.dasi.auth;
+package com.project.dasi.auth.model;
 
 import lombok.Getter;
 import lombok.Setter;

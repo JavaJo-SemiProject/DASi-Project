@@ -8,19 +8,58 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/default.css">
-    <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/signup.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script src="js/signup.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/js/loader.js"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script type="text/javascript">
+        function sample4_execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete : function (data) {
+                    //팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+                    var roadAddr = data.roadAddress;// 도로명주소 변수
+                    var extraRoadAddr = ''
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraRoadAddr = '(' + extraRoadAddr + ')';
+                    }
+                    //우편번호와 주소를 해당 필드에 넣는다.
+                    document.getElementById('sample4_postcode').value = data.zonecode;
+                    document.getElementById("sample4_roadAddress").value = roadAddr;
+                    document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                }
+            }).open();
+        }
+    </script>
+    <script type="text/javascript">
+        function sendNumber(){
+            $("#mail_number").css("display","block");
+            $.ajax({
+                url:"/mail",
+                type:"post",
+                dataType:"json",
+                data:{"mail" : $("#mail").val()},
+                success: function(data){
+                    alert("인증번호 발송");
+                    $("#Confirm").attr("value",data);
+                },
+            });
+        }
+        function confirmNumber(){
+            var number1 = $("#number").val();
+            var number2 = $("#Confirm").val();
+
+            if(number1 == number2){
+                alert("인증되었습니다.")
+            } else {
+                alert("인증번호가 틀렸습니다.")
+            }
+        }
+    </script>
 </head>
 <body>
-<div class="loader-area">
-    <div class="loader">
-    </div>
-</div>
 <!-- header -->
 <div th:insert="fragments/header.html"></div>
 
@@ -32,7 +71,7 @@
             <h2>계정 만들기</h2>
         </div>
 
-        <form action="/signup" method="post">
+        <form id="joinForm" action="/signup" method="post">
             <div class="items_container ic2 g-gap2" id="joinBigBox">
                 <div class="join">
                     <div class="member">
@@ -42,35 +81,92 @@
                                 <span class="input-font"><label for="userid">ID*</label></span>
                                 <div class="input-group">
                                     <input id="userid" name="userid" type="text" class="input" placeholder="userid" maxlength="16" required>
-                                    <input class="button button-dark" type="button" id="useridOverlay" onclick="useridCheck()" value="중복확인"/>
+                                    <input class="btn btn-outline-primary btn-sm idCheck mx-1" type="button" id="usernameOverlay" onclick="useridCheck()" value="중복 체크"/>
+                                    <input class="btn btn-outline-success btn-sm reType" type="button" id="resetUsername" onclick="reUserid()" disabled value="다시입력"/>
                                 </div>
                             </div>
                             <span class="input-caption">(영문 소문자/숫자, 4~16자)</span>
                         </div>
+                        <script>
+                            function useridCheck() {
+                                const userid = $("#userid").val();
+                                if (userid == "") {
+                                    alert("아이디를 입력해 주세요. 필수항목입니다.");
+                                    $("#userid").focus();
+                                    return false;
+                                }
+                                $.ajax({
+                                    type: "get",
+                                    url: "/signup/{userid}/exists",
+                                    data: {"userid": userid},
+                                    dataType: "JSON",
 
+                                    success: function (data) {
+                                        if (data.result == "0") {
+                                            if (confirm("이 아이디는 사용 가능합니다. \n사용하시겠습니까?")) {
+                                                usernameOverlapCheck = 1;
+                                                $("#userid").attr("readonly", true);
+                                                $("#useridOverlay").attr("disabled", true);
+                                                $("#useridOverlay").css("display", "none");
+                                                $("#resetUserid").attr("disabled", false);
+                                                $("#resetUserid").css("display", "inline-block");
+                                            }
+                                            return false;
+                                        } else if (data.result == "1") {
+                                            alert("이미 사용중인 아이디입니다.");
+                                            $("#userid").focus();
+                                        } else {
+                                            console.log(data.result);
+                                            alert("DB 로딩 실패");
+                                        }
+                                    },
+                                    error: function (request, status,error) {
+                                        alert("ajax 실행 실패");
+                                        alert("code:" + request.status + "\n" + "error :" + error);
+                                    }
+                                });
+
+                            }
+                        </script>
                         <!---아이디 입력 끝=-->
                         <!--비밀번호 입력-->
-                        <div class="join-form-area">
+                        <div class="join-form-area" id="passwordArea">
                             <div class="join-form">
                                 <span class="input-font">PASSWORD*</span>
                                 <div class="input-group">
-                                    <input id="password" name="password" type="password" class="input" placeholder="비밀번호" maxlength="16" required>
+                                    <input id="password" name="password" type="password" class="input" placeholder="비밀번호" minlength="8" maxlength="16" required>
                                 </div>
                             </div>
                             <span class="input-caption">(영문 대소문자나/숫자/특수문자 중 2가지 이상 조합, 8~16자)를 입력하세요.</span>
-                        </div>
-                        <!--비밀번호 입력 끝-->
-
-                        <!--비밀번호 재입력-->
-                        <div class="join-form-area">
-                            <div class="join-form">
+                            <div class="join-form pt-2">
                                 <span class="input-font">CONFIRM PASSWORD*</span>
                                 <div class="input-group">
-                                    <input id="passwordConfirm" name="passwordConfirm" type="password" class="input" placeholder="비밀번호를 재입력해주세요" maxlength="16" required>
+                                    <input id="passwordConfirm" name="passwordConfirm" type="password" class="input" placeholder="비밀번호를 재입력해주세요" minlength="8"  maxlength="16" required>
                                 </div>
                             </div>
+                            <span class="input-caption passwordConfirmed" style="display: none">비밀번호가 일치합니다.</span>
+                            <span class="input-caption passwordRejected" style="display: none">비밀번호가 일치하지 않습니다. 다시 입력해 주세요.</span>
                         </div>
-                        <!--비밀번호 재입력 끝-->
+                        <!--비밀번호 입력 끝-->
+                        <script>
+                            $('#passwordArea').focusout(function () {
+                                console.log('ddd');
+                                var password = $("#password").val();
+                                var passwordConfirm = $("#passwordConfirm").val();
+
+                                if ( password != '' && passwordConfirm == '' ) {
+                                    null;
+                                } else if (password != "" || passwordConfirm != "") {
+                                    if (password == passwordConfirm) {
+                                        $('.passwordConfirmed').css({'display' : 'inline-block'});
+                                        $('.passwordConfirmed').addClass('text-succ');
+                                    } else {
+                                        $('.passwordRejected').css({'display' : 'inline-block'});
+                                        $('.passwordRejected').addClass('text-dg');
+                                    }
+                                }
+                            });
+                        </script>
                         <!--이름 시작-->
                         <div class="join-form-area">
                             <div class="join-form">
@@ -88,7 +184,7 @@
                                 <span class="input-font">E-mail*</span>
                                 <div class="input-group">
                                     <input id="email" name="email" type="text" class="input" placeholder="@를 포함한 이메일을 입력해주세요." required>
-                                    <button class="button button-dark">인증번호 발송</button>
+                                    <button class="button button-dark" id="mail-Check-Btn">인증번호 발송</button>
                                 </div>
                             </div>
                             <div class="join-form pt-1">
@@ -144,26 +240,36 @@
                             <div class="join-form">
                                 <span class="input-font">우편번호*</span>
                                 <div class="input-group">
-                                    <input id="enterZipCode" name="enterZipCode" type="text" class="input" placeholder="우편번호">
-                                    <button class="button button-dark">우편번호 찾기</button>
+                                    <input id="sample4_postcode" name="enterZipCode" type="text" class="input" placeholder="우편번호">
+                                    <input type="button" class="button button-dark" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+<!--                                    <button class="button button-dark">우편번호 찾기</button>-->
                                 </div>
                             </div>
                         </div>
 
                         <div class="join-form-area">
                             <div class="join-form">
-                                <span class="input-font">주소</span>
+                                <span class="input-font">도로명 주소</span>
                                 <div class="input-group">
-                                    <input id="address" name="address" type="text" class="input" placeholder="우편 API 사용 시 자동 입력">
+                                    <input id="sample4_roadAddress" name="address" type="text" class="input" placeholder="도로명 주소">
                                 </div>
                             </div>
                         </div>
+                        <div class="join-form-area">
+                            <div class="join-form">
+                                <span class="input-font">주소</span>
+                                <div class="input-group">
+                                    <input id="sample4_jibunAddress" name="address" type="text" class="input" placeholder="지번주소">
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="join-form-area">
                             <form class="join-form" id="entedRestAddrForm" action="" method="post">
                                 <span class="input-font">상세주소</span>
                                 <div class="input-group">
-                                    <input id="entedRestAddr" type="text" class="input" placeholder="상세주소">
+                                    <input id="sample4_detailAddress" type="text" class="input" placeholder="상세주소">
                                 </div>
                             </form>
                         </div>
@@ -432,7 +538,8 @@
 <script src="/js/header.js"></script>
 <script src="/js/carousel.js"></script>
 <script src="/js/default.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
 
 
 </body>

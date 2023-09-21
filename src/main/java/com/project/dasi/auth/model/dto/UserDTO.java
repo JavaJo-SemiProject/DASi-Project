@@ -1,14 +1,11 @@
-package com.project.dasi.auth.dto;
+package com.project.dasi.auth.model.dto;
 
-import com.project.dasi.auth.enumeration.Userrole;
-import com.sun.istack.NotNull;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.project.dasi.auth.model.enumeration.Userrole;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class UserDTO {
     private String usercode;

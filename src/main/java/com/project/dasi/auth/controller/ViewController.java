@@ -1,7 +1,7 @@
 package com.project.dasi.auth.controller;
 
-import com.project.dasi.auth.dto.UserDTO;
-import com.project.dasi.auth.repository.UserRepository;
+import com.project.dasi.auth.model.dto.UserDTO;
+import com.project.dasi.auth.model.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -58,8 +58,6 @@ public class ViewController {
     String signupView() {
         return "signup";
     }
-
-
 
 
 }
