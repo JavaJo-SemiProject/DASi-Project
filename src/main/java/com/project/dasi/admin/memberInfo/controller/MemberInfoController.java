@@ -1,9 +1,9 @@
 package com.project.dasi.admin.memberInfo.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.project.dasi.admin.memberInfo.model.dto.MemberDTO;
 import com.project.dasi.admin.memberInfo.model.dto.SearchDTO;
 import com.project.dasi.admin.memberInfo.model.service.MemberService;
+import com.project.dasi.auth.model.dto.UserDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ public class MemberInfoController {
     @GetMapping("/memberList")
     public String getMemberList(Model model) {
 
-        List<MemberDTO> memberList = memberService.getMemberList();
+        List<UserDTO> memberList = memberService.getMemberList();
 
         model.addAttribute("title", "모든 회원 목록 조회");
         model.addAttribute("memberList", memberList);
@@ -38,7 +38,7 @@ public class MemberInfoController {
     public void goMemberRegist() {
     }
     @PostMapping("memberRegist")
-    public String registMember(MemberDTO newMember, RedirectAttributes rttr) {
+    public String registMember(UserDTO newMember, RedirectAttributes rttr) {
 
         memberService.registMember(newMember);
         rttr.addFlashAttribute("successMessage", "회원 등록 성공");
@@ -50,7 +50,7 @@ public class MemberInfoController {
     @GetMapping("/memberSearch")
     public String searchMember(@ModelAttribute SearchDTO search,
                        @RequestParam(required = false, defaultValue = "1") int pageNum, Model model) throws Exception {
-        PageInfo<MemberDTO> p = new PageInfo<>(memberService.searchMember(pageNum, search), 10);
+        PageInfo<UserDTO> p = new PageInfo<>(memberService.searchMember(pageNum, search), 10);
         model.addAttribute("users", p);
         System.out.println(search);
         model.addAttribute("search", search);
@@ -60,7 +60,7 @@ public class MemberInfoController {
     public void goMemberModify() {
     }
     @PostMapping("memberModify")
-    public String modifyMember(MemberDTO member) {
+    public String modifyMember(UserDTO member) {
 
         memberService.modifyMember(member);
 

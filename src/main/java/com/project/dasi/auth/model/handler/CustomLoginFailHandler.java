@@ -1,15 +1,13 @@
-package com.project.dasi.auth.handler;
+package com.project.dasi.auth.model.handler;
 
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

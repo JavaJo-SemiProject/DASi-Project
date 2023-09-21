@@ -1,10 +1,10 @@
-package com.project.dasi.auth.service.impl;
+package com.project.dasi.auth.model.service.impl;
 
-import com.project.dasi.auth.dto.UserCreateRequest;
-import com.project.dasi.auth.dto.UserDTO;
-import com.project.dasi.auth.entity.Users;
-import com.project.dasi.auth.repository.UserRepository;
-import com.project.dasi.auth.service.UsersService;
+import com.project.dasi.auth.model.dto.UserCreateRequest;
+import com.project.dasi.auth.model.dto.UserDTO;
+import com.project.dasi.auth.model.entity.Users;
+import com.project.dasi.auth.model.repository.UserRepository;
+import com.project.dasi.auth.model.service.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 import java.util.HashMap;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserServiceImpl implements UsersService {
 
@@ -51,12 +52,16 @@ public class UserServiceImpl implements UsersService {
     }
 
     @Override
-    public HashMap<String, Object> useridOverlap(String userid)
-    {
+    public boolean checkUseridDuplication(String userid) {
+        boolean useridDuplicate = userRepository.existsByUserid(userid);
+        return useridDuplicate;
+    }
+
+    /*@Override
+    public HashMap<String, Object> useridOverlap(String userid) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("result", userRepository.existsByUserid(userid));
         return map;
-    }
-
+    }*/
 
 }
