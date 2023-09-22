@@ -2,27 +2,29 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.dasi.admin.memberInfo.model.dao">
+
+
+<mapper namespace="com.project.dasi.auth.dao.UserMapper">
+
 
     <resultMap id="MemberResultMap" type="com.project.dasi.auth.dto.UserDTO">
-        <id property="usercode" column="USER_CODE"/>
-        <result property="userid" column="USER_ID"/>
+        <id property="userCode" column="USER_CODE"/>
+        <result property="userId" column="USER_ID"/>
         <result property="password" column="PASSWORD"/>
-        <result property="username" column="USER_NAME"/>
-        <result property="birthdate" column="BIRTH_DATE"/>
+        <result property="name" column="USER_NAME"/>
+        <result property="birthDate" column="BIRTH_DATE"/>
         <result property="email" column="EMAIL"/>
         <result property="tel" column="TEL"/>
         <result property="gender" column="GENDER"/>
-        <result property="joindate" column="JOIN_DATE"/>
-        <result property="withdrawstatus" column="WITHDRAW_STATUS"/>
-        <result property="withdrawdate" column="WITHDRAW_DATE"/>
-        <result property="userrole" column="USER_ROLE"/>
+        <result property="joinDate" column="JOIN_DATE"/>
+        <result property="zipcode" column="ZIP_CODE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="addressDetail" column="ADDRESS_DETAIL"/>
+        <result property="authName" column="AUTH_NAME"/>
     </resultMap>
 
     <sql id="default">
-        SELECT USER_CODE, USER_ID, PASSWORD, USER_NAME, BIRTH_DATE,
-        EMAIL, TEL, GENDER, JOIN_DATE, WITHDRAW_STATUS, WITHDRAW_DATE, USER_ROLE
-        FROM USERS
+        select * from users
     </sql>
 
 
@@ -30,74 +32,67 @@
         <include refid="default"></include> limit 0, 10
     </select>
 
-    <insert id="registMember" parameterType="com.project.dasi.auth.dto.UserDTO">
-        INSERT INTO USERS (
-        USER_CODE, USER_ID, PASSWORD, USER_NAME, BIRTH_DATE,
-        EMAIL, TEL, GENDER, JOIN_DATE, WITHDRAW_STATUS, WITHDRAW_DATE, USER_ROLE
-        )
-        VALUES (
-        #{ usercode }
-        ,#{ userid }
-        ,#{ password }
-        ,#{ username }
-        ,#{ birthdate }
-        ,#{ email }
-        ,#{ tel }
-        ,#{ gender }
-        ,#{ joindate }
-        ,#{ withdrawstatus }
-        ,#{ withdrawdate }
-        ,#{ userrole }
+    <insert id="registMember" parameterType="com.project.dasi.auth.dao.UserMapper">
+        INSERT INTO USERS (USER_ID, PASSWORD, USER_NAME, BIRTH_DATE,
+        EMAIL, TEL, GENDER, ZIP_CODE, ADDRESS, ADDRESS_DETAIL)
+        VALUES (#{ userId }, #{ password }, #{ name }, #{ birthDate },
+        #{ email }, #{ tel }, #{ gender }, #{ zipCode }, #{ address }, #{ addressDetail }
         )
     </insert>
 
     <update id="modifyMember" parameterType="com.project.dasi.auth.dto.UserDTO">
-        UPDATE USERS SET PASSWORD = #{password} WHERE USER_CODE = #{usercode}
+        UPDATE USERS SET PASSWORD = #{password} WHERE USER_CODE = #{userCode}
     </update>
 
     <delete id="deleteMember" parameterType="hashMap">
-        DELETE FROM USERS WHERE USER_CODE = #{usercode} AND PASSWORD = #{password}
+        DELETE FROM USERS WHERE USER_CODE = #{userCode} AND PASSWORD = #{password}
     </delete>
 
     <select id="searchMember" resultType="com.project.dasi.auth.dto.UserDTO" resultMap="MemberResultMap">
         SELECT USER_CODE, USER_ID, USER_NAME, BIRTH_DATE, EMAIL, TEL, GENDER,
-        JOIN_DATE, WITHDRAW_STATUS, WITHDRAW_DATE, USER_ROLE FROM USERS WHERE
-        <if test="keyword == 'usercode'">
-            USER_CODE LIKE CONCAT('%',#{search},'%')
+        JOIN_DATE FROM USERS
+
+        <if test="keyword == ''">
         </if>
-        <if test="keyword == 'userid'">
-            USER_ID LIKE CONCAT('%',#{search},'%')
+
+        <if test="keyword == 'userCode'">
+            WHERE USER_CODE LIKE CONCAT('%',#{search},'%')
         </if>
-        <if test="keyword == 'username'">
-            USER_NAME LIKE CONCAT('%',#{search},'%')
+        <if test="keyword == 'userId'">
+            WHERE USER_ID LIKE CONCAT('%',#{search},'%')
         </if>
-        <if test="keyword == 'birthdate'">
-            BIRTH_DATE LIKE CONCAT('%',#{search},'%')
+        <if test="keyword == 'name'">
+            WHERE USER_NAME LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test="keyword == 'birthDate'">
+            WHERE BIRTH_DATE LIKE CONCAT('%',#{search},'%')
         </if>
         <if test="keyword == 'email'">
-            EMAIL LIKE CONCAT('%',#{search},'%')
+            WHERE EMAIL LIKE CONCAT('%',#{search},'%')
         </if>
         <if test="keyword == 'tel'">
-            TEL LIKE CONCAT('%',#{search},'%')
+            WHERE TEL LIKE CONCAT('%',#{search},'%')
         </if>
         <if test="keyword == 'gender'">
-            GENDER LIKE CONCAT('%',#{search},'%')
+            WHERE GENDER LIKE CONCAT('%',#{search},'%')
         </if>
-        <if test="keyword == 'marketingstatus'">
-            MARKETING_STATUS LIKE CONCAT('%',#{search},'%')
+        <if test="keyword == 'marketingStatus'">
+            WHERE MARKETING_STATUS LIKE CONCAT('%',#{search},'%')
         </if>
-        <if test="keyword == 'joindate'">
-            JOIN_DATE LIKE CONCAT('%',#{search},'%')
+        <if test="keyword == 'joinDate'">
+            WHERE JOIN_DATE LIKE CONCAT('%',#{search},'%')
         </if>
-        <if test="keyword == 'withdrawstatus'">
-            WITHDRAW_STATUS LIKE CONCAT('%',#{search},'%')
-        </if>
-        <if test="keyword == 'withdrawdate'">
-            WITHDRAW_DATE LIKE CONCAT('%',#{search},'%')
-        </if>
-        <if test="keyword == 'userrole'">
-            USER_ROLE LIKE CONCAT('%',#{search},'%')
-        </if>
+    </select>
+
+    <select id="findUserByUserId" resultMap="MemberResultMap">
+        SELECT USER_ID, PASSWORD, USER_NAME, BIRTH_DATE,
+        EMAIL, TEL, GENDER
+        FROM USERS
+        WHERE USER_ID = #{ userId }
+    </select>
+
+    <select id="idCheck" parameterType="String" resultType="int">
+        SELECT COUNT(USER_ID) FROM USERS WHERE USER_ID= #{userId}
     </select>
 
 </mapper>

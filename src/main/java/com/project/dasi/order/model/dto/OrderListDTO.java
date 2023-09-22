@@ -23,5 +23,5 @@ public class OrderListDTO implements java.io.Serializable{
     private String orderDate;
     private int orderPrice;
     private List<OrderFileDTO> orderFileList;
-
+    private PCategoryDTO productCategory;
 }
