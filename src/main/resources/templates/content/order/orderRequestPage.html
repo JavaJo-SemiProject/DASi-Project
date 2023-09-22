@@ -43,8 +43,7 @@
     <hr>
 
     <form id="orderRegistForm" th:action="@{/content/order/orderRequestPage}" th:method="post" enctype="multipart/form-data">
-        <!--<input type="hidden" id="userId" name="userId" th:value="${ #authentication.get }">-->
-        <input type="hidden" id="userId" name="userId">
+        <input type="hidden" name="userId" th:value="${#authentication.name}">
 
 
         <label class="form-label"><h2>카테고리 선택</h2></label>
@@ -52,30 +51,22 @@
              name="categoryCode">
 
             <div class="form_radio_btn radio_clothes">
-                <input id="radio-1" type="radio" name="productCategory" value="10" checked>
+                <input id="radio-1" type="radio" name="categoryCode" value="10" checked>
                 <label for="radio-1">의류</label>
             </div>
 
             <div class="form_radio_btn" style="margin: 0px 10px 0px 10px;">
-                <input id="radio-2" type="radio" name="productCategory" value="20">
+                <input id="radio-2" type="radio" name="categoryCode" value="20">
                 <label for="radio-2">놀이용품</label>
             </div>
 
             <div class="form_radio_btn">
-                <input id="radio-3" type="radio" name="productCategory" value="30">
+                <input id="radio-3" type="radio" name="categoryCode" value="30">
                 <label for="radio-3">기타</label>
             </div>
 
         </div>
 
-
-       <!-- <div class="item bg-light p-1">
-            <select name="productCode" class="select">
-                <option value="10">옷</option>
-                <option value="20">신발</option>
-                <option value="30">모자</option>
-            </select>
-        </div>-->
         <hr>
 
 

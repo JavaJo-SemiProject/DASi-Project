@@ -2,7 +2,7 @@
     <a th:href="@{/}" class="brand">DASi</a>
     <nav class="menu" sec:authorize="isAnonymous()">
         <ul>
-            <li><a th:href="@{/about}">About Dasi</a></li>
+            <li><a th:href="@{/content/about}">About Dasi</a></li>
             <li><a th:href="@{/content/product/product}">업사이클 디자인</a></li>
             <li><a th:href="@{/content/order/orderGuidePage}">주문제작 가이드</a></li>
             <li><a th:href="@{/content/order/orderRequestPage}">주문제작 견적문의</a></li>
@@ -12,7 +12,7 @@
 
     <nav class="menu" sec:authorize="hasRole('USER')">
         <ul>
-            <li><a th:href="@{/about}">About Dasi</a></li>
+            <li><a th:href="@{/content/about}">About Dasi</a></li>
             <li><a th:href="@{/content/product/product}">업사이클 디자인</a></li>
             <li><a th:href="@{/content/order/orderGuidePage}">주문제작 가이드</a></li>
             <li><a th:href="@{/content/order/orderRequestPage}">주문제작 견적문의</a></li>
@@ -37,7 +37,7 @@
     </span>
 
     <span sec:authorize="isAnonymous()"> <!-- 1 -->
-        <a th:href="@{/member/login/login}"><i class="fa fa-user-circle"></i></a>
+        <a th:href="@{/content/member/login}"><i class="fa fa-user-circle"></i></a>
     </span>
 
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">

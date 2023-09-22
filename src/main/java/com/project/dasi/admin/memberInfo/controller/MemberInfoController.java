@@ -3,7 +3,7 @@ package com.project.dasi.admin.memberInfo.controller;
 import com.github.pagehelper.PageInfo;
 import com.project.dasi.admin.memberInfo.model.dto.SearchDTO;
 import com.project.dasi.admin.memberInfo.model.service.MemberService;
-import com.project.dasi.auth.dto.UserDTO;
+import com.project.dasi.auth.model.dto.UserDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
