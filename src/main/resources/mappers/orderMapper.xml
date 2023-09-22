@@ -5,7 +5,7 @@
 <mapper namespace="com.project.dasi.order.model.dao.OrderMapper">
 
     <insert id="insertOrderContent">
-        INSERT INTO ORDER_LIST1 (
+        INSERT INTO ORDER_LIST(
         USER_ID
         ,ORDER_DATE
         ,STATUS

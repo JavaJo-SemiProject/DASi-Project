@@ -16,6 +16,7 @@
         <association property="userId" resultMap="memberResultMap"/>
         <collection property="orderFileList" resultMap="filesResultMap"/>
         <collection property="statusNum" resultMap="statusResultMap"/>
+        <collection property="categoyCode" resultMap="pCategoryResultMap"/>
     </resultMap>
 
     <resultMap id="memberResultMap" type="com.project.dasi.admin.memberInfo.model.dto.MemberDTO">
@@ -51,10 +52,17 @@
         ,B.USER_ID
         ,A.ORDER_DATE
         ,A.PAY_NUM
-        ,A.STATUS_NUM
+        ,D.STATUS_NUM
+        ,D.STATUS
         FROM ORDER_LIST A
         JOIN USERS B ON(A.USER_CODE = B.USER_CODE)
+        JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
     </select>
+
+    <resultMap id="pCategoryResultMap" type="com.project.dasi.order.model.dto.PCategoryDTO">
+        <id property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+    </resultMap>
 
     <select id="selectOrderDetail" resultMap="orderResult">
         SELECT
@@ -63,6 +71,7 @@
         ,B.USER_NAME
         ,A.ORDER_DATE
         ,A.PAY_NUM
+        ,D.STATUS_NUM
         ,D.STATUS
         ,A.CANCEL_CONTENT
         ,A.SIZE_INFO
@@ -74,20 +83,18 @@
         ,C.SAVED_NAME
         ,C.SAVED_PATH
         ,C.UPLOAD_PATH
+        ,E.CATEGORY_CODE
+        ,E.CATEGORY_NAME
         FROM ORDER_LIST A
         JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
         JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)
         JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+        JOIN PRODUCT_CATEGORY E ON (A.CATEGORY_CODE = E.CATEGORY_CODE)
+        <if test="#{orderId} != null">
         <where>
             A.ORDER_ID = #{orderId}
         </where>
-    </select>
-
-
-    <select id="getMemberList" resultMap="memberResultMap">
-        SELECT USER_CODE, USER_ID, USER_PWD, USER_NAME, BIRTH_DATE,
-        EMAIL, TEL, GENDER, JOIN_DATE
-        FROM USERS
+        </if>
     </select>
     
 
