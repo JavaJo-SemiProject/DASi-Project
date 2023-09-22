@@ -20,4 +20,3 @@ public class FaqDTO implements java.io.Serializable {
     private String faqContent;
 
   }
-
