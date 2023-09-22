@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DASi ADMIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/addmin.css">
+    <link rel="stylesheet" href="/css/order.css">
+
+    <style>
+        td {
+            border: 1px solid #000;
+        }
+
+        textarea {
+            resize: none;
+        }
+    </style>
+
+    <!--<script type="text/javascript">
+        function fn_modify_order_state(orderId) {
+            var s_delivery_state = document.getElementById("s_delivery_state");
+            var index = s_delivery_state.selectedIndex;   //선택한 옵션의 인덱스를 구합니다.
+            var value = s_delivery_state[index].value;    //선택한 옵션의 값을 구합니다.
+            console.log("value: " + value);
+            $.ajax({
+                type: "post",
+                async: false, //false인 경우 동기식으로 처리한다.
+                url: "/admin/order/adminOrderDetail",
+                data: {
+                    orderId: orderId,
+                    'delivery_state': value
+                },
+                success: function (data, textStatus) {
+                    if (data.trim() == 'mod_success') {
+                        alert("주문 정보를 수정했습니다.");
+                        location.href = "${contextPath}/admin/order/adminOrderDetail?orderId=" + orderId;
+                    } else if (data.trim() == 'failed') {
+                        alert("다시 시도해 주세요.");
+                    }
+
+                },
+                error: function (data, textStatus) {
+                    alert("에러가 발생했습니다." + data);
+                },
+                complete: function (data, textStatus) {
+                    //alert("작업을완료 했습니다");
+
+                }
+            }); //end ajax
+        }
+
+    </script>-->
+
+
+</head>
+<body>
+<div th:insert="/fragments/adminHeader.html"></div>
+
+<br>
+<div class="page">
+    <form id="statusUpdate" th:action="@{/admin/order/adminOrderDetail}" method="post">
+        <h1> 주문 상세 내역</h1>
+
+        <hr>
+        <h5 style="margin-bottom: 5px;">요청 이미지</h5>
+
+        <h5 style="margin-bottom: 5px;">주문 정보</h5>
+        <table>
+            <tr>
+                <th name="orderDate" class="orderCol" style="text-align: center;">주문 일자</th>
+                <td th:text="${order.orderDate}"></td>
+                <th class="orderCol" style="text-align: center;">주문 ID</th>
+                <td th:text="${order.orderId}"></td>
+                <th class="orderCol" style="text-align: center;">회원 ID</th>
+                <td th:text="${order.userId.userId}"></td>
+                <th class="orderCol" style="text-align: center;">회원 이름</th>
+                <td th:text="${order.userId.userName}"></td>
+            </tr>
+        </table>
+
+        <h5 style="margin-bottom: 5px;">요청 정보</h5>
+        <table>
+            <tr>
+                <th class="orderCol" style="text-align: center;">사이즈 정보</th>
+                <td class="#table_td" th:text="${order.sizeInfo}"></td>
+                <th class="orderCol" style="text-align: center;">요청 사항</th>
+                <td class="#table_td" th:text="${order.reqIssues}"></td>
+            </tr>
+        </table>
+
+        <h5 style="margin-bottom: 5px;">결제 정보</h5>
+        <table>
+            <tr>
+                <th class="orderCol" style="text-align: center;">상품 가격</th>
+                <th:block th:if="${order.orderPrice} <= 0 or ${order.statusNum.statusNum} == 10">
+                    <td><input name="orderPrice" type="number" value="0" min="0"></td>
+                </th:block>
+                <th:block th:if="${order.orderPrice} > 0 or ${order.statusNum.statusNum} >= 20 or ${order.statusNum.statusNum} " }>
+                    <td name="orderPrice" th:value="${order.orderPrice}" th:text="${order.orderPrice}"></td>
+                </th:block>
+                <th class="orderCol" style="text-align: center;">결제 번호</th>
+                <td th:text="${order.payNum}"></td>
+                <th class="orderCol" style="text-align: center;">결제일</th>
+                <!--<td th:text="${}"></td>-->
+                <td>-</td>
+                <th class="orderCol" style="text-align: center;">결제 시간</th>
+                <!--<td th:text="${}"></td>-->
+                <td>-</td>
+                <th class="orderCol" style="text-align: center;">결제 금액</th>
+                <!--<td th:text="${}"></td>-->
+                <td>-</td>
+                <th class="orderCol" style="text-align: center;">결제 수단</th>
+                <!--<td th:text="${}"></td>-->
+                <td>-</td>
+            </tr>
+        </table>
+
+        <div class="items_container" style="display: flex; align-items: center;">
+            <div class="item"><h5 style="margin-bottom: 5px;">배송 정보</h5></div>
+            <div class="item" style="margin-left: 100vh;">
+                <button class="button button-dark" onclick="location.href=''">배송 조회</button>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th class="orderCol" style="text-align: center;">수령인</th>
+                <!--<td th:text="${}"></td>-->
+                <td>-</td>
+                <th class="orderCol" style="text-align: center;">전화번호</th>
+                <!--<td th:text="${}"></td>-->
+                <td>-</td>
+                <th class="orderCol" style="text-align: center;">주소</th>
+                <!--<td th:text="${}"></td>-->
+                <td>-</td>
+            </tr>
+            <tr>
+                <th class="orderCol" style="text-align: center;">배송 일자</th>
+                <!--<td th:text="${}"></td>-->
+                <td>-</td>
+                <th class="orderCol" style="text-align: center;">송장번호</th>
+                <!--<td th:text="${}"></td>-->
+                <td colspan="3">-</td>
+            </tr>
+        </table>
+
+        <div>
+
+            <h5 style="margin-bottom: 5px;">진행 사항</h5>
+
+        </div>
+        <div>
+            <select name="statusNum">
+                <option th:value="${order.statusNum.status}" selected hidden
+                        th:text="'현재 진행 사항: ' + ${order.status.status}"></option>
+                <option th:value="${order.statusNum.statusNum[1]}" th:text="${order.statusNum.status}"></option>
+                <option value="20">제작 반려</option>
+                <option value="30">제작 승인</option>
+                <option value="40">결제 완료</option>
+                <option value="50">제작 중</option>
+                <option value="60">제작 완료</option>
+                <option value="70">배송 중</option>
+                <option value="80">배송 완료</option>
+            </select>
+
+            <div>
+
+                <div class="item"><h5 style="margin-bottom: 5px;">취소 사유</h5></div>
+
+                <textarea name="cancelContent" th:text="${order.cancelContent}" style="width: 100%; height: 10vh;"
+                          th:readonly="${order.cancelContent} != ''"></textarea>
+            </div>
+        </div>
+
+        <input name=" orderId" type="hidden" th:value="${order.orderId}">
+
+                <div class="items_container" style="display: flex;">
+                    <div class="item" style="width: 100%;">
+                        <button class="button button-lg button-light" style="width: 100%;" onclick="location.href=''">뒤로
+                            가기
+                        </button>
+                    </div>
+                    <div class="item" style="width: 100%;">
+                        <button class="button button-lg button-dark" type="submit" style="width: 100%;">진행 사항 변경
+                        </button>
+                    </div>
+                </div>
+    </form>
+</div>
+
+<div th:insert="/fragments/footer.html"></div>
+<script src="/js/header.js"></script>
+<script src="/js/carousel.js"></script>
+<script src="/js/default.js"></script>
+<script src="/js/editContent.js"></script>
+
+
+</body>
+</html>
