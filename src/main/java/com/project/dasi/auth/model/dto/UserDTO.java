@@ -1,4 +1,4 @@
-package com.project.dasi.auth.dto;
+package com.project.dasi.auth.model.dto;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

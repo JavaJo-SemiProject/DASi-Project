@@ -1,6 +1,6 @@
 package com.project.dasi.auth.config;
 
-import com.project.dasi.auth.service.UserService;
+import com.project.dasi.auth.model.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
