@@ -1,10 +1,10 @@
-package com.project.dasi.auth.service;
+package com.project.dasi.auth.model.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.project.dasi.admin.memberInfo.model.dto.SearchDTO;
-import com.project.dasi.auth.dao.UserMapper;
-import com.project.dasi.auth.dto.UserDTO;
+import com.project.dasi.auth.model.dao.UserMapper;
+import com.project.dasi.auth.model.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 
 @Service
@@ -37,10 +35,10 @@ public class UserService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 
-        log.info("## loadUserByUsername ##");
+
 
         UserDTO userDTO = userMapper.findUserByUserId(userId);
-
+        log.info(userDTO.getAuthName());
         if( userDTO == null ) {
             log.debug("## 계정정보가 존재하지 않습니다. ##");
             throw new UsernameNotFoundException(userId);

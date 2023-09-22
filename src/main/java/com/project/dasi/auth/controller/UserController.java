@@ -1,7 +1,7 @@
 package com.project.dasi.auth.controller;
 
-import com.project.dasi.auth.dto.UserDTO;
-import com.project.dasi.auth.service.UserService;
+import com.project.dasi.auth.model.dto.UserDTO;
+import com.project.dasi.auth.model.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-
     private final UserService userService;
     /**
      * 로그인 폼
@@ -21,6 +20,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String login(){
+
         return "content/member/login";
     }
 

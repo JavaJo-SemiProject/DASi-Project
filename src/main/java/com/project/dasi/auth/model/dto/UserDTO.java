@@ -1,4 +1,4 @@
-package com.project.dasi.auth.dto;
+package com.project.dasi.auth.model.dto;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,13 +7,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 public class UserDTO implements UserDetails {
-    private int userCode;
+    private String userCode;
     private String userId;
     private String password;
     private String name;
@@ -22,8 +24,14 @@ public class UserDTO implements UserDetails {
     private String tel;
     private String gender;
     private java.util.Date joinDate;
+    private String zipCode;
+    private String address;
+    private String addressDetail;
+    private String authName;
+
     @Builder
-    public UserDTO(int userCode, String userId, String password, String name, String birthDate, String email, String tel, String gender, java.util.Date joinDate) {
+    public UserDTO(String userCode, String userId, String password, String name, String birthDate, String email, String tel, String gender, Date joinDate,
+                   String zipCode, String address, String addressDetail, String authName) {
         this.userCode = userCode;
         this.userId = userId;
         this.password = password;
@@ -33,6 +41,11 @@ public class UserDTO implements UserDetails {
         this.tel = tel;
         this.gender = gender;
         this.joinDate = joinDate;
+        this.zipCode = zipCode;
+        this.address = address;
+        this.addressDetail = addressDetail;
+        this.authName = authName;
+
     }
 
     @Override

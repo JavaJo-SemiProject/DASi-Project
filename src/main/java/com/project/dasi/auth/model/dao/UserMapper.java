@@ -1,8 +1,8 @@
-package com.project.dasi.auth.dao;
+package com.project.dasi.auth.model.dao;
 
 import com.github.pagehelper.Page;
 import com.project.dasi.admin.memberInfo.model.dto.SearchDTO;
-import com.project.dasi.auth.dto.UserDTO;
+import com.project.dasi.auth.model.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Map;

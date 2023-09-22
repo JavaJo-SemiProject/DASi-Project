@@ -2,9 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.dasi.auth.dao.UserMapper">
 
-    <resultMap id="MemberResultMap" type="com.project.dasi.auth.dto.UserDTO">
+
+<mapper namespace="com.project.dasi.auth.model.dao.UserMapper">
+
+
+    <resultMap id="MemberResultMap" type="com.project.dasi.auth.model.dto.UserDTO">
         <id property="userCode" column="USER_CODE"/>
         <result property="userId" column="USER_ID"/>
         <result property="password" column="PASSWORD"/>
@@ -13,12 +16,15 @@
         <result property="email" column="EMAIL"/>
         <result property="tel" column="TEL"/>
         <result property="gender" column="GENDER"/>
+        <result property="joinDate" column="JOIN_DATE"/>
+        <result property="zipcode" column="ZIP_CODE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="addressDetail" column="ADDRESS_DETAIL"/>
+        <result property="authName" column="AUTH_NAME"/>
     </resultMap>
 
     <sql id="default">
-        SELECT USER_ID, PASSWORD, USER_NAME, BIRTH_DATE,
-        EMAIL, TEL, GENDER
-        FROM USERS
+        select * from users
     </sql>
 
 
@@ -26,23 +32,15 @@
         <include refid="default"></include> limit 0, 10
     </select>
 
-    <insert id="registMember" parameterType="com.project.dasi.auth.dao.UserMapper">
-        INSERT INTO USERS (
-        USER_ID, PASSWORD, USER_NAME, BIRTH_DATE,
-        EMAIL, TEL, GENDER
-        )
-        VALUES (
-        #{ userId }
-        ,#{ password }
-        ,#{ name }
-        ,#{ birthDate }
-        ,#{ email }
-        ,#{ tel }
-        ,#{ gender }
+    <insert id="registMember" parameterType="com.project.dasi.auth.model.dao.UserMapper">
+        INSERT INTO USERS (USER_ID, PASSWORD, USER_NAME, BIRTH_DATE,
+        EMAIL, TEL, GENDER, ZIP_CODE, ADDRESS, ADDRESS_DETAIL)
+        VALUES (#{ userId }, #{ password }, #{ name }, #{ birthDate },
+        #{ email }, #{ tel }, #{ gender }, #{ zipCode }, #{ address }, #{ addressDetail }
         )
     </insert>
 
-    <update id="modifyMember" parameterType="com.project.dasi.auth.dto.UserDTO">
+    <update id="modifyMember" parameterType="com.project.dasi.auth.model.dto.UserDTO">
         UPDATE USERS SET PASSWORD = #{password} WHERE USER_CODE = #{userCode}
     </update>
 
@@ -50,7 +48,7 @@
         DELETE FROM USERS WHERE USER_CODE = #{userCode} AND PASSWORD = #{password}
     </delete>
 
-    <select id="searchMember" resultType="com.project.dasi.auth.dto.UserDTO" resultMap="MemberResultMap">
+    <select id="searchMember" resultType="com.project.dasi.auth.model.dto.UserDTO" resultMap="MemberResultMap">
         SELECT USER_CODE, USER_ID, USER_NAME, BIRTH_DATE, EMAIL, TEL, GENDER,
         JOIN_DATE FROM USERS
 
