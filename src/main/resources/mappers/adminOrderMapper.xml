@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dasi.admin.order.model.dao.AdminOrderMapper">
+
+    <resultMap id="orderResult" type="com.project.dasi.order.model.dto.OrderListDTO">
+        <id property="orderId" column="ORDER_ID"/>
+        <result property="orderDate" column="ORDER_DATE"/>
+        <result property="payNum" column="PAY_NUM"/>
+        <result property="cancelContent" column="CANCEL_CONTENT"/>
+        <result property="sizeInfo" column="SIZE_INFO"/>
+        <result property="phrase" column="PHRASE"/>
+        <result property="reqIssues" column="REQ_ISSUES"/>
+        <result property="orderPrice" column="ORDER_PRICE"/>
+        <association property="userId" resultMap="memberResultMap"/>
+        <collection property="orderFileList" resultMap="filesResultMap"/>
+        <collection property="statusNum" resultMap="statusResultMap"/>
+    </resultMap>
+
+    <resultMap id="memberResultMap" type="com.project.dasi.admin.memberInfo.model.dto.MemberDTO">
+        <id property="userCode" column="USER_CODE"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="userPwd" column="USER_PWD"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="birthDate" column="BIRTH_DATE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="email" column="EMAIL"/>
+        <result property="tel" column="TEL"/>
+        <result property="gender" column="GENDER"/>
+        <result property="joinDate" column="JOIN_DATE"/>
+    </resultMap>
+
+    <resultMap id="filesResultMap" type="com.project.dasi.order.model.dto.OrderFileDTO">
+        <id property="fileCode" column="FILE_CODE"/>
+        <result property="originName" column="ORIGIN_NAME"/>
+        <result property="savedName" column="SAVED_NAME"/>
+        <result property="uploadPath" column="UPLOAD_PATH"/>
+        <result property="savePath" column="SAVED_PATH"/>
+        <association property="orderId" resultMap="orderResult"/>
+    </resultMap>
+
+    <resultMap id="statusResultMap" type="com.project.dasi.order.model.dto.StatusDTO">
+        <id property="statusNum" column="STATUS_NUM"/>
+        <result property="status" column="STATUS"/>
+    </resultMap>
+
+    <select id="selectAllOrderList" resultMap="orderResult">
+        SELECT
+        A.ORDER_ID
+        ,B.USER_ID
+        ,A.ORDER_DATE
+        ,A.PAY_NUM
+        ,A.STATUS_NUM
+        FROM ORDER_LIST A
+        JOIN USERS B ON(A.USER_CODE = B.USER_CODE)
+    </select>
+
+    <select id="selectOrderDetail" resultMap="orderResult">
+        SELECT
+        A.ORDER_ID
+        ,B.USER_ID
+        ,B.USER_NAME
+        ,A.ORDER_DATE
+        ,A.PAY_NUM
+        ,D.STATUS
+        ,A.CANCEL_CONTENT
+        ,A.SIZE_INFO
+        ,A.PHRASE
+        ,A.REQ_ISSUES
+        ,A.ORDER_PRICE
+        ,C.FILE_CODE
+        ,C.ORIGIN_NAME
+        ,C.SAVED_NAME
+        ,C.SAVED_PATH
+        ,C.UPLOAD_PATH
+        FROM ORDER_LIST A
+        JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
+        JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)
+        JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+        <where>
+            A.ORDER_ID = #{orderId}
+        </where>
+    </select>
+
+
+    <select id="getMemberList" resultMap="memberResultMap">
+        SELECT USER_CODE, USER_ID, USER_PWD, USER_NAME, BIRTH_DATE,
+        EMAIL, TEL, GENDER, JOIN_DATE
+        FROM USERS
+    </select>
+    
+
+    <update id="editStatus">
+        UPDATE ORDER_LIST
+        SET CANCEL_CONTENT = #{ cancelContent }
+        ,ORDER_PRICE = #{ orderPrice }
+        ,STATUS_NUM = #{ statusNum }
+        WHERE ORDER_ID = #{ orderId }
+    </update>
+
+</mapper>

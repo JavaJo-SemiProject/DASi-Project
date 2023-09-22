@@ -1,7 +1,8 @@
-package com.project.dasi.question.model.dto;
+package com.project.dasi.admin.question.model.dto;
 
 
 
+import com.project.dasi.question.model.dto.CategoryDTO;
 import lombok.*;
 
 import java.util.List;
@@ -12,9 +13,9 @@ import java.util.List;
 @Setter
 @ToString
 public class QuestionDTO implements java.io.Serializable {
-    private String questNum; /*QUEST_NUM*/
+    private int questNum; /*QUEST_NUM*/
     private String userCode; /*USER_CODE*/
-    private CategoryDTO qcateCode;  /*QCATE_CODE*/
+    private QuestionCategoryDTO qcateCode;  /*QCATE_CODE*/
     private String answerDate;  /*ANSWER_DATE*/
     private String answerContent;   /*ANSWER_CONTENT*/
     private String questDate;  /*QUEST_DATE*/

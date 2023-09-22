@@ -19,39 +19,5 @@ public class FaqDTO implements java.io.Serializable {
     private String faqTitle;
     private String faqContent;
 
-    public Integer getFaqNum() {
-        return faqNum;
-    }
-
-    public void setFaqNum(Integer faqNum) {
-        this.faqNum = faqNum;
-    }
-
-    public String getFaqTitle() {
-        return faqTitle;
-    }
-
-    public void setFaqTitle(String faqTitle) {
-        this.faqTitle = faqTitle;
-    }
-
-    public String getFaqContent() {
-        return faqContent;
-    }
-
-    public void setFaqContent(String faqContent) {
-        this.faqContent = faqContent;
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "FaqDTO{" +
-                "faqNum=" + faqNum +
-                ", faqTitle='" + faqTitle + '\'' +
-                ", faqContent='" + faqContent + '\'' +
-                '}';
-    }
-}
+  }
 

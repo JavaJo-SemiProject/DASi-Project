@@ -17,13 +17,10 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 
-
-
 </head>
 <body>
 
 <div th:insert="/fragments/adminHeader.html"></div>
-
 
 
 <!--pages-->
@@ -37,114 +34,57 @@
         <button class="button button-dark" onClick="location.href='managerFaQ.html'">FAQ 관리</button>
     </div>
 
-    <div class="calendar">
-        <input type="date" id="date">
-        <span> - </span>
-        <input type="date" id="date1">
-    </div>
-    <button class="button button-dark">기간별 조회</button>
-
-
-    <!--<div class="calendar">-->
-    <!--    <label for="date">-->
-    <!--        <input type="date"-->
-    <!--               id="dateFrom"-->
-    <!--               max="2023-09-06"-->
-    <!--               min="2000-08-06"-->
-    <!--               value="2023-08-06">-->
-    <!--    </label>-->
-    <!--<span> - </span>-->
-    <!--<label for="date">-->
-    <!--    <input type="date"-->
-    <!--           id="date"-->
-    <!--           max="2023-09-06"-->
-    <!--           min="2000-09-06"-->
-    <!--           value="2023-09-06">-->
-    <!--</label></div><br>-->
-
-
-
-
-    <table class="ttable">
-        <thead>
-        <tr>
-            <th class="status" width="70px">답변상태</th>
-            <th class="questionnumber" width="10px">문의번호</th>
-            <th class= "classify" width="3px">구분</th>
-            <th class="txt" width="1100">제목</th>
-            <th class="writer" width="90">작성자</th>
-            <th class="update" width="90">작성날짜</th>
-            <th class="updatemake" width="20">답변등록</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td class="status" width="50">답변대기</th>
-            <td class="questionnumber" width="20">2023083102</th>
-            <td class= "classify" width="600">상품관련</th>
-            <td class="txt" width="100">이미 결제를 했는데 결제 방식을 바꾸고 싶습니다.</th>
-            <td class="writer" width="100">baksc01</th>
-            <td class="update" width="100">2023.08.31</th>
-            <td class="updatemake" width="100">
-                <a href="javascript:void(0)" onClick="javascript:goPost()"> <i class="fa-solid fa-caret-down"></i></a>
-            </td>
-        </tr>
+    <table class="Questionlist-table">
 
         <tr>
-            <td class="status" width="30">답변완료</th>
-            <td class="questionnumber" width="70">2023083101</th>
-            <td class= "classify" width="600">상품관련</th>
-            <td class="txt" width="100">주문제작 대량으로도 가능한가요???</th>
-            <td class="writer" width="100">sdfkn23</th>
-            <td class="update" width="100">2023.08.31</th>
-            <td class="updatemake" width="100">
-                <a href="javascript:void(0)" onClick="javascript:goPost()"> <i class="fa-solid fa-caret-down"></i></a>
-            </td>
+            <td>문의번호</td>
+            <td th:text="${ questionList.questNum }"></td>
         </tr>
-        </tbody>
+        <tr>
+            <td>문의유형</td>
+            <td th:text="${ questionList.qCategory }"></td>
+        </tr>
+        <tr>
+            <td>문의날짜</td>
+            <td colspan="3" th:text="${ questionList.questDate }"></td>
+        </tr>
+        <tr>
+            <td>제목</td>
+            <td colspan="3" th:text="${ questionList.questTitle }" style="rwidth:400px;"></td>
+        </tr>
+        <tr>
+            <td>문의내용</td>
+            <td colspan="3" th:text="${ questionList.questContent }"></td>
+        </tr>
     </table>
-
-    <!--<div class="pagging-wrap page-area">
-        <div class="page-number">
-            <div class="pagination mt20">
-                <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span class="blind">이전</span></a>
-                <a href="#" class="current"><span>1</span></a>
-                <a href="javascript:CmPageMove('2')" data-page="2" ><span>2</span></a>
-                <a href="javascript:CmPageMove('3')" data-page="3" ><span>3</span></a>
-                <a href="javascript:CmPageMove('3')" data-page="3" class='btn-page next'><span class="blind">다음</span></a>
-            </div>
-        </div>-->
-
-
-    </div>
-    </tbody>
+    <form id="questionCreate" th:action="@{/admin/question/managerQuestion/{questNum}/}" method="post">
+        <input type="hidden" name="questNum" th:value="${ questionList.questNum }">
+        <table>
+            <tr>
+                <td>글 내용</td>
+                <td>
+                    <textarea name="answerContent" rows="10"/>
+                </td>
+            </tr>
+        </table>
+        </tbody>
 
 
+        <div class="btn-bottom-area" style="text-align: right; margin-top: 10px; width: 96%;">
+
+            <button type="button" class="button button-light"
+                    th:onclick="'location.href=\'/admin/question/managerQuestion\''">취소
+            </button>
+            <input type="submit" value="수정" class="button button-light">
+
+        </div>
 
 
+        </table>
 
 
-
-
-
-    <script>
-        $('#date', '#date1').datepicker({dateFormat: 'yy-mm-dd'});
-    </script>
-
-    <script>
-        function goPost(){
-            let f = document.createElement('form');
-            f.setAttribute('method', 'post');
-            f.setAttribute('action', 'managerQuestionCreate.html');
-            document.body.appendChild(f);
-            f.submit();
-        }
-    </script>
-
+    </form>
 </div>
-
-</body>
-
 
 
 <div th:insert="/common/footer.html"></div>
@@ -155,6 +95,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
-
+</body>
 
 </html>

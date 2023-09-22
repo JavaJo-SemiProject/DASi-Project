@@ -17,12 +17,12 @@ public class AdminFaqService {
 
 
     /*FaQ 전체 목록 조회용 메서드*/
-        public List<AdminFaqDTO> adminSelectAllFaqList() {
+    public List<AdminFaqDTO> adminSelectAllFaqList() {
 
-            List<AdminFaqDTO> faqList = adminFaqMappper.adminSelectAllFaqList();
+        List<AdminFaqDTO> faqList = adminFaqMappper.adminSelectAllFaqList();
 
-            return faqList;
-        }
+        return faqList;
+    }
 
     public AdminFaqDTO adminSelectOneFaqList(int Num) {
 
@@ -38,36 +38,16 @@ public class AdminFaqService {
 
     }
 
-    public void adminFaqCreate(AdminFaqDTO createdto){
+    public void adminFaqCreate(AdminFaqDTO createdto) {
 
-            adminFaqMappper.adminFaqCreate(createdto);
+        adminFaqMappper.adminFaqCreate(createdto);
     }
-
-
 
 
     public void adminFaqDelete(int faqNum) {
 
-         adminFaqMappper.adminFaqDelete(faqNum);
+        adminFaqMappper.adminFaqDelete(faqNum);
     }
-
-
-   /* public void adminFaqUpdateRegist(AdminFaqDTO adminfaq) {
-        adminFaqMappper.adminFaqUpdateRegist(adminfaq);
-    }*/
-
-//    public AdminFaqDTO adminFaqUpdateRegist(AdminFaqDTO adminfaq) {
-//            int result = adminFaqMappper.adminFaqUpdateRegist(adminfaq);
-//
-//        }
-
-   /* public void AdminFaqDTO adminFaqUpdateRegist(AdminFaqDTO adminfaq) {
-
-            int result = adminFaqMappper.adminFaqUpdateRegist(adminfaq);
-
-        return adminfaq;
-    }*/
-
 
 
 }

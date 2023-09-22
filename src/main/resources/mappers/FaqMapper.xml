@@ -18,7 +18,7 @@
         FAQ_NUM
         ,FAQ_TITLE
         ,FAQ_CONTENT
-        FROM FAQ1
+        FROM FAQ
     </select>
 
 

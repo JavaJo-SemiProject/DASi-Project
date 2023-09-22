@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>DASi</title>
@@ -10,14 +9,28 @@
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/loader.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/loader.js"></script>
 
 </head>
 <body>
+<div class="loader-area">
+    <div class="loader">
+    </div>
+</div>
 
 <!-- header -->
 <div th:insert="/fragments/header.html"></div>
 
+<div th:insert="/fragments/modals.html"></div>
+
+
+
 <main class="Main pseudo_margin">
+
     <section class="Carousel" id="carousel" tabindex="-1">
         <h2 class="Hidden">Carousel</h2>
         <article class="Card Card--overlay Card--square" id="card-1">
@@ -25,9 +38,8 @@
                 <img class="Card__image" alt="Card image description" width="480" height="480" loading="lazy" src="/img/main/main1.jpg">
             </div>
             <div class="Card__main">
-                <h2 class="Card__heading"><a class="Card__link" href="#">다시 만나는 업사이클링,<br>
-                    더 깨끗하고 창의적인 세상을 꿈꿉니다.</a></h2>
-                <p>About Dasi</p>
+                <h2 class="Card__heading"><a class="Card__link" href="#">다시 만나는 업사이클링</a></h2>
+                <p>더 깨끗하고 창의적인 세상을 꿈꿉니다.</p>
             </div>
         </article>
         <!--/Card-->
@@ -36,7 +48,7 @@
                 <img class="Card__image" alt="Card image description" width="720" height="480" loading="lazy" src="/img/main/main2.jpg">
             </div>
             <div class="Card__main">
-                <h2 class="Card__heading"><a class="Card__link" href="#">다시 만나는 업사이클링,</a></h2>
+                <h2 class="Card__heading"><a class="Card__link" href="#">다시 만나는 업사이클링</a></h2>
                 <p>더 깨끗하고 창의적인 세상을 꿈꿉니다.</p>
             </div>
         </article>
@@ -46,7 +58,7 @@
                 <img class="Card__image" alt="Card image description" width="360" height="480" loading="lazy" src="/img/main/main3.jpg">
             </div>
             <div class="Card__main">
-                <h2 class="Card__heading"><a class="Card__link" href="#">다시 만나는 업사이클링,</a></h2>
+                <h2 class="Card__heading"><a class="Card__link" href="#">반려견을 위한<br>하나뿐인 </a></h2>
                 <p>더 깨끗하고 창의적인 세상을 꿈꿉니다.</p>
             </div>
         </article>
@@ -65,7 +77,7 @@
             <div class="Card__media">
                 <img class="Card__image" alt="Card image description" width="480" height="480" loading="lazy" src="/img/main/main5.jpg">
                 <div class="Card__main">
-                    <h2 class="Card__heading"><a class="Card__link" href="#">다시 만나는 업사이클링,</a></h2>
+                    <h2 class="Card__heading"><a class="Card__link" href="#">다시 만나는 업사이클링</a></h2>
                     <p>더 깨끗하고 창의적인 세상을 꿈꿉니다.</p>
                 </div>
             </div>
@@ -86,7 +98,7 @@
                 <img class="Card__image" alt="Card image description" width="360" height="480" loading="lazy" src="/img/main/main7.jpg">
             </div>
             <div class="Card__main">
-                <h2><a class="Card__link" href="#">P다시 만나는 업사이클링,</a></h2>
+                <h2><a class="Card__link" href="#">다시 만나는 업사이클링,</a></h2>
                 <p>더 깨끗하고 창의적인 세상을 꿈꿉니다.</p>
             </div>
         </article>
@@ -196,16 +208,15 @@
     </div>
 </div>
 
-<div th:insert="/fragments/footer.html"></div>
 
+
+<div th:insert="/fragments/footer.html"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script src="/js/header.js"></script>
 <script src="/js/carousel.js"></script>
 <script src="/js/default.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 </body>
 </html>
 
 
 <!-- 재업로드 -->
-

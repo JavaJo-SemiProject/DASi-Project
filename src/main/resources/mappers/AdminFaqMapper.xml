@@ -17,7 +17,7 @@
         FAQ_NUM
         ,FAQ_TITLE
         ,FAQ_CONTENT
-        FROM FAQ1
+        FROM FAQ
     </select>
 
     <select id="adminSelectOneFaqList" resultMap="adminFaqListMap">
@@ -25,13 +25,13 @@
         FAQ_NUM
         ,FAQ_TITLE
         ,FAQ_CONTENT
-        FROM FAQ1
+        FROM FAQ
         WHERE FAQ_NUM = #{ faqNum }
     </select>
 
 
     <update id="adminFaqUpdateRegist" >
-       UPDATE FAQ1
+       UPDATE FAQ
         SET   FAQ_TITLE = #{ faqTitle }
             ,FAQ_CONTENT = #{ faqContent }
         WHERE FAQ_NUM = #{ faqNum }
@@ -39,7 +39,7 @@
 
     <insert id="adminFaqCreate">
         INSERT
-        INTO FAQ1    (
+        INTO FAQ    (
                         FAQ_TITLE
                         ,FAQ_CONTENT
                     )
@@ -51,7 +51,7 @@
 
     <delete id="adminFaqDelete" parameterType="int">
         DELETE
-        FROM FAQ1
+        FROM FAQ
         WHERE FAQ_NUM = #{ faqNum }
     </delete>
 
