@@ -23,44 +23,41 @@
 <body>
 <div th:insert="/fragments/adminHeader.html"></div>
 
-<th:block layout:fragment="question">
-
 
     <div class="pages">
         <br>
-        <h2>1:1문의 작성</h2>
+        <h2>1:1문의</h2>
         <br>
-        <form id="questionRegistForm" th:action="@{/admin/question/questioncreate}" method="post">
-            <table class="questioncreate">
-                <input
+
+            <table class="question" th:each="question : ${ questionList }">
+                <!--<input
                         type="hidden"
                         id="id"
                         name="writerMemberNo"
-                        th:value="${ #authentication.getPrincipal().getMemberNo() }">
+                        th:value="${ #authentication.getPrincipal().getMemberNo() }">-->
                 <tr>
                     <td>문의유형</td>
-                    <td>
-                        <select class="select" style="width: 30%;">
-                            <option value="">공통</option>
-                            <option value="">주문제작</option>
-                            <option value="">결제 및 배송</option>
-                            <option value="">기타</option>
-                        </select>
-                    </td>
+                    <td th:text="${ question.qCategory }"></td>
                 </tr>
                 <tr>
                     <td>문의날짜</td>
-                    <td colspan="3"><input type="text" name="questdate"></td>
+                    <td colspan="3" th:text="${ question.questDate }"></td>
                 </tr>
                 <tr>
                     <td>제목</td>
-                    <td colspan="3"><input type="text" name="questtitle" style="rwidth:400px;"></td>
+                    <td colspan="3" th:text="${ question.questTitle }" style="rwidth:400px;"></td>
                 </tr>
                 <tr>
                     <td>문의내용</td>
-                    <td colspan="3">
-                        <textare name="questcontent" cols="60" rows="15" style="resize:none;"></textare>
-                    </td>
+                    <td colspan="3" th:text="${ question.questContent }"></td>
+                </tr>
+                <tr>
+                    <td>답변 날짜</td>
+                    <td colspan="3" th:text="${ question.answerDate }"></td>
+                </tr>
+                <tr>
+                    <td>답변 내용</td>
+                    <td colspan="3" th:text="${ question.questContent }"></td>
                 </tr>
             </table>
             <br>
@@ -71,10 +68,7 @@
                         th:onclick="'location.href=\'/content/question/question\''">취소
                 </button>
             </div>
-        </form>
-    </div>
-
-</th:block>
+     </div>
 
 <div th:insert="fragments/footer.html"></div>
 

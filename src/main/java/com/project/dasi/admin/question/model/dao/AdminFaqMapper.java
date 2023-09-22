@@ -23,5 +23,5 @@ public interface AdminFaqMapper {    /*이 이름 가진 매퍼.xml파일 찾아
 
     /*int updateFaq(AdminFaqDTO adminfaq);*/
 
-    
+
 }
