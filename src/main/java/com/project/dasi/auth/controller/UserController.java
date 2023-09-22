@@ -1,7 +1,7 @@
 package com.project.dasi.auth.controller;
 
-import com.project.dasi.auth.model.dto.UserDTO;
-import com.project.dasi.auth.model.service.UserService;
+import com.project.dasi.auth.dto.UserDTO;
+import com.project.dasi.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

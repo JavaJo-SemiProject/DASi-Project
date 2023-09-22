@@ -36,11 +36,8 @@
                                 <div class="input-group">
                                     <input id="userId" name="userId" type="text" class="input" placeholder="userId" maxlength="16" required/>
                                     <button class="button button-dark" id="idCheckButton" onClick="checkId()">중복확인</button>
-
-
                                 </div>
                             </div>
-                            <span class="input-caption" id="idChk">(영문 소문자/숫자, 4~16자)</span>
                             <span class="input-caption">(영문 소문자/숫자, 4~16자)</span>
 
 
@@ -49,7 +46,7 @@
                         <!-- id ajax 중복체크 -->
                         <script>
                             function checkId(){
-                                var userId = $('#userId').val(); //id값이 "id"인 입력란의 값을 저장
+                                var userId = $('#userId').val();
                                 $.ajax({
                                     url:'./idCheck', //Controller에서 요청 받을 주소
                                     type:'post', //POST 방식으로 전달
@@ -64,7 +61,7 @@
                                         }
                                     },
                                     error:function(){
-                                        alert("에러입니다");
+                                        alert("에러입니다.");
                                     }
                                 });
                             };
@@ -99,9 +96,11 @@
                                     null;
                                 } else if (password != "" || passwordConfirm != "") {
                                     if (password == passwordConfirm) {
+                                        $('.passwordRejected').css({'display' : 'none'});
                                         $('.passwordConfirmed').css({'display' : 'inline-block'});
                                         $('.passwordConfirmed').addClass('text-succ');
                                     } else {
+                                        $('.passwordConfirmed').css({'display' : 'none'});
                                         $('.passwordRejected').css({'display' : 'inline-block'});
                                         $('.passwordRejected').addClass('text-dg');
                                     }
@@ -121,20 +120,49 @@
                         <!--이메일 입력-->
 
                         <div class="join-form-area">
-                            <div class="join-form">
+                            <form class="join-form" role="form" method="post" th:object="${memberDTO}">
                                 <span class="input-font">E-mail*</span>
-                                <div class="input-group">
+                                <div class="input-group mb-1">
                                     <input id="email" name="email" type="text" class="input" placeholder="@를 포함한 이메일을 입력해주세요." required>
-                                    <button class="button button-dark" id="mail-Check-Btn">인증번호 발송</button>
+                                    <button class="button button-dark" onclick="sendNumber()">인증번호 발송</button>
                                 </div>
-                            </div>
-                            <div class="join-form pt-1">
-                                <div class="input-group">
-                                    <input id="emailCode" name="emailCode" type="text" class="input" placeholder="전송받은 인증번호 6자리를 입력하세요." maxlength="6" required>
-                                    <button class="button button-dark">확인</button>
+                                <div class="input-group" id="emailCodeArea" style="display: none">
+                                    <input id="emailCode" name="emailCode" type="text" class="input" placeholder="전송받은 인증번호 6자리를 입력하세요." maxlength="6" required/>
+                                    <button class="button button-dark" onclick="confirmNumber()">확인</button>
                                 </div>
-                            </div>
+                                <input type="text" id="confirm" name="confirm" value="" style="display: none">
+                            </form>
                         </div>
+
+                        <script type="text/javascript">
+                            function sendNumber(){
+                                $.ajax({
+                                    url:"/mail",
+                                    type:"post",
+                                    crossDomain: true,
+                                    headers: {  'Access-Control-Allow-Origin': 'http://The web site allowed to access' },
+                                    dataType:"json",
+                                    data:{"email" : $("#email").val()},
+                                    success: function(data){
+                                        alert("인증번호 발송");
+                                        $("#confirm").attr("value",data);
+                                        $("#emailCodeArea").css({'display' : ''});
+                                    },
+                                })
+                            }
+
+
+                            function confirmNumber(){
+                                var emailCode = $("#emailCode").val();
+                                var confirm = $("#confirm").val();
+
+                                if(emailCode == confirm){
+                                    alert("인증되었습니다.");
+                                }else{
+                                    alert("번호가 다릅니다.");
+                                }
+                            }
+                        </script>
 
                         <!--이메일 입력 끝-->
 
@@ -144,19 +172,16 @@
                                 <div class="join-form">
                                     <span class="input-font">생년월일</span>
                                     <div class="input-group">
-                                        <input id="birthDate" name="birthDate" type="text" class="input"/>
-                                        <!--<input id="birthdate" name="birthdate" type="date" value="2023-01-01" min="1950-01-01" max="2023-01-01" class="Calendar" required>-->
+                                        <input id="birthDate" name="birthDate" type="date" value="2023-01-01" min="1950-01-01" max="2023-01-01" class="Calendar" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="join-form-area" id="enterGender">
                                 <span class="input-font">성별</span>
-                                <form class="join-form" id="gender" action="" method="post">
-                                    <div>
-                                        <input type="radio" name="gender" value="man" id="man" checked><label for="man">남</label>
-                                        <input type="radio" name="gender" value="woman" id="woman"><label for="woman">여</label>
-                                    </div>
-                                </form>
+                                <select name="gender" id="gender" class="select">
+                                    <option value="man">남</option>
+                                    <option value="woman" selected>여</option>
+                                </select>
                             </div>
                         </div>
                         <!--생년월일 및 성별 끝-->
@@ -166,11 +191,11 @@
                             <span class="input-font">전화번호*</span>
                             <div class="join-form">
                                 <div class="input-group">
-                                    <input id="tel" name="tel" type="text" class="input" maxlength="11" required>
-                                    <!--<div class="hyphen">-</div>
+                                    <input id="tel" name="tel" type="text" class="input" maxlength="3" required>
+                                    <div class="hyphen">-</div>
                                     <input type="text" class="input" name="tel" maxlength="4" required>
                                     <div class="hyphen">-</div>
-                                    <input type="text" class="input" name="tel" maxlength="4" required>-->
+                                    <input type="text" class="input" name="tel" maxlength="4" required>
                                 </div>
                             </div>
                         </div>
@@ -180,10 +205,7 @@
                             function addressFinder() {
                                 new daum.Postcode({
                                     oncomplete: function(data) {
-                                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                                        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                                         var addr = ''; // 주소 변수
                                         var extraAddr = ''; // 참고항목 변수
 
@@ -206,21 +228,21 @@
                                                 extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                                             }
                                             // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                                            /*if(extraAddr !== ''){
+                                            if(extraAddr !== ''){
                                                 extraAddr = ' (' + extraAddr + ')';
-                                            }*/
+                                            }
                                             // 조합된 참고항목을 해당 필드에 넣는다.
-                                            //document.getElementById("sample6_extraAddress").value = extraAddr;
+                                            document.getElementById("addressDetail").value = extraAddr;
 
-                                        } /*else {
-                                            document.getElementById("sample6_extraAddress").value = '';
-                                        }*/
+                                        } else {
+                                            document.getElementById("addressDetail").value = '';
+                                        }
 
                                         // 우편번호와 주소 정보를 해당 필드에 넣는다.
                                         document.getElementById('zipCode').value = data.zonecode;
-                                        document.getElementById("address").value = addr;
+                                        document.getElementById('address').value = addr;
                                         // 커서를 상세주소 필드로 이동한다.
-                                        document.getElementById("addressDetail").focus();
+                                        document.getElementById('addressDetail').focus();
                                     }
                                 }).open();
                             }
@@ -230,7 +252,7 @@
                             <div class="join-form">
                                 <span class="input-font">우편번호*</span>
                                 <div class="input-group">
-                                    <input type="text" class="input" id="zipCode" placeholder="우편번호">
+                                    <input type="text" class="input" id="zipCode" name="zipCode" placeholder="우편번호">
                                     <input type="button" class="button button-dark" onclick="addressFinder()" value="우편번호 찾기"><br>
                                 </div>
 
@@ -249,12 +271,12 @@
 
 
                         <div class="join-form-area">
-                            <form class="join-form" id="entedRestAddrForm" action="" method="post">
+                            <div class="join-form" id="entedRestAddrForm" action="" method="post">
                                 <span class="input-font">상세주소</span>
                                 <div class="input-group">
-                                    <input id="addressDetail" type="text" class="input" placeholder="상세주소">
+                                    <input id="addressDetail" name="addressDetail" type="text" class="input" placeholder="상세주소">
                                 </div>
-                            </form>
+                            </div>
                         </div>
 
                         <!--주소 입력 끝-->

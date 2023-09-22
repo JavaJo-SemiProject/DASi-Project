@@ -1,6 +1,6 @@
-package com.project.dasi.auth.model.dao;
+package com.project.dasi.auth.dao;
 
-import com.project.dasi.auth.model.dto.UserDTO;
+import com.project.dasi.auth.dto.UserDTO;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
