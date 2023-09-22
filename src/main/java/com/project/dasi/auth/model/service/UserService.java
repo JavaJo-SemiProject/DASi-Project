@@ -1,10 +1,11 @@
-package com.project.dasi.auth.service;
+package com.project.dasi.auth.model.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+
 import com.project.dasi.admin.memberInfo.model.dto.SearchDTO;
-import com.project.dasi.auth.dao.UserMapper;
-import com.project.dasi.auth.dto.UserDTO;
+import com.project.dasi.auth.model.dao.UserMapper;
+import com.project.dasi.auth.model.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
