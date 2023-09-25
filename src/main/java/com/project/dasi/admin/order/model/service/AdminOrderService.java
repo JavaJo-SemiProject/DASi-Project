@@ -19,7 +19,6 @@ public class AdminOrderService implements AdminOrderSer {
 
 
     @Override
-    @Transactional
     public List<OrderListDTO> selectAllOrderList() {
         List<OrderListDTO> orderList = adminOrderMapper.selectAllOrderList();
 
@@ -29,7 +28,6 @@ public class AdminOrderService implements AdminOrderSer {
     }
 
     @Override
-    @Transactional
     public OrderListDTO selectOrderDetail(String orderId) {
         OrderListDTO orderDetail = null;
 

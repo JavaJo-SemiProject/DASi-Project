@@ -5,47 +5,39 @@
 <mapper namespace="com.project.dasi.order.model.dao.OrderMapper">
 
     <insert id="insertOrderContent">
-        INSERT INTO ORDER_LIST1 (
-        USER_ID
-        ,ORDER_DATE
-        ,STATUS
+        INSERT INTO ORDER_LIST (
+        USER_CODE
+        ,CATEGORY_CODE
         ,SIZE_INFO
         ,PHRASE
         ,REQ_ISSUES
-        ,ORDER_FILES
         )
         VALUES (
-        '3'
-        ,DATE_FORMAT(now(),'%Y-%m-%d %H:%i:%s')
-        ,'주문요청'
+        #{ user }
+        ,#{ categoryCode }
         ,#{ sizeInfo }
         ,#{ phrase }
         ,#{ reqIssues }
-        ,#{ orderFileList }
         )
-
-        <selectKey keyProperty="orderId" resultType="String" order="AFTER">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
-
-
 
     </insert>
 
     <insert id="insertOrderFile">
-        INSERT INTO (
-        ORDER_ID
-        , ORIGINAL_NAME
-        , SAVED_NAME
-        , SAVE_PATH
-        , UPLOAD_PATH
+        <if test="originName != null">
+        INSERT INTO ORDER_FILES (
+            ORDER_ID
+            ,ORIGIN_NAME
+            ,SAVED_NAME
+            ,SAVED_PATH
+            ,UPLOAD_PATH
         )
         VALUES  (
-        #{ orderId }
-        , #{ originalName }
-        , #{ savedName }
-        , #{ savePath }
-        , #{ uploadPath }
+            (SELECT ORDER_ID FROM ORDER_LIST WHERE ORDER_ID = #{ orderId })
+            ,#{ originName }
+            , #{ savedName }
+            , #{ savePath }
+            , #{ uploadPath }
         )
+        </if>
     </insert>
 </mapper>
