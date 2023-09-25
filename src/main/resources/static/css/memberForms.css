@@ -1,0 +1,40 @@
+.brand-lg{
+    font-size: 5rem;
+    color: var(--color-dark);
+    font-weight: 900;
+}
+
+.member-area-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-area{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    width: 40vw;
+    margin-bottom:1.5rem
+}
+
+.member-area2{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    width: 40vw;
+    margin-bottom:1.5rem
+}
+
+.member-area-sm{
+    width: 25vw;
+}
+
+.member-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    width: 40vw;
+}
