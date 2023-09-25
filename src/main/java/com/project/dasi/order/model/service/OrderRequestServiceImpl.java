@@ -1,5 +1,6 @@
 package com.project.dasi.order.model.service;
 
+import com.project.dasi.auth.model.dto.UserDTO;
 import com.project.dasi.order.model.dao.OrderMapper;
 import com.project.dasi.order.model.dto.OrderFileDTO;
 import com.project.dasi.order.model.dto.OrderListDTO;
@@ -27,14 +28,14 @@ public class OrderRequestServiceImpl implements OrderService {
     @Override
     public void registOrder(OrderListDTO order) {
 
-        /*int result = 0;
+        int result = 0;
 
         int orderResult = orderMapper.insertOrderContent(order);
 
         List<OrderFileDTO> orderFileList = order.getOrderFileList();
 
         for (int i = 0; i < orderFileList.size(); i++) {
-            orderFileList.get(i).setOrderId(order.getOrderId());
+            orderFileList.get(i).getOrderId();
         }
 
         int orderFileResult = 0;
@@ -44,7 +45,7 @@ public class OrderRequestServiceImpl implements OrderService {
 
         if (!(orderResult > 0 && orderFileResult == orderFileList.size())) {
             throw new RuntimeException("주문 등록에 실패하셨습니다.");
-        }*/
+        }
 
 
     }
@@ -55,7 +56,7 @@ public class OrderRequestServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderListDTO selectMyOrderDetail(String userId) {
+    public OrderListDTO selectMyOrderDetail(UserDTO userId) {
         return null;
     }
 }

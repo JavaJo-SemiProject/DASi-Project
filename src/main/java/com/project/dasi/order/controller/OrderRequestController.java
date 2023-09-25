@@ -34,17 +34,6 @@ public class OrderRequestController {
         this.orderRequestServiceImpl = orderRequestServiceImpl;
     }
 
-   /* @GetMapping("/orderListTest")
-    public ModelAndView selectAllThumbnailList(ModelAndView mv) {
-
-        List<OrderListDTO> orderList = OrderRequestServiceImpl.selectAllOrderList();
-
-        mv.addObject("orderList", orderList);
-
-        mv.setViewName("content/order/orderListTest");
-
-        return mv;
-    }*/
 
     @GetMapping("/orderGuidePage")
     public String goOrderGuidePage(){
@@ -172,7 +161,6 @@ public class OrderRequestController {
 
         rttr.addFlashAttribute("message","주문 요청이 성공하셨습니다.");
 
-        /*return "redirect:/content/mypage/myOrderList";*/
         return "redirect:/admin/order/adminOrderList";
     }
 

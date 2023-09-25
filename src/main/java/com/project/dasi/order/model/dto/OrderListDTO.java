@@ -1,7 +1,7 @@
 package com.project.dasi.order.model.dto;
 
 
-import com.project.dasi.admin.memberInfo.model.dto.MemberDTO;
+import com.project.dasi.auth.model.dto.UserDTO;
 import lombok.*;
 
 import java.util.List;
@@ -12,8 +12,8 @@ import java.util.List;
 @Setter
 @ToString
 public class OrderListDTO implements java.io.Serializable{
-    private String orderId;
-    private MemberDTO userId;
+    private int orderId;
+    private UserDTO userCode;
     private StatusDTO statusNum;
     private String payNum;
     private String cancelContent;
@@ -24,4 +24,7 @@ public class OrderListDTO implements java.io.Serializable{
     private int orderPrice;
     private List<OrderFileDTO> orderFileList;
     private PCategoryDTO productCategory;
+    private String receiver;
+    private String recePhone;
+    private String invoice;
 }

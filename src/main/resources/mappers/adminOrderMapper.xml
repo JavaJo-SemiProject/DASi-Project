@@ -13,17 +13,17 @@
         <result property="phrase" column="PHRASE"/>
         <result property="reqIssues" column="REQ_ISSUES"/>
         <result property="orderPrice" column="ORDER_PRICE"/>
-        <association property="userId" resultMap="memberResultMap"/>
+        <association property="userCode" resultMap="memberResultMap"/>
         <collection property="orderFileList" resultMap="filesResultMap"/>
         <collection property="statusNum" resultMap="statusResultMap"/>
-        <collection property="categoyCode" resultMap="pCategoryResultMap"/>
+        <collection property="productCategory" resultMap="pCategoryResultMap"/>
     </resultMap>
 
-    <resultMap id="memberResultMap" type="com.project.dasi.admin.memberInfo.model.dto.MemberDTO">
+    <resultMap id="memberResultMap" type="com.project.dasi.auth.model.dto.UserDTO">
         <id property="userCode" column="USER_CODE"/>
         <result property="userId" column="USER_ID"/>
         <result property="userPwd" column="USER_PWD"/>
-        <result property="userName" column="USER_NAME"/>
+        <result property="name" column="USER_NAME"/>
         <result property="birthDate" column="BIRTH_DATE"/>
         <result property="address" column="ADDRESS"/>
         <result property="email" column="EMAIL"/>
@@ -38,7 +38,7 @@
         <result property="savedName" column="SAVED_NAME"/>
         <result property="uploadPath" column="UPLOAD_PATH"/>
         <result property="savePath" column="SAVED_PATH"/>
-        <association property="orderId" resultMap="orderResult"/>
+        <collection property="orderId" resultMap="orderResult"/>
     </resultMap>
 
     <resultMap id="statusResultMap" type="com.project.dasi.order.model.dto.StatusDTO">
@@ -50,6 +50,7 @@
         SELECT
         A.ORDER_ID
         ,B.USER_ID
+        ,B.USER_CODE
         ,A.ORDER_DATE
         ,A.PAY_NUM
         ,D.STATUS_NUM
@@ -86,23 +87,31 @@
         ,E.CATEGORY_CODE
         ,E.CATEGORY_NAME
         FROM ORDER_LIST A
-        JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
-        JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)
-        JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
-        JOIN PRODUCT_CATEGORY E ON (A.CATEGORY_CODE = E.CATEGORY_CODE)
+        LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
+        LEFT JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)
+        LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+        LEFT JOIN PRODUCT_CATEGORY E ON (A.CATEGORY_CODE = E.CATEGORY_CODE)
         <if test="#{orderId} != null">
         <where>
             A.ORDER_ID = #{orderId}
         </where>
         </if>
     </select>
-    
+
 
     <update id="editStatus">
-        UPDATE ORDER_LIST
-        SET CANCEL_CONTENT = #{ cancelContent }
-        ,ORDER_PRICE = #{ orderPrice }
-        ,STATUS_NUM = #{ statusNum }
+        UPDATE ORDER_LIST A
+        <set>
+            <if test="#{cancelContent} != null"></if>
+            A.CANCEL_CONTENT = #{ cancelContent }
+            <if test="#{orderPrice} != null or#{orderPrice} != 0 ">
+                ,A.ORDER_PRICE = #{ orderPrice }
+            </if>
+            <if test="#{statusNum} != '10'">
+                ,D.STATUS_NUM = #{ statusNum }
+            </if>
+        </set>
+        LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
         WHERE ORDER_ID = #{ orderId }
     </update>
 
