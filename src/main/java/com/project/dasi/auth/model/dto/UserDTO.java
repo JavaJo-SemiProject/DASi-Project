@@ -48,14 +48,7 @@ public class UserDTO implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-
-        /*for(String role : role.split(",")){
-            authorities.add(new SimpleGrantedAuthority(role));
-        }*/
-
-        if(this.role.length() > 0) {
-            authorities.add(new SimpleGrantedAuthority(this.role));
-        }
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
         return authorities;
     }
