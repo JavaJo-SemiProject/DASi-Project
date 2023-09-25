@@ -36,9 +36,9 @@
                         <tr th:each="order : ${orderList}">
                             <td th:text="${order.orderId}"></td>
                             <td th:text="${order.orderDate}"></td>
-                            <td th:text="${order.userId.userId}"></td>
-                            <td><th:block th:if="${order.payNum == ''}"> <i class="fa fa-remove"></i></th:block>
-                                <th:block th:if="${order.payNum != ''}"> <i class="fa fa-check"></i></th:block></td>
+                            <td th:text="${order.userCode.userId}"></td>
+                            <td><th:block th:if="${order.payNum == '' or order.payNum == null}"> <i class="fa fa-remove"></i></th:block>
+                                <th:block th:if="${order.payNum != '' and order.payNum != null}"> <i class="fa fa-check"></i></th:block></td>
                             <td><button class="button button-dark"><strong th:text="${order.statusNum.status}"></strong></button></td>
                           </tr>
                     </tbody>

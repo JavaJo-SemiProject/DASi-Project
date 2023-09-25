@@ -6,18 +6,16 @@
 
     <insert id="insertOrderContent">
         INSERT INTO ORDER_LIST(
-        USER_ID
-        ,ORDER_DATE
-        ,STATUS
+        USER_CODE
         ,SIZE_INFO
         ,PHRASE
         ,REQ_ISSUES
+        ,CATEGORY_CODE
         ,ORDER_FILES
         )
         VALUES (
-        '3'
+        #{ usercode }
         ,DATE_FORMAT(now(),'%Y-%m-%d %H:%i:%s')
-        ,'주문요청'
         ,#{ sizeInfo }
         ,#{ phrase }
         ,#{ reqIssues }
@@ -27,7 +25,6 @@
         <selectKey keyProperty="orderId" resultType="String" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-
 
 
     </insert>
@@ -47,5 +44,6 @@
         , #{ savePath }
         , #{ uploadPath }
         )
+        LEFT JOIN ON
     </insert>
 </mapper>

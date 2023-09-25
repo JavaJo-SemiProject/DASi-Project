@@ -1,15 +1,16 @@
 package com.project.dasi.order.model.service;
 
+import com.project.dasi.auth.model.dto.UserDTO;
 import com.project.dasi.order.model.dto.OrderListDTO;
 
 import java.util.List;
 
 public interface OrderService {
 
-    public List<OrderListDTO> selectMyOrderList();
+    List<OrderListDTO> selectMyOrderList();
 
-    public OrderListDTO selectMyOrderDetail(String userId);
+    OrderListDTO selectMyOrderDetail(UserDTO userId);
 
-    public void registOrder(OrderListDTO orderList);
+    void registOrder(OrderListDTO orderList);
 
 }

@@ -41,14 +41,14 @@
         <h5 style="margin-bottom: 5px;">주문 정보</h5>
         <table>
             <tr>
-                <th name="orderDate" class="orderCol" style="text-align: center;">주문 일자</th>
+                <th class="orderCol" style="text-align: center;">주문 일자</th>
                 <td th:text="${order.orderDate}"></td>
                 <th class="orderCol" style="text-align: center;">주문 ID</th>
                 <td th:text="${order.orderId}"></td>
                 <th class="orderCol" style="text-align: center;">회원 ID</th>
-                <td th:text="${order.userId.userId}"></td>
+                <td th:text="${order.userCode.userId}"></td>
                 <th class="orderCol" style="text-align: center;">회원 이름</th>
-                <td th:text="${order.userId.userName}"></td>
+                <td th:text="${order.userCode.name}"></td>
             </tr>
         </table>
 
@@ -141,7 +141,7 @@
                 <div class="item"><h5 style="margin-bottom: 5px;">취소 사유</h5></div>
 
                 <textarea name="cancelContent" th:text="${order.cancelContent}" style="width: 100%; height: 10vh;"
-                          th:readonly="${order.cancelContent} != ''"></textarea>
+                          th:readonly="${order.cancelContent} != null"></textarea>
             </div>
         </div>
 
