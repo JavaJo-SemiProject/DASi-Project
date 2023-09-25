@@ -1,6 +1,8 @@
-package com.project.dasi.auth.service;
+package com.project.dasi.auth.model.service;
 
+import com.project.dasi.auth.model.dao.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ public class MailService {
     private final JavaMailSender javaMailSender;
     private static final String senderEmail= "projectdasi2023@gmail.com";
     private static int number;
+
+    private final UserMapper userMapper;
 
     public static void createNumber(){
         number = (int)(Math.random() * (90000)) + 100000;// (int) Math.random() * (최댓값-최소값+1) + 최소값
@@ -39,10 +43,15 @@ public class MailService {
         return message;
     }
 
-    public int sendMail(String mail){
-        MimeMessage message = CreateMail(mail);
+    public int sendMail(String email){
+        MimeMessage message = CreateMail(email);
         javaMailSender.send(message);
 
         return number;
     }
+
+
+
+
+
 }

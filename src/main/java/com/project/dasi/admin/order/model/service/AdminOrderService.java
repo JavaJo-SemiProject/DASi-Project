@@ -2,6 +2,7 @@ package com.project.dasi.admin.order.model.service;
 
 import com.project.dasi.admin.order.model.dao.AdminOrderMapper;
 import com.project.dasi.order.model.dto.OrderListDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

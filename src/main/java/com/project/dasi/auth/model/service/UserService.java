@@ -1,10 +1,11 @@
-package com.project.dasi.auth.service;
+package com.project.dasi.auth.model.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+
 import com.project.dasi.admin.memberInfo.model.dto.SearchDTO;
-import com.project.dasi.auth.dao.UserMapper;
-import com.project.dasi.auth.dto.UserDTO;
+import com.project.dasi.auth.model.dao.UserMapper;
+import com.project.dasi.auth.model.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +13,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -24,6 +27,7 @@ import java.util.Map;
 public class UserService implements UserDetailsService{
 
     private final UserMapper userMapper;
+    private PasswordEncoder passwordEncoder;
 
     @Transactional
     public void registMember(UserDTO member){
@@ -50,6 +54,8 @@ public class UserService implements UserDetailsService{
 
     @Transactional
     public void modifyMember(UserDTO member) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
         userMapper.modifyMember(member);
     }
 
@@ -67,6 +73,27 @@ public class UserService implements UserDetailsService{
         int cnt = userMapper.idCheck(userId);
         System.out.println("cnt: " + cnt);
         return cnt;
+    }
+
+    public int emailCheck(String email) {
+
+        int cnt = userMapper.emailCheck(email);
+        System.out.println("cnt: " + cnt);
+        return cnt;
+    }
+
+    public Integer idAndEmailCheck(String userId, String email) {
+
+        Integer cnt = userMapper.idAndEmailCheck(userId, email);
+        System.out.println("cnt: " + cnt);
+        return cnt;
+    }
+
+    @Transactional
+    public void modifyPassword(UserDTO member) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
+        userMapper.modifyPassword(member);
     }
 
 }

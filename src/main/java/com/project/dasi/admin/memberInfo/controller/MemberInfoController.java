@@ -2,8 +2,8 @@ package com.project.dasi.admin.memberInfo.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.project.dasi.admin.memberInfo.model.dto.SearchDTO;
-import com.project.dasi.auth.dto.UserDTO;
-import com.project.dasi.auth.service.UserService;
+import com.project.dasi.auth.model.dto.UserDTO;
+import com.project.dasi.auth.model.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +45,8 @@ public class MemberInfoController {
         model.addAttribute("search", search);
         return "admin/memberInfo/memberSearch";
     }
-    @GetMapping("/memberModify")
+
+    /*@GetMapping("/memberModify")
     public void goMemberModify() {
     }
     @PostMapping("memberModify")
@@ -53,8 +54,8 @@ public class MemberInfoController {
 
         userService.modifyMember(member);
 
-        return "redirect:/admin/memberInfo/memberList";
-    }
+        return "redirect:/admin/memberInfo/memberSearch";
+    }*/
 
     @GetMapping("/memberDelete")
     public void goMemberDelete() {
@@ -64,7 +65,9 @@ public class MemberInfoController {
 
         userService.deleteMember(parameter);
 
-        return "redirect:/admin/memberInfo/memberList";
+        return "redirect:/admin/memberInfo/memberSearch";
     }
+
+
 
 }

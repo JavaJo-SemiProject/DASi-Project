@@ -20,13 +20,13 @@
         <h3>회원 정보 조회</h3>
         <div class="items_container ic4">
             <form action="/admin/memberInfo/memberSearch" method="">
-                <button type="submit" class="button button-light">전체 회원 조회</button>
+                <button type="submit" class="button button-light w-100">전체 회원 조회</button>
             </form>
 
-            <button onclick="location.href='memberRegist'" class="button button-light">신규 회원 등록</button>
+            <button onclick="location.href='/content/member/signup'" class="button button-light">신규 회원 등록</button>
             <div>
                 <form action="/admin/memberInfo/memberSearch" method="">
-                    <div class="items_container ic3 mb-1">
+                    <div class="items_container ic2 mb-1">
 
                         <div>
                             <select class="select" name="keyword" id="keyword">
@@ -40,10 +40,8 @@
                                 <option value="joinDate">가입일</option>
                             </select>
                         </div>
-                        <div>
+                        <div class="input-group">
                             <input type="text" id="search" name="search" class="input">
-                        </div>
-                        <div>
                             <button type="submit" class="button-dark button">검색</button>
                         </div>
 

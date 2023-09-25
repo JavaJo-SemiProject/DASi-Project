@@ -1,4 +1,4 @@
-package com.project.dasi.auth.dto;
+package com.project.dasi.auth.model.dto;
 
 public class UserAuthDTO {
     private String authCode;

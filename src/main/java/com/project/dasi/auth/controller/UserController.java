@@ -1,12 +1,17 @@
 package com.project.dasi.auth.controller;
 
-import com.project.dasi.auth.dto.UserDTO;
-import com.project.dasi.auth.service.UserService;
+import com.github.pagehelper.PageInfo;
+import com.project.dasi.admin.memberInfo.model.dto.SearchDTO;
+import com.project.dasi.auth.model.dto.UserDTO;
+import com.project.dasi.auth.model.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RequestMapping("/content/member")
 @Controller
@@ -14,16 +19,14 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
-    /**
-     * 로그인 폼
-     * @return
-     */
+    private PasswordEncoder passwordEncoder;
+
+    private UserDTO userDTO;
 
     @GetMapping("/login")
     public String login(){
         return "content/member/login";
     }
-
 
     @PostMapping("login")
     public String loginPost(){
@@ -38,6 +41,16 @@ public class UserController {
     @GetMapping("/fail")
     public String accessDenied() {
         return "content/member/fail";
+    }
+
+    @GetMapping("/findId")
+    public String goFindId() {
+        return "content/member/findId";
+    }
+
+    @GetMapping("/findPw")
+    public String goFindPw() {
+        return "content/member/findPw";
     }
 
     @PostMapping("signup")
@@ -58,10 +71,47 @@ public class UserController {
     @PostMapping("/idCheck")
     @ResponseBody
     public int idCheck(@RequestParam("userId") String userId) {
-
         int cnt = userService.idCheck(userId);
         return cnt;
 
     }
+
+    @PostMapping("/emailCheck")
+    @ResponseBody
+    public int emailCheck(@RequestParam("email") String email) {
+        int cnt = userService.emailCheck(email);
+        return cnt;
+
+    }
+
+    @PostMapping("/idAndEmailCheck")
+    @ResponseBody
+    public Integer idAndEmailCheck(
+                               @RequestParam(required = true, value = "userId") String userId,
+                               @RequestParam(required = true, value = "email") String email) {
+        Integer cnt = userService.idAndEmailCheck(userId, email);
+        return cnt;
+
+    }
+
+
+    @PostMapping("/findIdResult")
+    public String searchMember(@ModelAttribute SearchDTO search,
+                               @RequestParam(required = false, defaultValue = "1") int pageNum, Model model) throws Exception {
+        PageInfo<UserDTO> p = new PageInfo<>(userService.searchMember(pageNum, search), 10);
+        model.addAttribute("users", p);
+        System.out.println(search);
+        model.addAttribute("search", search);
+        return "content/member/findIdResult";
+    }
+
+    @PostMapping("findPw")
+    public String modifyPassword(UserDTO member) {
+        userService.modifyPassword(member);
+
+        return "redirect:/content/member/login";
+    }
+
+
 
 }

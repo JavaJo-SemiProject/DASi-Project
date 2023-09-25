@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아이디 찾기</title>
-    <script>(()=>{const d=document.documentElement;d.classList.remove("Noscript"),d.classList.add("Script")})();</script>
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/memberForms.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <!-- header -->
@@ -18,50 +19,112 @@
 <div class="wrap">
     <div class="page pseudo_padding-2">
 
-            <div class="item-container ic1">
-                <div class="member-title text-c">
-                    <h3>
-                        <a th:href="@{/}" class="brand-lg">DASi</a>
-                    </h3>
+        <div class="item-container ic1">
+            <div class="member-title text-c">
+                <h3>
+                    <a th:href="@{/}" class="brand-lg">DASi</a>
+                </h3>
+            </div>
+
+            <div class="member-area-wrapper"><!--find시작-->
+                <div class="member-area member-area-sm">
+                    <a href="findId">
+                        <button class="button button-dark w-100">아이디 찾기</button>
+                    </a>
+                    <a href="findPw">
+                        <button class="button button-light w-100">비밀번호 찾기</button>
+                    </a>
                 </div>
+                <hr>
+                <div class="member-area2">
 
-                <div class="member-area-wrapper"><!--find시작-->
-                    <div class="member-area member-area-sm">
-                        <a href="findId">
-                            <button class="button button-dark w-100">아이디 찾기</button>
-                        </a>
-                        <a href="findPw">
-                            <button class="button button-light w-100">비밀번호 찾기</button>
-                        </a>
-                    </div>
-                    <hr>
-                    <div class="member-area">
+                    <!--이메일 입력-->
 
-                        <div class="member-form">
-                            <div class="input-form-area">
-                                <form class="input-form" id="findIdForm" action="" method="post">
-                                    <div class="input-group">
-                                        <input class="input" placeholder="가입 당시 입력하신 메일 주소를 입력해주세요.">
-                                        <button class="button button-dark">전송</button>
-                                    </div>
-                                </form>
-                                <form class="input-form" id="findIdFormCode" action="" method="post">
-                                    <span class="input-font"></span>
-                                    <div class="input-group">
-                                        <input class="input" placeholder="이메일로 받으신 6자리 인증번호를 입력하세요." maxlength="6">
-                                        <button class="button button-dark">확인</button>
-                                    </div>
-                                    <button class="button button-dark mt-1" type="submit">아이디 찾기</button>
-                                </form>
+                    <div class="member-form-area">
+                        <form action="" class="member-form" role="form" method="post" th:object="${userDTO}">
+
+
+                            <span class="input-font">E-mail*</span>
+                            <div class="input-group mb-1">
+                                <input id="email" name="email" type="text" class="input" placeholder="@를 포함한 이메일을 입력해주세요." required>
+                                <button type="button" class="button button-dark" onclick="sendNumber()">인증번호 발송</button>
                             </div>
-                        </div><!--mail끝-->
-                    </div>
-                </div>
-                <!--find끝-->
-            </div><!--search끝-->
+                            <div class="input-group" id="emailCodeArea" style="display: none">
+                                <input id="emailCode" name="emailCode" type="text" class="input" placeholder="전송받은 인증번호 6자리를 입력하세요." maxlength="6" required/>
+                                <button type="button" class="button button-dark" onclick="confirmNumber()">확인</button>
+                            </div>
+                            <input type="hidden" id="confirm" name="confirm" value="">
+                        </form>
+                        <form action="findIdResult" method="post" id="findIdArea">
+                            <div class="items_container ic1 mb-1">
 
-    </div>
+                                <div style="display: none">
+                                    <select class="select" name="keyword" id="keyword">
+                                        <option value="email" selected>이메일</option>
+                                    </select>
+                                    <input type="text" id="search" name="search" class="input" value="">
+                                </div>
+
+                                <div class="mt-1">
+                                    <button type="submit" class="button-dark button w-100" id="findId" style="display: none">ID찾기</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <script type="text/javascript">
+
+                        $("#email").change(function(){
+                            $('#search').val($(this).val());
+                        });
+
+                        function sendNumber(){
+                            $.ajax({
+                                url:"/mail",
+                                type:"post",
+                                crossDomain: true,
+                                headers: {  'Access-Control-Allow-Origin': 'http://The web site allowed to access' },
+                                dataType:"json",
+                                data:{"email" : $("#email").val()},
+                                success: function(data){
+                                    alert("인증번호 발송");
+
+                                    $("#confirm").attr("value",data);
+                                    $("#emailCodeArea").css({'display' : ''});
+
+                                },
+                            })
+                        }
+
+
+                        function confirmNumber(){
+                            var emailCode = $("#emailCode").val();
+                            var confirm = $("#confirm").val();
+
+                            if(emailCode == confirm){
+                                alert("인증되었습니다.");
+                                $("#findId").css({'display' : ''});
+                            }else{
+                                alert("번호가 다릅니다.");
+                            }
+                        }
+                    </script>
+
+                    <!--이메일 입력 끝-->
+
+
+
+
+
+                </div><!--mail끝-->
+            </div>
+        </div>
+        <!--find끝-->
+    </div><!--search끝-->
+
 </div>
+
 
 
 
@@ -76,3 +139,4 @@
 
 </body>
 </html>
+

@@ -20,6 +20,59 @@
 </div>
 <div th:insert="fragments/header.html"></div>
 
+<script>
+    $(document).ready(function(){
+        var key = getCookie("RememberIdCookie"); //user1
+        if(key!=""){
+            $("#userId").val(key);
+        }
+
+        if($("#userId").val() != ""){
+            $("#idSaveCheck").attr("checked", true);
+        }
+
+        $("#RememberId").change(function(){
+            if($("#RememberId").is(":checked")){
+                setCookie("RememberIdCookie", $("#userId").val(), 7);
+            }else{
+                deleteCookie("RememberIdCookie");
+            }
+        });
+
+        $("#userId").keyup(function(){
+            if($("#RememberId").is(":checked")){
+                setCookie("RememberIdCookie", $("#userId").val(), 7);
+            }
+        });
+    });
+    function setCookie(cookieName, value, exdays){
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + exdays);
+        var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+        document.cookie = cookieName + "=" + cookieValue;
+    }
+
+    function deleteCookie(cookieName){
+        var expireDate = new Date();
+        expireDate.setDate(expireDate.getDate() - 1);
+        document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+    }
+
+    function getCookie(cookieName) {
+        cookieName = cookieName + '=';
+        var cookieData = document.cookie;
+        var start = cookieData.indexOf(cookieName);
+        var cookieValue = '';
+        if(start != -1){
+            start += cookieName.length;
+            var end = cookieData.indexOf(';', start);
+            if(end == -1)end = cookieData.length;
+            cookieValue = cookieData.substring(start, end);
+        }
+        return unescape(cookieValue);
+    }
+</script>
+
 <div class="wrap">
     <div class="page pseudo_padding-2">
 
@@ -42,17 +95,17 @@
                                 <div class="item">
                                     <label for="userId" style="display: none">id</label>
                                     <input class="input" type="text" id="userId" placeholder="userId"
-                                           name="userId">
+                                           name="userId" autocomplete="off">
                                 </div>
 
                                 <div class="item">
                                     <label for="password" style="display: none">pw</label>
                                     <input class="input" type="password" id="password" placeholder="password"
-                                           name="password">
+                                           name="password" autocomplete="off">
                                 </div>
                                 <div>
                                     <div class="checkBox">
-                                        <input type="checkbox" id="remember" value="">아이디 저장하기
+                                        <input type="checkbox" id="RememberId" value="" checked>아이디 저장하기
                                     </div>
                                 </div>
                                 <div class="items_container ic2 pt-1">
@@ -60,6 +113,7 @@
                                     <a th:href="@{signup}" class="button button-dark">회원가입</a>
                                     <button class="button button-light" type="submit">로그인</button>
                                 </div>
+                                <a href="findId"><span class="input-text">ID / 비밀번호를 잊어버리셨나요?</span></a>
                             </form>
 
 

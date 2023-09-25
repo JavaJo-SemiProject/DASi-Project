@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/content/product")
 public class ProductController {
 
-    @GetMapping("/product")
-    public void goPortfolio() {}
+    /*@GetMapping("/product")
+    public void goProduct() {}
     @GetMapping("/productDetail")
-    public void goPortfolioDetail() {}
+    public void goProductDetail() {}*/
 }
 
