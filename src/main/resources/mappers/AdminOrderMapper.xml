@@ -18,7 +18,7 @@
         <collection property="statusNum" resultMap="statusResultMap"/>
     </resultMap>
 
-    <resultMap id="memberResultMap" type="com.project.dasi.admin.memberInfo.model.dto.MemberDTO">
+    <resultMap id="memberResultMap" type="com.project.dasi.auth.model.dto.UserDTO">
         <id property="userCode" column="USER_CODE"/>
         <result property="userId" column="USER_ID"/>
         <result property="userPwd" column="USER_PWD"/>
