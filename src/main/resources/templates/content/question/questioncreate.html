@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>questioncreate</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/faq.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+<body>
+<div th:insert="/fragments/adminHeader.html"></div>
+
+<!--페이지 시작-->
+
+
+<div class="pages">
+    <br>
+    <h2>1:1문의 작성</h2>
+    <br>
+    <form name="questionRegistForm" th:action="@{/admin/question/questioncreate}" method="post">
+        <input type="text" name="userCode" th:value="${#authentication.getPrincipal().userCode}">
+
+        <table>
+            <tr>
+                <td>문의유형</td>
+                <td>
+                    <select id="qcateCode" name="qcateCode" style="width: 30%;">
+                        <option value="">선택해주세요</option>
+                        <option value="0">공통</option>
+                        <option value="1">주문제작</option>
+                        <option value="2">결제 및 배송</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td colspan="3"><input type="text" name="questTitle" id="questTitle" style="rwidth:400px;"></td>
+            </tr>
+            <tr>
+                <td>문의내용</td>
+                <td colspan="3">
+                        <textarea name="questContent" id="questContent" cols="60" rows="15"
+                                  style="resize:none;"></textarea>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div class="btn-bottom-area">
+            <button type="submit" class="button button-dark">등록</button>
+            <button type="reset" class="button button-light">작성내용 되돌리기</button>
+            <button type="button" class="button button-light"
+                    th:onclick="'location.href=\'/content/question/question\''">취소
+            </button>
+        </div>
+    </form>
+</div>
+
+<div th:insert="fragments/footer.html"></div>
+
+
+<script>
+    $("#qcategory options:selected").val()    /*선택되면, 거기에 해당되는 밸류를 넘겨라. 그래서 #{ qcategory : 주문제작 } 이렇게 쿼리문에서 꺼내쓸 수 있다. QCATEGORY라는 컬럼이 있다. 여기서 name=  으로 지정한거랑, dto에서의 QCATEGORY 컬럼을 변수로 지정한 그거랑 똑같아야함. 찾아들어가야하니까*/
+</script>
+
+
+<script src="js/header.js"></script>
+<script src="js/carousel.js"></script>
+<script src="js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+
+</body>
+</html>
