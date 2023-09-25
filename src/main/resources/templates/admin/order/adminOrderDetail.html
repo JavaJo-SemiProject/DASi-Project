@@ -37,6 +37,32 @@
 
         <hr>
         <h5 style="margin-bottom: 5px;">요청 이미지</h5>
+       <table class="detail">
+            <tr>
+                <th:block th:if="${ order.orderFileList.size() >= 2 }">
+               <td width="330px">
+                        <th:block th:if="${ order.orderFileList.size() >= 1 }">
+                            <img id="detailImg1" class="detailImg" width="250" height="180" th:src="@{|/original${order.orderFileList[1].getUploadPath()}|}"/><br>
+                        </th:block>
+                   <th:block th:text="${order.orderFileList.size()}"/>
+                </td>
+               <!-- <td width="330px">
+                    <div class="detailImgArea">
+                        <th:block th:if="${ order.orderFileList.size() >= 2 }">
+                            <img id="detailImg2" class="detailImg" width="250" height="180" th:src="@{|/original${order.orderFileList[2].getUploadPath()}|}"/><br>
+                        </th:block>
+                    </div>
+                </td>
+                <td width="330px">
+                    <div class="detailImgArea">
+                        <th:block th:if="${ order.orderFileList.size() >= 3 }">
+                            <img id="detailImg3" class="detailImg" width="250" height="180" th:src="@{|/original${order.orderFileList[3].getUploadPath()}|}"/><br>
+                        </th:block>
+                    </div>
+                </td>-->
+                </th:block>
+            </tr>
+        </table>
 
         <h5 style="margin-bottom: 5px;">주문 정보</h5>
         <table>
@@ -66,10 +92,10 @@
         <table>
             <tr>
                 <th class="orderCol" style="text-align: center;">상품 가격</th>
-                <th:block th:if="${order.orderPrice} <= 0 or ${order.statusNum.statusNum} == 10">
-                    <td><input name="orderPrice" type="number" value="0" min="0"></td>
+                <th:block th:if="${order.orderPrice} <= 0">
+                    <td><input id="orderPrice" name="orderPrice" type="number" value="0" min="0"></td>
                 </th:block>
-                <th:block th:if="${order.orderPrice} > 0 or ${order.statusNum.statusNum} >= 20 or ${order.statusNum.statusNum} " }>
+                <th:block th:if="${order.orderPrice} > 0" >
                     <td name="orderPrice" th:value="${order.orderPrice}" th:text="${order.orderPrice}"></td>
                 </th:block>
                 <th class="orderCol" style="text-align: center;">결제 번호</th>
@@ -123,7 +149,7 @@
 
         </div>
         <div>
-            <select name="statusNum">
+            <select name="status">
                 <option th:value="${order.statusNum.status}" selected hidden
                         th:text="'현재 진행 사항: ' + ${order.statusNum.status}"></option>
                 <option value="10">제작 요청</option>
@@ -145,12 +171,12 @@
             </div>
         </div>
 
-        <input name=" orderId" type="hidden" th:value="${order.orderId}">
+        <input name="orderId" type="hidden" th:value="${order.orderId}">
 
                 <div class="items_container" style="display: flex;">
                     <div class="item" style="width: 100%;">
-                        <button class="button button-lg button-light" style="width: 100%;" onclick="location.href=''">뒤로
-                            가기
+                        <button class="button button-lg button-light" style="width: 100%;" onclick="history.back()">
+                            뒤로 가기
                         </button>
                     </div>
                     <div class="item" style="width: 100%;">
@@ -166,6 +192,16 @@
 <script src="/js/carousel.js"></script>
 <script src="/js/default.js"></script>
 <script src="/js/editContent.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#orderPrice").keyup(function() {
+            var replace_text = $(this).val().replace(/[^-0-9]/g, '');
+            $(this).val(replace_text);
+        });
+    });
+</script>
 
 
 </body>

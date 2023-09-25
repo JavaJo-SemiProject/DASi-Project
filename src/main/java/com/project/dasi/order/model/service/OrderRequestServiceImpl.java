@@ -6,6 +6,7 @@ import com.project.dasi.order.model.dao.OrderMapper;
 import com.project.dasi.order.model.dto.OrderFileDTO;
 import com.project.dasi.order.model.dto.OrderListDTO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,16 +19,12 @@ public class OrderRequestServiceImpl implements OrderService {
         this.orderMapper = orderMapper;
     }
 
-    /*@Override
-    public static List<OrderListDTO> selectAllOrderList() {
-        List<OrderListDTO> orderList =
-
-        return orderList;
-    }*/
-
 
     @Override
+    @Transactional
     public void registOrder(OrderListDTO order) {
+
+        System.out.println("order : " + order);
 
 
 
@@ -37,7 +34,7 @@ public class OrderRequestServiceImpl implements OrderService {
 
         for (int i = 0; i < orderFileList.size(); i++) {
 
-            orderFileList.get(i).getOrderId();
+            orderFileList.get(i).setOrderId(order.getOrderId());
 
         }
 

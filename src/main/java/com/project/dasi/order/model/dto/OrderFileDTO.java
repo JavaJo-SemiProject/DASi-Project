@@ -9,8 +9,8 @@ import lombok.*;
 @ToString
 public class OrderFileDTO implements java.io.Serializable{
 
-    private OrderListDTO orderId;
-    private String fileCode;
+    private Integer orderId;
+    private Integer fileCode;
     private String originName;
     private String savedName;
     private String uploadPath;

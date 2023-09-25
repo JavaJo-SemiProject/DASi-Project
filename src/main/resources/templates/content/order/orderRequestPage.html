@@ -44,12 +44,12 @@
 
     <form id="orderRegistForm" th:action="@{/content/order/orderRequestPage}" th:method="post"
           enctype="multipart/form-data">
-        <input type="text" name="userCode" th:value="${#authentication.getPrincipal().userCode}">
+        <input type="hidden" id="userCode" name="user" th:value="${#authentication.getPrincipal().getUserCode}">
 
 
         <label class="form-label"><h2>카테고리 선택</h2></label>
         <div class="form_toggle row-vh d-flex flex-row justify-content-between" style="display: flex;"
-             name="categoryCode">
+            id="categoryCode" name="categoryCode">
 
             <div class="form_radio_btn radio_clothes">
                 <input id="radio-1" type="radio" name="categoryCode" value="10" checked>
@@ -152,7 +152,7 @@
 <script src="/js/default.js"></script>
 <script src="/js/textLetterLim.js"></script>
 
-<script>
+<!--<script>
     fetch("/order/orderRequestPage")
         .then(res => res.json())
         .then(data => {
@@ -165,7 +165,7 @@
                 $userCode.appendChild($option);
             }
         });
-</script>
+</script>-->
 
 <script th:inline="javascript">
 
