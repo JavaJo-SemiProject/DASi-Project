@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,8 +40,11 @@ public class UserController {
     }
 
     @GetMapping("/fail")
-    public String accessDenied() {
-        return "content/member/fail";
+    public ModelAndView goFail(@RequestParam String errorMessage, ModelAndView mv) {
+        mv.addObject("message", errorMessage);
+        mv.setViewName("content/member/fail");
+
+        return mv;
     }
 
     @GetMapping("/findId")
