@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 찾기</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/memberForms.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<!-- header -->
+<div th:insert="fragments/header.html"></div>
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+
+        <div class="item-container ic1">
+            <div class="member-title text-c">
+                <h3>
+                    <a th:href="@{/}" class="brand-lg">DASi</a>
+                </h3>
+            </div>
+
+            <div class="member-area-wrapper"><!--find시작-->
+                <div class="member-area member-area-sm">
+                    <a href="findId">
+                        <button class="button button-light w-100">아이디 찾기</button>
+                    </a>
+                    <a href="findPw">
+                        <button class="button button-dark w-100">비밀번호 찾기</button>
+                    </a>
+                </div>
+                <hr>
+                <div class="member-area2">
+
+
+
+                    <div class="member-form-area">
+                        <form class="member-form" role="form" method="post" th:object="${userDTO}">
+
+                            <span class="input-font"><label for="userId">ID*</label></span>
+                            <div class="input-group mb-1">
+                                <input id="userId" name="userId" type="text" class="input" placeholder="userId" maxlength="16" required/>
+                            </div>
+
+                            <span class="input-font">E-mail*</span>
+                            <div class="input-group mb-1">
+                                <input id="email" name="email" type="text" class="input" placeholder="@를 포함한 이메일을 입력해주세요." required>
+                                <button class="button button-light" id="validationButton" onclick="idAndEmailCheck()">검증</button>
+                                <button class="button button-dark" id="sendEmailCodeButton" onclick="sendNumber()">인증번호 발송</button>
+                            </div>
+
+                            <input type="hidden" id="userIdValidation"/>
+                            <input type="hidden" id="emailValidation"/>
+
+                            <script>
+
+                                $("#email").change(function(){
+                                    $('#emailValidation').val($(this).val());
+                                });
+                                $("#userId").change(function(){
+                                    $('#userIdValidation').val($(this).val());
+                                });
+
+                                function idAndEmailCheck(){
+                                    var userId = $('#userId').val();
+                                    var email = $('#email').val();
+                                    $.ajax({
+                                        url:'./idAndEmailCheck',
+                                        type:'post', //POST 방식으로 전달
+
+                                        data:{userId: userId, email: email},
+                                        datatype: "JSON",
+                                        success:function(cnt){
+                                            if (cnt == 1){
+                                                alert("검증 성공");
+                                                $('#sendEmailCodeButton').css('display', '');
+                                            } else if (cnt == 0) {
+
+                                                alert("아이디와 비밀번호가 매칭되지 않습니다.");
+                                                //$('#sendEmailCodeButton').css('display', 'none');
+                                                /*$('#userId').val('');
+                                                $('#email').val('');*/
+                                            }
+                                        },
+                                        error:function(){
+                                            alert("에러입니다.");
+                                        }
+                                    });
+                                };
+                            </script>
+
+                            <div class="input-group" id="emailCodeArea" style="display: none">
+                                <input id="emailCode" name="emailCode" type="text" class="input" placeholder="전송받은 인증번호 6자리를 입력하세요." maxlength="6" required/>
+                                <button class="button button-dark" onclick="confirmNumber()">확인</button>
+                            </div>
+                            <input type="text" id="confirm" name="confirm" value="" style="display: none">
+                            <!--비밀번호 입력-->
+                            <div class="join-form-area" id="passwordArea" style="display: none">
+                                <div class="join-form">
+                                    <span class="input-font">PASSWORD*</span>
+                                    <div class="input-group">
+                                        <input id="password" name="password" type="password" class="input" placeholder="비밀번호" minlength="8" maxlength="16" required>
+                                    </div>
+                                </div>
+                                <span class="input-caption">(영문 대소문자나/숫자/특수문자 중 2가지 이상 조합, 8~16자)를 입력하세요.</span>
+                                <div class="join-form pt-2">
+                                    <span class="input-font">CONFIRM PASSWORD*</span>
+                                    <div class="input-group">
+                                        <input id="passwordConfirm" name="passwordConfirm" type="password" class="input" placeholder="비밀번호를 재입력해주세요" minlength="8"  maxlength="16" required>
+                                    </div>
+                                </div>
+                                <span class="input-caption passwordConfirmed" style="display: none">비밀번호가 일치합니다.</span>
+                                <span class="input-caption passwordRejected" style="display: none">비밀번호가 일치하지 않습니다. 다시 입력해 주세요.</span>
+                                <button type="submit">dddd</button>
+                            </div>
+                            <!--비밀번호 입력 끝-->
+                            <script>
+                                $('#passwordArea').focusout(function () {
+                                    console.log('ddd');
+                                    var password = $("#password").val();
+                                    var passwordConfirm = $("#passwordConfirm").val();
+
+                                    if ( password != '' && passwordConfirm == '' ) {
+                                        null;
+                                    } else if (password != "" || passwordConfirm != "") {
+                                        if (password == passwordConfirm) {
+                                            $('.passwordRejected').css({'display' : 'none'});
+                                            $('.passwordConfirmed').css({'display' : 'inline-block'});
+                                            $('.passwordConfirmed').addClass('text-succ');
+                                        } else {
+                                            $('.passwordConfirmed').css({'display' : 'none'});
+                                            $('.passwordRejected').css({'display' : 'inline-block'});
+                                            $('.passwordRejected').addClass('text-dg');
+                                        }
+                                    }
+                                });
+                            </script>
+                        </form>
+                    </div>
+
+                    <script type="text/javascript">
+                        function sendNumber(){
+                            $.ajax({
+                                url:"/mail",
+                                type:"post",
+                                crossDomain: true,
+                                headers: {  'Access-Control-Allow-Origin': 'http://The web site allowed to access' },
+                                dataType:"json",
+                                data:{"email" : $("#email").val()},
+                                success: function(data){
+                                    alert("인증번호 발송");
+                                    $("#confirm").attr("value",data);
+                                    $("#emailCodeArea").css({'display' : ''});
+
+                                },
+                            })
+                        }
+
+
+                        function confirmNumber(){
+                            var emailCode = $("#emailCode").val();
+                            var confirm = $("#confirm").val();
+
+                            if(emailCode == confirm){
+                                alert("인증되었습니다.");
+                                $("#passwordArea").css({'display' : ''});
+                            }else{
+                                alert("번호가 다릅니다.");
+                            }
+                        }
+                    </script>
+
+                    <!--이메일 입력 끝-->
+
+
+
+
+
+                </div><!--mail끝-->
+            </div>
+        </div>
+        <!--find끝-->
+    </div><!--search끝-->
+
+</div>
+
+
+
+
+
+<!--wrap끝-->
+
+<div th:insert="fragments/footer.html"></div>
+<script src="js/header.js"></script>
+<script src="js/carousel.js"></script>
+<script src="js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</body>
+</html>

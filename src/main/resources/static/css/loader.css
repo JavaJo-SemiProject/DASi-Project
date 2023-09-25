@@ -1,0 +1,46 @@
+.loader-area {
+    background-color: #fff;
+    height: calc(100vh - 3.375rem);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden!important;
+    position: fixed;
+    z-index: 20;
+}
+
+.loader-area .loader {
+    height: 80px;
+    width: 80px;
+    border: 7px solid #222;
+    transform: rotate(45deg);
+    border-radius: 0 50% 50% 50%;
+    position: relative;
+    animation: move 0.5s linear infinite alternate-reverse;
+}
+.loader-area .loader::before {
+    content: "";
+    position: absolute;
+    height: 55%;
+    width: 55%;
+    border-radius: 50%;
+    border: 7px solid transparent;
+    border-top-color: #222;
+    border-bottom-color: #222;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+@keyframes move {
+    to {
+        transform: translateY(15px) rotate(45deg);
+    }
+}
