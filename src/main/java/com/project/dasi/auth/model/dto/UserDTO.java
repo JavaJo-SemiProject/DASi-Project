@@ -49,12 +49,10 @@ public class UserDTO implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
 
-        /*for(String role : role.split(",")){
-            authorities.add(new SimpleGrantedAuthority(role));
-        }*/
-
-        if(this.role.length() > 0) {
-            authorities.add(new SimpleGrantedAuthority(this.role));
+        if (this.userId.equals("admin1234")) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        } else {
+            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         }
 
         return authorities;
