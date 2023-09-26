@@ -12,4 +12,6 @@ public interface AdminOrderMapper {
     OrderListDTO selectOrderDetail(String orderId);
 
     void editStatus(OrderListDTO orderList);
+
+    List<OrderListDTO> selectMyOrderList(String userId);
 }

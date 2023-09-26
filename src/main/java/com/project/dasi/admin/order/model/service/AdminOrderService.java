@@ -43,4 +43,12 @@ public class AdminOrderService implements AdminOrderSer {
         System.out.println("Controller OrderList: " + orderList);
        adminOrderMapper.editStatus(orderList);
     }
+
+    public List<OrderListDTO> selectMyOrderList(String userId) {
+        System.out.println("UserCode: " + userId);
+        List<OrderListDTO> orderList = adminOrderMapper.selectMyOrderList(userId);
+        System.out.println("orderList: " + orderList);
+
+        return orderList;
+    }
 }

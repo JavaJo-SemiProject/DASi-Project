@@ -161,7 +161,7 @@ public class OrderRequestController {
 
         rttr.addFlashAttribute("message","주문 요청이 성공하셨습니다.");
 
-        return "redirect:/admin/order/adminOrderList";
+        return "redirect:/content/mypage/myOrderList";
     }
 
 
