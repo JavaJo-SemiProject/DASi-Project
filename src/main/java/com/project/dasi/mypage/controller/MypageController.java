@@ -22,22 +22,28 @@ import java.util.List;
 public class MypageController {
 
 
-    private final UserService usersService;// 사용자 정보 서비스
+    private final MypageService mypageService;// 사용자 정보 서비스
     private final AdminOrderService orderService;
 
-    public MypageController(UserService usersService, AdminOrderService orderService) {
-        this.usersService = usersService;
+    public MypageController(MypageService  mypageService, AdminOrderService orderService) {
+        this.mypageService = mypageService;
         this.orderService = orderService;
     }
 
     @GetMapping("/mypageMain")
     public String myPage(Model model, Principal principal) {
+        // 현재 로그인한 사용자의 ID를 가져온다.
         String userId = principal.getName();
-        User user = usersService.findByUsername(userId);
 
-        model.addAttribute("user", user);
+        //Service를 사용하여 사용자 정보를 가져온다.
+        UserDTO userDTO = mypageService.getUserInfo(userId);
+        if (userDTO == null) {
+            return "/"; //사용자를 찾지 못한 경우 예외처리 페이지로 이동
+        }
+        //모델에 사용자 정보를 추가한다.
+        model.addAttribute("user", userDTO);
 
-        return "mypage";
+        return "mypageMain";
     }
 
     @GetMapping("/myOrderList")
