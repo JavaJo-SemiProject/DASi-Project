@@ -82,6 +82,16 @@
     margin-right:auto;
 }
 
-.thumbnail-file-area input[type=file] {
+.content-file-area input[type=file] {
+    display:none;
+}
+
+.content-insert-area {
+    width:500px;
+    height:450px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.orderImgFileArea input[type=file] {
     display:none;
 }
