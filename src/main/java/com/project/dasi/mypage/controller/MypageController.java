@@ -3,6 +3,7 @@ package com.project.dasi.mypage.controller;
 import com.project.dasi.admin.order.model.service.AdminOrderService;
 import com.project.dasi.auth.model.dto.UserDTO;
 import com.project.dasi.auth.model.service.UserService;
+import com.project.dasi.mypage.model.service.MypageService;
 import com.project.dasi.order.model.dto.OrderListDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
