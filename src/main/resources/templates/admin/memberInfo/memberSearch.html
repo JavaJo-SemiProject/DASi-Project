@@ -15,7 +15,7 @@
 <body>
 <!-- 검색 -->
 <!-- header -->
-<div th:insert="/fragments/adminHeader.html"></div>
+<div th:insert="/fragments/header.html"></div>
 <div class="wrap">
     <div class="page pseudo_padding-2">
         <div class="items_container ic1">
@@ -77,15 +77,10 @@
             </table>
 
             <!-- 페이징 -->
-            <div class="pagination mt-1">
+            <!--<div class="pagination mt-1">
 
                 <ul>
 
-                    <!-- getPrePage/NextPage : 이전/다음 페이지 -->
-                    <!-- getNavigateFirstPage() : 페이징의 처음 숫자 getNavigateLastPage : 페이징의 마지막 숫자를 이용해 페이징 숫자 출력 -->
-                    <!-- href: /page?pageNum=이전페이지&keyword=검색분류&search=검색어 -->
-                    <!-- href: /page?pageNum=선택한 페이지&keyword=검색분류&search=검색어 -->
-                    <!-- href: /page?pageNum=다음페이지&keyword=검색분류&search=검색어 -->
                     <li th:classappend="${users.getPrePage() == 0} ? 'disabled'">
                         <a th:href="@{/admin/memberInfo/memberSearch(pageNum=${users.getPrePage()}, keyword=${search.getKeyword()}, search=${search.getSearch()})}"><i class="fa-solid fa fa-angle-left"></i></a>
                     </li>
@@ -100,7 +95,7 @@
                     </li>
                 </ul>
 
-            </div>
+            </div>-->
         </div>
 
 
