@@ -95,4 +95,31 @@
         WHERE ORDER_ID = #{ orderId }
     </update>
 
+    <select id="selectMyOrderList" resultMap="orderResult">
+        SELECT
+        A.ORDER_ID
+        ,B.USER_ID
+        ,B.USER_NAME
+        ,A.ORDER_DATE
+        ,A.PAY_NUM
+        ,D.STATUS_NUM
+        ,D.STATUS
+        ,A.CANCEL_CONTENT
+        ,A.SIZE_INFO
+        ,A.PHRASE
+        ,A.REQ_ISSUES
+        ,A.ORDER_PRICE
+        ,C.FILE_CODE
+        ,C.ORIGIN_NAME
+        ,C.SAVED_NAME
+        ,C.SAVED_PATH
+        ,C.UPLOAD_PATH
+        FROM ORDER_LIST A
+        LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
+        LEFT JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)
+        LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+        <where>
+            B.USER_ID = #{userId}
+        </where>
+    </select>
 </mapper>
