@@ -1,13 +1,12 @@
 package com.project.dasi.mypage.model.service;
 
 import com.project.dasi.auth.model.dao.UserRepository;
-import com.project.dasi.mypage.model.dto.UserDTO;
-import com.project.dasi.order.model.dto.OrderListDTO;
+
+import com.project.dasi.auth.model.dto.UserDTO;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class MypageService {
@@ -22,10 +21,10 @@ public class MypageService {
         }
 
         UserDTO userDTO = new UserDTO();
-        userDTO.setUserId(user.getUserId());
-        userDTO.setName(user.getName());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setTel(user.getTel());
+        userDTO.setUserId(userDTO.getUserId());
+        userDTO.setName(userDTO.getName());
+        userDTO.setEmail(userDTO.getEmail());
+        userDTO.setTel(userDTO.getTel());
 
         return userDTO;
     }

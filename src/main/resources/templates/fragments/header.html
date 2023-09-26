@@ -1,8 +1,19 @@
 <header class="topnav" id="myTopnav" xmlns:sec="">
     <a th:href="@{/}" class="brand">DASi</a>
-    <nav class="menu">
+    <nav class="menu" sec:authorize="isAnonymous()">
         <ul>
             <li><a th:href="@{/content/about}">About Dasi</a></li>
+            <li><a th:href="@{/content/product/product}">업사이클 디자인</a></li>
+            <li><a th:href="@{/content/order/orderGuidePage}">주문제작 가이드</a></li>
+            <li><a th:href="@{/content/member/login}">주문제작 견적문의</a></li>
+            <li><a th:href="@{/content/question/faq}">자주 묻는 질문</a></li>
+
+        </ul>
+    </nav>
+
+    <nav class="menu" sec:authorize="hasRole('USER')">
+        <ul>
+            <li><a th:href="@{/content/about}">유저 권한 테스트</a></li>
             <li><a th:href="@{/content/product/product}">업사이클 디자인</a></li>
             <li><a th:href="@{/content/order/orderGuidePage}">주문제작 가이드</a></li>
             <li><a th:href="@{/content/order/orderRequestPage}">주문제작 견적문의</a></li>
@@ -10,25 +21,13 @@
         </ul>
     </nav>
 
-    <!--<nav class="menu" sec:authorize="hasRole('USER')">
-        <ul>
-            <li><a th:href="@{/content/about}">About Dasi</a></li>
-            <li><a th:href="@{/content/product/product}">업사이클 디자인</a></li>
-            <li><a th:href="@{/content/order/orderGuidePage}">주문제작 가이드</a></li>
-            <li><a th:href="@{/content/order/orderRequestPage}">주문제작 견적문의</a></li>
-            <li><a th:href="@{/content/question/faq}">자주 묻는 질문</a></li>
-        </ul>
-    </nav>-->
-
-    <!--<nav class="menu" sec:authorize="hasRole('ADMIN')">
+    <nav class="menu" sec:authorize="hasRole('ADMIN')">
         <ul>
             <li><a th:href="@{/admin/memberInfo/memberSearch}">회원관리</a></li>
             <li><a th:href="@{/admin/order/adminOrderList}">주문 내역 관리</a></li>
-            <li><a th:href="@{/admin/product/adminProduct}">제작 상품 관리</a></li>
-            <li><a th:href="@{/admin/question/managerQuestion}">문의 관리</a></li>
-            <li><a th:href="@{/admin/editor/adminLayout}">레이아웃 관리</a></li>
+            <li><a th:href="@{/admin/question/managerFaq}">문의 관리</a></li>
         </ul>
-    </nav>-->
+    </nav>
 
     <span sec:authorize="isAuthenticated()">
                 <a href="/content/mypage/myPage" class="text-decoration-none"> <span th:text="${#authentication.name}"></span>님 </a>
@@ -36,7 +35,7 @@
 
     </span>
 
-    <span sec:authorize="isAnonymous()"> <!-- 1 -->
+    <span sec:authorize="isAnonymous()">
         <a th:href="@{/content/member/login}"><i class="fa fa-user-circle"></i></a>
     </span>
 
