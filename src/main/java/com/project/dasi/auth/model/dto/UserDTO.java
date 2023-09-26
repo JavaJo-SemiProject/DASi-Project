@@ -48,7 +48,12 @@ public class UserDTO implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        if (this.userId.equals("admin1234")) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        } else {
+            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        }
 
         return authorities;
     }

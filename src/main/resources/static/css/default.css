@@ -667,12 +667,20 @@ img {
 .process-container h3,
 .process-container h4 {}
 
+.sort-container {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
 .sort-container h1 {
   display: inline;
 }
 
 .sort-button-group {
-  float: right
+  float: right;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 0.25rem;
 }
 
 .portfolio-thumb {
