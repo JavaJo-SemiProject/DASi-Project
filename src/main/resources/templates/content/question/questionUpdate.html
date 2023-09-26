@@ -29,7 +29,7 @@
 
 </head>
 <body>
-<div th:insert="/fragments/adminHeader.html"></div>
+<div th:insert="fragments/header.html"></div>
 
 <!--페이지 시작-->
 
@@ -83,6 +83,10 @@
 </div>
 <div th:insert="fragments/footer.html"></div>
 
+
+<script>
+    $("#qcategory options:selected").val()    /*선택되면, 거기에 해당되는 밸류를 넘겨라. 그래서 #{ qcategory : 주문제작 } 이렇게 쿼리문에서 꺼내쓸 수 있다. QCATEGORY라는 컬럼이 있다. 여기서 name=  으로 지정한거랑, dto에서의 QCATEGORY 컬럼을 변수로 지정한 그거랑 똑같아야함. 찾아들어가야하니까*/
+</script>
 
 <script src="js/header.js"></script>
 <script src="js/carousel.js"></script>
