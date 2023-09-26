@@ -10,6 +10,6 @@ public interface MyPageMapper {
 	public List selectMyOrderInfo(String orderId);
 	public List<OrderListDTO> selectMyOrderHistoryList(Map dateMap);
 	public void updateMyInfo(Map memberMap);
-	public MemberDTO selectMyDetailInfo(String userId);
+//	public MemberDTO selectMyDetailInfo(String userId);
 	public void updateMyOrderCancel(String orderId);
 }
