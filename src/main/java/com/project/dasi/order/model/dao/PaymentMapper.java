@@ -10,4 +10,3 @@ public interface PaymentMapper {
 
     void insertPayment(PayInfoDTO payment);
 }
-
