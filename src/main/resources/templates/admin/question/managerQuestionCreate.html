@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>managerQuestion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/managerQuestion.css">
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+
+</head>
+<body>
+
+<div th:insert="fragments/header.html"></div>
+
+
+<!--pages-->
+<br>
+<br>
+<div class="pages">
+    <h1>관리자1:1조회페이지</h1>
+    <br>
+    <div class="button class">
+        <button class="button button-light" onClick="">1:1 문의 관리</button>
+        <button class="button button-dark" onClick="location.href='managerFaQ.html'">FAQ 관리</button>
+    </div>
+
+    <table class="Questionlist-table">
+
+        <tr>
+            <td>문의번호</td>
+            <td th:text="${ questionList.questNum }"></td>
+        </tr>
+        <tr>
+            <td>문의유형</td>
+            <td th:text="${ questionList.qCategory }"></td>
+        </tr>
+        <tr>
+            <td>문의날짜</td>
+            <td colspan="3" th:text="${ questionList.questDate }"></td>
+        </tr>
+        <tr>
+            <td>제목</td>
+            <td colspan="3" th:text="${ questionList.questTitle }" style="rwidth:400px;"></td>
+        </tr>
+        <tr>
+            <td>문의내용</td>
+            <td colspan="3" th:text="${ questionList.questContent }"></td>
+        </tr>
+    </table>
+    <form id="questionCreate" th:action="@{/admin/question/managerQuestion/{questNum}/}" method="post">
+        <input type="hidden" name="questNum" th:value="${ questionList.questNum }">
+        <table>
+            <tr>
+                <td>글 내용</td>
+                <td>
+                    <textarea name="answerContent" rows="10"/>
+                </td>
+            </tr>
+        </table>
+        </tbody>
+
+
+        <div class="btn-bottom-area" style="text-align: right; margin-top: 10px; width: 96%;">
+
+            <button type="button" class="button button-light"
+                    th:onclick="'location.href=\'/admin/question/managerQuestion\''">취소
+            </button>
+            <input type="submit" value="등록" class="button button-light">
+
+        </div>
+
+
+        </table>
+
+
+    </form>
+</div>
+
+
+<div th:insert="/common/footer.html"></div>
+
+<script src="/js/header.js"></script>
+<script src="/js/carousel.js"></script>
+<script src="/js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+</body>
+
+</html>
