@@ -34,18 +34,6 @@ public class OrderRequestController {
         this.orderRequestServiceImpl = orderRequestServiceImpl;
     }
 
-   /* @GetMapping("/orderListTest")
-    public ModelAndView selectAllThumbnailList(ModelAndView mv) {
-
-        List<OrderListDTO> orderList = OrderRequestServiceImpl.selectAllOrderList();
-
-        mv.addObject("orderList", orderList);
-
-        mv.setViewName("content/order/orderListTest");
-
-        return mv;
-    }*/
-
     @GetMapping("/orderGuidePage")
     public String goOrderGuidePage(){
         return "/content/order/orderGuidePage";
@@ -82,7 +70,6 @@ public class OrderRequestController {
 
         if (!dir.exists() || !dir2.exists()) {
 
-            /* 폴더를 한 개만 생성할거면 mkdir, 상위 폴더도 존재하지 않으면 한 번에 생성하란 의미로 mkdirs를 이용한다. */
             log.info("[OrderRequestController] 폴더 생성 : " + dir.mkdirs());
             log.info("[OrderRequestController] 폴더 생성 : " + dir2.mkdirs());
         }
@@ -120,6 +107,8 @@ public class OrderRequestController {
                     fileMap.put("orderImgPath", "/orderImg" + savedFileName);
 
                     fileList.add(fileMap);
+
+                    System.out.println("fileMap : " + fileMap);
 
                 }
             }
@@ -172,8 +161,21 @@ public class OrderRequestController {
 
         rttr.addFlashAttribute("message","주문 요청이 성공하셨습니다.");
 
-        return "redirect:/admin/order/adminOrderList";
+        return "redirect:/content/mypage/myOrderList";
     }
+
+
+
+    @GetMapping("Pay")
+    @ResponseBody
+    public void Pay(int amount,String imp_uid, String merchant_uid) throws Exception{
+
+        System.out.println("결제 성공");
+        System.out.println("결제 금액 : " + amount);
+        System.out.println("imp_uid : " + imp_uid);
+        System.out.println("merchant_uid : " + merchant_uid);
+    }
+
 
 
 }

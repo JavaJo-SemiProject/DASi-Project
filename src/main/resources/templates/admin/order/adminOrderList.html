@@ -1,73 +1,128 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>DASi ADMIN</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<head>
+    <meta charset="UTF-8">
+    <title>DASi ADMIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/default.css">
-    <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/order.css">
 
-    </head>
-    <body>
-    <div th:insert="/fragments/adminHeader.html"></div>
+</head>
+<body>
+<div th:insert="/fragments/header.html"></div>
 
-      <br>
-      <div class="page">
-        <h1> 주문 내역 관리</h1>
-        <hr>
-        
-        <div class="items_container ic1">
-            <div class="item">
-                <table id="listArea">
-                    <thead>
-                        <tr>
-                            <th>주문 ID</th>
-                            <th>주문 날짜</th>
-                            <th>회원 ID</th>
-                            <th>결제 여부</th>
-                            <th>상품 상태</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="order : ${orderList}">
-                            <td th:text="${order.orderId}"></td>
-                            <td th:text="${order.orderDate}"></td>
-                            <td th:text="${order.userCode.userId}"></td>
-                            <td><th:block th:if="${order.payNum == '' or order.payNum == null}"> <i class="fa fa-remove"></i></th:block>
-                                <th:block th:if="${order.payNum != '' and order.payNum != null}"> <i class="fa fa-check"></i></th:block></td>
-                            <td><button class="button button-dark"><strong th:text="${order.statusNum.status}"></strong></button></td>
-                          </tr>
-                    </tbody>
-                  </table>
-            </div>
-    
+<br>
+<div class="page">
+    <h1> 주문 내역 관리</h1>
+    <hr>
+
+    <div class="items_container ic1">
+        <div class="item">
+            <table id="listArea">
+                <thead>
+                <tr>
+                    <th>주문 ID</th>
+                    <th>주문 날짜</th>
+                    <th>회원 ID</th>
+                    <th>결제 여부</th>
+                    <th>상품 상태</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orderList}">
+                    <td th:text="${order.orderId}"></td>
+                    <td th:text="${order.orderDate}"></td>
+                    <td th:text="${order.userCode.userId}"></td>
+                    <td>
+                        <th:block th:if="${order.payNum == '' or order.payNum == null}"><i class="fa fa-remove"></i>
+                        </th:block>
+                        <th:block th:if="${order.payNum != '' and order.payNum != null}"><i class="fa fa-check"></i>
+                        </th:block>
+                    </td>
+                    <td>
+                        <button id="statusChangeButton" class="button requested"><strong th:text="${order.statusNum.status}"></strong>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        
-            
-      </div>
 
-    <script th:inline="javascript">
+    </div>
 
-        if (document.querySelectorAll("#listArea td")) {
-            const $tds = document.querySelectorAll("#listArea td");
-            for (let i = 0; i < $tds.length; i++) {
 
-                $tds[i].onclick = function() {
-                    const orderId = this.parentNode.children[0].innerText;
-                    location.href = "/admin/order/adminOrderDetail?orderId=" + orderId;
-                }
+</div>
+
+<script th:inline="javascript">
+
+    if (document.querySelectorAll("#listArea td")) {
+        const $tds = document.querySelectorAll("#listArea td");
+        for (let i = 0; i < $tds.length; i++) {
+
+            $tds[i].onclick = function () {
+                const orderId = this.parentNode.children[0].innerText;
+                location.href = "/admin/order/adminOrderDetail?orderId=" + orderId;
             }
         }
-    </script>
+    }
 
-    <div th:insert="/fragments/footer.html"></div>
-      <script src="/js/header.js"></script>
-      <script src="/js/carousel.js"></script>
-      <script src="/js/default.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    </body>
-    </html>
+    // JavaScript를 사용하여 버튼 색상 변경
+    function setButtonStyle(status) {
+        const button = document.getElementById('statusChangeButton');
+
+        // 모든 버튼 클래스 제거
+        button.classList.remove('requested', 'rejected', 'approved', 'paid', 'in-progress', 'completed', 'shipping', 'delivered', 'cancelled');
+
+        // 상태에 따라 적절한 클래스 추가
+        switch (status) {
+            case '제작 요청':
+                button.classList.add('requested');
+                break;
+            case '제작 반려':
+                button.classList.add('rejected');
+                break;
+            case '제작 승인':
+                button.classList.add('approved');
+                break;
+            case '결제 완료':
+                button.classList.add('paid');
+                break;
+            case '제작 중':
+                button.classList.add('in-progress');
+                break;
+            case '제작 완료':
+                button.classList.add('completed');
+                break;
+            case '배송 중':
+                button.classList.add('shipping');
+                break;
+            case '배송 완료':
+                button.classList.add('delivered');
+                break;
+            case '주문 취소':
+                button.classList.add('cancelled');
+                break;
+            default:
+                button.classList.add('button-dark');
+                break;
+        }
+    }
+
+    window.onload = function() {
+        const initialStatus = '제작 요청';
+        setButtonStyle(initialStatus);
+    };
+
+</script>
+
+<div th:insert="/fragments/footer.html"></div>
+<script src="/js/header.js"></script>
+<script src="/js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>

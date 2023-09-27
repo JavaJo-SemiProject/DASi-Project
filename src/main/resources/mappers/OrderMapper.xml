@@ -4,48 +4,80 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dasi.order.model.dao.OrderMapper">
 
-    <insert id="insertOrderContent">
-        INSERT INTO ORDER_LIST1 (
-        USER_ID
-        ,ORDER_DATE
-        ,STATUS
-        ,SIZE_INFO
-        ,PHRASE
-        ,REQ_ISSUES
-        ,ORDER_FILES
+    <!--<insert id="insertOrderContent">
+        INSERT INTO ORDER_LIST A (
+        A.USER_CODE
+        ,A.CATEGORY_CODE
+        ,A.SIZE_INFO
+        ,A.PHRASE
+        ,A.REQ_ISSUES
+        ,B.ORIGIN_NAME
+        ,B.SAVED_NAME
+        ,B.SAVED_PATH
+        ,B.UPLOAD_PATH
         )
         VALUES (
-        '3'
-        ,DATE_FORMAT(now(),'%Y-%m-%d %H:%i:%s')
-        ,'주문요청'
+        #{ user }
+        ,#{ categoryCode }
         ,#{ sizeInfo }
         ,#{ phrase }
         ,#{ reqIssues }
-        ,#{ orderFileList }
-        )
-
-        <selectKey keyProperty="orderId" resultType="String" order="AFTER">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
-
-
-
-    </insert>
-
-    <insert id="insertOrderFile">
-        INSERT INTO (
-        ORDER_ID
-        , ORIGINAL_NAME
-        , SAVED_NAME
-        , SAVE_PATH
-        , UPLOAD_PATH
-        )
-        VALUES  (
-        #{ orderId }
-        , #{ originalName }
+        ,#{ originName }
         , #{ savedName }
         , #{ savePath }
         , #{ uploadPath }
+        LEFT JOIN ORDER_FILES B ON (A.ORDER_ID = D.ORDER_ID)
+        WHERE A.ORDER_ID IS NULL
         )
+
+    </insert>-->
+
+    <insert id="insertOrderContent">
+        INSERT INTO ORDER_LIST (
+        USER_CODE
+        ,CATEGORY_CODE
+        ,SIZE_INFO
+        ,PHRASE
+        ,REQ_ISSUES
+        )
+        VALUES (
+        #{ user }
+        ,#{ categoryCode }
+        ,#{ sizeInfo }
+        ,#{ phrase }
+        ,#{ reqIssues }
+        )
+
     </insert>
+
+
+
+
+    <insert id="insertOrderFile">
+        <if test="originName != null">
+        INSERT INTO ORDER_FILES (
+            ORDER_ID
+            ,ORIGIN_NAME
+            ,SAVED_NAME
+            ,SAVED_PATH
+            ,UPLOAD_PATH
+        )
+        VALUES  (
+            (SELECT A.ORDER_ID FROM ORDER_LIST A LEFT JOIN ORDER_FILES D ON (A.ORDER_ID = D.ORDER_ID)  WHERE A.ORDER_ID IS NULL)
+            ,#{ originName }
+            , #{ savedName }
+            , #{ savePath }
+            , #{ uploadPath }
+        )
+        </if>
+    </insert>
+
+
+    <insert id="insertPayment">
+        INSERT INTO payment (PAY_NUM, PAY_DATE,PAY_PRICE, PAY_METHOD)
+        VALUES (#{payNum}, #{payDate}, #{payPrice}, #{payMethod})
+    </insert>
+
+
+
 </mapper>

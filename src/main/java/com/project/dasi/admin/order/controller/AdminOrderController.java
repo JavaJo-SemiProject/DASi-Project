@@ -49,8 +49,10 @@ public class AdminOrderController {
     @PostMapping("/adminOrderDetail")
     public Object adminOrderEdit(OrderListDTO orderList, RedirectAttributes rttr){
 
+        orderList.setOrderPrice(Integer.parseInt(String.valueOf(orderList.getOrderPrice())));
 
-        adminOrderService.editStatus(orderList);
+            adminOrderService.editStatus(orderList);
+
 
         System.out.println("Controller OrderList: " + orderList);
 

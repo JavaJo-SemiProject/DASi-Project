@@ -9,6 +9,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
@@ -28,7 +29,7 @@
 
 </head>
 <body>
-<div th:insert="/fragments/adminHeader.html"></div>
+<div th:insert="/fragments/header.html"></div>
 
 <br>
 <div class="page">
@@ -37,6 +38,33 @@
 
         <hr>
         <h5 style="margin-bottom: 5px;">요청 이미지</h5>
+        <table class="detail">
+            <tr>
+                <th:block th:if="${ order.orderFileList.size() >= 2 }">
+                    <td width="330px">
+                        <th:block th:if="${ order.orderFileList.size() >= 1 }">
+                            <img id="detailImg1" class="detailImg" width="250" height="180"
+                                 th:src="@{|/original${order.orderFileList[1].getUploadPath()}|}"/><br>
+                        </th:block>
+                        <th:block th:text="${order.orderFileList.size()}"/>
+                    </td>
+                    <!-- <td width="330px">
+                         <div class="detailImgArea">
+                             <th:block th:if="${ order.orderFileList.size() >= 2 }">
+                                 <img id="detailImg2" class="detailImg" width="250" height="180" th:src="@{|/original${order.orderFileList[2].getUploadPath()}|}"/><br>
+                             </th:block>
+                         </div>
+                     </td>
+                     <td width="330px">
+                         <div class="detailImgArea">
+                             <th:block th:if="${ order.orderFileList.size() >= 3 }">
+                                 <img id="detailImg3" class="detailImg" width="250" height="180" th:src="@{|/original${order.orderFileList[3].getUploadPath()}|}"/><br>
+                             </th:block>
+                         </div>
+                     </td>-->
+                </th:block>
+            </tr>
+        </table>
 
         <h5 style="margin-bottom: 5px;">주문 정보</h5>
         <table>
@@ -66,11 +94,11 @@
         <table>
             <tr>
                 <th class="orderCol" style="text-align: center;">상품 가격</th>
-                <th:block th:if="${order.orderPrice} <= 0 or ${order.statusNum.statusNum} == 10">
-                    <td><input name="orderPrice" type="number" value="0" min="0"></td>
+                <th:block th:if="${order.orderPrice} == 0">
+                    <td><input id="orderPrice" name="orderPrice" type="number" value="0" min="0"></td>
                 </th:block>
-                <th:block th:if="${order.orderPrice} > 0 or ${order.statusNum.statusNum} >= 20 or ${order.statusNum.statusNum} " }>
-                    <td name="orderPrice" th:value="${order.orderPrice}" th:text="${order.orderPrice}"></td>
+                <th:block th:if="${order.orderPrice} gt 0">
+                    <td th:value="${order.orderPrice}" th:text="${order.orderPrice}"></td>
                 </th:block>
                 <th class="orderCol" style="text-align: center;">결제 번호</th>
                 <td th:text="${order.payNum}"></td>
@@ -91,9 +119,9 @@
 
         <div class="items_container" style="display: flex; align-items: center;">
             <div class="item"><h5 style="margin-bottom: 5px;">배송 정보</h5></div>
-            <div class="item" style="margin-left: 100vh;">
-                <button class="button button-dark" onclick="location.href=''">배송 조회</button>
-            </div>
+            <!-- <div class="item" style="margin-left: 100vh;">
+                 <button class="button button-dark" onclick="location.href=''">배송 조회</button>
+             </div>-->
         </div>
         <table>
             <tr>
@@ -117,47 +145,86 @@
             </tr>
         </table>
 
-        <div>
-
-            <h5 style="margin-bottom: 5px;">진행 사항</h5>
-
-        </div>
-        <div>
-            <select name="statusNum">
-                <option th:value="${order.statusNum.status}" selected hidden
-                        th:text="'현재 진행 사항: ' + ${order.statusNum.status}"></option>
-                <option value="10">제작 요청</option>
-                <option value="20">제작 반려</option>
-                <option value="30">제작 승인</option>
-                <option value="40">결제 완료</option>
-                <option value="50">제작 중</option>
-                <option value="60">제작 완료</option>
-                <option value="70">배송 중</option>
-                <option value="80">배송 완료</option>
-            </select>
-
-            <div>
-
-                <div class="item"><h5 style="margin-bottom: 5px;">취소 사유</h5></div>
-
-                <textarea name="cancelContent" th:text="${order.cancelContent}" style="width: 100%; height: 10vh;"
-                          th:readonly="${order.cancelContent} != null"></textarea>
+        <div class="items_container">
+            <div class="item">
+                <h5 style="margin-bottom: 5px;">진행 사항 : </h5>
             </div>
+            <div class="item">
+                <h6 th:text="${order.statusNum.status}"></h6>
+            </div>
+
+            <th:block th:if="${order.statusNum.status} == '제작 반려'">
+                <input type="hidden" name="status" th:value="${order.statusNum.statusNum}">
+            </th:block>
+
+        </div>
+        <div>
+            <th:block th:if="${order.statusNum.status} == '제작 요청'">
+                <select name="status">
+                    <option th:value="${order.statusNum.statusNum}" selected>--선택해주세요--</option>
+                    <option value="20">제작 반려</option>
+                    <option value="30">제작 승인</option>
+                </select>
+            </th:block>
+
+            <th:block th:if="${order.statusNum.status} == '제작 승인'">
+                <select name="status">
+                    <option th:value="${order.statusNum.statusNum}" selected>--선택해주세요--</option>
+                    <option value="40">결제 완료</option>
+                    <option value="50">제작 중</option>
+                    <option value="60">제작 완료</option>
+                    <option value="70">배송 중</option>
+                    <option value="80">배송 완료</option>
+                </select>
+            </th:block>
         </div>
 
-        <input name=" orderId" type="hidden" th:value="${order.orderId}">
+        <th:block th:if="${order.statusNum.status} == '제작 반려'">
+            <div>
+                <th:block th:if="${order.statusNum.status} == '제작 반려'">
+                    <div class="items_container">
+                        <div class="item"><h5 style="margin-bottom: 5px;">취소 사유</h5></div>
+                        <th:block th:if="${not #strings.isEmpty(order.cancelContent)}">
+                            <div class="item">
+                                <button class="button button-lg button-dark" style="width: 100%;"
+                                        onclick="enableFormAndPreventSubmit()">
+                                    수정 하기
+                                </button>
+                            </div>
+                     </div>
+                </th:block>
+            </div>
+            <div>
+                        <textarea id="inputFieldId" name="cancelContent" th:text="${order.cancelContent}"
+                                  style="width: 100%; height: 10vh;"
+                                  th:readonly="${not #strings.isEmpty(order.cancelContent)}"></textarea>
+            </div>
+        </th:block>
 
-                <div class="items_container" style="display: flex;">
-                    <div class="item" style="width: 100%;">
-                        <button class="button button-lg button-light" style="width: 100%;" onclick="location.href=''">뒤로
-                            가기
-                        </button>
-                    </div>
-                    <div class="item" style="width: 100%;">
-                        <button class="button button-lg button-dark" type="submit" style="width: 100%;">진행 사항 변경
-                        </button>
-                    </div>
+        <input name="orderId" type="hidden" th:value="${order.orderId}">
+
+        <div class="items_container" style="display: flex;">
+            <div class="item" style="width: 100%;">
+                <button class="button button-lg button-light" style="width: 100%;"
+                        onclick="goBack()">
+                    뒤로 가기
+                </button>
+            </div>
+            <th:block th:if="${order.statusNum.status} != '제작 반려'">
+                <div class="item" style="width: 100%;">
+                    <button class="button button-lg button-dark" type="submit" style="width: 100%;"
+                            onclick="submitFormWithAjax()">진행 사항 변경
+                    </button>
                 </div>
+            </th:block>
+            <th:block th:if="${order.statusNum.status} == '제작 반려'">
+                <div class="item" style="width: 100%;">
+                    <button class="button button-lg button-dark" type="submit" style="width: 100%;"
+                            onclick="submitFormAndReloadPage()">취소 사유 등록
+                    </button>
+                </div>
+            </th:block>
+        </div>
     </form>
 </div>
 
@@ -166,6 +233,19 @@
 <script src="/js/carousel.js"></script>
 <script src="/js/default.js"></script>
 <script src="/js/editContent.js"></script>
+<script src="/js/buttionController.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#orderPrice").keyup(function () {
+            var replace_text = $(this).val().replace(/[^-0-9]/g, '');
+            $(this).val(replace_text);
+        });
+    });
+
+
+</script>
 
 
 </body>

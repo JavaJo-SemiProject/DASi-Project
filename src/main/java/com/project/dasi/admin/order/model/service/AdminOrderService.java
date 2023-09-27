@@ -19,7 +19,6 @@ public class AdminOrderService implements AdminOrderSer {
 
 
     @Override
-    @Transactional
     public List<OrderListDTO> selectAllOrderList() {
         List<OrderListDTO> orderList = adminOrderMapper.selectAllOrderList();
 
@@ -29,7 +28,6 @@ public class AdminOrderService implements AdminOrderSer {
     }
 
     @Override
-    @Transactional
     public OrderListDTO selectOrderDetail(String orderId) {
         OrderListDTO orderDetail = null;
 
@@ -44,5 +42,13 @@ public class AdminOrderService implements AdminOrderSer {
     public void editStatus(OrderListDTO orderList) {
         System.out.println("Controller OrderList: " + orderList);
        adminOrderMapper.editStatus(orderList);
+    }
+
+    public List<OrderListDTO> selectMyOrderList(String userId) {
+        System.out.println("UserCode: " + userId);
+        List<OrderListDTO> orderList = adminOrderMapper.selectMyOrderList(userId);
+        System.out.println("orderList: " + orderList);
+
+        return orderList;
     }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>DASi</title>
@@ -36,16 +37,27 @@
     <br>
     <div class="items_container ic3">
       <div class="item bg-light p-1">
-        <p><h5>이름</h5></p>
-        <input class="input" type="text" th:value="${ user.userid }" readonly>
+        <p><h5>아이디</h5></p>
+          <!--    아이디    -->
+        <div th:if="${user.userId != null}">
+          <p th:text="${user.userId}"></p>
+
+        </div>
+<!--        <input class="input" type="text" name="userId" th:value="${user.userId}" readonly>-->
       </div>
-      <div class="item bg-light p-1">
-        <p><h5>생년월일</h5></p>
-        <input class="input" type="text" th:value="${ user.birthDate }" readonly>
+    <div class="item bg-light p-1">
+      <p><h5>생년월일</h5></p>
+      <!--  생년월일   -->
+      <p th:if="${user != null}" th:text="${user.getBirthDate()}"></p>
+    </div>
+<!--        <input class="input" type="text" th:value="${user.birthDate}" readonly>-->
       </div>
       <div class="item bg-light p-1">
         <p><h5>성별</h5></p>
-        <input class="input" type="text" th:value="${ user.gender }" readonly>
+        <div th:if="${userDTO != null}">
+          <p th:text="${userDTO.getGender()}"></p>
+        </div>
+<!--        <input class="input" type="text" th:value="${user.gender}" readonly>-->
       </div>
     </div>
     <hr>
@@ -54,19 +66,26 @@
       <div class="item bg-light p-1">
         <p><h5>비밀번호</h5></p>
         <div class="input-group">
-          <input class="input" type="password" value="1234578901111" readonly>
-        </div>
+          <input class="input" type="password" name="password" value="1234578901111" readonly>
+        </div>password
       </div>
       <div class="item bg-light p-1">
         <p><h5>E-mail</h5></p>
         <div class="input-group">
-          <input class="input" type="text" th:value="${ user.email }" readonly>
+        <!-- 이메일 -->
+            <p th:if="${userDTO != null}" th:text="${userDTO.getEmail()}"></p>
+        </div>
+
+
+          <!--          <input class="input" type="text" th:value="${user.email}" readonly>-->
         </div>
       </div>
       <div class="item bg-light p-1">
         <p><h5>전화번호</h5></p>
         <div class="input-group">
-          <input class="input" type="text" th:value="${ user.tell }" readonly>
+          <p th:if="${userDTO != null}" th:text="${userDTO.getTel()}"></p>
+
+<!--          <input class="input" type="text" th:value="${user?.tell}" readonly>-->
         </div>
       </div>
     </div>
@@ -90,14 +109,19 @@
       </div>
       <div class="item bg-light p-1">
         <p><h5>전화번호</h5></p>
-        <input class="input" type="text" value="010-1234-5678" readonly>
+        <p th:if="${userDTO != null}" th:text="${userDTO.getTel()}"></p>
+<!--        <input class="input" type="text" value="010-1234-5678" readonly>-->
       </div>
     </div>
     <hr>
     <form style="text-align: center" action="">
+<!--      <input type="text" name="user" th:value="${#authentication.getPrincipal().userCode}">-->
       <button class="button button-lg button-dark" onclick="location.href='/'" style="width: 50%">
         로그아웃
       </button>
+<!--      <button type="button" class="button button-light"-->
+<!--              th:onclick="'location.href=\'/question\''">아멘-->
+<!--      </button>-->
     </form>
   </div>
 </div>

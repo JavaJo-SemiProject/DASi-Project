@@ -15,8 +15,9 @@ public class OrderListDTO implements java.io.Serializable{
 
     private int orderId;
     private UserDTO userCode;
+    private String user;
     private StatusDTO statusNum;
-    private String payNum;
+    private String status;
     private String cancelContent;
     private String sizeInfo;
     private String phrase;
@@ -25,8 +26,15 @@ public class OrderListDTO implements java.io.Serializable{
     private int orderPrice;
     private List<OrderFileDTO> orderFileList;
     private PCategoryDTO productCategory;
+    private String categoryCode;
     private String receiver;
     private String recePhone;
     private String invoice;
+    private PayInfoDTO payInfo;
+    private String payNum;
+    private String payDate;
+    private String payPrice;
+    private String payMethod;
+
 
 }

@@ -17,7 +17,7 @@
         <result property="tel" column="TEL"/>
         <result property="gender" column="GENDER"/>
         <result property="joinDate" column="JOIN_DATE"/>
-        <result property="zipcode" column="ZIP_CODE"/>
+        <result property="zipCode" column="ZIP_CODE"/>
         <result property="address" column="ADDRESS"/>
         <result property="addressDetail" column="ADDRESS_DETAIL"/>
         <result property="role" column="ROLE"/>

@@ -1,6 +1,7 @@
 package com.project.dasi.auth.model.dao;
 
 import com.project.dasi.auth.model.dto.UserDTO;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -26,5 +27,7 @@ public class UserRepository {
     }
 
 
-
+    public User findByUsername(String userId) {
+        return null;
+    }
 }

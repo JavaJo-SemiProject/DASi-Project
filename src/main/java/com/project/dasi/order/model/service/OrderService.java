@@ -9,10 +9,6 @@ import java.util.List;
 public interface OrderService {
 
 
-    List<OrderListDTO> selectMyOrderList();
-
-    OrderListDTO selectMyOrderDetail(UserDTO userId);
-
     void registOrder(OrderListDTO orderList);
 
 
