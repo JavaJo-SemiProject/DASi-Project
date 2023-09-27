@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:border="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>managerFaqUpdate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="/css/managerFaQupdate.css">
+
+
+    <style>
+        textarea {
+            resize: none;
+            width: 100%;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<div th:insert="fragments/header.html"></div>
+
+<!--pages-->
+
+<div class="page">
+    <br>
+    <br>
+    <h1>FAQ 수정</h1>
+    <br>
+    <div class="button class">
+        <button class="button button-light" onClick="">1:1 문의 관리</button>
+        <button class="button button-dark" onClick="">FAQ 관리</button>
+    </div>
+
+    <br> <br>
+
+    <table class="list-table">
+        <thead>
+        <tr>
+            <th style="width:10px">글번호</th>
+            <th style="width:100px">제목</th>
+            <th style="width:120px">내용</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td style="width:10px" th:text="${ faqList.faqNum }"></td>
+            <td style="width:120px" th:text="${ faqList.faqTitle }"></td>
+            <td style="width:120px" th:text="${ faqList.faqContent }"></td>
+        </tr>
+        </tbody>
+    </table><!--/${ faqList.faqNum }-->
+    <form id="faqUpdate" th:action="@{/admin/question/managerFaqUpdate/{faqNum}}" method="post">
+        <!--/admin/question/만 같으면 되고/managerFaqUpdate/ 에서 //이 안은 내맘대로!연결고리이름임-->
+        <input type="hidden" name="faqNum" th:value="${ faqList.faqNum }">
+        <!--폼태그 안에 넣어주려는 목적 하나로 여기에 기술, hidden으로 함. 내가 몰랐던부분-->
+        <table class="list-table1">
+            <tr>
+                <td>
+                    글 제목
+                </td>
+                <td>
+                    <input type="text" id="faqTitle" name="faqTitle" th:value="${ faqList.faqTitle }"
+                           style="width:100%;">
+                </td>
+            </tr>
+            <tr>
+                <td>글 내용</td>
+
+                <td>
+                    <!--<input type="textarea" id="faqContent" name="faqContent" rows="10" style="width:100%"
+
+                           th:value="${ faqList.faqContent }"/>--><!--th:value은 input이랑만 사용가능-->
+                    <textarea name="faqContent" th:text="${ faqList.faqContent }" rows="10"/>
+
+                </td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+
+        <!--<table class="list-table">
+            <thead>
+            <tr>
+                &lt;!&ndash;td>구분</td>&ndash;&gt;
+                <th style="width:10px">글번호</th>
+                <th style="width:110px">글 제목</th>
+                &lt;!&ndash;<td>UPDATE</td>&ndash;&gt;
+            </tr>
+            </thead>
+            <tbody th:each="faq : ${ faqList }">
+            <form action="/admin/question/managerFaqUpdate" th:object="${ faqList }" method="post">
+            <tr>
+                &lt;!&ndash;form submit을 할 때, form의 데이터가 th:object에 설정해준 객체로 받아진다.&ndash;&gt;
+                &lt;!&ndash;<td>주문관련</td>&ndash;&gt;
+                <td style="width:50px" th:text="${ faq.faqNum }"></td>
+                <td style="width:120px">
+                    <input type="text" id="faqTitle" name="faqTitle" border: 0;
+                           th:field="${faqList.faqTitle}" th:placeholder="${ faqTitle }">  &lt;!&ndash;size="20" style="width:100%;" >&ndash;&gt;
+                </td>
+                &lt;!&ndash;input 태그에서 th:field를 사용함으로써 여기에 입력되는 값이 student.name에 들어가게 됨&ndash;&gt;
+                &lt;!&ndash;<td>2023.09.08</td>&ndash;&gt;
+            </tr>
+            <tr>
+                <td>글 내용</td>
+                <td>
+                <textarea name="faqContent" rows="10" style="width:100%" th:field="${ faq.faqContent }" border: 0;  "></textarea>
+                </td>
+            </tr>
+            </form>
+            </tbody>
+        </table>-->
+
+        <!--수정/취소 버튼-->
+        <div class="btn-bottom-area" style="text-align: right; margin-top: 10px; width: 96%;">
+
+            <button type="button" class="button button-light"
+                    th:onclick="'location.href=\'/admin/question/managerFaq\''">취소
+            </button>
+            <input type="submit" value="수정완료" class="button button-light">
+            <!--여기에 alert을 추가해서 에러가 계속 떴었다. submit동작 할거면 submit동작만 하게끔!다른동작 같이 일어나게 여기 < >안에 같이 삽입하지 말것. 정 그러고프면 자바스크립트로 뺼것.-->
+        </div>
+    </form>
+
+</div>
+
+
+<!-- <div class="board-list ui-accordion">
+    <ul class="accordion-list type2 ui-accordion-list">
+        <li>
+            <a href="javascript:;" class="title-div ui-accordion-click">
+                <div class="subject">
+
+                    <span class="classify">구분</span>
+                    <span  class="number">글번호</span>
+                    <span  class="txt">제목</span>
+                    <span  class="update">update</span>
+                </div>
+        </li>
+
+        <hr>
+
+
+
+                <div class="subject">
+                    <span class="classify">기타</span>
+                    <span  class="number">글번호</span>
+                    <span class="txt">고객센터 운영 시간이 어떻게 되나요?</span>
+                    <span  class="update">2023.09.08</span>
+                </div>
+            </a>
+
+            <div class="ui-accordion-view hide">
+
+                <div class="answer">
+                    <div>
+                        <span>글제목</span>
+                        <span  class="number">글번호</span>
+                        <div class="questiontitle">
+                            <input class="input" placeholder=""/>
+                        </div>
+                        <select class="select">
+                            <option class="option" selected>구분</option>
+                            <option class="option">상품문의</option>
+                            <option class="option">불량/하자</option>
+                            <option class="option">A/S</option>
+                        </select>
+                        <hr>
+
+                        <div class="answer">
+                            <span class="classify">답변</span>
+                            <form>
+                                <p><textarea cols="70" rows="10">
+      DASI(다시) 고객센터 상담시간은 아래와 같습니다. 상담을 원하시는 고객님께서는 해당 시간을 참고하여<br/>
+      연락 주시면 친절히 안내해 드리겠습니다. [전화 업무] 평일 09:00 ~ 18:00
+                            </textarea></p>
+                            </form>
+                        </div> -->
+
+
+<!-------------------->
+
+
+<!-- footer -->
+
+
+<div th:insert="/fragments/footer.html"></div>
+
+<script src="/js/header.js"></script>
+<script src="/js/carousel.js"></script>
+<script src="/js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+</body>
+
+</html>
