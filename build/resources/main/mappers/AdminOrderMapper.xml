@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dasi.admin.order.model.dao.AdminOrderMapper">
+
+    <resultMap id="orderResult" type="com.project.dasi.order.model.dto.OrderListDTO">
+        <id property="orderId" column="ORDER_ID"/>
+        <result property="orderDate" column="ORDER_DATE"/>
+        <result property="payNum" column="PAY_NUM"/>
+        <result property="cancelContent" column="CANCEL_CONTENT"/>
+        <result property="sizeInfo" column="SIZE_INFO"/>
+        <result property="phrase" column="PHRASE"/>
+        <result property="reqIssues" column="REQ_ISSUES"/>
+        <result property="orderPrice" column="ORDER_PRICE"/>
+        <association property="userCode" resultMap="memberResultMap"/>
+        <collection property="orderFileList" resultMap="filesResultMap"/>
+        <collection property="statusNum" resultMap="statusResultMap"/>
+    </resultMap>
+
+    <resultMap id="memberResultMap" type="com.project.dasi.auth.model.dto.UserDTO">
+        <id property="userCode" column="USER_CODE"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="userPwd" column="USER_PWD"/>
+        <result property="name" column="USER_NAME"/>
+        <result property="birthDate" column="BIRTH_DATE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="email" column="EMAIL"/>
+        <result property="tel" column="TEL"/>
+        <result property="gender" column="GENDER"/>
+        <result property="joinDate" column="JOIN_DATE"/>
+    </resultMap>
+
+    <resultMap id="filesResultMap" type="com.project.dasi.order.model.dto.OrderFileDTO">
+        <id property="fileCode" column="FILE_CODE"/>
+        <result property="orderId" column="ORDER_ID"/>
+        <result property="originName" column="ORIGIN_NAME"/>
+        <result property="savedName" column="SAVED_NAME"/>
+        <result property="uploadPath" column="UPLOAD_PATH"/>
+        <result property="savePath" column="SAVED_PATH"/>
+    </resultMap>
+
+    <resultMap id="statusResultMap" type="com.project.dasi.order.model.dto.StatusDTO">
+        <id property="statusNum" column="STATUS_NUM"/>
+        <result property="status" column="STATUS"/>
+    </resultMap>
+
+    <select id="selectAllOrderList" resultMap="orderResult">
+        SELECT
+        A.ORDER_ID
+        ,B.USER_ID
+        ,A.ORDER_DATE
+        ,A.PAY_NUM
+        ,D.STATUS_NUM
+        ,D.STATUS
+        FROM ORDER_LIST A
+        LEFT JOIN USERS B ON(A.USER_CODE = B.USER_CODE)
+        LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+    </select>
+
+    <select id="selectOrderDetail" resultMap="orderResult">
+        SELECT
+        A.ORDER_ID
+        ,B.USER_ID
+        ,B.USER_NAME
+        ,A.ORDER_DATE
+        ,A.PAY_NUM
+        ,D.STATUS_NUM
+        ,D.STATUS
+        ,A.CANCEL_CONTENT
+        ,A.SIZE_INFO
+        ,A.PHRASE
+        ,A.REQ_ISSUES
+        ,A.ORDER_PRICE
+        ,C.FILE_CODE
+        ,C.ORIGIN_NAME
+        ,C.SAVED_NAME
+        ,C.SAVED_PATH
+        ,C.UPLOAD_PATH
+        FROM ORDER_LIST A
+        LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
+        LEFT JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)
+        LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+        <where>
+            A.ORDER_ID = #{orderId}
+        </where>
+    </select>
+
+
+    <update id="editStatus">
+        UPDATE ORDER_LIST
+        SET CANCEL_CONTENT = #{cancelContent}
+        <if test="orderPrice != null and orderPrice != 0">
+            , ORDER_PRICE = #{orderPrice}
+        </if>
+        <if test="#{status} != null and #{status} != status ">
+            , STATUS_NUM = #{status}
+        </if>
+        WHERE ORDER_ID = #{orderId}
+    </update>
+
+
+    <select id="selectMyOrderList" resultMap="orderResult">
+        SELECT
+        A.ORDER_ID
+        ,B.USER_ID
+        ,B.USER_NAME
+        ,A.ORDER_DATE
+        ,A.PAY_NUM
+        ,D.STATUS_NUM
+        ,D.STATUS
+        ,A.CANCEL_CONTENT
+        ,A.SIZE_INFO
+        ,A.PHRASE
+        ,A.REQ_ISSUES
+        ,A.ORDER_PRICE
+        ,C.FILE_CODE
+        ,C.ORIGIN_NAME
+        ,C.SAVED_NAME
+        ,C.SAVED_PATH
+        ,C.UPLOAD_PATH
+        FROM ORDER_LIST A
+        LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
+        LEFT JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)
+        LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+        <where>
+            B.USER_ID = #{userId}
+        </where>
+    </select>
+</mapper>
