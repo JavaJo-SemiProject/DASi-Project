@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/signup.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/signup.js"></script>
 </head>
 <body>
 <!-- header -->
@@ -26,12 +27,19 @@
         </div>
 
         <form id="joinForm" action="signup" method="post">
+            <script>
+                document.addEventListener('keydown', function(event) {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                    };
+                }, true);
+            </script>
             <div class="items_container ic2 g-gap2" id="joinBigBox">
                 <div class="join">
                     <div class="member">
                         <!--아이디 입력-->
                         <div class="join-form-area">
-                            <div class="join-form">
+                            <div class="join-form" id="userIdArea">
                                 <span class="input-font"><label for="userid">ID*</label></span>
                                 <div class="input-group">
                                     <input id="userId" name="userId" type="text" class="input" placeholder="userId" maxlength="16" required/>
@@ -39,12 +47,23 @@
                                 </div>
                             </div>
                             <span class="input-caption">(영문 소문자/숫자, 4~16자)</span>
-
-
                         </div>
-
-                        <!-- id ajax 중복체크 -->
                         <script>
+                            $('#userId').change(function () {
+                                const userIdVal = $("#userId").val();
+                                const userIdValCheck = /^[a-z0-9]{4,16}$/g;
+
+                                if (userIdVal != null && userIdVal.match(userIdValCheck) == null){
+                                    alert('아이디는 4글자 이상 16글자 이하의 영문자 또는 숫자로 입력해 주세요.');
+                                    $('#userId').focus();
+                                    return;
+
+                                } else if(userIdVal != null && userIdVal.match(userIdValCheck)) {
+
+                                }
+                            })
+                        </script>
+                            <script>
                             function checkId(){
                                 var userId = $('#userId').val();
                                 $.ajax({
@@ -54,8 +73,7 @@
                                     success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다
                                         if (cnt == 0){
                                             alert("사용할 수 있는 아이디입니다.");
-                                        } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-
+                                        } else if (cnt == 1) { // cnt가 1일 경우 -> 이미 존재하는 아이디
                                             alert("누군가 이 아이디를 사용하고 있어요.");
                                             $('#userId').val('');
                                         }
@@ -65,30 +83,46 @@
                                     }
                                 });
                             };
+
                         </script>
+
                         <!---아이디 입력 끝=-->
                         <!--비밀번호 입력-->
-                        <div class="join-form-area" id="passwordArea">
-                            <div class="join-form">
-                                <span class="input-font">PASSWORD*</span>
+                        <div class="join-form-area">
+                            <div class="join-form" id="passwordArea">
+                                <span class="input-font"><label for="password">PASSWORD*</label></span>
                                 <div class="input-group">
                                     <input id="password" name="password" type="password" class="input" placeholder="비밀번호" minlength="8" maxlength="16" required>
+
                                 </div>
                             </div>
-                            <span class="input-caption">(영문 대소문자나/숫자/특수문자 중 2가지 이상 조합, 8~16자)를 입력하세요.</span>
-                            <div class="join-form pt-2">
-                                <span class="input-font">CONFIRM PASSWORD*</span>
+                            <span class="input-caption passwordValidation">비밀번호는 영문, 숫자, 특수문자를 조합하여 8글자 이상으로 입력해 주세요.</span>
+                            <div class="join-form pt-2" id="passwordConfirmArea">
+                                <span class="input-font"><label for="password">CONFIRM PASSWORD*</label></span>
                                 <div class="input-group">
                                     <input id="passwordConfirm" name="passwordConfirm" type="password" class="input" placeholder="비밀번호를 재입력해주세요" minlength="8"  maxlength="16" required>
                                 </div>
                             </div>
+
                             <span class="input-caption passwordConfirmed" style="display: none">비밀번호가 일치합니다.</span>
                             <span class="input-caption passwordRejected" style="display: none">비밀번호가 일치하지 않습니다. 다시 입력해 주세요.</span>
                         </div>
-                        <!--비밀번호 입력 끝-->
                         <script>
-                            $('#passwordArea').focusout(function () {
-                                console.log('ddd');
+                            $('#password').change(function () {
+                                const passwordVal = $("#password").val();
+                                const passwordValCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/
+
+                                 if (passwordVal != null && passwordVal.match(passwordValCheck) == null){
+                                    alert('비밀번호는 영문, 숫자, 특수문자를 조합하여 8~16글자로 입력해 주세요.');
+                                     $('#password').focus();
+
+                                } else if(passwordVal != null && passwordVal.match(passwordValCheck)) {
+
+                                }
+                            })
+
+                            $('#passwordConfirm').change(function () {
+
                                 var password = $("#password").val();
                                 var passwordConfirm = $("#passwordConfirm").val();
 
@@ -103,14 +137,17 @@
                                         $('.passwordConfirmed').css({'display' : 'none'});
                                         $('.passwordRejected').css({'display' : 'inline-block'});
                                         $('.passwordRejected').addClass('text-dg');
+                                        $('#passwordConfirm').focus();
                                     }
                                 }
                             });
                         </script>
+                        <!--비밀번호 입력 끝-->
+
                         <!--이름 시작-->
                         <div class="join-form-area">
                             <div class="join-form">
-                                <span class="input-font">NAME</span>
+                                <span class="input-font"><label for="name">NAME</label></span>
                                 <div class="input-group">
                                     <input id="name" name="name" type="text" class="input" placeholder="이름을 입력해주세요." maxlength="15" required>
                                 </div>
@@ -121,34 +158,51 @@
 
                         <div class="join-form-area">
                             <form class="join-form" role="form" method="post" th:object="${userDTO}">
-                                <span class="input-font">E-mail*</span>
-                                <div class="input-group mb-1">
-                                    <input id="email" name="email" type="text" class="input" placeholder="@를 포함한 이메일을 입력해주세요." required>
+                                <span class="input-font"><label for="email">E-mail*</label></span>
+                                <div class="input-group mb-1" id="emailArea">
+                                    <input id="email" name="email" type="text" class="input" placeholder="@를 포함한 이메일을 입력해주세요." required/>
                                     <button type="button" class="button button-dark" id="checkEmailButton" onclick="checkEmail()">중복확인</button>
-                                    <button type="button" class="button button-dark" id="sendEmailCodeButton" onclick="sendNumber()" style="display: none">인증번호 발송</button>
+                                    <button type="button" class="button button-dark" id="sendEmailCodeButton" onclick="sendEmailCode()" style="display: none">인증번호 발송</button>
                                 </div>
                                 <div class="input-group" id="emailCodeArea" style="display: none">
                                     <input id="emailCode" name="emailCode" type="text" class="input" placeholder="전송받은 인증번호 6자리를 입력하세요." maxlength="6" required/>
-                                    <button type="button" class="button button-dark" onclick="confirmNumber()">확인</button>
+                                    <button type="button" class="button button-dark" id="confirmEmailCodeButton" onclick="confirmEmailCode()">확인</button>
                                 </div>
                                 <input type="text" id="confirm" name="confirm" value="" style="display: none">
+                                <div class="items_container" id="emailConfirmArea">
+                                    <button type="button" class="button button-dark mt-1" id="confirmEmailProcessButton" onclick="confirmEmailProcess()" style="display: none">인증 완료하기</button>
+                                    <button type="button" class="button button-dark mt-1" id="resetEmailProcessButton" onclick="resetEmailProcess()" style="display: none">다른 이메일 사용</button>
+                                </div>
+
                             </form>
                         </div>
+                        <script>
+                            $('#email').change(function () {
+                                const emailVal = $("#email").val();
+                                const emailValCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/
 
+                                if (emailVal != null && emailVal.match(emailValCheck) == null){
+                                    alert('@를 포함한 전체 이메일 주소를 입력해 주세요.');
+                                    $('#email').focus();
+
+                                } else if(emailVal != null && emailVal.match(emailValCheck)) {
+
+                                }
+                            })
+                        </script>
                         <script>
                             function checkEmail(){
                                 var email = $('#email').val();
                                 $.ajax({
-                                    url:'./emailCheck', //Controller에서 요청 받을 주소
+                                    url:'./emailCheck', //Controller에서 요청받을 주소
                                     type:'post', //POST 방식으로 전달
                                     data:{email:email},
-                                    success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다
+                                    success:function(cnt){ //컨트롤러에서 넘어온 cnt값 수신
                                         if (cnt == 0){
                                             alert("사용할 수 있는 이메일 주소입니다.");
-                                            $("#checkEmailButton").removeClass('button-dark');
-                                            $("#checkEmailButton").addClass('button-light');
+                                            $("#checkEmailButton").css({'display' : 'none'});
                                             $("#sendEmailCodeButton").css({'display' : ''});
-                                        } else { // cnt가 1일 경우 -> 이미 존재하는 이메일
+                                        } else { // cnt == 1 == 이미 존재하는 이메일
 
                                             alert("이미 사용 중인 이메일 주소입니다.");
                                             $('#email').val('');
@@ -164,62 +218,39 @@
                             };
                         </script>
 
-                        <script type="text/javascript">
-                            function sendNumber(){
-                                $.ajax({
-                                    url:"/mail",
-                                    type:"post",
-                                    crossDomain: true,
-                                    headers: {  'Access-Control-Allow-Origin': 'http://The web site allowed to access' },
-                                    dataType:"json",
-                                    data:{"email" : $("#email").val()},
-                                    success: function(data){
-                                        alert("인증번호 발송");
-                                        $("#confirm").attr("value",data);
-                                        $("#emailCodeArea").css({'display' : ''});
-                                    },
-                                })
-                            }
-
-
-                            function confirmNumber(){
-                                var emailCode = $("#emailCode").val();
-                                var confirm = $("#confirm").val();
-
-                                if(emailCode == confirm){
-                                    alert("인증되었습니다.");
-                                }else{
-                                    alert("번호가 다릅니다.");
-                                }
-                            }
-                        </script>
-
                         <!--이메일 입력 끝-->
 
                         <!--생년월일 및 성별 시작-->
                         <div class="items_container ic2">
                             <div class="join-form-area">
                                 <div class="join-form">
-                                    <span class="input-font">생년월일</span>
+                                    <span class="input-font"><label for="birthDate">생년월일</label></span>
                                     <div class="input-group">
                                         <input id="birthDate" name="birthDate" type="date" value="2023-01-01" min="1950-01-01" max="2023-01-01" class="Calendar" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="join-form-area" id="enterGender">
-                                <span class="input-font">성별</span>
-                                <select name="gender" id="gender" class="select">
-                                    <option value="man">남</option>
-                                    <option value="woman" selected>여</option>
-                                </select>
+                                <div class="join-form">
+                                    <span class="input-font"><label for="gender">성별</label></span>
+                                    <div class="input-group">
+                                        <select name="gender" id="gender" class="select">
+                                            <option value="M">남</option>
+                                            <option value="F" selected>여</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                         <!--생년월일 및 성별 끝-->
                         <!--전화번호-->
 
                         <div class="join-form-area">
-                            <span class="input-font">전화번호*</span>
+
                             <div class="join-form">
+                                <span class="input-font"><label for="tel">전화번호*</label></span>
                                 <div class="input-group">
                                     <input
                                             type="tel"
@@ -296,61 +327,13 @@
 
                                 return str;
                             }
-
                         </script>
 
                         <!--번호 입력 끝-->
-                        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-                        <script>
-                            function addressFinder() {
-                                new daum.Postcode({
-                                    oncomplete: function(data) {
-
-                                        var addr = ''; // 주소 변수
-                                        var extraAddr = ''; // 참고항목 변수
-
-                                        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                                        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                                            addr = data.roadAddress;
-                                        } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                                            addr = data.jibunAddress;
-                                        }
-
-                                        // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                                        if(data.userSelectedType === 'R'){
-                                            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                                            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                                            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                                                extraAddr += data.bname;
-                                            }
-                                            // 건물명이 있고, 공동주택일 경우 추가한다.
-                                            if(data.buildingName !== '' && data.apartment === 'Y'){
-                                                extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                                            }
-                                            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                                            if(extraAddr !== ''){
-                                                extraAddr = ' (' + extraAddr + ')';
-                                            }
-                                            // 조합된 참고항목을 해당 필드에 넣는다.
-                                            document.getElementById("addressDetail").value = extraAddr;
-
-                                        } else {
-                                            document.getElementById("addressDetail").value = '';
-                                        }
-
-                                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                                        document.getElementById('zipCode').value = data.zonecode;
-                                        document.getElementById('address').value = addr;
-                                        // 커서를 상세주소 필드로 이동한다.
-                                        document.getElementById('addressDetail').focus();
-                                    }
-                                }).open();
-                            }
-                        </script>
 
                         <div class="join-form-area">
                             <div class="join-form">
-                                <span class="input-font">우편번호*</span>
+                                <span class="input-font"><label for="zipCode">우편번호*</label></span>
                                 <div class="input-group">
                                     <input type="text" class="input" id="zipCode" name="zipCode" placeholder="우편번호">
                                     <input type="button" class="button button-dark" onclick="addressFinder()" value="우편번호 찾기"><br>
@@ -361,7 +344,7 @@
 
                         <div class="join-form-area">
                             <div class="join-form">
-                                <span class="input-font">도로명 주소</span>
+                                <span class="input-font"><label for="address">도로명주소*</label></span>
                                 <div class="input-group">
                                     <input id="address" name="address" type="text" class="input" placeholder="도로명 주소">
                                 </div>
@@ -372,7 +355,7 @@
 
                         <div class="join-form-area">
                             <div class="join-form" id="entedRestAddrForm" action="" method="post">
-                                <span class="input-font">상세주소</span>
+                                <span class="input-font"><label for="addressDetail">상세주소</label></span>
                                 <div class="input-group">
                                     <input id="addressDetail" name="addressDetail" type="text" class="input" placeholder="상세주소">
                                 </div>
@@ -388,20 +371,7 @@
                 <!--전체 동의-->
                 <div class="agree" id="agreement">
 
-                    <script type="text/javascript">
-                        $(document).ready(function(){
 
-                            $("#signupButton").click(function(){
-                                if($("#disagreeTou").is(":checked") == true){
-                                    alert("모든 약관에 동의하셔야 다음 단계로 진행이 가능합니다.");
-                                    return;
-                                }else if($("#disagreePp").is(":checked") == true){
-                                    alert("모든 약관에 동의하셔야 다음 단계로 진행이 가능합니다.");
-                                    return;
-                                }
-                            });
-                        });
-                    </script>
 
 
 
@@ -411,9 +381,9 @@
                             <div th:insert="/fragments/policy2.html"></div>
                         </div>
                         <span class="input-font">이용약관에 동의하십니까?</span>
-                        <form action="join-form" name="termsOfUseAgree" method="" id="termsOfUseAgree">
-                            <input type="radio" name="checkTou" id="agreeTou" value="ok" checked>동의함
-                            <input type="radio" name="checkTou" id="disagreeTou" value="no">동의하지 않음
+                        <form action="" name="termsOfUseAgree" method="" id="termsOfUseAgree">
+                            <input type="radio" name="checkTou" id="agreeTou" value="agree">동의함
+                            <input type="radio" name="checkTou" id="disagreeTou" value="disagree">동의하지 않음
                         </form>
                     </div>
 
@@ -423,19 +393,21 @@
                         <div class="check_policy" id="privacyPolicy">
                             <div th:insert="/fragments/policy3.html"></div>
                         </div>
-                        <span class="input-font">이용약관에 동의하십니까?</span>
-                        <form action="join-form" name="privacyPolicyAgree" method="" id="privacyPolicyAgree">
-                            <input type="radio" name="checkPp" id="agreePp" value="ok" checked>동의함
-                            <input type="radio"  name="checkPp" id="disagreePp" value="no">동의하지 않음
+                        <span class="input-font">이용약관에 동의합니다.</span>
+                        <form action="" name="privacyPolicyAgree" method="" id="privacyPolicyAgree">
+                            <input type="radio" name="checkPp" id="agreePp" value="agree">동의함
+                            <input type="radio" name="checkPp" id="disagreePp" value="disagree">동의하지 않음
                         </form>
 
 
                     </div>
                     <!--개인정보처리방침 동의 끝 나는 div-->
-                    <button type="submit" class="button button-dark w-100" id="signupButton">회원가입</button>
+                    <button type="submit" class="button button-dark w-100" id="signupButton" onclick="signupValidationCheck()">회원가입</button>
                 </div> <!--agree 끝나는 div 부분 -->
+
                 <!--전체 동의 끝나는 부분-->
             </div>
+
         </form>
         <!-- form 전체 묶음-->
 
