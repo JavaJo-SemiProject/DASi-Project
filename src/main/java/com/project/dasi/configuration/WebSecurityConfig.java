@@ -1,6 +1,7 @@
 package com.project.dasi.configuration;
 
 import com.project.dasi.auth.model.service.UserService;
+import com.project.dasi.auth.controller.AuthFailController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WebSecurityConfig {
     private final UserService userService;
 
+    private final AuthFailController authFailController;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -36,6 +39,7 @@ public class WebSecurityConfig {
             http.authorizeRequests()
                     .antMatchers("/content/mypage/**").hasRole("USER")
                     .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/content/mypage/**").hasRole("ADMIN")
                 .antMatchers("/resources/**").permitAll();
                 // USER, ADMIN 접근 허용
 
@@ -44,7 +48,7 @@ public class WebSecurityConfig {
             http.formLogin()
                 .loginPage("/content/member/login")
                 .defaultSuccessUrl("/")
-                //.failureHandler(authFailHandler)
+                .failureHandler(authFailController)
                 .usernameParameter("userId")
                 .passwordParameter("password")
                 .and()

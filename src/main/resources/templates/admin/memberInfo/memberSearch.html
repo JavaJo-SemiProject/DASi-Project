@@ -25,7 +25,6 @@
 
                     <div>
                         <select class="select" name="keyword" id="keyword">
-                            <option value="userCode">유저번호</option>
                             <option value="userId">id</option>
                             <option value="name">이름</option>
                             <option value="birthDate">생일</option>
@@ -34,6 +33,20 @@
                             <option value="gender">성별</option>
                             <option value="joinDate">가입일</option>
                         </select>
+
+                        <script>
+                            $('#keyword').change(function () {
+
+                                var selectedSearchOption = $("#keyword option:selected").val();
+                                if (selectedSearchOption == "joinDate") {
+                                    $('#search').prop("type", "date");
+                                } else {
+                                    $('#search').prop("type", "text");
+                                }
+                            })
+
+                        </script>
+
                     </div>
                     <div>
                         <input type="text" id="search" name="search" class="input">
@@ -49,7 +62,6 @@
             <table>
                 <thead>
                 <tr>
-                    <th>유저번호</th>
                     <th>아이디</th>
                     <th>이름</th>
                     <th>생일</th>
@@ -61,14 +73,13 @@
                 </thead>
                 <tbody>
                 <tr th:each="user : ${users.getList()}">
-                    <td th:text="${user.getUserCode}"></td>
                     <td th:text="${user.getUserId}"></td>
                     <td th:text="${user.getName}"></td>
                     <td th:text="${user.getBirthDate}"></td>
                     <td th:text="${user.getEmail}"></td>
                     <td th:text="${user.getTel}"></td>
                     <td th:text="${user.getGender}"></td>
-                    <td th:text="${user.getJoinDate}"></td>
+                    <td th:text="${#dates.format(user.joinDate, 'yyyy-MM-dd')}"></td>
                 </tr>
                 <tr th:if="${#lists.isEmpty(users.getList())}">
                     <td colspan="11" class="text-c">조건을 만족하는 결과가 없습니다.</td>
