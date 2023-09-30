@@ -29,7 +29,7 @@ public class OrderRequestServiceImpl implements OrderService {
 
         int orderResult = orderMapper.insertOrderContent(order);
 
-        List<OrderFileDTO> orderFileList = order.getOrderFileList();
+       /* List<OrderFileDTO> orderFileList = order.getOrderFileList();
 
         for (int i = 0; i < orderFileList.size(); i++) {
 
@@ -44,7 +44,7 @@ public class OrderRequestServiceImpl implements OrderService {
 
         if (!(orderResult > 0 && orderFileResult == orderFileList.size())) {
             throw new RuntimeException("주문 등록에 실패하셨습니다.");
-        }
+        }*/
     }
 
 

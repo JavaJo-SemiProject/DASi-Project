@@ -39,9 +39,11 @@
                     <td th:text="${order.orderDate}"></td>
                     <td th:text="${order.userCode.userId}"></td>
                     <td>
-                        <th:block th:if="${order.payNum == '' or order.payNum == null}"><i class="fa fa-remove"></i>
+                        <th:block th:if="${order.statusNum.status} == '제작 요청' or ${order.statusNum.status} == '제작 반려' or
+${order.statusNum.status} == '제작 승인'"><i class="fa fa-remove"></i>
                         </th:block>
-                        <th:block th:if="${order.payNum != '' and order.payNum != null}"><i class="fa fa-check"></i>
+                        <th:block th:if="${order.statusNum.status} == '결제 완료' or ${order.statusNum.status} == '제작 중' or
+${order.statusNum.status} == '제작 완료' or ${order.statusNum.status} == '배송 중' or ${order.statusNum.status} == '배송 완료'"><i class="fa fa-check"></i>
                         </th:block>
                     </td>
                     <td>
