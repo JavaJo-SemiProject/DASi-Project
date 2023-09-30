@@ -48,11 +48,12 @@
                         </script>
 
                     </div>
-                    <div>
+                    <div class="input-group">
                         <input type="text" id="search" name="search" class="input">
+                        <button type="submit" class="button-dark button">검색</button>
                     </div>
                     <div>
-                        <button type="submit" class="button-dark button">검색</button>
+                        <a th:href="@{/admin/memberInfo/memberSearch}" class="button button-light" style="width:auto; float:right; padding: 0 1rem">초기화</a>
                     </div>
 
                 </div>
