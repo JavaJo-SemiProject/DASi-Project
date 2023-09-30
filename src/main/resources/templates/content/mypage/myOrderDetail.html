@@ -18,19 +18,24 @@
     <script
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
+    <button onclick="cancelPay()">환불하기</button>
+
     <script>
         function cancelPay() {
             jQuery.ajax({
-                // 예: http://www.myservice.com/payments/cancel
-                "url": "{환불정보를 수신할 가맹점 서비스 URL}",
+                "url": "{환불요청을 받을 서비스 URL}", // 예: http://www.myservice.com/payments/cancel
                 "type": "POST",
                 "contentType": "application/json",
                 "data": JSON.stringify({
                     "merchant_uid": "{결제건의 주문번호}", // 예: ORD20180131-0000011
                     "cancel_request_amount": 2000, // 환불금액
-                    "reason": "테스트 결제 환불" // 환불사유
+                    "reason": "테스트 결제 환불", // 환불사유
                 }),
                 "dataType": "json"
+            }).done(function(result) { // 환불 성공시 로직
+                alert("환불 성공");
+            }).fail(function(error) { // 환불 실패시 로직
+                alert("환불 실패");
             });
         }
     </script>
@@ -192,7 +197,7 @@
             <th class="orderCol" style="text-align: center;">주문 일자</th>
             <td th:text="${order.orderDate}"></td>
             <th class="orderCol" style="text-align: center;">주문 ID</th>
-            <td th:text="${order.orderId}"></td>
+            <td id="orderId" th:text="${order.orderId}"></td>
             <th class="orderCol" style="text-align: center;">회원 ID</th>
             <td th:text="${order.userCode.userId}"></td>
             <th class="orderCol" style="text-align: center;">회원 이름</th>
@@ -258,6 +263,7 @@
             <div class="item"><h5 style="margin-bottom: 5px;">배송 정보</h5></div>
             <div class="item"><button class="button button-lg button-dark" onclick="saveDeliveryInfo()">배송 정보 등록</button></div>
         </div>
+        <th:block th:if="${order.zipCode} == null">
             <table>
                 <tr>
                     <th class="orderCol" style="text-align: center;">수령인</th>
@@ -290,8 +296,35 @@
                     <!--<td th:text="${}"></td>-->
                     <td colspan="3">-</td>
                 </tr>
-                <!--</th:block>-->
+                </th:block>
+             </table>
+        </th:block>
+        <th:block th:if="${order.zipCode} != null">
+            <table>
+                <tr>
+                    <th class="orderCol" style="text-align: center;">수령인</th>
+                    <td th:text="${order.receiver}"></td>
+                    <th class="orderCol" style="text-align: center;">전화번호</th>
+                    <td th:text="${order.recePhone}"></td>
+                    <th class="orderCol" style="text-align: center;">주소</th>
+                    <td th:text="${order.address}"></td>
+                    <th class="orderCol" style="text-align: center;">상세 주소</th>
+                    <td th:text="${order.addressDetail}"></td>
+                    <th class="orderCol" style="text-align: center;">우편번호</th>
+                    <td th:text="${order.zipCode}"></td>
+                </tr>
+                <tr>
+                    <th class="orderCol" style="text-align: center;">배송 일자</th>
+                    <!--<td th:text="${}"></td>-->
+                    <td>-</td>
+                    <th class="orderCol" style="text-align: center;">송장번호</th>
+                    <!--<td th:text="${}"></td>-->
+                    <td colspan="3">-</td>
+                </tr>
             </table>
+        </th:block>
+
+
     </th:block>
     <div>
         <h5 style="margin-bottom: 5px;">진행 사항 : </h5>

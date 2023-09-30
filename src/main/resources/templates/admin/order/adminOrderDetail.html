@@ -37,35 +37,6 @@
         <h1> 주문 상세 내역</h1>
 
         <hr>
-      <!--  <h5 style="margin-bottom: 5px;">요청 이미지</h5>
-        <table class="detail">
-            <tr>
-                <th:block th:if="${ order.orderFileList.size() >= 2 }">
-                    <td width="330px">
-                        <th:block th:if="${ order.orderFileList.size() >= 1 }">
-                            <img id="detailImg1" class="detailImg" width="250" height="180"
-                                 th:src="@{|/original${order.orderFileList[1].getUploadPath()}|}"/><br>
-                        </th:block>
-                        <th:block th:text="${order.orderFileList.size()}"/>
-                    </td>-->
-                    <!-- <td width="330px">
-                         <div class="detailImgArea">
-                             <th:block th:if="${ order.orderFileList.size() >= 2 }">
-                                 <img id="detailImg2" class="detailImg" width="250" height="180" th:src="@{|/original${order.orderFileList[2].getUploadPath()}|}"/><br>
-                             </th:block>
-                         </div>
-                     </td>
-                     <td width="330px">
-                         <div class="detailImgArea">
-                             <th:block th:if="${ order.orderFileList.size() >= 3 }">
-                                 <img id="detailImg3" class="detailImg" width="250" height="180" th:src="@{|/original${order.orderFileList[3].getUploadPath()}|}"/><br>
-                             </th:block>
-                         </div>
-                     </td>-->
-        <!--        </th:block>
-            </tr>
-        </table>
--->
         <h5 style="margin-bottom: 5px;">주문 정보</h5>
         <table>
             <tr>
@@ -122,34 +93,37 @@
                 </th:block>
             </tr>
         </table>
-
+        <th:block th:if="${order.zipCode} != null">
         <div class="items_container" style="display: flex; align-items: center;">
             <div class="item"><h5 style="margin-bottom: 5px;">배송 정보</h5></div>
-            <!-- <div class="item" style="margin-left: 100vh;">
-                 <button class="button button-dark" onclick="location.href=''">배송 조회</button>
-             </div>-->
         </div>
         <table>
             <tr>
                 <th class="orderCol" style="text-align: center;">수령인</th>
-                <!--<td th:text="${}"></td>-->
-                <td>-</td>
+                <td th:text="${order.receiver}"></td>
                 <th class="orderCol" style="text-align: center;">전화번호</th>
-                <!--<td th:text="${}"></td>-->
-                <td>-</td>
+                <td th:text="${order.recePhone}"></td>
                 <th class="orderCol" style="text-align: center;">주소</th>
-                <!--<td th:text="${}"></td>-->
-                <td>-</td>
+                <td th:text="${order.address}"></td>
+                <th class="orderCol" style="text-align: center;">상세 주소</th>
+                <td th:text="${order.addressDetail}"></td>
+                <th class="orderCol" style="text-align: center;">우편번호</th>
+                <td th:text="${order.zipCode}"></td>
             </tr>
             <tr>
-                <th class="orderCol" style="text-align: center;">배송 일자</th>
+                <th class="orderCol" style="text-align: center;">배송 출발 일자</th>
                 <!--<td th:text="${}"></td>-->
                 <td>-</td>
-                <th class="orderCol" style="text-align: center;">송장번호</th>
+                <th class="orderCol" style="text-align: center;">배송 완료 일자</th>
                 <!--<td th:text="${}"></td>-->
-                <td colspan="3">-</td>
+
+                <th class="orderCol" style="text-align: center;">송장번호</th>
+                <td th:text="${order.invoice}"></td>
+
+
             </tr>
         </table>
+        </th:block>
 
         <div class="items_container">
             <div class="item">

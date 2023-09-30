@@ -4,33 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dasi.order.model.dao.OrderMapper">
 
-    <!--<insert id="insertOrderContent">
-        INSERT INTO ORDER_LIST A (
-        A.USER_CODE
-        ,A.CATEGORY_CODE
-        ,A.SIZE_INFO
-        ,A.PHRASE
-        ,A.REQ_ISSUES
-        ,B.ORIGIN_NAME
-        ,B.SAVED_NAME
-        ,B.SAVED_PATH
-        ,B.UPLOAD_PATH
-        )
-        VALUES (
-        #{ user }
-        ,#{ categoryCode }
-        ,#{ sizeInfo }
-        ,#{ phrase }
-        ,#{ reqIssues }
-        ,#{ originName }
-        , #{ savedName }
-        , #{ savePath }
-        , #{ uploadPath }
-        LEFT JOIN ORDER_FILES B ON (A.ORDER_ID = D.ORDER_ID)
-        WHERE A.ORDER_ID IS NULL
-        )
-
-    </insert>-->
 
     <insert id="insertOrderContent">
         INSERT INTO ORDER_LIST (
@@ -55,36 +28,10 @@
     </insert>
 
 
-
-
-   <!-- <insert id="insertOrderFile">
-        <if test="originName != null">
-        INSERT INTO ORDER_FILES (
-            ORDER_ID
-            ,ORIGIN_NAME
-            ,SAVED_NAME
-            ,SAVED_PATH
-            ,UPLOAD_PATH
-        )
-        VALUES  (
-            (SELECT A.ORDER_ID FROM ORDER_LIST A LEFT JOIN ORDER_FILES D ON (A.ORDER_ID = D.ORDER_ID)  WHERE A.ORDER_ID IS NULL)
-            ,#{ originName }
-            , #{ savedName }
-            , #{ savePath }
-            , #{ uploadPath }
-        )
-        </if>
-    </insert>-->
-
-
     <insert id="insertPayment">
         INSERT INTO payment (PAY_NUM, PAY_DATE,PAY_PRICE, PAY_METHOD)
         VALUES (#{payNum}, #{payDate}, #{payPrice}, #{payMethod})
     </insert>
-
-    <update id="">
-        UPDATE ORDER_LIST SET
-    </update>
 
 
 
