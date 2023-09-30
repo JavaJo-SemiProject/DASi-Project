@@ -39,7 +39,6 @@ public class WebSecurityConfig {
             http.authorizeRequests()
                     .antMatchers("/content/mypage/**").hasRole("USER")
                     .antMatchers("/admin/**").hasRole("ADMIN")
-                    .antMatchers("/content/mypage/**").hasRole("ADMIN")
                 .antMatchers("/resources/**").permitAll();
                 // USER, ADMIN 접근 허용
 
