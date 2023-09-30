@@ -114,4 +114,8 @@
         UPDATE USERS SET PASSWORD = #{password} WHERE USER_ID = #{userId} AND EMAIL = #{email}
     </update>
 
+    <update id="lockMember" parameterType="com.project.dasi.auth.model.dto.UserDTO">
+        UPDATE USERS SET WITHDRAW = 'Y' WHERE USER_ID = #{userId} AND PASSWORD = #{PASSWORD}
+    </update>
+
 </mapper>
