@@ -24,5 +24,14 @@ public class MainController {
     @GetMapping("/content/product/productDetail")
     public void goProductDetail() {}
 
+    @GetMapping("/content/product/productDetail2")
+    public void goProductDetail2() {}
+
+    @GetMapping("/content/product/productDetail3")
+    public void goProductDetail3() {}
+
+    @GetMapping("/content/product/productDetail4")
+    public void goProductDetail4() {}
+
 }
 
