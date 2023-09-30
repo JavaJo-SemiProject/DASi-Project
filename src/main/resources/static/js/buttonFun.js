@@ -82,7 +82,7 @@ function goBack() {
     return false;
 }
 
-    function saveDeliveryInfo() {
+function saveDeliveryInfo() {
     // 배송 정보를 서버로 전송하는 AJAX 요청 코드를 작성
     var receiver = document.getElementsByName("receiver")[0].value;
     var recePhone = document.getElementsByName("recePhone")[0].value;
@@ -92,34 +92,33 @@ function goBack() {
 
     // 배송 정보를 객체로 만들어서 서버로 전송
     var deliveryData = {
-    receiver: receiver,
-    recePhone: recePhone,
-    zipCode: zipCode,
-    address: address,
-    addressDetail: addressDetail
-};
+        receiver: receiver,
+        recePhone: recePhone,
+        zipCode: zipCode,
+        address: address,
+        addressDetail: addressDetail
+    };
 
     // AJAX 요청 코드 작성 및 서버로 전송
     $.ajax({
-    type: "POST", // POST 요청
-    url: 'saveDeliveryInfo', // 컨트롤러 엔드포인트 URL
-    contentType: 'application/json',
-    data: JSON.stringify(deliveryData), // 데이터를 JSON 문자열로 변환하여 전송
-    success: function (data) {
-    // 서버에서 응답을 받으면 실행됨
-    console.log('배송 정보 저장 성공:', data);
+        type: "POST", // POST 요청
+        url: 'saveDeliveryInfo', // 컨트롤러 엔드포인트 URL
+        contentType: 'application/json',
+        data: JSON.stringify(deliveryData), // 데이터를 JSON 문자열로 변환하여 전송
+        success: function (data) {
+            // 서버에서 응답을 받으면 실행됨
+            console.log('배송 정보 저장 성공:', data);
 
-    // 저장 성공 후 추가 작업 수행 (예: 화면 갱신)
-    // ...
+            // 저장 성공 후 추가 작업 수행 (예: 화면 갱신)
+            // ...
 
-    // 배송 정보 입력 폼 숨기기
-    var deliveryForm = document.getElementById("deliveryForm");
-    deliveryForm.style.display = "none";
-},
-    error: function (xhr, textStatus, errorThrown) {
-    // 에러 발생 시 실행됨
-    console.error('배송 정보 저장 실패:', textStatus, errorThrown);
+            // 배송 정보 입력 폼 숨기기
+            var deliveryForm = document.getElementById("deliveryForm");
+            deliveryForm.style.display = "none";
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            // 에러 발생 시 실행됨
+            console.error('배송 정보 저장 실패:', textStatus, errorThrown);
+        }
+    });
 }
-});
-}
-
