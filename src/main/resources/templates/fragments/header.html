@@ -35,8 +35,8 @@
         </ul>
     </nav>
 
-    <span sec:authorize="hasRole('ADMIN') or hasRole('USER')">
-                <a href="/content/mypage/mypageMain" class="text-decoration-none"> <span th:text="${#authentication.name}"></span>님 </a>
+    <span sec:authorize="hasAnyRole('ADMIN', 'USER')">
+                <a th:href="@{/content/mypage/mypageMain}" class="text-decoration-none"> <span th:text="${#authentication.name}"></span>님 </a>
                 <a href="/logout" class="text-decoration-none"><i class="fa fa-sign-out"></i></a>
 
     </span>
