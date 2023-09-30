@@ -2,15 +2,11 @@ package com.project.dasi.mypage.controller;
 
 import com.project.dasi.admin.order.model.service.AdminOrderService;
 import com.project.dasi.auth.model.dto.UserDTO;
-import com.project.dasi.auth.model.service.UserService;
 import com.project.dasi.mypage.model.service.MypageService;
 import com.project.dasi.order.model.dto.OrderListDTO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -26,10 +22,11 @@ public class MypageController {
     private final MypageService mypageService;// 사용자 정보 서비스
     private final AdminOrderService orderService;
 
-    public MypageController(MypageService  mypageService, AdminOrderService orderService) {
+    public MypageController(MypageService mypageService, AdminOrderService orderService) {
         this.mypageService = mypageService;
         this.orderService = orderService;
     }
+
 
     @GetMapping("/mypageMain")
     public String mypageMain(Model model, Principal principal) {
@@ -85,6 +82,18 @@ public class MypageController {
         model.addAttribute("order",orderDetail);
 
         return "/content/mypage/myOrderDetail";
+    }
+
+    @PostMapping("/myOrderDetail")
+    @ResponseBody
+    public String updateMyOrder(@RequestBody OrderListDTO order){
+
+
+        System.out.println("order :" + order);
+
+        orderService.updateDeliver(order);
+
+        return "/content/mypage/myOrderList";
     }
 
 }

@@ -13,6 +13,12 @@
         <result property="phrase" column="PHRASE"/>
         <result property="reqIssues" column="REQ_ISSUES"/>
         <result property="orderPrice" column="ORDER_PRICE"/>
+        <result property="receiver" column="RECEIVER"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="addressDetail" column="ADDRESS_DETAIL"/>
+        <result property="zipCode" column="ZIPCODE"/>
+        <result property="recePhone" column="RECE_PHONE"/>
+        <result property="invoice" column="INVOICE"/>
         <association property="userCode" resultMap="memberResultMap"/>
         <association property="payInfo" resultMap="payResultMap"/>
         <!--<collection property="orderFileList" resultMap="filesResultMap"/>-->
@@ -58,16 +64,6 @@
     </resultMap>
 
     <select id="selectAllOrderList" resultMap="orderResult">
-        <!--SELECT
-        A.ORDER_ID
-        ,B.USER_ID
-        ,A.ORDER_DATE
-        &lt;!&ndash;,A.PAY_NUM&ndash;&gt;
-        ,D.STATUS_NUM
-        ,D.STATUS
-        FROM ORDER_LIST A
-        LEFT JOIN USERS B ON(A.USER_CODE = B.USER_CODE)
-        LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)-->
         SELECT
         A.ORDER_ID
         ,B.USER_ID
@@ -85,14 +81,8 @@
         ,C.PAY_DATE
         ,C.PAY_PRICE
         ,C.PAY_METHOD
-        <!-- ,C.FILE_CODE
-         ,C.ORIGIN_NAME
-         ,C.SAVED_NAME
-         ,C.SAVED_PATH
-         ,C.UPLOAD_PATH-->
         FROM ORDER_LIST A
         LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
-        <!--LEFT JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)-->
         LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
         LEFT JOIN PAY_INFO C ON (A.ORDER_ID = C.ORDER_ID)
     </select>
@@ -110,19 +100,19 @@
         ,A.PHRASE
         ,A.REQ_ISSUES
         ,A.ORDER_PRICE
+        ,A.RECEIVER
+        ,A.ADDRESS
+        ,A.ADDRESS_DETAIL
+        ,A.ZIPCODE
+        ,A.RECE_PHONE
+        ,A.INVOICE
         ,C.PAY_NUM
         ,C.BUYER
         ,C.PAY_DATE
         ,C.PAY_PRICE
         ,C.PAY_METHOD
-       <!-- ,C.FILE_CODE
-        ,C.ORIGIN_NAME
-        ,C.SAVED_NAME
-        ,C.SAVED_PATH
-        ,C.UPLOAD_PATH-->
         FROM ORDER_LIST A
         LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
-        <!--LEFT JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)-->
         LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
         LEFT JOIN PAY_INFO C ON (A.ORDER_ID = C.ORDER_ID)
         <where>
@@ -157,17 +147,23 @@
         ,A.PHRASE
         ,A.REQ_ISSUES
         ,A.ORDER_PRICE
-       <!-- ,C.FILE_CODE
-        ,C.ORIGIN_NAME
-        ,C.SAVED_NAME
-        ,C.SAVED_PATH
-        ,C.UPLOAD_PATH-->
         FROM ORDER_LIST A
         LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
-        <!--LEFT JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)-->
         LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
         <where>
             B.USER_ID = #{userId}
         </where>
     </select>
+
+    <update id="updateDeliver">
+        UPDATE ORDER_LIST SET
+        RECEIVER = #{ receiver }
+        ,ADDRESS = #{ address }
+        ,ADDRESS_DETAIL = #{ addressDetail }
+        ,ZIPCODE = #{ zipCode }
+        ,RECE_PHONE = #{ recePhone }
+        WHERE ORDER_ID = #{ orderId }
+    </update>
+
+
 </mapper>
