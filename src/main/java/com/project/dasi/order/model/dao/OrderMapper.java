@@ -11,5 +11,5 @@ public interface OrderMapper {
 
     int insertOrderContent(OrderListDTO order);
 
-    int insertOrderFile(OrderFileDTO orderFileDTO);
+    /*int insertOrderFile(OrderFileDTO orderFileDTO);*/
 }

@@ -39,6 +39,8 @@
         ,SIZE_INFO
         ,PHRASE
         ,REQ_ISSUES
+        ,STATUS_NUM
+        ,ORDER_DATE
         )
         VALUES (
         #{ user }
@@ -46,6 +48,8 @@
         ,#{ sizeInfo }
         ,#{ phrase }
         ,#{ reqIssues }
+        ,'10'
+        ,NOW()
         )
 
     </insert>
@@ -53,7 +57,7 @@
 
 
 
-    <insert id="insertOrderFile">
+   <!-- <insert id="insertOrderFile">
         <if test="originName != null">
         INSERT INTO ORDER_FILES (
             ORDER_ID
@@ -70,13 +74,17 @@
             , #{ uploadPath }
         )
         </if>
-    </insert>
+    </insert>-->
 
 
     <insert id="insertPayment">
         INSERT INTO payment (PAY_NUM, PAY_DATE,PAY_PRICE, PAY_METHOD)
         VALUES (#{payNum}, #{payDate}, #{payPrice}, #{payMethod})
     </insert>
+
+    <update id="">
+        UPDATE ORDER_LIST SET
+    </update>
 
 
 

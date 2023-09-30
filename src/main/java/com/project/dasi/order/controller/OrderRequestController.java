@@ -48,12 +48,12 @@ public class OrderRequestController {
     @PostMapping("/orderRequestPage")
     public String orderRegist(@ModelAttribute OrderListDTO order
                                 , HttpServletRequest request
-                                , @RequestParam("orderImg1") MultipartFile orderImg1
+                                /*, @RequestParam("orderImg1") MultipartFile orderImg1
                                 , @RequestParam("orderImg2") MultipartFile orderImg2
-                                , @RequestParam("orderImg3") MultipartFile orderImg3
+                                , @RequestParam("orderImg3") MultipartFile orderImg3*/
                                 , RedirectAttributes rttr){
 
-        log.info("");
+      /*  log.info("");
         log.info("");
         log.info("[OrderRequestController] =========================================================");
 
@@ -126,12 +126,12 @@ public class OrderRequestController {
 
                 list.add(tempFileInfo);
             }
-            log.info("[OrderRequestController] orderImg : " + order);
+            log.info("[OrderRequestController] orderImg : " + order);*/
 
             orderRequestServiceImpl.registOrder(order);
 
 
-        } catch (IOException e) {
+       /* } catch (IOException e) {
             e.printStackTrace();
 
             int cnt = 0;
@@ -156,7 +156,7 @@ public class OrderRequestController {
                 e.printStackTrace();
             }
 
-        }
+        }*/
 
 
         rttr.addFlashAttribute("message","주문 요청이 성공하셨습니다.");

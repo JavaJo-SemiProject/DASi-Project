@@ -19,9 +19,11 @@ public class PayInfoDTO {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private String orderId;
    private String payNum;
    private String payDate;
    private int payPrice;
    private String payMethod;
+   private String buyer;
 
 }
