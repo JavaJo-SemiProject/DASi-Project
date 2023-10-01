@@ -38,10 +38,17 @@
                             $('#keyword').change(function () {
 
                                 var selectedSearchOption = $("#keyword option:selected").val();
-                                if (selectedSearchOption == "joinDate") {
+                                if (selectedSearchOption == "birthDate") {
                                     $('#search').prop("type", "date");
-                                } else {
+                                } else if (selectedSearchOption == "joinDate") {
+                                    $('#search').prop("type", "date");
+                                } else if (selectedSearchOption == "gender") {
                                     $('#search').prop("type", "text");
+                                    $('#search').attr('placeholder', "M' 또는 'W'만 입력 가능합니다.");
+                                }
+                                else {
+                                    $('#search').prop("type", "text");
+                                    $('#search').attr('placeholder', "");
                                 }
                             })
 
@@ -89,25 +96,21 @@
             </table>
 
             <!-- 페이징 -->
-            <!--<div class="pagination mt-1">
+            <div class="pagination mt-1">
 
                 <ul>
-
                     <li th:classappend="${users.getPrePage() == 0} ? 'disabled'">
                         <a th:href="@{/admin/memberInfo/memberSearch(pageNum=${users.getPrePage()}, keyword=${search.getKeyword()}, search=${search.getSearch()})}"><i class="fa-solid fa fa-angle-left"></i></a>
                     </li>
-
-
                     <li th:each="page: ${#numbers.sequence(users.getNavigateFirstPage(), users.getNavigateLastPage())}" th:classappend="${page == users.getPageNum()} ? 'active'">
-                        <a th:text="${page}" th:href="@{/memberSearch(pageNum=${page}, keyword=${search.getKeyword()}, search=${search.getSearch()})}"></a>
+                        <a th:text="${page}" th:href="@{/admin/memberInfo/memberSearch(pageNum=${page}, keyword=${search.getKeyword()}, search=${search.getSearch()})}"></a>
                     </li>
                     <li th:classappend="${users.getNextPage() == 0} ? 'disabled'">
-
                         <a th:href="@{/admin/memberInfo/memberSearch(pageNum=${users.getNextPage()}, keyword=${search.getKeyword()}, search=${search.getSearch()})}"><i class="fa-solid fa fa-angle-right"></i></a>
                     </li>
                 </ul>
 
-            </div>-->
+            </div>
         </div>
 
 
