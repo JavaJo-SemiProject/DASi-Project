@@ -11,15 +11,5 @@ public class MvcConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/templates/", "classpath:/static/");
 
-
-        // 이미지 불러오기
-        registry.addResourceHandler("/upload/**")
-                .addResourceLocations("classpath:/upload/");
-
-        registry.addResourceHandler("/savePath/**")
-                .addResourceLocations("file:///d:/dasi-project/img/upload/orderImg/");
-        registry.addResourceHandler("/imagePath/**")
-                .addResourceLocations("file:///d:/dasi-project/img/upload/original/");
-
     }
 }

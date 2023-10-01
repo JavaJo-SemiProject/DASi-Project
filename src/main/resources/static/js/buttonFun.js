@@ -91,6 +91,11 @@ function saveDeliveryInfo() {
     var address = document.getElementById("address").value;
     var addressDetail = document.getElementById("addressDetail").value;
 
+    if (receiver === "" || recePhone === "" || zipCode === "" || address === "") {
+        alert("배송 정보를 모두 입력하세요.");
+        return; // 필수 필드가 비어 있으면 함수를 종료하고 저장 요청을 보내지 않음
+    }
+
     // 배송 정보를 객체로 만들어서 서버로 전송
     var deliveryData = {
         orderId: orderId,

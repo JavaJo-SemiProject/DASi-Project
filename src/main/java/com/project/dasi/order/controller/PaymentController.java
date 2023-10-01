@@ -3,6 +3,7 @@ package com.project.dasi.order.controller;
 import com.project.dasi.order.model.dto.PayInfoDTO;
 import com.project.dasi.order.model.dto.PaymentRequest;
 import com.project.dasi.order.model.service.PaymentService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,29 +29,41 @@ public class PaymentController {
     @PostMapping("/paySuccess")
     @ResponseBody
     public ResponseEntity<String> recordPayment(@RequestBody PaymentRequest paymentRequest) {
-        System.out.println("payNum : " + paymentRequest.getImp_uid());
-        System.out.println("price : " + paymentRequest.getAmount());
-        System.out.println("PayMethod : " + paymentRequest.getPayMethod());
-        System.out.println("BuyName : " + paymentRequest.getBuyer_name());
+
+        JSONObject jsonObject = new JSONObject(paymentRequest);
+
+        String payNum = jsonObject.getString("imp_uid");
+        String orderId = jsonObject.getString("merchant_uid");
+        int amount = jsonObject.getInt("amount");
+        String payMethod = jsonObject.getString("pay_method");
+        String buyerName = jsonObject.getString("buyer_name");
+
+
+        System.out.println("payNum : " + payNum);
+        System.out.println("price : " + amount);
+        System.out.println("PayMethod : " + payMethod);
+        System.out.println("BuyName : " + buyerName);
         try {
             PayInfoDTO payment = new PayInfoDTO();
-            payment.setBuyer(paymentRequest.getBuyer_name());
-            payment.setPayNum(paymentRequest.getImp_uid());
-            payment.setPayMethod(paymentRequest.getPayMethod());
-            payment.setPayPrice(paymentRequest.getAmount());
-            payment.setOrderId(paymentRequest.getMerchant_uid());
+            payment.setBuyer(buyerName);
+            payment.setPayNum(payNum);
+            payment.setPayMethod(payMethod);
+            payment.setPayPrice(amount);
+            payment.setOrderId(orderId);
 
             paymentService.savePayment(payment);
 
             System.out.println("pay : " + payment);
-            System.out.println("payNum : " + paymentRequest.getImp_uid());
-            System.out.println("price : " + paymentRequest.getAmount());
-            System.out.println("PayMethod : " + paymentRequest.getPayMethod());
 
             return new ResponseEntity<>("Payment recorded successfully", HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>("Failed to record payment", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/payCancel")
+    public String payCancel() {
+        return "/content/mypage/payCancel";
     }
 }
