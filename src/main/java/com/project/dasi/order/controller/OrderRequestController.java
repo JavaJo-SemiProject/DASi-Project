@@ -42,6 +42,10 @@ public class OrderRequestController {
     @PostMapping("/orderRequestPage")
     public String orderRegist(@ModelAttribute OrderListDTO order, RedirectAttributes rttr){
 
+        System.out.println("order con : " + order);
+
+        orderRequestServiceImpl.registOrder(order);
+
 
         rttr.addFlashAttribute("message","주문 요청이 성공하셨습니다.");
 

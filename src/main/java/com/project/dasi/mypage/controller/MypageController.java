@@ -2,17 +2,28 @@ package com.project.dasi.mypage.controller;
 
 import com.project.dasi.admin.order.model.service.AdminOrderService;
 import com.project.dasi.auth.model.dto.UserDTO;
+import com.project.dasi.auth.model.service.UserService;
 import com.project.dasi.mypage.model.service.MypageService;
 import com.project.dasi.order.model.dto.OrderListDTO;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/content/mypage")
@@ -21,10 +32,19 @@ public class MypageController {
 
     private final MypageService mypageService;// 사용자 정보 서비스
     private final AdminOrderService orderService;
+    private final PasswordEncoder passwordEncoder;
 
-    public MypageController(MypageService mypageService, AdminOrderService orderService) {
+//    public  MypageController(MypageService mypageService) {
+//        this.mypageService = mypageService;
+//    }
+
+
+    private UserService userService; // UserService를 주입
+
+    public MypageController(MypageService  mypageService, AdminOrderService orderService, PasswordEncoder passwordEncoder) {
         this.mypageService = mypageService;
         this.orderService = orderService;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -95,6 +115,8 @@ public class MypageController {
 
         return "/content/mypage/myOrderList";
     }
+
+
 
 }
 
