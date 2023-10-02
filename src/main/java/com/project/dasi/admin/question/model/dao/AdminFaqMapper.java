@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface AdminFaqMapper {    /*이 이름 가진 매퍼.xml파일 찾아가서 해당 메서드와 id같은거 찾아서 실행*/
+public interface AdminFaqMapper {
 
     List<AdminFaqDTO> adminSelectAllFaqList();
 
@@ -18,10 +18,6 @@ public interface AdminFaqMapper {    /*이 이름 가진 매퍼.xml파일 찾아
     int adminFaqCreate(AdminFaqDTO createdto);
 
     int adminFaqDelete(int faqNum);
-
-
-
-    /*int updateFaq(AdminFaqDTO adminfaq);*/
 
 
 }

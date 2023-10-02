@@ -15,7 +15,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-
 </head>
 <body>
 <div th:insert="fragments/header.html"></div>
@@ -25,9 +24,9 @@
     <div class="page pseudo_padding-2">
         <div class="items_container ic2">
             <button class="button button-light" onclick="location.reload();">1:1 문의 관리</button>
-            <button class="button button-dark" th:onclick="'location.href=\'/admin/question/managerFaq\''">FAQ 관리</button>
+            <button class="button button-dark" th:onclick="'location.href=\'/admin/question/managerFaq\''">FAQ 관리
+            </button>
         </div>
-
         <table class="question" th:each="question : ${ questionList }">
 
             <input type="hidden" name="questNum" th:value="${ question.questNum }">
@@ -51,34 +50,13 @@
         </table>
 
 
-        <button th:onclick="|location.href='/admin/question/managerQuestionCreate/${question.questNum}'|" class="button button-dark">답변 작성
+        <button th:onclick="|location.href='/admin/question/managerQuestionCreate/${question.questNum}'|"
+                class="button button-dark">답변 작성
         </button>
-
-
-        <!--
-        <button type="button" onclick="alert('등록하시겠습니까?')">등록</button>
-
-        <button type="button" onclick="alert('등록되었습니다')">등록</button>
-
-
-
-        <button type="button" onclick="alert('취소되었습니다')">취소</button>
-        <div class="btn-bottom-area">
-            <button type="button" class="button button-dark" onclick="goSave();"><span>등록</span></button>
-            <button type="button" class="button button-light" onclick="javascript:history.back();"><span>취소</span></button>
-        </div>-->
     </div>
 </div>
 
-
-
-
-
-
-
-
 <!-- footer -->
-
 
 <div th:insert="fragments/footer.html"></div>
 

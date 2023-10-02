@@ -15,8 +15,6 @@ public interface QuestionMapper {
 
     int questionUpdate(QuestionDTO question);
 
-/*    QuestionDTO userquestionUpdate(int qnum);*/
-
     QuestionDTO userquestionUpdate(int qnumb);
 
     void userquestionup(QuestionDTO qdto);

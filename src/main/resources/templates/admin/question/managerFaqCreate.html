@@ -19,44 +19,22 @@
 
 </head>
 <body>
-
 <div th:insert="fragments/header.html"></div>
 
 
-<!--pages-->
 <div class="wrap">
-    <div class="page pseudo_padding-2"><!--페이지 시작-->
-        <!--<div class="button_class">
-            <button class="button button-light" onClick="" style="margin: 0px 20px;">1:1 문의 관리</button>
-            <button class="button button-dark" onClick="">FAQ 관리</button>
-        </div>-->
+    <div class="page pseudo_padding-2">
         <h1>FAQ 작성</h1>
         <hr>
-
-        <!--내용시작-->
-        <!-- <select class="select" style="width: 30%;">
-                        <option class="option" selected>구분</option>
-                        <option class="option" value="">주문제작</option>
-                        <option class="option" value="">결제 및 배송</option>
-                        <option class="option" value="">기타</option>
-                    </select>-->
-
         <form id="faqCreate" th:action="@{/admin/question/create}" method="post">
             <table class="faqlist-table">
-                <!-- <input
-                         type="hidden"
-                         id="writerMemberNo"
-                         name="writerMemberNo"
-                         th:value="${ #authentication.getPrincipal().getMemberNo() }">-->
-                <!--th:value="${ #authentication.getPrincipal().getMemberNo() }"-->
-                <!--히든인풋에 밸류로 값 넣어서 뒷단으로 옮기는 방법이 있다-->
                 <tr>
                     <td>
                         <h5>FaQ 글제목</h5>
                     </td>
                     <td>
                         <input class="input" type="text" name="faqTitle" placeholder="FAQ 제목을 입력하세요">
-                    </td>  <!--name 명과 DTO의 필드 변수명이 같아야한다!!AdminFaqDTO에 담을거니까!!!!!!! 내가 자꾸 까먹는부분-->
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -65,16 +43,7 @@
                     <td><textarea class="textarea" name="faqContent" rows="15" style="resize:none;" placeholder="FAQ 내용을 입력하세요"></textarea> </td>
                 </tr>
             </table>
-
-
-
-
-            <!-- <button type="button" onclick="alert('등록하시겠습니까?')">등록</button>
-            <button type="button" onclick="alert('등록되었습니다')">등록</button> -->
-
             <hr>
-
-            <!-- <button type="button" onclick="alert('취소되었습니다')">취소</button> -->
             <div class="items_container ic3">
                 <div class="item">
                     <button type="submit" class="button button-dark w-100">등록</button>
@@ -89,23 +58,8 @@
         </form>
     </div>
 
-
-    <!-- <form enctype="multipart/form-data" action="" method="post">
-        <div id="in_title">
-            <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
-        </div>
-    </form>
-    </div> -->
-
-
 </div>
 </div>
-
-
-
-
-<!-- footer -->
-
 
 <div th:insert="/fragments/footer.html"></div>
 
@@ -117,23 +71,3 @@
 
 </body>
 </html>
-
-
-<!--
-
-<div id="write_area">
-    <form enctype="multipart/form-data" action="" method="post">
-        <div id="in_title">
-            <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
-        </div>
-
-        <div class="wi_line"></div>
-        <div id="in_content">
-            <textarea name="content" id="ucontent" placeholder="내용" required></textarea>
-        </div>
-
-        <input type="file" name="SelectFile" />
-    </form>
-
-</div>-->
-

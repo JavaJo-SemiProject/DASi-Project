@@ -16,7 +16,6 @@ public class AdminFaqService {
     }
 
 
-    /*FaQ 전체 목록 조회용 메서드*/
     public List<AdminFaqDTO> adminSelectAllFaqList() {
 
         List<AdminFaqDTO> faqList = adminFaqMappper.adminSelectAllFaqList();
