@@ -18,10 +18,12 @@
 
 <!--pages-->
 <div class="page">
-    <div class="button class">
+    <br>
+    <br>
+   <!-- <div class="button class">
         <button class="button button-light" th:onclick="'location.href=\'/admin/question/managerQuestion\''">1:1 문의 관리</button>
         <button class="button button-dark" onclick="location.reload();">FAQ 관리</button>
-    </div>
+    </div>-->
     <!--<div class="selecttitle">
         <h3 class="selecttitle1">구분</h3>
         <select class="select">
@@ -38,7 +40,7 @@
     <table class="list-table">
         <thead>
         <tr>
-            <th style="width:50px">글번호</th>
+            <!--<th style="width:50px">글번호</th>-->
             <th style="width:120px">제목</th>
             <th style="width:120px">내용</th>
             <th style="width:60px">수정 및 삭제</th>
@@ -46,7 +48,7 @@
         </thead>
         <tbody>
         <tr th:each="faq : ${ faqList }">
-            <td style="width:50px" th:text="${ faq.faqNum }"></td>
+           <!-- <td style="width:50px" th:text="${ faq.faqNum }"></td>-->
             <td style="width:120px" th:text="${ faq.faqTitle }"></td>
             <td style="width:120px" th:text="${ faq.faqContent }"></td>
             <td style="width:60px">

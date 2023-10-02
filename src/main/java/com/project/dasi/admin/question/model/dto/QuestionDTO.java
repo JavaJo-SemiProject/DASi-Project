@@ -13,7 +13,9 @@ import lombok.*;
 public class QuestionDTO implements java.io.Serializable {
     private int questNum; /*QUEST_NUM*/
     private UserDTO userCode; /*USER_CODE*/
-    private QuestionCategoryDTO qCateCode;  /*QCATEGORY*/
+    private String user;
+    private QuestionCategoryDTO qCateCode;  /*QCATE_CODE*/
+    private String qCate;
     private String answerDate;  /*ANSWER_DATE*/
     private String answerContent;   /*ANSWER_CONTENT*/
     private String questDate;  /*QUEST_DATE*/

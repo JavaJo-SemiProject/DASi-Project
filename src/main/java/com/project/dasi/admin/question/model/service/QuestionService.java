@@ -1,9 +1,11 @@
 package com.project.dasi.admin.question.model.service;
 
 import com.project.dasi.admin.question.model.dao.QuestionMapper;
-import com.project.dasi.admin.question.model.dto.AdminFaqDTO;
 import com.project.dasi.admin.question.model.dto.QuestionDTO;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -33,8 +35,32 @@ public class QuestionService {
         questionMapper.adminquestCreate(adminquestion);
     }
 
-    public void questionUpdate(QuestionDTO question) {
+    public QuestionDTO userselectOneQuestion(int qnumb) {
 
-        questionMapper.questionUpdate(question);
+        System.out.println("qnumb service: " + qnumb);
+
+        QuestionDTO userQuestionList = questionMapper.userquestionUpdate(qnumb);
+
+        return userQuestionList;
     }
+
+    public void userquestionup(QuestionDTO qdto) {
+
+        questionMapper.userquestionup(qdto);
+
+    }
+
+    public void userQuestionDelete(int questionNum) {
+
+        questionMapper.userquestionDelete(questionNum);
+    }
+
+
+/*    public List<QuestionService> Adminquestionupdate(questnum int questnum) {
+
+        List<QuestionDTO> adminquestionList = questionMapper.adminquestCreate(questnum);
+
+        return adminquestionList;
+
+    }*/
 }

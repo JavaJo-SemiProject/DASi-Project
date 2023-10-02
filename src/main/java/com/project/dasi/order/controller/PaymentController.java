@@ -35,7 +35,7 @@ public class PaymentController {
         String payNum = jsonObject.getString("imp_uid");
         String orderId = jsonObject.getString("merchant_uid");
         int amount = jsonObject.getInt("amount");
-        String payMethod = jsonObject.getString("pay_method");
+        String payMethod = jsonObject.getString("payMethod");
         String buyerName = jsonObject.getString("buyer_name");
 
 

@@ -28,18 +28,20 @@
 
 <div class="pages">
     <br>
-    <h2>1:1문의 작성</h2>
     <br>
-    <form name="questionRegistForm" th:action="@{/admin/question/questioncreate}" method="post">
-        <input type="text" name="userCode" th:value="${#authentication.getPrincipal().userCode}">
+    <br>
+    <h2>1:1문의 작성</h2>
+    <input type="text" name="userId" th:value="${#authentication.getPrincipal().userId}">님, 1:1문의를 남겨주시면 성의껏 답변해드리겠습니다❤
+    <br>
+    <form name="questionRegistForm" th:action="@{/content/question/questioncreate}" method="post">
+        <input type="hidden" name="user" th:value="${#authentication.getPrincipal().userCode}">
+
 
         <table>
             <tr>
                 <td>문의유형</td>
                 <td>
-                    <select id="qcateCode" name="qcateCode" style="width: 30%;">
-                        <option value="">선택해주세요</option>
-                        <option value="0">공통</option>
+                    <select id="qCateCode" name="qCate" style="width: 30%;">
                         <option value="1">주문제작</option>
                         <option value="2">결제 및 배송</option>
                     </select>
@@ -58,12 +60,22 @@
             </tr>
         </table>
         <br>
-        <div class="btn-bottom-area">
-            <button type="submit" class="button button-dark">등록</button>
-            <button type="reset" class="button button-light">작성내용 되돌리기</button>
+
+        <div class="items_container" style="display: flex;">
+            <div class="item" style="width: 100%;">
+            <button type="submit" class="button button-light" style="width: 100%;">등록</button>
+            </div>
+            <div class="item" style="width: 100%;">
+            <button type="reset" class="button button-light" style="width: 100%;">작성내용 되돌리기</button>
+            </div>
+            <div class="item" style="width: 100%;">
             <button type="button" class="button button-light"
-                    th:onclick="'location.href=\'/content/question/question\''">취소
+                    th:onclick="'location.href=\'/content/question/question\''" style="width: 100%;">취소
             </button>
+            </div>
+
+        </div>
+    </form>
         </div>
     </form>
 </div>

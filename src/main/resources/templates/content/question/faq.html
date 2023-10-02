@@ -46,14 +46,14 @@
     <table class="faqlist-table">
         <thead>
         <tr>
-            <th style="width:50px">글번호</th>
+          <!--  <th style="width:50px">글번호</th>-->
             <th style="width:120px">제목</th>
             <th style="width:120px">내용</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="faq : ${ faqList }">
-            <td style="width:50px" th:text="${ faq.faqNum }"></td>
+           <!-- <td style="width:50px" th:text="${ faq.faqNum }"></td>-->
             <td style="width:120px" th:text="${ faq.faqTitle }" ></td>
             <td style="width:120px" th:text="${ faq.faqContent }"></td>
         </tr>

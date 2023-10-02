@@ -14,4 +14,12 @@ public interface QuestionMapper {
     int questionCreate(QuestionDTO question);
 
     int questionUpdate(QuestionDTO question);
+
+/*    QuestionDTO userquestionUpdate(int qnum);*/
+
+    QuestionDTO userquestionUpdate(int qnumb);
+
+    void userquestionup(QuestionDTO qdto);
+
+    void userquestionDelete(int questionNum);
 }
