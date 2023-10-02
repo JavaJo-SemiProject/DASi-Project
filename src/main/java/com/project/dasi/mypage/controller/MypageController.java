@@ -31,10 +31,6 @@ public class MypageController {
     private final AdminOrderService orderService;
     private final PasswordEncoder passwordEncoder;
 
-//    public  MypageController(MypageService mypageService) {
-//        this.mypageService = mypageService;
-//    }
-
 
     private UserService userService; // UserService를 주입
 
@@ -74,6 +70,29 @@ public class MypageController {
         System.out.println("userid, userdto : " + userDTO  + userId);
 
         return "/content/mypage/mypageMain";
+    }
+
+
+    @GetMapping("/mypageUpdate")
+    public String mypageUpdate() {
+
+        return "content/mypage/mypageUpdate";
+    }
+
+    @PostMapping("/mypageUpdate")
+    public String mypageUpdate(@ModelAttribute UserDTO user, HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr){
+
+        String address = request.getParameter("zicCode") + "$" + request.getParameter("address") + "$" + request.getParameter("addressDetail");
+        user.setAddress(address);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        userService.modifyMember(user);
+
+        //        SessionUtil.invalidateSession(request, response);
+        //
+        //        rttr.addFlashAttribute("message", "회원 정보가 수정되었습니다. DASi 로그인해주세요.");
+
+        return "redirect:/";
     }
 
     @GetMapping("/myOrderList")
