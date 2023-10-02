@@ -42,9 +42,12 @@
                                     $('#search').prop("type", "date");
                                 } else if (selectedSearchOption == "joinDate") {
                                     $('#search').prop("type", "date");
+                                } else if (selectedSearchOption == "email") {
+                                    $('#search').prop("type", "text");
+                                    $('#search').attr('placeholder', "'@'를 포함한 전체 이메일 주소를 입력해주세요.");
                                 } else if (selectedSearchOption == "gender") {
                                     $('#search').prop("type", "text");
-                                    $('#search').attr('placeholder', "M' 또는 'W'만 입력 가능합니다.");
+                                    $('#search').attr('placeholder', "'M' 또는 'W'만 입력 가능합니다.");
                                 }
                                 else {
                                     $('#search').prop("type", "text");
