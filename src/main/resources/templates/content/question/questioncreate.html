@@ -25,60 +25,58 @@
 
 <!--페이지 시작-->
 
-
-<div class="pages">
-    <br>
-    <br>
-    <br>
-    <h2>1:1문의 작성</h2>
-    <input type="text" name="userId" th:value="${#authentication.getPrincipal().userId}">님, 1:1문의를 남겨주시면 성의껏 답변해드리겠습니다❤
-    <br>
-    <form name="questionRegistForm" th:action="@{/content/question/questioncreate}" method="post">
-        <input type="hidden" name="user" th:value="${#authentication.getPrincipal().userCode}">
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <h1>1:1문의 작성</h1>
+        <input class="input" type="text" name="userId" th:value="${#authentication.getPrincipal().userId}" style="width: auto" readonly>
+        &nbsp;님, 1:1문의를 남겨주시면 성의껏 답변해드리겠습니다.
+        <hr>
+        <form name="questionRegistForm" th:action="@{/content/question/questioncreate}" method="post">
+            <input type="hidden" name="user" th:value="${#authentication.getPrincipal().userCode}">
 
 
-        <table>
-            <tr>
-                <td>문의유형</td>
-                <td>
-                    <select id="qCateCode" name="qCate" style="width: 30%;">
-                        <option value="1">주문제작</option>
-                        <option value="2">결제 및 배송</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>제목</td>
-                <td colspan="3"><input type="text" name="questTitle" id="questTitle" style="rwidth:400px;"></td>
-            </tr>
-            <tr>
-                <td>문의내용</td>
-                <td colspan="3">
-                        <textarea name="questContent" id="questContent" cols="60" rows="15"
+            <table>
+                <tr>
+                    <td>문의유형</td>
+                    <td>
+                        <select class="select w-100" id="qCateCode" name="qCate" style="width: 30%">
+                            <option value="1">주문제작</option>
+                            <option value="2">결제 및 배송</option>
+                        </select>
+                    </td>
+                    <td>제목</td>
+                    <td><input class="input w-100" type="text" name="questTitle" id="questTitle" style="width: 70%"></td>
+                </tr>
+                <tr>
+                    <td>문의내용</td>
+                    <td colspan="3">
+                        <textarea class="textarea" name="questContent" id="questContent" cols="60" rows="15"
                                   style="resize:none;"></textarea>
-                </td>
-            </tr>
-        </table>
-        <br>
+                    </td>
+                </tr>
+            </table>
+            <br>
 
-        <div class="items_container" style="display: flex;">
-            <div class="item" style="width: 100%;">
-            <button type="submit" class="button button-light" style="width: 100%;">등록</button>
-            </div>
-            <div class="item" style="width: 100%;">
-            <button type="reset" class="button button-light" style="width: 100%;">작성내용 되돌리기</button>
-            </div>
-            <div class="item" style="width: 100%;">
-            <button type="button" class="button button-light"
-                    th:onclick="'location.href=\'/content/question/question\''" style="width: 100%;">취소
-            </button>
-            </div>
+            <div class="items_container" style="display: flex;">
+                <div class="item" style="width: 100%;">
+                    <button type="submit" class="button button-light" style="width: 100%;">등록</button>
+                </div>
+                <div class="item" style="width: 100%;">
+                    <button type="reset" class="button button-light" style="width: 100%;">작성내용 되돌리기</button>
+                </div>
+                <div class="item" style="width: 100%;">
+                    <button type="button" class="button button-light"
+                            th:onclick="'location.href=\'/content/question/question\''" style="width: 100%;">취소
+                    </button>
+                </div>
 
-        </div>
-    </form>
-        </div>
+            </div>
+        </form>
+    </div>
     </form>
 </div>
+</div>
+
 
 <div th:insert="fragments/footer.html"></div>
 

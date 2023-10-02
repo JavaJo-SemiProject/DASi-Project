@@ -33,58 +33,58 @@
 
 <!--페이지 시작-->
 
+<div class="wrap">
+    <div class="page pseudo_padding-2">
 
-<div class="pages">
-    <br>
-    <h2>1:1문의 수정</h2>
-    <br>
+        <h1>1:1문의 수정</h1>
+        <form id="faqUpdate" th:action="@{/content/question/questionRealUpdate/{questNum}}" method="post">
+            <!--폼태그 안의 것들은 매퍼에 쿼리문작성할 때 안넣을거여도 들고는 가기 때문에 자료형 반드시 맞춰야한다!-->
+            <input class="input" type="text" th:value="${#authentication.getPrincipal().userId}" style="width: auto" readonly>&nbsp;님의 문의 수정 화면입니다.
+            <input type="hidden" name="questNum" th:value="${ userquestion.questNum }">
+            <!--히든 이거 안써도 저절로 알 줄 알았는데 히든이어도무시하지 말고 무조건 써야한다-->
 
+            <hr>
 
-    <form id="faqUpdate" th:action="@{/content/question/questionRealUpdate/{questNum}}" method="post">
-        <!--폼태그 안의 것들은 매퍼에 쿼리문작성할 때 안넣을거여도 들고는 가기 때문에 자료형 반드시 맞춰야한다!-->
-        <input type="text" th:value="${#authentication.getPrincipal().userId}">님❤
-        <input type="hidden" name="questNum" th:value="${ userquestion.questNum }">
-        <!--히든 이거 안써도 저절로 알 줄 알았는데 히든이어도무시하지 말고 무조건 써야한다-->
-
-        <table>
-            <tr>
-                <td>문의유형</td>
-                <td>
-                    <select id="qCateCode" name="qCate" style="width: 30%;">
-                        <option value="1">주문제작</option>
-                        <option value="2">결제 및 배송</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>제목</td>
-                <td colspan="3"><input type="text" name="questTitle" id="questTitle"
-                                       th:value="${ userquestion.questTitle }" style="rwidth:400px;"></td>
-            </tr>
-            <tr>
-                <td>문의내용</td>
-                <td colspan="3">
-                        <textarea name="questContent" th:text="${ userquestion.questContent }" cols="60" rows="15"
+            <table>
+                <tr>
+                    <td>문의유형</td>
+                    <td>
+                        <select class="select w-100" id="qCateCode" name="qCate" style="width: 30%;">
+                            <option value="1">주문제작</option>
+                            <option value="2">결제 및 배송</option>
+                        </select>
+                    </td>
+                    <td>제목</td>
+                    <td><input class="input w-100" type="text" name="questTitle" id="questTitle"
+                                           th:value="${ userquestion.questTitle }" style="width: 70%"></td>
+                </tr>
+                <tr>
+                    <td>문의내용</td>
+                    <td colspan="3">
+                        <textarea class="textarea" name="questContent" th:text="${ userquestion.questContent }" cols="60" rows="15"
                                   style="resize:none;"></textarea>
-                </td>
-            </tr>
-        </table>
-
-        <div class="items_container" style="display: flex;">
-            <div class="item" style="width: 100%;">
-            <button type="button" class="button button-light"
-                    th:onclick="'location.href=\'/content/question/question\''" style="width: 100%;">취소
-            </button>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+            <div class="items_container" style="display: flex;">
+                <div class="item" style="width: 100%;">
+                    <button type="button" class="button button-light"
+                            th:onclick="'location.href=\'/content/question/question\''" style="width: 100%;">취소
+                    </button>
+                </div>
+                <div class="item" style="width: 100%;">
+                    <button type="submit" class="button button-light" style="width: 100%;">수정 완료</button>
+                </div>
             </div>
-            <div class="item" style="width: 100%;">
-                <button type="submit" class="button button-light" style="width: 100%;">수정 완료</button>
-        </div>
-        </div>
 
-    </form>
+        </form>
 
 
+    </div>
 </div>
+
+
 <div th:insert="fragments/footer.html"></div>
 
 

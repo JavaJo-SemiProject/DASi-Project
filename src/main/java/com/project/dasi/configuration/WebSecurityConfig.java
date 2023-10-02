@@ -37,7 +37,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
             http.csrf().disable();
             http.authorizeRequests()
-                    .antMatchers("/content/mypage/**").hasRole("USER")
+                    .antMatchers("/content/mypage/**").hasAnyRole("USER", "ADMIN")
                     .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/resources/**").permitAll();
                 // USER, ADMIN 접근 허용

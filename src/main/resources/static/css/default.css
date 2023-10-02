@@ -605,8 +605,8 @@ vh-100 {
 }
 
 .item .item-thumb {
-  max-width: 100%!important;
-  max-height: 400px;
+  width: 100%!important;
+  height: auto;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -627,7 +627,7 @@ vh-100 {
 }
 
 img {
-  max-width: 100%; height: auto;
+  width: 100%; height: auto;
   overflow: hidden;
 }
 
@@ -712,6 +712,13 @@ img {
   font-size: 1.15rem;
   padding: 0 12px
 
+}
+
+.textarea {
+  width: 100%;
+  border-radius: 0;
+  border: solid 1px #ccc;
+  padding: 6px
 }
 
 .checkbox_radio{

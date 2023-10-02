@@ -13,122 +13,135 @@
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/mypageProfil.css">
   <link rel="stylesheet" href="/css/order.css">
+    <style>
+        * { color: var(--color-dark)}
+        .form-radio-btn-input:checked {
+            color: #fff!important;
+        } </style>
 </head>
 
 <body>
 
 <div th:insert="/fragments/header"></div>
-<br>
-<br>
-<div class="page">
-  <div th:include="/fragments/mypageId"></div>
-  <br>
-  <div th:include="/fragments/mypageCategory"></div>
-  <div>
-<!--    <a th:href="@{/content/question/faq}">FAQ</a>-->
+
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <div th:include="/fragments/mypageId"></div>
+        <br>
+        <div th:include="/fragments/mypageCategory"></div>
+        <div>
+            <!--    <a th:href="@{/content/question/faq}">FAQ</a>-->
+
+            <hr>
+            <div class="items_container ic4">
+                <h3>기본 정보</h3>
+                <div></div>
+                <div></div>
+                <button class="button button-dark" style="float: right; width: auto" id="updateMember"
+                        onclick="location.href='/content/mypage/mypageUpdate'">기본 정보 수정
+                </button>
+
+            </div>
+            <br>
+            <div class="items_container ic3">
+                <div class="item bg-light p-1">
+                    <p><h5>아이디</h5></p>
+                    <!--    아이디    -->
+                    <div th:if="${user.userId != null}">
+                        <p th:text="${user.userId}"></p>
+
+                    </div>
+                    <!--        <input class="input" type="text" name="userId" th:value="${user.userId}" readonly>-->
+                </div>
+                <div class="item bg-light p-1">
+                    <p><h5>생년월일</h5></p>
+                    <!--  생년월일   -->
+                    <p th:if="${user != null}" th:text="${user.getBirthDate()}"></p>
+                </div>
+                <!--        <input class="input" type="text" th:value="${user.birthDate}" readonly>-->
+                <div class="item bg-light p-1">
+                    <p><h5>성별</h5></p>
+                    <div th:if="${userDTO != null}">
+                        <p th:text="${userDTO.getGender()}"></p>
+                    </div>
+                    <!--        <input class="input" type="text" th:value="${user.gender}" readonly>-->
+                </div>
+            </div>
+
+        </div>
+        <hr>
+
+        <div class="items_container ic3">
+            <div class="item bg-light p-1">
+                <p><h5>비밀번호</h5></p>
+                <div class="input-group">
+                    <input class="input" type="password" name="password" value="1234578901111" readonly>
+                </div>password
+            </div>
+            <div class="item bg-light p-1">
+                <p><h5>E-mail</h5></p>
+                <div class="input-group">
+                    <!-- 이메일 -->
+                    <p th:if="${userDTO != null}" th:text="${userDTO.getEmail()}"></p>
+                </div>
+
+
+                <!--          <input class="input" type="text" th:value="${user.email}" readonly>-->
+            </div>
+            <div class="item bg-light p-1">
+                <p><h5>전화번호</h5></p>
+                <div class="input-group">
+                    <p th:if="${userDTO != null}" th:text="${userDTO.getTel()}"></p>
+
+                    <!--          <input class="input" type="text" th:value="${user?.tell}" readonly>-->
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="items_container ic4">
+            <h3>배송지 정보</h3>
+            <div></div>
+            <div></div>
+            <button class="button button-dark"  style="float: right; width: auto" onclick="location.href='/member/mypage/myInfo/mypageAddrEdit'">기본 배송지 변경
+            </button>
+        </div>
+        <br>
+        <div class="items_container ic3">
+            <div class="item bg-light p-1">
+                <p><h5>주소</h5></p>
+                <input class="input" type="text" value="서울시 강북구 수유 1동 123-456 타워팰리스 301호" readonly>
+            </div>
+            <div class="item bg-light p-1">
+                <p><h5>수령인</h5></p>
+                <input class="input" type="text" value="배승수" readonly>
+            </div>
+            <div class="item bg-light p-1">
+                <p><h5>전화번호</h5></p>
+                <p th:if="${userDTO != null}" th:text="${userDTO.getTel()}"></p>
+                <!--        <input class="input" type="text" value="010-1234-5678" readonly>-->
+            </div>
+        </div>
+    </div>
 
     <hr>
-    <div style="display: flex">
-      <h3 style="width: 20%">기본 정보</h3>
-
-      <button class="button button-dark" style="width: 12%; margin-left: 85%" id="updateMember"
-              onclick="location.href='/content/mypage/mypageUpdate'">기본 정보 수정
-      </button>
-
+    <div class="page">
+        <form action="">
+            <!--      <input type="text" name="user" th:value="${#authentication.getPrincipal().userCode}">-->
+            <a class="button button-lg button-dark w-100" th:href="@{/logout}">
+                로그아웃
+            </a>
+            <!--      <button type="button" class="button button-light"-->
+            <!--              th:onclick="'location.href=\'/question\''">아멘-->
+            <!--      </button>-->
+        </form>
     </div>
-    <br>
-    <div class="items_container ic3">
-      <div class="item bg-light p-1">
-        <p><h5>아이디</h5></p>
-          <!--    아이디    -->
-        <div th:if="${user.userId != null}">
-          <p th:text="${user.userId}"></p>
 
-        </div>
-<!--        <input class="input" type="text" name="userId" th:value="${user.userId}" readonly>-->
-      </div>
-    <div class="item bg-light p-1">
-      <p><h5>생년월일</h5></p>
-      <!--  생년월일   -->
-      <p th:if="${user != null}" th:text="${user.getBirthDate()}"></p>
-    </div>
-<!--        <input class="input" type="text" th:value="${user.birthDate}" readonly>-->
-      </div>
-      <div class="item bg-light p-1">
-        <p><h5>성별</h5></p>
-        <div th:if="${userDTO != null}">
-          <p th:text="${userDTO.getGender()}"></p>
-        </div>
-<!--        <input class="input" type="text" th:value="${user.gender}" readonly>-->
-      </div>
-    </div>
-    <hr>
-
-    <div class="items_container ic3">
-      <div class="item bg-light p-1">
-        <p><h5>비밀번호</h5></p>
-        <div class="input-group">
-          <input class="input" type="password" name="password" value="1234578901111" readonly>
-        </div>password
-      </div>
-      <div class="item bg-light p-1">
-        <p><h5>E-mail</h5></p>
-        <div class="input-group">
-        <!-- 이메일 -->
-            <p th:if="${userDTO != null}" th:text="${userDTO.getEmail()}"></p>
-        </div>
-
-
-          <!--          <input class="input" type="text" th:value="${user.email}" readonly>-->
-        </div>
-      </div>
-      <div class="item bg-light p-1">
-        <p><h5>전화번호</h5></p>
-        <div class="input-group">
-          <p th:if="${userDTO != null}" th:text="${userDTO.getTel()}"></p>
-
-<!--          <input class="input" type="text" th:value="${user?.tell}" readonly>-->
-        </div>
-      </div>
-    </div>
-    <hr>
-    <div style="display: flex">
-      <h3 style="width: 20%">배송지 정보*</h3>
-      <button class="button button-dark" style="width: 12%; margin-left: 85%"
-              onclick="location.href='/member/mypage/myInfo/mypageAddrEdit'">기본 배송지 변경
-      </button>
-    </div>
-    <br>
-
-    <div class="items_container ic3">
-      <div class="item bg-light p-1">
-        <p><h5>주소</h5></p>
-        <input class="input" type="text" value="서울시 강북구 수유 1동 123-456 타워팰리스 301호" readonly>
-      </div>
-      <div class="item bg-light p-1">
-        <p><h5>수령인</h5></p>
-        <input class="input" type="text" value="배승수" readonly>
-      </div>
-      <div class="item bg-light p-1">
-        <p><h5>전화번호</h5></p>
-        <p th:if="${userDTO != null}" th:text="${userDTO.getTel()}"></p>
-<!--        <input class="input" type="text" value="010-1234-5678" readonly>-->
-      </div>
-    </div>
-    <hr>
-    <form style="text-align: center" action="">
-<!--      <input type="text" name="user" th:value="${#authentication.getPrincipal().userCode}">-->
-      <button class="button button-lg button-dark" onclick="location.href='/'" style="width: 50%">
-        로그아웃
-      </button>
-<!--      <button type="button" class="button button-light"-->
-<!--              th:onclick="'location.href=\'/question\''">아멘-->
-<!--      </button>-->
-    </form>
-  </div>
+</div>
+</div>
 </div>
 
 
+<div th:insert="/fragments/footer.html"></div>
 <script src="/js/mypageInfoEdit.js"></script>
 </body>
 </html>

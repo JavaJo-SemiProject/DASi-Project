@@ -21,57 +21,60 @@
 <div th:insert="fragments/header.html"></div>
 
 
-<!--pages-->
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <div class="items_container ic2">
+            <button class="button button-light" onclick="location.reload();">1:1 문의 관리</button>
+            <button class="button button-dark" th:onclick="'location.href=\'/admin/question/managerFaq\''">FAQ 관리</button>
+        </div>
 
-<br/>
-<div class="button class">
-    <button class="button button-light" onclick="location.reload();">1:1 문의 관리</button>
-    <button class="button button-dark" th:onclick="'location.href=\'/admin/question/managerFaq\''">FAQ 관리</button>
+        <table class="question" th:each="question : ${ questionList }">
+
+            <input type="hidden" name="questNum" th:value="${ question.questNum }">
+
+            <tr>
+                <td>문의유형</td>
+                <td th:text="${ question.qCateCode.qCategory }"></td>
+            </tr>
+            <tr>
+                <td>문의날짜</td>
+                <td colspan="3" th:text="${ question.questDate }"></td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td colspan="3" th:text="${ question.questTitle }" style="rwidth:400px;"></td>
+            </tr>
+            <tr>
+                <td>문의내용</td>
+                <td colspan="3" th:text="${ question.questContent }"></td>
+            </tr>
+        </table>
+
+
+        <button th:onclick="|location.href='/admin/question/managerQuestionCreate/${question.questNum}'|" class="button button-dark">답변 작성
+        </button>
+
+
+        <!--
+        <button type="button" onclick="alert('등록하시겠습니까?')">등록</button>
+
+        <button type="button" onclick="alert('등록되었습니다')">등록</button>
+
+
+
+        <button type="button" onclick="alert('취소되었습니다')">취소</button>
+        <div class="btn-bottom-area">
+            <button type="button" class="button button-dark" onclick="goSave();"><span>등록</span></button>
+            <button type="button" class="button button-light" onclick="javascript:history.back();"><span>취소</span></button>
+        </div>-->
+    </div>
 </div>
 
-<table class="question" th:each="question : ${ questionList }">
-
-    <input type="hidden" name="questNum" th:value="${ question.questNum }">
-
-    <tr>
-        <td>문의유형</td>
-        <td th:text="${ question.qCateCode.qCategory }"></td>
-    </tr>
-    <tr>
-        <td>문의날짜</td>
-        <td colspan="3" th:text="${ question.questDate }"></td>
-    </tr>
-    <tr>
-        <td>제목</td>
-        <td colspan="3" th:text="${ question.questTitle }" style="rwidth:400px;"></td>
-    </tr>
-    <tr>
-        <td>문의내용</td>
-        <td colspan="3" th:text="${ question.questContent }"></td>
-    </tr>
-</table>
-
-
-<button th:onclick="|location.href='/admin/question/managerQuestionCreate/${question.questNum}'|" width="10"
-        height="5">답변 작성
-</button>
-
-
-<!--
-<button type="button" onclick="alert('등록하시겠습니까?')">등록</button>
-
-<button type="button" onclick="alert('등록되었습니다')">등록</button>
 
 
 
-<button type="button" onclick="alert('취소되었습니다')">취소</button>
-<div class="btn-bottom-area">
-    <button type="button" class="button button-dark" onclick="goSave();"><span>등록</span></button>
-    <button type="button" class="button button-light" onclick="javascript:history.back();"><span>취소</span></button>
-</div>-->
 
 
-</body>
 
 
 <!-- footer -->
@@ -85,5 +88,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
-
+</body>
 </html>

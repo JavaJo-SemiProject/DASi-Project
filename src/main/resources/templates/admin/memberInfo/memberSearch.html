@@ -19,7 +19,7 @@
 <div class="wrap">
     <div class="page pseudo_padding-2">
         <div class="items_container ic1">
-            <h3>회원 정보 조회</h3>
+            <h1>회원 정보 조회</h1>
             <form action="memberSearch" method="">
                 <div class="items_container ic3 mb-1">
 
@@ -42,9 +42,12 @@
                                     $('#search').prop("type", "date");
                                 } else if (selectedSearchOption == "joinDate") {
                                     $('#search').prop("type", "date");
+                                } else if (selectedSearchOption == "email") {
+                                    $('#search').prop("type", "text");
+                                    $('#search').attr('placeholder', "'@'를 포함한 전체 이메일 주소를 입력해주세요.");
                                 } else if (selectedSearchOption == "gender") {
                                     $('#search').prop("type", "text");
-                                    $('#search').attr('placeholder', "M' 또는 'W'만 입력 가능합니다.");
+                                    $('#search').attr('placeholder', "'M' 또는 'W'만 입력 가능합니다.");
                                 }
                                 else {
                                     $('#search').prop("type", "text");
