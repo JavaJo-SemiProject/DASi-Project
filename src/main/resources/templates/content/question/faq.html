@@ -18,8 +18,29 @@
 </head>
 <body>
 <div th:insert="fragments/header.html"></div>
-<!-- pages -->
-<div class="page">
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+            <h1>자주 묻는 질문</h1>
+            Tel: 010-1234-5678<br>평일 09시00분 ~ 18시00분
+        <hr>
+   
+
+        <table class="faqlist-table">
+            <thead>
+            <tr>
+                <!--  <th style="width:50px">글번호</th>-->
+                <th style="width:120px">제목</th>
+                <th style="width:120px">내용</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="faq : ${ faqList }">
+                <!-- <td style="width:50px" th:text="${ faq.faqNum }"></td>-->
+                <td style="width:120px" th:text="${ faq.faqTitle }" ></td>
+                <td style="width:120px" th:text="${ faq.faqContent }"></td>
+            </tr>
+            </tbody>
+        </table>   <!--테이블끝-->
 
     <div class="FaQ">
         <h1 class="question">자주 묻는 질문</h1>
@@ -42,6 +63,7 @@
         </tbody>
     </table>
 </div>
+
 
 
 <div th:insert="fragments/footer.html"></div>

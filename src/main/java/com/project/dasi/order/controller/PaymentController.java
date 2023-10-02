@@ -23,7 +23,7 @@ public class PaymentController {
 
     @GetMapping("/paySuccess")
     public String paySuccess() {
-        return "/content/mypage/paySuccess";
+        return "/content/mypage/myOrderDetail";
     }
 
     @PostMapping("/paySuccess")

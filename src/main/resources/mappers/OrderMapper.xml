@@ -7,7 +7,8 @@
 
     <insert id="insertOrderContent">
         INSERT INTO ORDER_LIST (
-        USER_CODE
+        ORDER_ID
+        ,USER_CODE
         ,CATEGORY_CODE
         ,SIZE_INFO
         ,PHRASE
@@ -16,7 +17,8 @@
         ,ORDER_DATE
         )
         VALUES (
-        #{ user }
+        1+FLOOR(RAND()*10000)
+        ,#{ user }
         ,#{ categoryCode }
         ,#{ sizeInfo }
         ,#{ phrase }

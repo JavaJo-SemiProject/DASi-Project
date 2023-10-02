@@ -18,6 +18,8 @@
         <result property="zipCode" column="ZIPCODE"/>
         <result property="recePhone" column="RECE_PHONE"/>
         <result property="invoice" column="INVOICE"/>
+        <result property="deliverStart" column="deliver_start"/>
+        <result property="deliverEnd" column="deliver_end"/>
         <association property="userCode" resultMap="memberResultMap"/>
         <association property="payInfo" resultMap="payResultMap"/>
         <association property="productCategory" resultMap="productResultMap"/>
@@ -71,6 +73,8 @@
         ,A.PHRASE
         ,A.REQ_ISSUES
         ,A.ORDER_PRICE
+        ,A.deliver_start
+        ,A.deliver_end
         ,C.PAY_NUM
         ,C.BUYER
         ,C.PAY_DATE
@@ -80,6 +84,7 @@
         LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
         LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
         LEFT JOIN PAY_INFO C ON (A.ORDER_ID = C.ORDER_ID)
+        ORDER BY ORDER_DATE ASC
     </select>
 
     <select id="selectOrderDetail" resultMap="orderResult">
@@ -101,6 +106,8 @@
         ,A.ZIPCODE
         ,A.RECE_PHONE
         ,A.INVOICE
+        ,A.deliver_start
+        ,A.deliver_end
         ,C.PAY_NUM
         ,C.BUYER
         ,C.PAY_DATE
@@ -151,17 +158,31 @@
         <where>
             B.USER_ID = #{userId}
         </where>
+        ORDER BY ORDER_DATE ASC
     </select>
 
     <update id="updateDeliver">
-        UPDATE ORDER_LIST SET
+        UPDATE ORDER_LIST
+        <set>
+        <if test="zipCode != null">
         RECEIVER = #{ receiver }
         ,ADDRESS = #{ address }
         ,ADDRESS_DETAIL = #{ addressDetail }
         ,ZIPCODE = #{ zipCode }
         ,RECE_PHONE = #{ recePhone }
-        WHERE ORDER_ID = #{ orderId }
-    </update>
+        </if>
+        <if test="invoice != null">
+            INVOICE = #{ invoice }
+            ,DELIVER_START = NOW()
+        </if>
+        <if test="deliverEnd != null">
+            DELIVER_END = #{ deliverEnd }
+        </if>
+        </set>
 
+        <where>
+         ORDER_ID = #{ orderId }
+        </where>
+    </update>
 
 </mapper>

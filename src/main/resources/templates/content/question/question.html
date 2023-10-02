@@ -20,6 +20,7 @@
 </head>
 <body>
 <div th:insert="fragments/header.html"></div>
+
 <div class="pages">
     <br>
     <br>
@@ -54,22 +55,21 @@
                 <th:block th:if="${ question.answerContent } == null">
                     <button th:onclick="|location.href='/content/question/questionUpdate/${question.questNum}'|"
                             class="button button-light" style="width: 100%;">수정
+
                     </button>
-                </th:block>
+                </div>
+                <div class="item" style="width: 100%;">
+                    <button type="button"
+                            th:onclick="'location.href=\'/content/question/questionDelete?questionNum='+  @{${ question.questNum }} + '\''"
+                            class="button button-light" style="width: 100%;">삭제
+                    </button>
+                </div>
+
             </div>
-            <div class="item" style="width: 100%;">
-                <button th:onclick="|location.href='/content/question/userquestioncreate'|"
-                        class="button button-light" style="width: 100%;">추가 작성
-                </button>
-            </div>
-            <div class="item" style="width: 100%;">
-                <button type="button"
-                        th:onclick="'location.href=\'/content/question/questionDelete?questionNum='+  @{${ question.questNum }} + '\''"
-                        class="button button-light" style="width: 100%;">삭제
-                </button>
-            </div>
+            <hr>
         </div>
     </div>
+
 </div>
 
 <div th:insert="fragments/footer.html"></div>
