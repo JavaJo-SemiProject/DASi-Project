@@ -43,6 +43,8 @@ public class AdminOrderController {
 
         model.addAttribute("order",orderDetail);
 
+        System.out.println("model" + model);
+
         return "/admin/order/adminOrderDetail";
     }
 

@@ -7,37 +7,37 @@
     <resultMap id="orderResult" type="com.project.dasi.order.model.dto.OrderListDTO">
         <id property="orderId" column="ORDER_ID"/>
         <result property="orderDate" column="ORDER_DATE"/>
-        <result property="payNum" column="PAY_NUM"/>
         <result property="cancelContent" column="CANCEL_CONTENT"/>
         <result property="sizeInfo" column="SIZE_INFO"/>
         <result property="phrase" column="PHRASE"/>
         <result property="reqIssues" column="REQ_ISSUES"/>
         <result property="orderPrice" column="ORDER_PRICE"/>
+        <result property="receiver" column="RECEIVER"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="addressDetail" column="ADDRESS_DETAIL"/>
+        <result property="zipCode" column="ZIPCODE"/>
+        <result property="recePhone" column="RECE_PHONE"/>
+        <result property="invoice" column="INVOICE"/>
         <association property="userCode" resultMap="memberResultMap"/>
-        <collection property="orderFileList" resultMap="filesResultMap"/>
+        <association property="payInfo" resultMap="payResultMap"/>
+        <association property="productCategory" resultMap="productResultMap"/>
         <collection property="statusNum" resultMap="statusResultMap"/>
     </resultMap>
 
     <resultMap id="memberResultMap" type="com.project.dasi.auth.model.dto.UserDTO">
         <id property="userCode" column="USER_CODE"/>
         <result property="userId" column="USER_ID"/>
-        <result property="userPwd" column="USER_PWD"/>
+        <result property="password" column="PASSWORD"/>
         <result property="name" column="USER_NAME"/>
         <result property="birthDate" column="BIRTH_DATE"/>
-        <result property="address" column="ADDRESS"/>
         <result property="email" column="EMAIL"/>
         <result property="tel" column="TEL"/>
         <result property="gender" column="GENDER"/>
         <result property="joinDate" column="JOIN_DATE"/>
-    </resultMap>
-
-    <resultMap id="filesResultMap" type="com.project.dasi.order.model.dto.OrderFileDTO">
-        <id property="fileCode" column="FILE_CODE"/>
-        <result property="orderId" column="ORDER_ID"/>
-        <result property="originName" column="ORIGIN_NAME"/>
-        <result property="savedName" column="SAVED_NAME"/>
-        <result property="uploadPath" column="UPLOAD_PATH"/>
-        <result property="savePath" column="SAVED_PATH"/>
+        <result property="zipCode" column="ZIP_CODE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="addressDetail" column="ADDRESS_DETAIL"/>
+        <result property="role" column="ROLE"/>
     </resultMap>
 
     <resultMap id="statusResultMap" type="com.project.dasi.order.model.dto.StatusDTO">
@@ -45,17 +45,41 @@
         <result property="status" column="STATUS"/>
     </resultMap>
 
+    <resultMap id="productResultMap" type="com.project.dasi.order.model.dto.PCategoryDTO">
+        <id property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+    </resultMap>
+
+    <resultMap id="payResultMap" type="com.project.dasi.order.model.dto.PayInfoDTO">
+        <id property="payNum" column="PAY_NUM"/>
+        <result property="payDate" column="PAY_DATE"/>
+        <result property="payPrice" column="PAY_PRICE"/>
+        <result property="payMethod" column="PAY_METHOD"/>
+        <result property="buyer" column="BUYER"/>
+    </resultMap>
+
     <select id="selectAllOrderList" resultMap="orderResult">
         SELECT
         A.ORDER_ID
         ,B.USER_ID
+        ,B.USER_NAME
         ,A.ORDER_DATE
-        ,A.PAY_NUM
         ,D.STATUS_NUM
         ,D.STATUS
+        ,A.CANCEL_CONTENT
+        ,A.SIZE_INFO
+        ,A.PHRASE
+        ,A.REQ_ISSUES
+        ,A.ORDER_PRICE
+        ,C.PAY_NUM
+        ,C.BUYER
+        ,C.PAY_DATE
+        ,C.PAY_PRICE
+        ,C.PAY_METHOD
         FROM ORDER_LIST A
-        LEFT JOIN USERS B ON(A.USER_CODE = B.USER_CODE)
+        LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
         LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+        LEFT JOIN PAY_INFO C ON (A.ORDER_ID = C.ORDER_ID)
     </select>
 
     <select id="selectOrderDetail" resultMap="orderResult">
@@ -64,7 +88,6 @@
         ,B.USER_ID
         ,B.USER_NAME
         ,A.ORDER_DATE
-        ,A.PAY_NUM
         ,D.STATUS_NUM
         ,D.STATUS
         ,A.CANCEL_CONTENT
@@ -72,15 +95,24 @@
         ,A.PHRASE
         ,A.REQ_ISSUES
         ,A.ORDER_PRICE
-        ,C.FILE_CODE
-        ,C.ORIGIN_NAME
-        ,C.SAVED_NAME
-        ,C.SAVED_PATH
-        ,C.UPLOAD_PATH
+        ,A.RECEIVER
+        ,A.ADDRESS
+        ,A.ADDRESS_DETAIL
+        ,A.ZIPCODE
+        ,A.RECE_PHONE
+        ,A.INVOICE
+        ,C.PAY_NUM
+        ,C.BUYER
+        ,C.PAY_DATE
+        ,C.PAY_PRICE
+        ,C.PAY_METHOD
+        ,E.CATEGORY_CODE
+        ,E.CATEGORY_NAME
         FROM ORDER_LIST A
         LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
-        LEFT JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)
         LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+        LEFT JOIN PAY_INFO C ON (A.ORDER_ID = C.ORDER_ID)
+        LEFT JOIN product_category E ON (A.CATEGORY_CODE = E.CATEGORY_CODE)
         <where>
             A.ORDER_ID = #{orderId}
         </where>
@@ -106,7 +138,6 @@
         ,B.USER_ID
         ,B.USER_NAME
         ,A.ORDER_DATE
-        ,A.PAY_NUM
         ,D.STATUS_NUM
         ,D.STATUS
         ,A.CANCEL_CONTENT
@@ -114,17 +145,23 @@
         ,A.PHRASE
         ,A.REQ_ISSUES
         ,A.ORDER_PRICE
-        ,C.FILE_CODE
-        ,C.ORIGIN_NAME
-        ,C.SAVED_NAME
-        ,C.SAVED_PATH
-        ,C.UPLOAD_PATH
         FROM ORDER_LIST A
         LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
-        LEFT JOIN ORDER_FILES C ON (A.ORDER_ID = C.ORDER_ID)
         LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
         <where>
             B.USER_ID = #{userId}
         </where>
     </select>
+
+    <update id="updateDeliver">
+        UPDATE ORDER_LIST SET
+        RECEIVER = #{ receiver }
+        ,ADDRESS = #{ address }
+        ,ADDRESS_DETAIL = #{ addressDetail }
+        ,ZIPCODE = #{ zipCode }
+        ,RECE_PHONE = #{ recePhone }
+        WHERE ORDER_ID = #{ orderId }
+    </update>
+
+
 </mapper>

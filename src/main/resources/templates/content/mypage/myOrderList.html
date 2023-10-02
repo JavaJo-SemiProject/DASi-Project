@@ -24,13 +24,6 @@
     <!--<div th:include="/fragments/mypageCategory"></div>-->
 
     <h1> 나의 주문 내역</h1>
-    <!--<h5>조회할 주문 ID를 입력하세요.</h5>
-    <div class="item p-1">
-        <div class="input-group">
-            <input class="input" placeholder="검색">
-            <button class="button button-dark">검색</button>
-        </div>
-    </div>-->
     <hr>
 
     <div class="items_container ic1">
@@ -40,8 +33,6 @@
                 <tr>
                     <th>주문 ID</th>
                     <th>주문 날짜</th>
-                    <th>회원 ID</th>
-                    <th>결제 여부</th>
                     <th>상품 상태</th>
                 </tr>
                 </thead>
@@ -49,13 +40,6 @@
                 <tr th:each="order : ${orderList}">
                     <td th:text="${order.orderId}"></td>
                     <td th:text="${order.orderDate}"></td>
-                    <td th:text="${order.userCode.userId}"></td>
-                    <td>
-                        <th:block th:if="${order.payNum == '' or order.payNum == null}"><i class="fa fa-remove"></i>
-                        </th:block>
-                        <th:block th:if="${order.payNum != '' and order.payNum != null}"><i class="fa fa-check"></i>
-                        </th:block>
-                    </td>
                     <td>
                         <button class="button button-dark"><strong th:text="${order.statusNum.status}"></strong>
                         </button>

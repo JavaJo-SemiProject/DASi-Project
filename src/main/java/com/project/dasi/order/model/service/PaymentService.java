@@ -12,6 +12,7 @@ public class PaymentService {
 
     @Autowired
     public PaymentService(PaymentMapper paymentMapper) {
+        System.out.println("pay ser : " + paymentMapper);
         this.paymentMapper = paymentMapper;
     }
 

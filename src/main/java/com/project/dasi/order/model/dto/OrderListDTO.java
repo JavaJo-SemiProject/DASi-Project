@@ -24,17 +24,17 @@ public class OrderListDTO implements java.io.Serializable{
     private String reqIssues;
     private String orderDate;
     private int orderPrice;
-    private List<OrderFileDTO> orderFileList;
+    /*private List<OrderFileDTO> orderFileList;*/
     private PCategoryDTO productCategory;
     private String categoryCode;
     private String receiver;
+    private String zipCode;
+    private String address;
+    private String addressDetail;
     private String recePhone;
     private String invoice;
     private PayInfoDTO payInfo;
     private String payNum;
-    private String payDate;
-    private String payPrice;
-    private String payMethod;
 
 
 }

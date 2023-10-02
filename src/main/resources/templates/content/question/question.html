@@ -26,47 +26,63 @@
 
 <div class="pages">  <!-------그저 조회 페이지------->
     <br>
+    <br>
+    <br>
     <h2>1:1문의</h2>
     <br>
+    <div th:each="question : ${ questionList }">
+        <table class="question">
+            <input type="text" name="userCode" th:value="${#authentication.getPrincipal().userId}">님❤
+            <input type="hidden" name="questNum" th:value="${ question.questNum }">
 
-    <table class="question" th:each="question : ${ questionList }">
-        <input type="text" name="userCode" th:value="${#authentication.getPrincipal().userCode}">
+            <tr>
+                <td>문의 유형</td>
+                <td th:text="${ question.qCateCode.qCategory }"></td>
+            </tr>
+            <tr>
+                <td>문의 날짜</td>
+                <td colspan="3" th:text="${ question.questDate }"></td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td colspan="3" th:text="${ question.questTitle }" style="rwidth:400px;"></td>
+            </tr>
+            <tr>
+                <td>문의 내용</td>
+                <td colspan="3" th:text="${ question.questContent }"></td>
+            </tr>
+            <!--<tr>
+                <td>답변 날짜</td>
+                <td colspan="3" th:text="${ question.answerDate }"></td>
+            </tr>
+            <tr>
+                <td>답변 내용</td>
+                <td colspan="3" th:text="${ question.answerContent }"></td>
+            </tr>-->
+        </table>
+        <br>
+        <div class="items_container" style="display: flex;">
+            <div class="item" style="width: 100%;">
+                <th:block th:if="${ question.answerContent } == null">
+                    <button th:onclick="|location.href='/content/question/questionUpdate/${question.questNum}'|"
+                           class="button button-light" style="width: 100%;">수정
+                    </button>
+                </th:block>
+            </div>
+            <div class="item" style="width: 100%;">
+                <button th:onclick="|location.href='/content/question/userquestioncreate'|"
+                        class="button button-light" style="width: 100%;">추가 작성
+                </button>
+            </div>
+            <div class="item" style="width: 100%;">
+                <button type="button"
+                        th:onclick="'location.href=\'/content/question/questionDelete?questionNum='+  @{${ question.questNum }} + '\''"
+                        class="button button-light" style="width: 100%;">삭제
+                </button>
+            </div>
+        </div>
 
-        <tr>
-            <td>문의 유형</td>
-            <td th:text="${ question.qCateCode.qCategory }"></td>
-        </tr>
-        <tr>
-            <td>문의 날짜</td>
-            <td colspan="3" th:text="${ question.questDate }"></td>
-        </tr>
-        <tr>
-            <td>제목</td>
-            <td colspan="3" th:text="${ question.questTitle }" style="rwidth:400px;"></td>
-        </tr>
-        <tr>
-            <td>문의 내용</td>
-            <td colspan="3" th:text="${ question.questContent }"></td>
-        </tr>
-        <tr>
-            <td>답변 날짜</td>
-            <td colspan="3" th:text="${ question.answerDate }"></td>
-        </tr>
-        <tr>
-            <td>답변 내용</td>
-            <td colspan="3" th:text="${ question.questContent }"></td>
-        </tr>
-    </table>
-    <br>
-    <th:block th:if="${ question.questContent } == null">
-        <button th:onclick="|location.href='/content/question/questionUpdate/${question.questNum}'|" width="10"
-                height="5">수정
-        </button>
-    </th:block>
-    <button th:onclick="|location.href='/content/question/questioncreate/${userCode}'|" width="10"
-            height="5">작성
-    </button>
-
+    </div>
 </div>
 
 <div th:insert="fragments/footer.html"></div>
