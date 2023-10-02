@@ -16,56 +16,39 @@
 <body>
 
 <div th:insert="/fragments/header.html"></div>
-<br>
-<br>
-<div class="page">
-    <div th:include="/fragments/mypageId"></div>
-    <br>
-    <!--<div th:include="/fragments/mypageCategory"></div>-->
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <!--<div th:include="/fragments/mypageCategory"></div>-->
 
-    <h1> 나의 주문 내역</h1>
-    <!--<h5>조회할 주문 ID를 입력하세요.</h5>
-    <div class="item p-1">
-        <div class="input-group">
-            <input class="input" placeholder="검색">
-            <button class="button button-dark">검색</button>
+        <h1> 나의 주문 내역</h1>
+        <hr>
+
+        <div class="items_container ic1">
+            <div class="item">
+                <table id="listArea">
+                    <thead>
+                    <tr>
+                        <th>주문 ID</th>
+                        <th>주문 날짜</th>
+                        <th>상품 상태</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${orderList}">
+                        <td th:text="${order.orderId}"></td>
+                        <td th:text="${order.orderDate}"></td>
+                        <td>
+                            <button class="button button-dark"><strong th:text="${order.statusNum.status}"></strong>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>-->
-    <hr>
-
-    <div class="items_container ic1">
-        <div class="item">
-            <table id="listArea">
-                <thead>
-                <tr>
-                    <th>주문 ID</th>
-                    <th>주문 날짜</th>
-                    <th>회원 ID</th>
-                    <th>결제 여부</th>
-                    <th>상품 상태</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="order : ${orderList}">
-                    <td th:text="${order.orderId}"></td>
-                    <td th:text="${order.orderDate}"></td>
-                    <td th:text="${order.userCode.userId}"></td>
-                    <td>
-                        <th:block th:if="${order.payNum == '' or order.payNum == null}"><i class="fa fa-remove"></i>
-                        </th:block>
-                        <th:block th:if="${order.payNum != '' and order.payNum != null}"><i class="fa fa-check"></i>
-                        </th:block>
-                    </td>
-                    <td>
-                        <button class="button button-dark"><strong th:text="${order.statusNum.status}"></strong>
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
     </div>
+</div>
+
 
     <div th:insert="/fragments/footer.html"></div>
 

@@ -12,7 +12,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+
+    <script
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <script>
+        function addressFinder() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+
+                    var addr = ''; // 주소 변수
+                    var extraAddr = ''; // 참고항목 변수
+
+                    //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                        addr = data.roadAddress;
+                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                        addr = data.jibunAddress;
+                    }
+
+                    // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                    if(data.userSelectedType === 'R'){
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                            extraAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if(data.buildingName !== '' && data.apartment === 'Y'){
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                        if(extraAddr !== ''){
+                            extraAddr = ' (' + extraAddr + ')';
+                        }
+                        // 조합된 참고항목을 해당 필드에 넣는다.
+                        document.getElementById("addressDetail").value = extraAddr;
+
+                    } else {
+                        document.getElementById("addressDetail").value = '';
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('zipCode').value = data.zonecode;
+                    document.getElementById('address').value = addr;
+                    // 커서를 상세주소 필드로 이동한다.
+                    document.getElementById('addressDetail').focus();
+                }
+            }).open();
+        }
+    </script>
 
     <script>
         function requestPay() {
@@ -37,22 +89,24 @@
 
                     // 결제 정보를 서버로 전송하여 저장
                     var paymentData = {
-                        pg: 'kakaopay', // 사용한 PG사
-                        payMethod: 'card', // 결제 수단 (카드 결제)
-                        buyerEmail: "[[${order.userCode.email}]]",
-                        buyerName: "[[${order.userCode.name}]]",
-                        buyerTel: "[[${order.userCode.tel}]]",
-                        buyerAddr: "[[${order.userCode.zipCode}]]",
-                        buyerPostcode: "[[${order.userCode.zipCode}]]",
-                        amount: "[[${order.orderPrice}]]", // 결제 금액
-                        imp_uid: rsp.imp_uid, // 아임포트 고유 번호
-                        merchant_uid: rsp.merchant_uid // 주문번호 (merchant_uid)
-
+                        pg: 'kakaopay',
+                        payMethod: 'card',
+                        merchant_uid: "[[${order.orderId}]]",
+                        name: "[[${order.userCode.name}]]의 주문결제",
+                        amount: "[[${order.orderPrice}]]",
+                        buyer_name: "[[${order.userCode.name}]]",
+                        buyer_tel: "[[${order.userCode.tel}]]",
+                        buyer_email: "[[${order.userCode.email}]]",
+                        buyer_addr: "[[${order.userCode.zipCode}]]",
+                        buyer_postcode: "[[${order.userCode.zipCode}]]",
+                        imp_uid: rsp.imp_uid,
+                        merchant_uid: "[[${order.orderId}]]"
                     };
-                    console.log(paymentData)
-                    alert(msg);
 
                     savePaymentInfo(paymentData);
+
+                    console.log(paymentData)
+                    alert(msg);
                 } else {
                     var msg = '결제에 실패하였습니다. ';
                     msg += '에러내용 : ' + rsp.error_msg;
@@ -62,10 +116,12 @@
         }
 
         function savePaymentInfo(paymentData) {
+
+            console.log("paymentData : ", paymentData)
             // 결제 정보를 서버로 전송하는 AJAX 요청
             $.ajax({
                 type: "POST", // POST 요청
-                url: '/api/v1/payment/record', // 컨트롤러 엔드포인트 URL
+                url: 'paySuccess', // 컨트롤러 엔드포인트 URL
                 contentType: 'application/json',
                 data: JSON.stringify(paymentData), // 데이터를 JSON 문자열로 변환하여 전송
                 success: function (data) {
@@ -73,12 +129,34 @@
                     console.log('결제 정보 저장 성공:', data);
 
                     // 결제 성공 후 추가 작업 수행
-                    location.replace('/content/mypage/myOrderDetail');
+                    location.replace('/content/mypage/paySuccess');
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     // 에러 발생 시 실행됨
+                    console.log('결제 정보 : ',xhr)
                     console.error('결제 정보 저장 실패:', textStatus, errorThrown);
                 }
+            });
+        }
+    </script>
+
+
+    <script>
+        function cancelPay() {
+            jQuery.ajax({
+                "url": "/payment/cancel",
+                "type": "POST",
+                "contentType": "application/json",
+                "data": JSON.stringify({
+                    "merchant_uid": "[[${order.orderId}]]", // 예: ORD20180131-0000011
+                    "cancel_request_amount": "[[${order.orderPrice}]]", // 환불금액
+                    "reason": "테스트 결제 환불", // 환불사유"
+                }),
+                "dataType": "json"
+            }).done(function(result) { // 환불 성공시 로직
+                alert("환불 성공");
+            }).fail(function(error) { // 환불 실패시 로직
+                alert("환불 실패");
             });
         }
     </script>
@@ -111,135 +189,153 @@
     <h1> 나의 주문 상세 내역</h1>
 
     <hr>
-    <h5 style="margin-bottom: 5px;">요청 이미지</h5>
-    <table class="detail">
-        <tr>
-            <th:block th:if="${ order.orderFileList.size() >= 2 }">
-                <td width="330px">
-                    <th:block th:if="${ order.orderFileList.size() >= 1 }">
-                        <img id="detailImg1" class="detailImg" width="250" height="180"
-                             th:src="@{|/original${order.orderFileList[1].getUploadPath()}|}"/><br>
-                    </th:block>
-                    <th:block th:text="${order.orderFileList.size()}"/>
-                </td>
-                <!-- <td width="330px">
-                     <div class="detailImgArea">
-                         <th:block th:if="${ order.orderFileList.size() >= 2 }">
-                             <img id="detailImg2" class="detailImg" width="250" height="180" th:src="@{|/original${order.orderFileList[2].getUploadPath()}|}"/><br>
-                         </th:block>
-                     </div>
-                 </td>
-                 <td width="330px">
-                     <div class="detailImgArea">
-                         <th:block th:if="${ order.orderFileList.size() >= 3 }">
-                             <img id="detailImg3" class="detailImg" width="250" height="180" th:src="@{|/original${order.orderFileList[3].getUploadPath()}|}"/><br>
-                         </th:block>
-                     </div>
-                 </td>-->
-            </th:block>
-        </tr>
-    </table>
 
-    <h5 style="margin-bottom: 5px;">주문 정보</h5>
+    <h5>주문 정보</h5>
     <table>
         <tr>
-            <th class="orderCol" style="text-align: center;">주문 일자</th>
+            <th class="orderCol">주문 일자</th>
             <td th:text="${order.orderDate}"></td>
-            <th class="orderCol" style="text-align: center;">주문 ID</th>
+            <th class="orderCol">주문 ID</th>
             <td th:text="${order.orderId}"></td>
-            <th class="orderCol" style="text-align: center;">회원 ID</th>
+            <th class="orderCol">회원 ID</th>
             <td th:text="${order.userCode.userId}"></td>
-            <th class="orderCol" style="text-align: center;">회원 이름</th>
+            <th class="orderCol">회원 이름</th>
             <td th:text="${order.userCode.name}"></td>
         </tr>
     </table>
 
-    <h5 style="margin-bottom: 5px;">요청 정보</h5>
+    <h5>요청 정보</h5>
     <table>
         <tr>
-            <th class="orderCol" style="text-align: center;">사이즈 정보</th>
+            <th class="orderCol">제품 정보</th>
+            <td class="#table_td" th:text="${order.productCategory.categoryName}"></td>
+            <th class="orderCol">사이즈 정보</th>
             <td class="#table_td" th:text="${order.sizeInfo}"></td>
-            <th class="orderCol" style="text-align: center;">요청 사항</th>
+            <th class="orderCol">요청 사항</th>
             <td class="#table_td" th:text="${order.reqIssues}"></td>
         </tr>
     </table>
 
-
-    <h5 style="margin-bottom: 5px;">결제 정보</h5>
-    <th:block th:if="${order.orderPrice} > 0">
+    <div class="items_container" style="display: flex; align-items: center;">
+   <div class="item"> <h5>결제 정보</h5> </div>
+        <div class="item">
+    <th:block th:if="${order.orderPrice} > 0 and ${order.statusNum.statusNum} lt '40'">
         <button class="button button-lg button-dark" style="width: 100%;" onclick="requestPay()">결제 하기</button>
     </th:block>
+            <th:block th:if="${order.orderPrice} != null and ${order.statusNum.statusNum} lt '50' and ${order.statusNum.statusNum} ge '40'">
+                <button class="button button-lg button-dark" style="width: 100%;" onclick="cancelPay()">결제 취소</button>
+            </th:block>
+        </div>
+    </div>
     <table>
         <tr>
-            <th class="orderCol" style="text-align: center;">상품 가격</th>
-            <td id="orderPrice" name="orderPrice" th:value="${order.orderPrice}" th:text="${order.orderPrice}"></td>
-            <th class="orderCol" style="text-align: center;">결제 번호</th>
-            <td th:text="${order.payNum}"></td>
-            <th class="orderCol" style="text-align: center;">결제일</th>
-            <!--<td th:text="${}"></td>-->
-            <td>-</td>
-            <th class="orderCol" style="text-align: center;">결제 시간</th>
-            <!--<td th:text="${}"></td>-->
-            <td>-</td>
-            <th class="orderCol" style="text-align: center;">결제 금액</th>
-            <!--<td th:text="${}"></td>-->
-            <td>-</td>
-            <th class="orderCol" style="text-align: center;">결제 수단</th>
-            <!--<td th:text="${}"></td>-->
-            <td>-</td>
+            <th class="orderCol">상품 가격</th>
+                <td id="orderPrice" name="orderPrice" th:value="${order.orderPrice}" th:text="${order.orderPrice}"></td>
+            <th:block th:if="${order.payInfo} != null">
+                <th class="orderCol">결제 번호</th>
+                <td th:text="${order.payInfo.payNum}"></td>
+                <th class="orderCol">결제일</th>
+                <td th:text="${order.payInfo.payDate}"></td>
+                <th class="orderCol">결제 금액</th>
+                <td th:text="${order.payInfo.payPrice}"></td>
+                <th class="orderCol">결제 수단</th>
+                <td th:text="${order.payInfo.payMethod}"></td>
+            </th:block>
+            <th:block th:if="${order.payInfo} == null">
+                <th class="orderCol">결제 번호</th>
+                <td>-</td>
+                <th class="orderCol">결제일</th>
+                <td>-</td>
+                <th class="orderCol">결제 금액</th>
+                <td>-</td>
+                <th class="orderCol">결제 수단</th>
+                <td>-</td>
+            </th:block>
         </tr>
     </table>
 
     <th:block th:if="${order.statusNum.status} == '제작 승인' or ${order.statusNum.status} == '결제 완료' or ${order.statusNum.status} == '제작 중' or ${order.statusNum.status} == '제작 완료' or ${order.statusNum.status} == '배송 중' or ${order.statusNum.status} == '배송 완료'">
         <div class="items_container" style="display: flex; align-items: center;">
-            <div class="item"><h5 style="margin-bottom: 5px;">배송 정보</h5></div>
+            <div class="item"><h5>배송 정보</h5></div>
+        <th:block th:if="${order.zipCode == null} or ${order.zipCode.isEmpty()}">
+            <div class="item"><button class="button button-lg button-dark" onclick="saveDeliveryInfo()">배송 정보 등록</button></div>
+        </th:block>
         </div>
+        <th:block th:if="${order.zipCode} == null or ${order.zipCode.isEmpty()}">
+            <input type="hidden" id="orderId" th:value="${order.orderId}">
             <table>
                 <tr>
-                    <th class="orderCol" style="text-align: center;">수령인</th>
+                    <th class="orderCol">수령인</th>
                     <th>
                     <input name="receiver" type="text"></th>
-                    <th class="orderCol" style="text-align: center;">전화번호</th>
+                    <th class="orderCol">전화번호</th>
                     <th><input name="recePhone" type="text"></th>
 
-                    <th class="orderCol">우편번호</th>
                     <div class="input-group">
                         <input type="text" class="input" id="zipCode" name="zipCode" placeholder="우편번호">
                         <input type="button" class="button button-dark" onclick="addressFinder()" value="우편번호 찾기"><br>
                     </div>
 
 
-                    <th class="input-font">도로명 주소</th>
                     <div class="input-group">
                         <input id="address" name="address" type="text" class="input" placeholder="도로명 주소">
                     </div>
 
 
-                    <th class="input-font">상세주소</th>
                     <div class="input-group">
                         <input id="addressDetail" name="addressDetail" type="text" class="input" placeholder="상세주소">
                     </div>
                 </tr>
-                <!--<th:block th:if="${order.} != null">-->
+                <th:block th:if="${order.statusNum.status} == '배송 중' or ${order.statusNum.status} == '배송 완료' ">
                 <tr>
-                    <th class="orderCol" style="text-align: center;">배송 일자</th>
+                    <th class="orderCol">배송 출발 일자</th>
                     <!--<td th:text="${}"></td>-->
                     <td>-</td>
-                    <th class="orderCol" style="text-align: center;">송장번호</th>
+                    <th name="invoice" class="orderCol" style="text-align: center;">송장번호</th>
+                    <!--<td th:text="${}"></td>-->
+                    <td colspan="3">-</td>
+                    <th class="orderCol">배송 완료 일자</th>
+                    <!--<td th:text="${}"></td>-->
+                    <td>-</td>
+                </tr>
+                </th:block>
+             </table>
+        </th:block>
+        <th:block th:if="${order.zipCode} != null and ${!order.zipCode.isEmpty()}">
+            <table>
+                <tr>
+                    <th class="orderCol">수령인</th>
+                    <td th:text="${order.receiver}"></td>
+                    <th class="orderCol">전화번호</th>
+                    <td th:text="${order.recePhone}"></td>
+                    <th class="orderCol">주소</th>
+                    <td th:text="${order.address}"></td>
+                    <th class="orderCol">상세 주소</th>
+                    <td th:text="${order.addressDetail}"></td>
+                    <th class="orderCol">우편번호</th>
+                    <td th:text="${order.zipCode}"></td>
+                </tr>
+                <tr>
+                    <th class="orderCol">배송 일자</th>
+                    <!--<td th:text="${}"></td>-->
+                    <td>-</td>
+                    <th class="orderCol">송장번호</th>
                     <!--<td th:text="${}"></td>-->
                     <td colspan="3">-</td>
                 </tr>
-                <!--</th:block>-->
             </table>
+        </th:block>
+
+
     </th:block>
     <div>
-        <h5 style="margin-bottom: 5px;">진행 사항 : </h5>
+        <h5>진행 사항 : </h5>
         <button class="button button-lg button-dark" th:text="${order.statusNum.status}"/>
     </div>
 
     <th:block th:if="${order.statusNum.status} == '제작 반려' or ${order.statusNum.status} == '주문취소'">
 
-        <div class="item"><h5 style="margin-bottom: 5px;">취소 사유</h5></div>
+        <div class="item"><h5>취소 사유</h5></div>
 
         <textarea name="cancelContent" th:text="${order.cancelContent}" style="width: 100%; height: 10vh;"
                   th:readonly="${order.cancelContent} != null"></textarea>
@@ -262,7 +358,8 @@
 <div th:insert="/fragments/footer.html"></div>
 <script src="/js/header.js"></script>
 <script src="/js/default.js"></script>
-<script src="/js/buttionController.js"></script>
+<script src="/js/buttonFun.js"></script>
+<script src="/js/payCancel.js"></script>
 
 </body>
 </html>
