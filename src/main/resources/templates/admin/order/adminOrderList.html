@@ -16,47 +16,52 @@
 <body>
 <div th:insert="/fragments/header.html"></div>
 
-<br>
-<div class="page">
-    <h1> 주문 내역 관리</h1>
-    <hr>
+<div class="wrap">
+    <div class="page pseudo_padding-2">
 
-    <div class="items_container ic1">
-        <div class="item">
-            <table id="listArea">
-                <thead>
-                <tr>
-                    <th>주문 ID</th>
-                    <th>주문 날짜</th>
-                    <th>회원 ID</th>
-                    <th>결제 여부</th>
-                    <th>상품 상태</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="order : ${orderList}">
-                    <td th:text="${order.orderId}"></td>
-                    <td th:text="${order.orderDate}"></td>
-                    <td th:text="${order.userCode.userId}"></td>
-                    <td>
-                        <th:block th:if="${order.payNum == '' or order.payNum == null}"><i class="fa fa-remove"></i>
-                        </th:block>
-                        <th:block th:if="${order.payNum != '' and order.payNum != null}"><i class="fa fa-check"></i>
-                        </th:block>
-                    </td>
-                    <td>
-                        <button id="statusChangeButton" class="button requested"><strong th:text="${order.statusNum.status}"></strong>
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <h1>주문 내역 관리</h1>
+        <hr>
+
+        <div class="items_container ic1">
+            <div class="item">
+                <table id="listArea">
+                    <thead>
+                    <tr>
+                        <th>주문 ID</th>
+                        <th>주문 날짜</th>
+                        <th>회원 ID</th>
+                        <th>결제 여부</th>
+                        <th>상품 상태</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${orderList}">
+                        <td th:text="${order.orderId}"></td>
+                        <td th:text="${order.orderDate}"></td>
+                        <td th:text="${order.userCode.userId}"></td>
+                        <td>
+                            <th:block th:if="${order.statusNum.status} == '제작 요청' or ${order.statusNum.status} == '제작 반려' or
+${order.statusNum.status} == '제작 승인'"><i class="fa fa-remove"></i>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '결제 완료' or ${order.statusNum.status} == '제작 중' or
+${order.statusNum.status} == '제작 완료' or ${order.statusNum.status} == '배송 중' or ${order.statusNum.status} == '배송 완료'"><i class="fa fa-check"></i>
+                            </th:block>
+                        </td>
+                        <td>
+                            <button id="statusChangeButton" class="button requested"><strong th:text="${order.statusNum.status}"></strong>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
+
     </div>
-
-
 </div>
+
 
 <script th:inline="javascript">
 
