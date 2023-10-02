@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/default.css">
-    <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/addmin.css">
     <link rel="stylesheet" href="/css/order.css">
@@ -113,15 +112,15 @@
                 <tr>
                     <th class="orderCol" style="text-align: center;">배송 출발 일자</th>
                     <th:block th:if="${order.deliverStart != null}">
-                        <td th:text="${order.deliverStart}"></td>
+                        <td  colspan="3" th:text="${order.deliverStart}"></td>
                     </th:block>
                     <th:block th:if="${order.deliverStart == null}">
-                        <td>배송 준비 중</td>
+                        <td colspan="3">배송 준비 중</td>
                     </th:block>
 
-                    <th:block th:if="${order.invoice == null}">
-                        <th class="orderCol" style="text-align: center;">송장번호</th>
-                        <td><div class="input-group">
+                    <th:block th:if="${order.invoice == null} and ${order.statusNum.statusNum} ge '40'">
+                        <th colspan="2" class="orderCol" style="text-align: center;">송장번호</th>
+                        <td colspan="4"><div class="input-group">
                             <input id="orderId" type="hidden" th:value="${order.orderId}">
                             <input id="invoice" name="invoice" class="input input-lg" type="text" placeholder="송장번호를 입력해주세요.">
                             <button class="button button-lg button-dark" type="submit" onclick="saveInvoice()">등록</button>
@@ -130,17 +129,22 @@
 
                     <th:block th:if="${order.invoice != null}">
                         <th class="orderCol" style="text-align: center;">송장번호</th>
-                        <td th:text="${order.invoice}"></td>
+                        <td colspan="1"th:text="${order.invoice}"></td>
                     </th:block>
 
                     <th:block th:if="${order.deliverEnd == null} and ${order.invoice != null}">
                         <th class="orderCol" style="text-align: center;">배송 완료 일자</th>
-                        <td><input name="deliverEnd" type="date" placeholder="배송 완료 일자를 입력해주세요."></td>
+                        <td colspan="3">
+                            <div class="input-group">
+                            <input id="deliverEnd" name="deliverEnd" class="input input-lg" type="datetime-local">
+                            <button class="button button-lg button-dark" onclick="saveDeliverEnd()">등록</button>
+                            </div>
+                        </td>
                     </th:block>
-                    <th:block th:if="${order.invoice != null} and  ">
+                    <th:block th:if="${order.invoice != null } and ${order.deliverEnd != null}">
                         <th class="orderCol" style="text-align: center;">배송 완료 일자</th>
                         <th:block th:if="${order.deliverEnd == null}">
-                            <td>배송 중</td>
+                            <td colspan="3" th:text="${order.deliverEnd}"></td>
                         </th:block>
                     </th:block>
 
@@ -247,9 +251,9 @@
 </div>
 
 <div th:insert="/fragments/footer.html"></div>
+<script src="/js/buttonFun.js"></script>
 <script src="/js/header.js"></script>
 <script src="/js/default.js"></script>
-<script src="/js/buttonFun.js"></script>
 
 
 </body>
