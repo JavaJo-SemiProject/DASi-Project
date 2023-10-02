@@ -1,19 +1,9 @@
 <form>
-    <div class="form_toggle row-vh d-flex flex-row justify-content-between" style="display: flex;">
+    <div class="form_toggle items_container ic3">
 
-        <div class="form_radio_btn radio_clothes">
-            <input id="radio-1" type="radio" name="productCategory" value="clothes" checked>
-            <label for="radio-1"><a th:href="@{/content/mypage/mypageMain}" style="color: #ffffff">회원정보</a></label>
-        </div>
+        <a th:href="@{/content/mypage/mypageMain}" class="button button-dark">회원정보</a>
+        <a th:href="@{/content/mypage/myOrderList}" class="button button-light">주문내역</a>
+        <a th:href="@{/content/question/question}" class="button button-light">문의내역</a>
 
-        <div class="form_radio_btn" style="margin: 0px 10px 0px 10px;">
-            <input id="radio-2" type="radio" name="productCategory" value="play">
-            <label for="radio-2"><a th:href="@{/content/mypage/myOrderList}" style="color: #ffffff">주문내역</a></label>
-        </div>
-
-        <div class="form_radio_btn">
-            <input id="radio-3" type="radio" name="productCategory" value="etc">
-            <label for="radio-3"><a th:href="@{/content/mypage/}" style="color: #ffffff">문의내역</label>
-        </div>
     </div>
 </form>
