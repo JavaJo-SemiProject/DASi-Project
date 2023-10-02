@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -29,7 +30,7 @@ public class AdminOrderController {
 
 
     @GetMapping("/adminOrderList")
-    public ModelAndView adminOrderList(ModelAndView model){
+    public ModelAndView adminOrderList(ModelAndView model) {
         List<OrderListDTO> orderList = adminOrderService.selectAllOrderList();
         model.addObject("orderList", orderList);
         model.setViewName("admin/order/adminOrderList");
@@ -38,14 +39,15 @@ public class AdminOrderController {
 
         return model;
     }
+
     @GetMapping("/adminOrderDetail")
-    public String adminOrderDetail(HttpServletRequest request, Model model){
+    public String adminOrderDetail(HttpServletRequest request, Model model) {
 
         String orderId = request.getParameter("orderId");
 
         OrderListDTO orderDetail = adminOrderService.selectOrderDetail(orderId);
 
-        model.addAttribute("order",orderDetail);
+        model.addAttribute("order", orderDetail);
 
         System.out.println("model" + model);
 
@@ -53,11 +55,11 @@ public class AdminOrderController {
     }
 
     @PostMapping("/adminOrderDetail")
-    public Object adminOrderEdit(OrderListDTO orderList, RedirectAttributes rttr){
+    public Object adminOrderEdit(OrderListDTO orderList, RedirectAttributes rttr) {
 
         orderList.setOrderPrice(Integer.parseInt(String.valueOf(orderList.getOrderPrice())));
 
-            adminOrderService.editStatus(orderList);
+        adminOrderService.editStatus(orderList);
 
 
         System.out.println("Controller OrderList: " + orderList);
@@ -66,30 +68,58 @@ public class AdminOrderController {
 
     }
 
-   @PostMapping("/invoiceSucess")
+    @PostMapping("/invoiceSucess")
+    @ResponseBody
+    public ResponseEntity<String> recordInvoice(@RequestBody OrderListDTO order) {
+
+        JSONObject jsonObject = new JSONObject(order);
+
+            String invoice = jsonObject.getString("invoice");
+            String orderId = String.valueOf(jsonObject.getInt("orderId"));
+            System.out.println("invoice : " + invoice);
+            System.out.println("orderId : " + orderId);
+
+            try {
+                OrderListDTO orderList = new OrderListDTO();
+                orderList.setInvoice(invoice);
+                orderList.setOrderId(Integer.parseInt(orderId));
+
+                adminOrderService.updateDeliver(order);
+
+                System.out.println("order con : " + orderList);
+
+                return new ResponseEntity<>("송장번호 저장 성공", HttpStatus.CREATED);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ResponseEntity<>("송장번호 저장 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+    }
+
+    @PostMapping("/deliverEnd")
     @ResponseBody
     public ResponseEntity<String> recordPayment(@RequestBody OrderListDTO order) {
 
         JSONObject jsonObject = new JSONObject(order);
 
-        String invoice = jsonObject.getString("invoice");
-        String orderId = String.valueOf(jsonObject.getInt("orderId"));
+            String deliverEnd = jsonObject.getString("deliverEnd");
+            int orderId = jsonObject.getInt("orderId");
+            System.out.println("deliverEnd : " + deliverEnd);
+            System.out.println("orderId : " + orderId);
 
-        System.out.println("invoice : " + invoice);
-        System.out.println("orderId : " + orderId);
-        try {
-            OrderListDTO orderList = new OrderListDTO();
-            orderList.setInvoice(invoice);
-            orderList.setOrderId(Integer.parseInt(orderId));
+            try {
+                OrderListDTO orderList = new OrderListDTO();
+                orderList.setDeliverEnd(deliverEnd);
+                orderList.setOrderId(orderId);
 
-            adminOrderService.updateDeliver(order);
+                adminOrderService.updateDeliver(order);
 
-            System.out.println("pay : " + orderList);
+                System.out.println("order con : " + orderList);
 
-            return new ResponseEntity<>("송장번호 저장 성공", HttpStatus.CREATED);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("송장번호 저장 실패", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+                return new ResponseEntity<>("배송 완료 일자 저장 성공", HttpStatus.CREATED);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ResponseEntity<>("배송 완료 일자 저장 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
     }
 }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/addmin.css">
     <link rel="stylesheet" href="/css/order.css">
 
 </head>
@@ -48,7 +48,7 @@ ${order.statusNum.status} == '제작 완료' or ${order.statusNum.status} == '�
                             </th:block>
                         </td>
                         <td>
-                            <button id="statusChangeButton" class="button requested"><strong th:text="${order.statusNum.status}"></strong>
+                            <button id="statusChangeButton" class="button button-dark" style="width: 100%"><strong th:text="${order.statusNum.status}"></strong>
                             </button>
                         </td>
                     </tr>
@@ -76,7 +76,7 @@ ${order.statusNum.status} == '제작 완료' or ${order.statusNum.status} == '�
         }
     }
 
-    // JavaScript를 사용하여 버튼 색상 변경
+   /* // JavaScript를 사용하여 버튼 색상 변경
     function setButtonStyle(status) {
         const button = document.getElementById('statusChangeButton');
 
@@ -121,7 +121,7 @@ ${order.statusNum.status} == '제작 완료' or ${order.statusNum.status} == '�
     window.onload = function() {
         const initialStatus = '제작 요청';
         setButtonStyle(initialStatus);
-    };
+    };*/
 
 </script>
 

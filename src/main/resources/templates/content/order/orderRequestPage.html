@@ -58,17 +58,17 @@
 
                     <div class="form_radio_btn radio_clothes">
                         <input id="radio-1" type="radio" name="categoryCode" value="10" checked>
-                        <label for="radio-1">의류</label>
+                        <label for="radio-1">니트 스웨터</label>
                     </div>
 
                     <div class="form_radio_btn" style="margin: 0px 10px 0px 10px;">
                         <input id="radio-2" type="radio" name="categoryCode" value="20">
-                        <label for="radio-2">신발</label>
+                        <label for="radio-2">가디건</label>
                     </div>
 
                     <div class="form_radio_btn">
                         <input id="radio-3" type="radio" name="categoryCode" value="30">
-                        <label for="radio-3">모자</label>
+                        <label for="radio-3">후드 점퍼</label>
                     </div>
 
                 </div>
@@ -77,7 +77,10 @@
 
             <div>
                 <label class="form-label"><h3>사이즈 작성</h3></label>
-
+                <div class="grid-image">
+                    <img src="/img/sub/guide/scale.jpg" alt="강아지 치수 재는 방법">
+                    <img src="/img/sub/guide/scaleGuide.png" alt="강아지 치수 기준" style="width: 60%; height: 50%">
+                </div>
                 <p><textarea class="textarea mt-1" placeholder="사이즈를 작성해주세요." name="sizeInfo"
                              style="width: 100%; height:200px;"></textarea></p>
 
@@ -94,9 +97,9 @@
             <div>
                 <label class="form-label"><h3>이니셜 또는 커스텀 문구</h3></label>
 
-                <<p><textarea class="textarea mt-1" id="writeContent" name="phrase" cols="30" rows="10"
-                              placeholder="이니셜 또는 커스텀 문구 10글자 이내로 작성해주세요." style="width: 100%; height:200px;"
-                              maxlength="10"></textarea></p>
+                <p><textarea class="textarea mt-1" id="writeContent" name="phrase" cols="30" rows="10"
+                             placeholder="이니셜 또는 커스텀 문구 10글자 이내로 작성해주세요." style="width: 100%; height:200px;"
+                             maxlength="10"></textarea></p>
                 <div id="writeContent_cnt">(0 / 10)</div>
             </div>
 
@@ -128,7 +131,7 @@
 
 <div th:insert="/fragments/footer.html"></div>
 <script src="/js/header.js"></script>
-<script src="/js/carousel.js"></script>
+<script src="/js/textLetterLim.js"></script>
 
 </body>
 </html>

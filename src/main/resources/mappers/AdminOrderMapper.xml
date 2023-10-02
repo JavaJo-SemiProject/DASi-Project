@@ -171,15 +171,14 @@
         ,ZIPCODE = #{ zipCode }
         ,RECE_PHONE = #{ recePhone }
         </if>
-        <if test="invoice != null">
+        <if test="invoice != null and deliverEnd == null">
             INVOICE = #{ invoice }
             ,DELIVER_START = NOW()
         </if>
         <if test="deliverEnd != null">
-            DELIVER_END = #{ deliverEnd }
+            deliver_end = #{ deliverEnd }
         </if>
         </set>
-
         <where>
          ORDER_ID = #{ orderId }
         </where>
