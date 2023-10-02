@@ -714,6 +714,13 @@ img {
 
 }
 
+.textarea {
+  width: 100%;
+  border-radius: 0;
+  border: solid 1px #ccc;
+  padding: 6px
+}
+
 .checkbox_radio{
   height: 40px;
   display: flex;
