@@ -51,4 +51,10 @@ public class AdminOrderService implements AdminOrderSer {
 
         return orderList;
     }
+
+    @Transactional
+    public void updateDeliver(OrderListDTO order) {
+        System.out.println("order ser : " + order);
+        adminOrderMapper.updateDeliver(order);
+    }
 }

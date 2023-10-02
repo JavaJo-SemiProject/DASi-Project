@@ -4,8 +4,8 @@
 <mapper namespace="com.project.dasi.order.model.dao.PaymentMapper">
 
     <insert id="insertPayment" parameterType="com.project.dasi.order.model.dto.PayInfoDTO">
-        INSERT INTO pay_info (PAY_NUM, PAY_DATE, PAY_PRICE, PAY_METHOD)
-        VALUES (#{payNum}, now(), #{payPrice}, #{payMethod})
+        INSERT INTO pay_info (PAY_NUM, PAY_DATE, PAY_PRICE, PAY_METHOD, BUYER, ORDER_ID)
+        VALUES (#{payNum}, now(), #{payPrice}, #{payMethod}, #{buyer}, #{orderId})
     </insert>
 
 </mapper>

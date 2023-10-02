@@ -10,18 +10,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 public class PayInfoDTO {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+   private String orderId;
    private String payNum;
    private String payDate;
    private int payPrice;
    private String payMethod;
+   private String buyer;
+
+
 
 }

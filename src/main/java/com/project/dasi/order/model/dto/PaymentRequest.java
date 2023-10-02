@@ -1,21 +1,23 @@
 package com.project.dasi.order.model.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class PaymentRequest {
 
     private String pg;
     private String payMethod;
     private String buyerEmail;
-    private String buyerName;
+    private String buyer_name;
     private String buyerTel;
     private String buyerAddr;
     private String buyerPostcode;
     private int amount;
-    private String impUid;
-    private String merchantUid;
+    private String imp_uid;
+    private String merchant_uid;
 
 }

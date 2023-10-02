@@ -54,19 +54,27 @@
         <result property="authName" column="AUTH_NAME"/>
     </resultMap>
 
+    <resultMap id="userQuestionListMap" type="com.project.dasi.admin.question.model.dto.QuestionDTO">
+        <id property="questNum" column="QUEST_NUM"/>
+        <result property="questTitle" column="QUEST_TITLE"/>
+        <result property="questContent" column="QUEST_CONTENT"/>
+     </resultMap>
+
+
     <select id="questionList" resultMap="qListMap">   <!--select일 경우 조인 경우, 가져올 그 컬럼만 부르면 된다-->
         SELECT
-                C.USER_CODE
-                ,B.QCATEGORY
-                ,A.ANSWER_DATE
-                ,A.ANSWER_CONTENT
-                ,A.QUEST_DATE
-                ,A.QUEST_TITLE
-                ,A.QUEST_CONTENT
+        C.USER_CODE
+        ,B.QCATEGORY
+        ,A.ANSWER_DATE
+        ,A.ANSWER_CONTENT
+        ,A.QUEST_NUM
+        ,A.QUEST_DATE
+        ,A.QUEST_TITLE
+        ,A.QUEST_CONTENT
         FROM QUESTION_LIST A
-        WHERE A.USER_CODE = #{ userCode }
         JOIN QUESTION_CATEGORY B ON (A.QCATE_CODE = B.QCATE_CODE)
         JOIN USERS C ON (C.USER_CODE = A.USER_CODE)
+      <!--  WHERE A.USER_CODE = #{ userCode }-->
     </select>
 
     <select id="questionmanagerList" resultMap="managerListMap">
@@ -88,34 +96,44 @@
                         ,QUEST_DATE
                         ,QUEST_TITLE
                         ,QUEST_CONTENT
-
                         )
-        VALUES (
-                        ,#{ userCode }
-                        ,#{ qCateCode }
+        VALUES (        #{ user }
+                        ,#{ qCate }
                         ,NOW()
                         ,#{ questTitle }
-                        ,#{ questContent }
+                        ,#{ questContent })
     </insert>
 
 
-    <update id="adminquestCreate">
+  <!--  <update id="adminquestCreate">
         UPDATE QUESTION_LIST
         SET   ANSWER_CONTENT = #{ answerContent }
         ,ANSWER_DATE = NOW()
         WHERE QUEST_NUM = #{ questNum }
-    </update>
+    </update>-->
 
     <update id="questionUpdate">
         UPDATE QUESTION_LIST
         SET
         QCATEGORY = #{ qCateCode }
-        QUEST_TITLE = #{ questTitle }
+       ,QUEST_TITLE = #{ questTitle }
         ,QUEST_CONTENT = #{ questContent }
         WHERE QUEST_NUM = #{ questNum }
     </update>
 
-    <select id="adminquestionList" resultMap="mQuestionList">
+
+    <select id="adminquestCreate" resultMap="mQuestionList">
+        SELECT A.QUEST_NUM
+        ,B.QCATEGORY
+        ,A.QUEST_DATE
+        ,A.QUEST_TITLE
+        ,A.QUEST_CONTENT
+        FROM QUESTION_LIST A
+        WHERE QUEST_NUM = #{ questnum }
+        JOIN QUESTION_CATEGORY B ON (A.QCATE_CODE = B.QCATE_CODE)
+    </select>
+
+   <!-- <select id="adminquestionList" resultMap="mQuestionList">
         SELECT A.QUEST_NUM
                 ,B.QCATEGORY
                 ,A.QUEST_DATE
@@ -124,7 +142,36 @@
         FROM QUESTION_LIST A
         WHERE QUEST_NUM = #{ questNum }
         JOIN QUESTION_CATEGORY B ON (A.QCATE_CODE = B.QCATE_CODE)
+    </select>-->
+
+
+    <select id="userquestionUpdate" resultMap="userQuestionListMap">
+        SELECT
+        QUEST_NUM
+        ,QUEST_TITLE
+        ,QUEST_CONTENT
+        FROM QUESTION_LIST
+        WHERE QUEST_NUM = #{ qnumb }
     </select>
+
+    <update id="userquestionup">
+        UPDATE    QUESTION_LIST
+        SET     QUEST_TITLE =  #{ questTitle }
+                 ,QUEST_CONTENT = #{ questContent }
+                 ,QCATE_CODE = #{ qCate }
+                  ,QUEST_DATE = NOW()
+        WHERE QUEST_NUM = #{ questNum }
+    </update>
+
+    <delete id="userquestionDelete" parameterType="int">
+        DELETE
+        FROM QUESTION_LIST
+        WHERE QUEST_NUM = #{ questNum }
+    </delete>
+
+
+
+
 </mapper>
 
 
