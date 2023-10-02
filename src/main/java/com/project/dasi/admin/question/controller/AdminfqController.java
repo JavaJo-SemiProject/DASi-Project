@@ -5,6 +5,7 @@ import com.project.dasi.admin.question.model.dto.AdminFaqDTO;
 import com.project.dasi.admin.question.model.dto.QuestionDTO;
 import com.project.dasi.admin.question.model.service.AdminFaqService;
 import com.project.dasi.admin.question.model.service.QuestionService;
+import com.project.dasi.mypage.model.service.MypageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +23,12 @@ public class AdminfqController {
 
     private final QuestionService questionService;
 
+
+
     public AdminfqController(AdminFaqService adminFaqService, QuestionService questionService) {
         this.adminFaqService = adminFaqService;
         this.questionService = questionService;
+
     }
 
 
@@ -97,23 +101,31 @@ public class AdminfqController {
 
 
     /*마이페이지 안에서 이 회원에 대한 1:1글 남긴거 불러와야함. 이거 해결하기*/
-    @GetMapping("/question/{userCode}")   /* 사용자 1:1문의 그저 조회 페이지 */
+    @GetMapping("/question")   /* 사용자 1:1문의 그저 조회 페이지 */    /*완료!!!!!!!!!!!!!*/
     public String goQuestion(Model model) {  /*모델을 들고 db에 가서 결과를 받아온다*/
 
         List<QuestionDTO> questionList = questionService.SelectAllquestion();  /*여러개 가져올거니까 리스트*/
+        System.out.println("question : " + questionList);
         model.addAttribute("questionList", questionList);
-        return "content/question/question";    /*여기서 리턴해주는 페이지는 보여줄 뷰 사이트의 uri를 기술. 뷰리졸버가 이 문구 앞뒤에 http이런거 붙여서 주소 완성시킨다.*/
+        return "/content/question/question";    /*여기서 리턴해주는 페이지는 보여줄 뷰 사이트의 uri를 기술. 뷰리졸버가 이 문구 앞뒤에 http이런거 붙여서 주소 완성시킨다.*/
 
     }
 
-    @PostMapping("/questioncreate/{create}")  /* 사용자 1:1문의 작성 페이지!!->작성 후 조회페이지로 돌아감*/
-    public String Questioncreate(@ModelAttribute QuestionDTO questiondto, RedirectAttributes rttr) {  /*객체에다가 담아온다. 컬럼명 맞춰서 차곡차곡 담아서 가져온다*/
+    @GetMapping("/userquestioncreate")/* 사용자 1:1 작성 페이지로 이동*//*마이페이지 안에 이 uri버튼이 있어야함*/  /*완료!!!!!*/
+    public String questioncreate() {
+        return "content/question/questioncreate";
+    }
+
+
+    @PostMapping("/questioncreate")  /* 사용자 1:1문의 작성해서 넘기는 페이지!!->작성 후 조회페이지로 돌아감*/ /*완료!!!*/
+    public String Questioncreate(@ModelAttribute QuestionDTO questiondto, Model model, RedirectAttributes rttr) {  /*객체에다가 담아온다. 컬럼명 맞춰서 차곡차곡 담아서 가져온다*/
         /*@ModelAttribute    이건 써도 되고 안써도 된다. 그냥 명시용임*/
 
         questionService.questionCreate(questiondto);
         System.out.println("check:" + questiondto);
 
-        rttr.addFlashAttribute("message", "1:1문의 등록 성공");
+        /* rttr.addFlashAttribute("message", "1:1문의 등록 성공")*/
+        ;
 
         return "redirect:/content/question/question";
     }
@@ -127,30 +139,82 @@ public class AdminfqController {
     }
 
 
-    @PostMapping("/managerQuestion/{questNum}/")   /* 관리자페이지에서 하나의 글에 대해 답변글 다는 페이지->관리자1:1조회페이지로 돌아감*/
+    @GetMapping("/managerQuestionCreate/{questNum}/")   /* 관리자페이지에서 하나의 글에 대해 답변글 다는 페이지->관리자1:1조회페이지로 돌아감*/
     public String managerQuestCreate(QuestionDTO adminquestion, RedirectAttributes rttr) {
 
         questionService.adminQuestionCreate(adminquestion);
-        System.out.println("check:" + adminquestion);   /*선생님이 이 단계 잘 되는지 확인 위해 콘솔 출력해보려고 쓴 코드*/
+        System.out.println("check:" + adminquestion);
 
-
-              return "redirect:/admin/question/managerQuestion";
-
-
-    }
-
-    @PostMapping("/questionUpdate/{questNum}")
-    public String questionUpdate(QuestionDTO question, RedirectAttributes rttr) {
-
-        questionService.questionUpdate(question);
-        System.out.println("check:" + question);
-
-        rttr.addFlashAttribute("message", "FaQ 수정 성공");
         return "redirect:/admin/question/managerQuestion";
 
+
     }
 
 
+
+    /* @GetMapping("/managerQuestionCreate/{questNum}/")   *//* 관리자페이지에서 하나의 글에 대해 답변글 다는 페이지->관리자1:1조회페이지로 돌아감*//*
+    public String managerQuestCreate(Model model, @PathVariable("questNum") int num, RedirectAttributes rttr) {
+
+        List<QuestionService> questionList = questionService.Adminquestionupdate(num);
+
+
+
+
+         "redirect:/admin/question/managerQuestion";*/
+
+
+
+
+    /* @GetMapping("/managerQuestionCreate/{questNum}/")   *//* 관리자페이지에서 하나의 글에 대해 답변글 다는 페이지->관리자1:1조회페이지로 돌아감*//*
+    public String managerQuestCreate(QuestionDTO adminquestion, RedirectAttributes rttr) {
+
+        questionService.adminQuestionCreate(adminquestion);
+        System.out.println("check:" + adminquestion);
+
+        return "redirect:/admin/question/managerQuestion";
+
+
+    }*/
+
+
+    @GetMapping("/questionUpdate/{questNum}")   /*사용자 일대일 페이지에서 하나의 글에 대해 수정페이지로 들어가는것*/ /*완료!!!*/
+    public String goQuestionUpdate(Model model, @PathVariable("questNum") int qnumb) {
+        System.out.println("qnumb : " + qnumb);
+
+        QuestionDTO userQuestionList = questionService.userselectOneQuestion(qnumb);
+        System.out.println("giveup:" + userQuestionList);
+
+        model.addAttribute("userquestion", userQuestionList);
+             return "/content/question/questionUpdate";
+
+    }
+
+
+    @PostMapping("questionRealUpdate/{questNum}")
+    public String userquestionRealUpdate(QuestionDTO qdto, RedirectAttributes rttr) {
+        questionService.userquestionup(qdto);
+        System.out.println("what:" + qdto);
+        rttr.addFlashAttribute("message", "Question 수정 성공");
+
+        return "redirect:/content/question/question";
+    }
+
+    @GetMapping("/questionDelete")
+    public String goUserQuestionDelete(HttpServletRequest request) {
+
+
+        int questionNum = Integer.parseInt(request.getParameter("questionNum"));
+
+        questionService.userQuestionDelete(questionNum);
+
+        return "redirect:/content/question/question";
+
+    }
 
 
 }
+
+
+
+
+

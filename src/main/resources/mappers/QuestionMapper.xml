@@ -156,15 +156,27 @@
 
     <update id="userquestionup">
         UPDATE    QUESTION_LIST
-        SET     QUEST_TITLE =  #{ faqTitle }
+        SET     QUEST_TITLE =  #{ questTitle }
                  ,QUEST_CONTENT = #{ questContent }
                  ,QCATE_CODE = #{ qCate }
                   ,QUEST_DATE = NOW()
-                  <!--  ,USER_CODE = #{ qCate }-->
         WHERE QUEST_NUM = #{ questNum }
     </update>
+
+    <delete id="userquestionDelete" parameterType="int">
+        DELETE
+        FROM QUESTION_LIST
+        WHERE QUEST_NUM = #{ questNum }
+    </delete>
 
 
 
 
 </mapper>
+
+
+
+
+
+
+
