@@ -7,6 +7,6 @@ import lombok.*;
 @Setter
 @ToString
 public class QuestionCategoryDTO implements java.io.Serializable {
-    private int qCateCode;  /*QCATE_CODE*/
-    private String qCategory;   /*QCATEGORY*/
+    private int qCateCode;
+    private String qCategory;
 }

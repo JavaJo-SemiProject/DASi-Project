@@ -55,12 +55,4 @@ public class QuestionService {
         questionMapper.userquestionDelete(questionNum);
     }
 
-
-/*    public List<QuestionService> Adminquestionupdate(questnum int questnum) {
-
-        List<QuestionDTO> adminquestionList = questionMapper.adminquestCreate(questnum);
-
-        return adminquestionList;
-
-    }*/
 }

@@ -15,67 +15,47 @@
     <link rel="stylesheet" href="/css/header.css">
 
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 </head>
 <body>
 <div th:insert="fragments/header.html"></div>
 
-<div class="wrap">
-    <div class="page pseudo_padding-2">  <!-------그저 조회 페이지------->
+<div class="pages">
+    <br>
+    <br>
+    <br>
+    <h2>1:1문의</h2>
+    <br>
+    <div th:each="question : ${ questionList }">
+        <table class="question">
+            <input type="text" name="userCode" th:value="${#authentication.getPrincipal().userId}">님❤
+            <input type="hidden" name="questNum" th:value="${ question.questNum }">
 
-        <h1>1:1문의</h1>
-        <input type="text" class="input" name="userCode" th:value="${#authentication.getPrincipal().userId}" style="width: auto" readonly>
-        님, 환영합니다.
+            <tr>
+                <td>문의 유형</td>
+                <td th:text="${ question.qCateCode.qCategory }"></td>
+            </tr>
+            <tr>
+                <td>문의 날짜</td>
+                <td colspan="3" th:text="${ question.questDate }"></td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td colspan="3" th:text="${ question.questTitle }" style="rwidth:400px;"></td>
+            </tr>
+            <tr>
+                <td>문의 내용</td>
+                <td colspan="3" th:text="${ question.questContent }"></td>
+            </tr>
+        </table>
+        <br>
+        <div class="items_container" style="display: flex;">
+            <div class="item" style="width: 100%;">
+                <th:block th:if="${ question.answerContent } == null">
+                    <button th:onclick="|location.href='/content/question/questionUpdate/${question.questNum}'|"
+                            class="button button-light" style="width: 100%;">수정
 
-
-        <hr>
-        <div th:each="question : ${ questionList }">
-            <table>
-
-                <input type="hidden" name="questNum" th:value="${ question.questNum }">
-                <tbody>
-                <tr>
-                    <td>문의 유형</td>
-                    <td th:text="${ question.qCateCode.qCategory }"></td>
-                </tr>
-                <tr>
-                    <td>문의 날짜</td>
-                    <td colspan="3" th:text="${ question.questDate }"></td>
-                </tr>
-                <tr>
-                    <td>제목</td>
-                    <td colspan="3" th:text="${ question.questTitle }" style="rwidth:400px;"></td>
-                </tr>
-                <tr>
-                    <td>문의 내용</td>
-                    <td colspan="3" th:text="${ question.questContent }"></td>
-                </tr>
-                <!--<tr>
-                    <td>답변 날짜</td>
-                    <td colspan="3" th:text="${ question.answerDate }"></td>
-                </tr>
-                <tr>
-                    <td>답변 내용</td>
-                    <td colspan="3" th:text="${ question.answerContent }"></td>
-                </tr>-->
-                </tbody>
-
-            </table>
-
-            <div class="items_container mt-1 pt-1" style="display: flex;">
-                <div class="item" style="width: 100%;">
-                    <th:block th:if="${ question.answerContent } == null">
-                        <button th:onclick="|location.href='/content/question/questionUpdate/${question.questNum}'|"
-                                class="button button-light" style="width: 100%;">수정
-                        </button>
-                    </th:block>
-                </div>
-                <div class="item" style="width: 100%;">
-                    <button th:onclick="|location.href='/content/question/userquestioncreate'|"
-                            class="button button-light" style="width: 100%;">추가 작성
                     </button>
                 </div>
                 <div class="item" style="width: 100%;">

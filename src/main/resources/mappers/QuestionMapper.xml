@@ -13,8 +13,7 @@
         <result property="questTitle" column="QUEST_TITLE"/>
         <result property="questContent" column="QUEST_CONTENT"/>
         <association property="qCateCode" resultMap="qCateResultMap"/>
-        <association property="userCode" resultMap="MemberResultMap"/>  <!--참고하려는 그 Map은 이 파일 안에 있어야만 한다. 복붙해와라.이유는?mapper namespace로 지정한 경로가 여기니까.밖에서 이파일을참조한다는거니까.-->
-        <!--이런건 꼭 맨아래 있어야만함-->
+        <association property="userCode" resultMap="MemberResultMap"/>
     </resultMap>
     
     <resultMap id="managerListMap" type="com.project.dasi.admin.question.model.dto.QuestionDTO">
@@ -61,7 +60,7 @@
      </resultMap>
 
 
-    <select id="questionList" resultMap="qListMap">   <!--select일 경우 조인 경우, 가져올 그 컬럼만 부르면 된다-->
+    <select id="questionList" resultMap="qListMap">
         SELECT
         C.USER_CODE
         ,B.QCATEGORY
@@ -74,7 +73,6 @@
         FROM QUESTION_LIST A
         JOIN QUESTION_CATEGORY B ON (A.QCATE_CODE = B.QCATE_CODE)
         JOIN USERS C ON (C.USER_CODE = A.USER_CODE)
-      <!--  WHERE A.USER_CODE = #{ userCode }-->
     </select>
 
     <select id="questionmanagerList" resultMap="managerListMap">
@@ -104,14 +102,6 @@
                         ,#{ questContent })
     </insert>
 
-
-  <!--  <update id="adminquestCreate">
-        UPDATE QUESTION_LIST
-        SET   ANSWER_CONTENT = #{ answerContent }
-        ,ANSWER_DATE = NOW()
-        WHERE QUEST_NUM = #{ questNum }
-    </update>-->
-
     <update id="questionUpdate">
         UPDATE QUESTION_LIST
         SET
@@ -132,18 +122,6 @@
         WHERE QUEST_NUM = #{ questnum }
         JOIN QUESTION_CATEGORY B ON (A.QCATE_CODE = B.QCATE_CODE)
     </select>
-
-   <!-- <select id="adminquestionList" resultMap="mQuestionList">
-        SELECT A.QUEST_NUM
-                ,B.QCATEGORY
-                ,A.QUEST_DATE
-                ,A.QUEST_TITLE
-                ,A.QUEST_CONTENT
-        FROM QUESTION_LIST A
-        WHERE QUEST_NUM = #{ questNum }
-        JOIN QUESTION_CATEGORY B ON (A.QCATE_CODE = B.QCATE_CODE)
-    </select>-->
-
 
     <select id="userquestionUpdate" resultMap="userQuestionListMap">
         SELECT
@@ -170,13 +148,4 @@
     </delete>
 
 
-
-
 </mapper>
-
-
-
-
-
-
-

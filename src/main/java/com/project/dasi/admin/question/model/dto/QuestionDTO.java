@@ -11,14 +11,14 @@ import lombok.*;
 @Setter
 @ToString
 public class QuestionDTO implements java.io.Serializable {
-    private int questNum; /*QUEST_NUM*/
-    private UserDTO userCode; /*USER_CODE*/
+    private int questNum;
+    private UserDTO userCode;
     private String user;
-    private QuestionCategoryDTO qCateCode;  /*QCATE_CODE*/
+    private QuestionCategoryDTO qCateCode;
     private String qCate;
-    private String answerDate;  /*ANSWER_DATE*/
-    private String answerContent;   /*ANSWER_CONTENT*/
-    private String questDate;  /*QUEST_DATE*/
-    private String questTitle;  /*QUEST_TITLE*/
-    private String questContent;  /*QUEST_CONTENT*/
+    private String answerDate;
+    private String answerContent;
+    private String questDate;
+    private String questTitle;
+    private String questContent;
 }
