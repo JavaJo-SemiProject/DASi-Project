@@ -16,81 +16,68 @@
 <body>
 <div th:insert="fragments/header.html"></div>
 
-<!--pages-->
-<div class="page">
-    <br>
-    <br>
-   <!-- <div class="button class">
-        <button class="button button-light" th:onclick="'location.href=\'/admin/question/managerQuestion\''">1:1 문의 관리</button>
-        <button class="button button-dark" onclick="location.reload();">FAQ 관리</button>
-    </div>-->
-    <!--<div class="selecttitle">
-        <h3 class="selecttitle1">구분</h3>
-        <select class="select">
-            <option class="option" selected>전체</option>
-            <option class="option" value='' onclick="">주문제작</option>
-            <option class="option" value='' onclick="">결제 및 배송</option>
-            <option class="option" value='' onclick="">기타</option>
-        </select>
-    </div>-->
-
-    <br> <br>
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <h1>문의 관리</h1>
+        <hr/>
+        <!-- <div class="button class">
+             <button class="button button-light" th:onclick="'location.href=\'/admin/question/managerQuestion\''">1:1 문의 관리</button>
+             <button class="button button-dark" onclick="location.reload();">FAQ 관리</button>
+         </div>-->
+        <!--<div class="selecttitle">
+            <h3 class="selecttitle1">구분</h3>
+            <select class="select">
+                <option class="option" selected>전체</option>
+                <option class="option" value='' onclick="">주문제작</option>
+                <option class="option" value='' onclick="">결제 및 배송</option>
+                <option class="option" value='' onclick="">기타</option>
+            </select>
+        </div>-->
 
 
-    <table class="list-table">
-        <thead>
-        <tr>
-            <!--<th style="width:50px">글번호</th>-->
-            <th style="width:120px">제목</th>
-            <th style="width:120px">내용</th>
-            <th style="width:60px">수정 및 삭제</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="faq : ${ faqList }">
-           <!-- <td style="width:50px" th:text="${ faq.faqNum }"></td>-->
-            <td style="width:120px" th:text="${ faq.faqTitle }"></td>
-            <td style="width:120px" th:text="${ faq.faqContent }"></td>
-            <td style="width:60px">
-                <button th:onclick="|location.href='/admin/question/managerFaqUpdate/${faq.faqNum}'|" width="10"
-                        height="5">수정
-                </button>
-                <!-- <button th:onclick= "|location.href=' @{/admin/question/managerFaqUpdate(num=${ faq.faqNum })}'|" width="10" height="5">수정</button>-->
-                <!--<button th:onclick= "|'location.href=' @{/admin/question/managerFaqUpdate(num=${ faq.faqNum })}'|'|" width="10" height="5">수정</button>-->
 
+        <table class="list-table">
+            <thead>
+            <tr>
+                <!--<th style="width:50px">글번호</th>-->
+                <th>제목</th>
+                <th>내용</th>
+                <th style="width: 150px">수정 및 삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="faq : ${ faqList }">
+                <td th:text="${ faq.faqTitle }"></td>
+                <td th:text="${ faq.faqContent }"></td>
+                <td><button th:onclick="|location.href='/admin/question/managerFaqUpdate/${faq.faqNum}'|" class="button button-light" style="display: inline">수정</button><button type="button" th:onclick="'location.href=\'/admin/question/managerFaqDelete?faqNum='+ @{${ faq.faqNum }} + '\''" class="button button-dark" style="display: inline">삭제</button></td>
+            </tr>
+            </tbody>
+        </table>   <!--테이블끝-->
 
-                <button type="button"
-                        th:onclick="'location.href=\'/admin/question/managerFaqDelete?faqNum='+  @{${ faq.faqNum }} + '\''" width="10"
-                        height="5">삭제
-                    <!--th:onclick="'location.href=\'/notice/delete?no='+ @{${ faq.faqNum }} + '\''"-->
-                    <!--<button type="button"
-                            th:onclick="|location.href='/admin/question/managerFaqDelete/${faq.faqNum}'|" width="10"
-                            height="5">삭제-->
-                </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>   <!--테이블끝-->
+        <hr/>
+        <button class="button button-dark w-100" th:onclick="|location.href='/admin/question/create'|">FAQ 추가등록</button>
 
-    <button class="button button-dark" th:onclick="|location.href='/admin/question/create'|">FAQ 추가등록</button>
+        <!--페이징-->
+        <!-- <div class="pagging-wrap page-area">
+             <div class="page-number">
+                 <div class="pagination mt20">
+                     <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span
+                             class="blind">이전</span></a>
+                     <a href="#" class="current"><span>1</span></a>
+                     <a href="javascript:CmPageMove('2')" data-page="2"><span>2</span></a>
 
-    <!--페이징-->
-    <!-- <div class="pagging-wrap page-area">
-         <div class="page-number">
-             <div class="pagination mt20">
-                 <a href="javascript:CmPageMove('0')" data-page="0" class='btn-page prev'><span
-                         class="blind">이전</span></a>
-                 <a href="#" class="current"><span>1</span></a>
-                 <a href="javascript:CmPageMove('2')" data-page="2"><span>2</span></a>
-
-                 <a href="javascript:CmPageMove('3')" data-page="3" class='btn-page next'><span
-                         class="blind">다음</span></a>
+                     <a href="javascript:CmPageMove('3')" data-page="3" class='btn-page next'><span
+                             class="blind">다음</span></a>
+                 </div>
              </div>
-         </div>
 
-     </div>-->
+         </div>-->
 
+    </div>
 </div>
+
+<!--pages-->
+
 
 <!-- footer -->
 

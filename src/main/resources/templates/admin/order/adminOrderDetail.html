@@ -31,183 +31,188 @@
 <body>
 <div th:insert="/fragments/header.html"></div>
 
-<br>
-<div class="page">
-    <form id="statusUpdate" th:action="@{/admin/order/adminOrderDetail}" method="post">
-        <h1> 주문 상세 내역</h1>
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <form id="statusUpdate" th:action="@{/admin/order/adminOrderDetail}" method="post">
+            <h1> 주문 상세 내역</h1>
 
-        <hr>
-        <h5 style="margin-bottom: 5px;">주문 정보</h5>
-        <table>
-            <tr>
-                <th class="orderCol" style="text-align: center;">주문 일자</th>
-                <td th:text="${order.orderDate}"></td>
-                <th class="orderCol" style="text-align: center;">주문 ID</th>
-                <td th:text="${order.orderId}"></td>
-                <th class="orderCol" style="text-align: center;">회원 ID</th>
-                <td th:text="${order.userCode.userId}"></td>
-                <th class="orderCol" style="text-align: center;">회원 이름</th>
-                <td th:text="${order.userCode.name}"></td>
-            </tr>
-        </table>
+            <hr>
+            <h5>주문 정보</h5>
+            <table>
+                <tr>
+                    <th class="orderCol">주문 일자</th>
+                    <td th:text="${order.orderDate}"></td>
+                    <th class="orderCol">주문 ID</th>
+                    <td th:text="${order.orderId}"></td>
+                    <th class="orderCol">회원 ID</th>
+                    <td th:text="${order.userCode.userId}"></td>
+                    <th class="orderCol">회원 이름</th>
+                    <td th:text="${order.userCode.name}"></td>
+                </tr>
+            </table>
 
-        <h5 style="margin-bottom: 5px;">요청 정보</h5>
-        <table>
-            <tr>
-                <th class="orderCol" style="text-align: center;">사이즈 정보</th>
-                <td class="#table_td" th:text="${order.sizeInfo}"></td>
-                <th class="orderCol" style="text-align: center;">요청 사항</th>
-                <td class="#table_td" th:text="${order.reqIssues}"></td>
-            </tr>
-        </table>
+            <h5>요청 정보</h5>
+            <table>
+                <tr>
+                    <th class="orderCol">사이즈 정보</th>
+                    <td class="#table_td" th:text="${order.sizeInfo}"></td>
+                    <th class="orderCol">요청 사항</th>
+                    <td class="#table_td" th:text="${order.reqIssues}"></td>
+                </tr>
+            </table>
 
-        <h5 style="margin-bottom: 5px;">결제 정보</h5>
-        <table>
-            <tr>
-                <th class="orderCol" style="text-align: center;">상품 가격</th>
-                <th:block th:if="${order.orderPrice} == 0">
-                    <td><input id="orderPrice" name="orderPrice" type="number" value="0" min="0"></td>
+            <h5>결제 정보</h5>
+            <table>
+                <tr>
+                    <th class="orderCol">상품 가격</th>
+                    <th:block th:if="${order.orderPrice} == 0">
+                        <td><input class="input" id="orderPrice" name="orderPrice" type="number" value="0" min="0"></td>
+                    </th:block>
+                    <th:block th:if="${order.orderPrice} gt 0">
+                        <td th:value="${order.orderPrice}" th:text="${order.orderPrice}"></td>
+                    </th:block>
+                    <th:block th:if="${order.payInfo} != null">
+                        <th class="orderCol">결제 번호</th>
+                        <td th:text="${order.payInfo.payNum}"></td>
+                        <th class="orderCol">결제일</th>
+                        <td th:text="${order.payInfo.payDate}"></td>
+                        <th class="orderCol">결제 금액</th>
+                        <td th:text="${order.payInfo.payPrice}"></td>
+                        <th class="orderCol">결제 수단</th>
+                        <td th:text="${order.payInfo.payMethod}"></td>
+                    </th:block>
+                    <th:block th:if="${order.payInfo} == null">
+                        <th class="orderCol">결제 번호</th>
+                        <td>-</td>
+                        <th class="orderCol">결제일</th>
+                        <td>-</td>
+                        <th class="orderCol">결제 금액</th>
+                        <td>-</td>
+                        <th class="orderCol">결제 수단</th>
+                        <td>-</td>
+                    </th:block>
+                </tr>
+            </table>
+            <th:block th:if="${order.zipCode} != null">
+                <div class="items_container" style="display: flex; align-items: center;">
+                    <div class="item"><h5>배송 정보</h5></div>
+                </div>
+                <table>
+                    <tr>
+                        <th class="orderCol">수령인</th>
+                        <td th:text="${order.receiver}"></td>
+                        <th class="orderCol">전화번호</th>
+                        <td th:text="${order.recePhone}"></td>
+                        <th class="orderCol">주소</th>
+                        <td th:text="${order.address}"></td>
+                        <th class="orderCol">상세 주소</th>
+                        <td th:text="${order.addressDetail}"></td>
+                        <th class="orderCol">우편번호</th>
+                        <td th:text="${order.zipCode}"></td>
+                    </tr>
+                    <tr>
+                        <th class="orderCol">배송 출발 일자</th>
+                        <!--<td th:text="${}"></td>-->
+                        <td>-</td>
+                        <th class="orderCol">배송 완료 일자</th>
+                        <!--<td th:text="${}"></td>-->
+
+                        <th class="orderCol">송장번호</th>
+                        <td th:text="${order.invoice}"></td>
+
+
+                    </tr>
+                </table>
+            </th:block>
+
+            <div class="items_container">
+                <div class="item">
+                    <h5>진행 사항</h5>
+                </div>
+                <div class="item">
+                    <h6 th:text="${order.statusNum.status}"></h6>
+                </div>
+
+                <th:block th:if="${order.statusNum.status} == '제작 반려'">
+                    <input type="hidden" name="status" th:value="${order.statusNum.statusNum}">
                 </th:block>
-                <th:block th:if="${order.orderPrice} gt 0">
-                    <td th:value="${order.orderPrice}" th:text="${order.orderPrice}"></td>
-                </th:block>
-                <th:block th:if="${order.payInfo} != null">
-                <th class="orderCol" style="text-align: center;">결제 번호</th>
-                <td th:text="${order.payInfo.payNum}"></td>
-                <th class="orderCol" style="text-align: center;">결제일</th>
-                <td th:text="${order.payInfo.payDate}"></td>
-                <th class="orderCol" style="text-align: center;">결제 금액</th>
-                <td th:text="${order.payInfo.payPrice}"></td>
-                <th class="orderCol" style="text-align: center;">결제 수단</th>
-                    <td th:text="${order.payInfo.payMethod}"></td>
-                </th:block>
-                <th:block th:if="${order.payInfo} == null">
-                    <th class="orderCol" style="text-align: center;">결제 번호</th>
-                    <td>-</td>
-                    <th class="orderCol" style="text-align: center;">결제일</th>
-                    <td>-</td>
-                    <th class="orderCol" style="text-align: center;">결제 금액</th>
-                    <td>-</td>
-                    <th class="orderCol" style="text-align: center;">결제 수단</th>
-                    <td>-</td>
-                </th:block>
-            </tr>
-        </table>
-        <th:block th:if="${order.zipCode} != null">
-        <div class="items_container" style="display: flex; align-items: center;">
-            <div class="item"><h5 style="margin-bottom: 5px;">배송 정보</h5></div>
-        </div>
-        <table>
-            <tr>
-                <th class="orderCol" style="text-align: center;">수령인</th>
-                <td th:text="${order.receiver}"></td>
-                <th class="orderCol" style="text-align: center;">전화번호</th>
-                <td th:text="${order.recePhone}"></td>
-                <th class="orderCol" style="text-align: center;">주소</th>
-                <td th:text="${order.address}"></td>
-                <th class="orderCol" style="text-align: center;">상세 주소</th>
-                <td th:text="${order.addressDetail}"></td>
-                <th class="orderCol" style="text-align: center;">우편번호</th>
-                <td th:text="${order.zipCode}"></td>
-            </tr>
-            <tr>
-                <th class="orderCol" style="text-align: center;">배송 출발 일자</th>
-                <!--<td th:text="${}"></td>-->
-                <td>-</td>
-                <th class="orderCol" style="text-align: center;">배송 완료 일자</th>
-                <!--<td th:text="${}"></td>-->
 
-                <th class="orderCol" style="text-align: center;">송장번호</th>
-                <td th:text="${order.invoice}"></td>
-
-
-            </tr>
-        </table>
-        </th:block>
-
-        <div class="items_container">
-            <div class="item">
-                <h5 style="margin-bottom: 5px;">진행 사항 : </h5>
             </div>
-            <div class="item">
-                <h6 th:text="${order.statusNum.status}"></h6>
+            <div>
+                <th:block th:if="${order.statusNum.status} == '제작 요청'">
+                    <select name="status" class="select">
+                        <option th:value="${order.statusNum.statusNum}" selected>--선택해주세요--</option>
+                        <option value="20">제작 반려</option>
+                        <option value="30">제작 승인</option>
+                    </select>
+                </th:block>
+
+                <th:block th:if="${order.statusNum.status} != '제작 요청' and ${order.statusNum.status} != '제작 반려'">
+                    <select name="status" class="select">
+                        <option th:value="${order.statusNum.statusNum}" selected>--선택해주세요--</option>
+                        <option value="40">결제 완료</option>
+                        <option value="50">제작 중</option>
+                        <option value="60">제작 완료</option>
+                        <option value="70">배송 중</option>
+                        <option value="80">배송 완료</option>
+                        <option value="90">주문 취소</option>
+                    </select>
+                </th:block>
             </div>
 
             <th:block th:if="${order.statusNum.status} == '제작 반려'">
-                <input type="hidden" name="status" th:value="${order.statusNum.statusNum}">
-            </th:block>
-
-        </div>
-        <div>
-            <th:block th:if="${order.statusNum.status} == '제작 요청'">
-                <select name="status">
-                    <option th:value="${order.statusNum.statusNum}" selected>--선택해주세요--</option>
-                    <option value="20">제작 반려</option>
-                    <option value="30">제작 승인</option>
-                </select>
-            </th:block>
-
-            <th:block th:if="${order.statusNum.status} != '제작 요청' and ${order.statusNum.status} != '제작 반려'">
-                <select name="status">
-                    <option th:value="${order.statusNum.statusNum}" selected>--선택해주세요--</option>
-                    <option value="40">결제 완료</option>
-                    <option value="50">제작 중</option>
-                    <option value="60">제작 완료</option>
-                    <option value="70">배송 중</option>
-                    <option value="80">배송 완료</option>
-                    <option value="90">주문 취소</option>
-                </select>
-            </th:block>
-        </div>
-
-        <th:block th:if="${order.statusNum.status} == '제작 반려'">
-            <div>
-                <th:block th:if="${order.statusNum.status} == '제작 반려'">
-                    <div class="items_container">
-                        <div class="item"><h5 style="margin-bottom: 5px;">취소 사유</h5></div>
-                        <th:block th:if="${not #strings.isEmpty(order.cancelContent)}">
-                            <div class="item">
-                                <button class="button button-lg button-dark" style="width: 100%;"
-                                        onclick="enableFormAndPreventSubmit()">
-                                    수정 하기
-                                </button>
-                            </div>
-                     </div>
-                </th:block>
-            </div>
-            <div>
+                <div>
+                    <th:block th:if="${order.statusNum.status} == '제작 반려'">
+                        <div class="items_container">
+                            <div class="item"><h5>취소 사유</h5></div>
+                            <th:block th:if="${not #strings.isEmpty(order.cancelContent)}">
+                                <div class="item">
+                                    <button class="button button-lg button-dark" style="width: 100%;"
+                                            onclick="enableFormAndPreventSubmit()">
+                                        수정하기
+                                    </button>
+                                </div>
+                            </th:block>
+                        </div>
+                    </th:block>
+                </div>
+                <div>
                         <textarea id="inputFieldId" name="cancelContent" th:text="${order.cancelContent}"
                                   style="width: 100%; height: 10vh;"
                                   th:readonly="${not #strings.isEmpty(order.cancelContent)}"></textarea>
-            </div>
-        </th:block>
-
-        <input name="orderId" type="hidden" th:value="${order.orderId}">
-
-        <div class="items_container" style="display: flex;">
-            <div class="item" style="width: 100%;">
-                <button class="button button-lg button-light" style="width: 100%;"
-                        onclick="goBack()">
-                    뒤로 가기
-                </button>
-            </div>
-            <th:block th:if="${order.statusNum.status} != '제작 반려'">
-                <div class="item" style="width: 100%;">
-                    <button class="button button-lg button-dark" type="submit" style="width: 100%;"
-                            onclick="submitFormWithAjax()">진행 사항 변경
-                    </button>
                 </div>
             </th:block>
-            <th:block th:if="${order.statusNum.status} == '제작 반려'">
+
+            <input name="orderId" type="hidden" th:value="${order.orderId}">
+
+            <hr>
+
+            <div class="items_container" style="display: flex;">
                 <div class="item" style="width: 100%;">
-                    <button class="button button-lg button-dark" type="submit" style="width: 100%;"
-                            onclick="submitFormAndReloadPage()">취소 사유 등록
+                    <button class="button button-lg button-light" style="width: 100%;"
+                            onclick="goBack()">
+                        뒤로 가기
                     </button>
                 </div>
-            </th:block>
-        </div>
-    </form>
+                <th:block th:if="${order.statusNum.status} != '제작 반려'">
+                    <div class="item" style="width: 100%;">
+                        <button class="button button-lg button-dark" type="submit" style="width: 100%;"
+                                onclick="submitFormWithAjax()">진행 사항 변경
+                        </button>
+                    </div>
+                </th:block>
+                <th:block th:if="${order.statusNum.status} == '제작 반려'">
+                    <div class="item" style="width: 100%;">
+                        <button class="button button-lg button-dark" type="submit" style="width: 100%;"
+                                onclick="submitFormAndReloadPage()">취소 사유 등록
+                        </button>
+                    </div>
+                </th:block>
+            </div>
+        </form>
+    </div>
 </div>
+
 
 <div th:insert="/fragments/footer.html"></div>
 <script src="/js/header.js"></script>

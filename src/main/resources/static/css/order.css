@@ -1,6 +1,7 @@
 .orderCol {
             background-color: #E6E6E6;
             border: 1px solid #000;
+    text-align: center;
         }
 
  #rejectText {
@@ -96,48 +97,58 @@
     display:none;
 }
 
+#statusChangeButton {
+    border: 0!important;
+    width: 100%;
+}
+
 /* 제작 요청 상태에 대한 스타일 */
 .button.requested {
-    background-color: #3498db; /* 파란색 */
+    background-color: #3498db!important; /* 파란색 */
+
 }
 
 /* 제작 반려 상태에 대한 스타일 */
 .button.rejected {
-    background-color: #e74c3c; /* 빨간색 */
+    background-color: #e74c3c!important; /* 빨간색 */
 }
 
 /* 제작 승인 상태에 대한 스타일 */
 .button.approved {
-    background-color: #27ae60; /* 초록색 */
+    background-color: #27ae60!important; /* 초록색 */
 }
 
 /* 결제 완료 상태에 대한 스타일 */
 .button.paid {
-    background-color: #f1c40f; /* 노란색 */
+    background-color: #f1c40f!important; /* 노란색 */
 }
 
 /* 제작 중 상태에 대한 스타일 */
 .button.in-progress {
-    background-color: #f39c12; /* 주황색 */
+    background-color: #f39c12!important; /* 주황색 */
 }
 
 /* 제작 완료 상태에 대한 스타일 */
 .button.completed {
-    background-color: #2c3e50; /* 회색 */
+    background-color: #2c3e50!important; /* 회색 */
+    color: #222!important;
 }
 
 /* 배송 중 상태에 대한 스타일 */
 .button.shipping {
-    background-color: #9b59b6; /* 보라색 */
+    background-color: #9b59b6!important; /* 보라색 */
 }
 
 /* 배송 완료 상태에 대한 스타일 */
 .button.delivered {
-    background-color: #1abc9c; /* 청록색 */
+    background-color: #1abc9c!important; /* 청록색 */
 }
 
 /* 주문 취소 상태에 대한 스타일 */
 .button.cancelled {
-    background-color: #c0392b; /* 진한 빨간색 */
+    background-color: #c0392b!important; /* 진한 빨간색 */
 }
 
+#statusUpdate h5 {
+    margin: 1.5rem 0 0.25rem 0;
+}
