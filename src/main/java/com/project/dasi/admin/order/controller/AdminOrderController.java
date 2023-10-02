@@ -1,12 +1,16 @@
 package com.project.dasi.admin.order.controller;
 
 import com.project.dasi.admin.order.model.service.AdminOrderService;
+import com.project.dasi.mypage.model.service.MypageService;
 import com.project.dasi.order.model.dto.OrderListDTO;
+import com.project.dasi.order.model.dto.PayInfoDTO;
+import com.project.dasi.order.model.dto.PaymentRequest;
+import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -60,5 +64,32 @@ public class AdminOrderController {
 
         return "redirect:/admin/order/adminOrderList";
 
+    }
+
+   @PostMapping("/invoiceSucess")
+    @ResponseBody
+    public ResponseEntity<String> recordPayment(@RequestBody OrderListDTO order) {
+
+        JSONObject jsonObject = new JSONObject(order);
+
+        String invoice = jsonObject.getString("invoice");
+        String orderId = String.valueOf(jsonObject.getInt("orderId"));
+
+        System.out.println("invoice : " + invoice);
+        System.out.println("orderId : " + orderId);
+        try {
+            OrderListDTO orderList = new OrderListDTO();
+            orderList.setInvoice(invoice);
+            orderList.setOrderId(Integer.parseInt(orderId));
+
+            adminOrderService.updateDeliver(order);
+
+            System.out.println("pay : " + orderList);
+
+            return new ResponseEntity<>("송장번호 저장 성공", HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("송장번호 저장 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

@@ -20,6 +20,7 @@
         textarea {
             resize: none !important;
         }
+
         #orderRegistForm {
             display: grid;
             grid-auto-columns: 1fr;
@@ -38,7 +39,8 @@
         <div class="items_container ic3">
             <h1>주문제작 견적문의</h1>
             <div></div>
-            <button type="button" class="button button-light" style="margin-top: 0.25rem" th:onclick="|location.href='@{/content/order/orderGuidePage}'|">주문제작이 처음이신가요?
+            <button type="button" class="button button-light" style="margin-top: 0.25rem"
+                    th:onclick="|location.href='@{/content/order/orderGuidePage}'|">주문제작이 처음이신가요?
             </button>
         </div>
 
@@ -76,7 +78,8 @@
             <div>
                 <label class="form-label"><h3>사이즈 작성</h3></label>
 
-                <p><textarea class="textarea mt-1" placeholder="사이즈를 작성해주세요." name="sizeInfo" style="width: 100%; height:200px;"></textarea></p>
+                <p><textarea class="textarea mt-1" placeholder="사이즈를 작성해주세요." name="sizeInfo"
+                             style="width: 100%; height:200px;"></textarea></p>
 
                 <ul>
                     <li> &#8901 목둘레는 강아지 옷이나 목걸이를 착용하는 부분입니다. 얼굴과 등의 경게선 길이를 측정해 주세요.</li>
@@ -91,13 +94,11 @@
             <div>
                 <label class="form-label"><h3>이니셜 또는 커스텀 문구</h3></label>
 
-                <p><textarea  class="textarea mt-1" id="writeContent" name="phrase" cols="30" rows="10"
-                             placeholder="이니셜 또는 커스텀 문구 10글자 이내로 작성해주세요." style="width: 100%; height:200px;"
-                             maxlength="10"></textarea></p>
+                <<p><textarea class="textarea mt-1" id="writeContent" name="phrase" cols="30" rows="10"
+                              placeholder="이니셜 또는 커스텀 문구 10글자 이내로 작성해주세요." style="width: 100%; height:200px;"
+                              maxlength="10"></textarea></p>
                 <div id="writeContent_cnt">(0 / 10)</div>
             </div>
-
-
 
 
             <hr>
@@ -109,7 +110,8 @@
                     <li>자세히 설명해주실수록 제작이 용이해집니다.</li>
                 </ul>
 
-                <p><textarea  class="textarea mt-1" id="requestOrder" name="reqIssues" cols="30" rows="10" placeholder="요청사항을 자유롭게 작성해주세요.(200자 이내)"
+                <p><textarea class="textarea mt-1" id="requestOrder" name="reqIssues" cols="30" rows="10"
+                             placeholder="요청사항을 자유롭게 작성해주세요.(200자 이내)"
                              style="width: 100%; height:200px;" maxlength="200"></textarea></p>
                 <div id="requestOrder_cnt">(0 / 200)</div>
             </div>
@@ -127,51 +129,6 @@
 <div th:insert="/fragments/footer.html"></div>
 <script src="/js/header.js"></script>
 <script src="/js/carousel.js"></script>
-<script src="/js/default.js"></script>
-<script src="/js/textLetterLim.js"></script>
-
-<script th:inline="javascript">
-
-    const $contentImgArea1 = document.getElementById("contentImgArea1");
-    const $contentImgArea2 = document.getElementById("contentImgArea2");
-    const $contentImgArea3 = document.getElementById("contentImgArea3");
-
-    $contentImgArea1.onclick = function () {
-        document.getElementById("orderImg1").click();
-    }
-
-    $contentImgArea2.onclick = function () {
-        document.getElementById("orderImg2").click();
-    }
-
-    $contentImgArea3.onclick = function () {
-        document.getElementById("orderImg3").click();
-    }
-
-    function loadImg(value, num) {
-
-        if (value.files && value.files[0]) {
-            const reader = new FileReader();
-
-            reader.readAsDataURL(value.files[0]);
-
-
-            reader.onload = function (e) {
-                switch (num) {
-                    case 1:
-                        document.getElementById("contentImg1").src = e.target.result;
-                        break;
-                    case 2:
-                        document.getElementById("contentImg2").src = e.target.result;
-                        break;
-                    case 3:
-                        document.getElementById("contentImg3").src = e.target.result;
-                        break;
-                }
-            }
-        }
-    }
-</script>
 
 </body>
 </html>

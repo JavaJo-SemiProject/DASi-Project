@@ -18,7 +18,7 @@
 <div th:insert="/fragments/header.html"></div>
 <div class="wrap">
     <div class="page pseudo_padding-2">
-        <!--<div th:include="/fragments/mypageCategory"></div>-->
+
 
         <h1> 나의 주문 내역</h1>
         <hr>
@@ -49,23 +49,21 @@
     </div>
 </div>
 
-
-    <div th:insert="/fragments/footer.html"></div>
-
+        <div th:insert="/fragments/footer.html"></div>
 
 
-    <script th:inline="javascript">
+        <script th:inline="javascript">
 
-        if (document.querySelectorAll("#listArea td")) {
-            const $tds = document.querySelectorAll("#listArea td");
-            for (let i = 0; i < $tds.length; i++) {
+            if (document.querySelectorAll("#listArea td")) {
+                const $tds = document.querySelectorAll("#listArea td");
+                for (let i = 0; i < $tds.length; i++) {
 
-                $tds[i].onclick = function () {
-                    const orderId = this.parentNode.children[0].innerText;
-                    location.href = "/content/mypage/myOrderDetail?orderId=" + orderId;
+                    $tds[i].onclick = function () {
+                        const orderId = this.parentNode.children[0].innerText;
+                        location.href = "/content/mypage/myOrderDetail?orderId=" + orderId;
+                    }
                 }
             }
-        }
-    </script>
- </body>
+        </script>
+</body>
 </html>

@@ -20,7 +20,7 @@
 <div th:insert="/fragments/header"></div>
 
 
-<div class="masthead pseudo_margin" style="background-image: url('/img/main/sub4.png')">
+<<div class="masthead pseudo_margin" style="background-image: url('/img/main/sub4.png')">
     <div class="page text-c">
         <h1 class="">주문제작 가이드</h1>
         <p class="pb-3">지속 가능한 제작 공정, 나만의 디자인</p>
@@ -108,6 +108,9 @@
             <a href="#card-2" class="Dot" tabindex="-1"><span class="Hidden">Slide 2</span></a>
         </div>
     </nav>
+    <button class="button button-lg button-dark" style="width: 100%;"
+            th:onclick="|location.href='@{/content/order/orderRequestPage}'|">주문제작 의뢰
+    </button>
 </div>
 
 <div th:insert="/fragments/footer.html"></div>
