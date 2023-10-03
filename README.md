@@ -61,7 +61,8 @@
 [[Project-DASi 디자인 Figma]](https://www.figma.com/file/ePACHwHqrs8LUguTKrV7r0/dasi-temp-(Copy)?type=design&node-id=45%3A376&mode=design&t=KA5qM1Q0KrA3TcCE-1)
 
 #### 개발 환경
-![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/7845b3e5-e497-411d-b9f0-605a85986b37)
+<img width="3400" alt="개발 환경" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/3f26aaf4-d6f2-44e3-941e-d0262f707440">
+
 
 
 #### 구조
