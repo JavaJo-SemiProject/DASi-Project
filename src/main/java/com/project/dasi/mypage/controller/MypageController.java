@@ -91,10 +91,6 @@ public class MypageController {
 
         userService.modifyMember(user);
 
-        //        SessionUtil.invalidateSession(request, response);
-        //
-        //        rttr.addFlashAttribute("message", "회원 정보가 수정되었습니다. DASi 로그인해주세요.");
-
         return "redirect:/";
     }
 

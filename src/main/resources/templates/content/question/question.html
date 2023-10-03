@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/faq.css">
-    <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
 
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
@@ -20,16 +19,20 @@
 </head>
 <body>
 <div th:insert="fragments/header.html"></div>
-
-<div class="pages">
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+    <div th:include="/fragments/mypageId"></div>
     <br>
+    <div th:include="/fragments/mypageCategory"></div>
     <br>
-    <br>
-    <h2>1:1문의</h2>
-    <br>
+        <div style="display: flex">
+    <h2>1:1문의</h2> <button type="button" class="button button-dark" style="margin-left: 1%; margin-top: 0.5%; text-align-all: center"  th:onclick="|location.href='/content/question/userquestioncreate'|">1:1문의 추가 등록</button>
+        </div>
+            <hr>
     <div th:each="question : ${ questionList }">
-        <table class="question">
-            <input type="text" name="userCode" th:value="${#authentication.getPrincipal().userId}">님❤
+        <table class="questions">
+            <input type="hidden" name="userId" th:value="${#authentication.getPrincipal().userId}"/>
+            <br>
             <input type="hidden" name="questNum" th:value="${ question.questNum }">
 
             <tr>
@@ -50,25 +53,27 @@
             </tr>
         </table>
         <br>
-        <div class="items_container" style="display: flex;">
+        <div class="items_containers" style="display: flex;">
             <div class="item" style="width: 100%;">
                 <th:block th:if="${ question.answerContent } == null">
                     <button th:onclick="|location.href='/content/question/questionUpdate/${question.questNum}'|"
                             class="button button-light" style="width: 100%;">수정
 
                     </button>
+                </th:block>
                 </div>
-                <div class="item" style="width: 100%;">
-                    <button type="button"
+                <div class="itemss" style="width: 100%;">
+                        <button type="button"
                             th:onclick="'location.href=\'/content/question/questionDelete?questionNum='+  @{${ question.questNum }} + '\''"
                             class="button button-light" style="width: 100%;">삭제
                     </button>
                 </div>
 
             </div>
-            <hr>
+                  <hr>
         </div>
     </div>
+</div>
 
 </div>
 

@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/default.css">
-    <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/mypageProfil.css">
     <link rel="stylesheet" href="/css/order.css">
 </head>
 
@@ -37,11 +35,11 @@
                             type="hidden"
                             id="userId"
                             name="userId"
-                            th:value="${ #authentication.getPrincipal().getuserId}"
+                            th:value="${ #authentication.getPrincipal().userId}"
                     >
                     <div class="item bg-light p-1"><!--아이디 div BOX-->
                         <p><h5>아이디</h5></p>
-                        <p th:text="${ #authentication.getPrincipal().getuserId}"></p>
+                        <p th:text="${ #authentication.getPrincipal().userId}"></p>
 
                     </div><!--ID div BOX End-->
                     <div class="item bg-light p-1"><!-- password div BOX-->

@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="/css/default.css">
   <link rel="stylesheet" href="/css/carousel.css">
   <link rel="stylesheet" href="/css/header.css">
-  <link rel="stylesheet" href="/css/mypageProfil.css">
   <link rel="stylesheet" href="/css/order.css">
     <style>
         * { color: var(--color-dark)}
@@ -29,6 +28,7 @@
         <div th:include="/fragments/mypageId"></div>
         <br>
         <div th:include="/fragments/mypageCategory"></div>
+        <br>
         <div>
             <!--    <a th:href="@{/content/question/faq}">FAQ</a>-->
 
@@ -51,20 +51,17 @@
                         <p th:text="${user.userId}"></p>
 
                     </div>
-                    <!--        <input class="input" type="text" name="userId" th:value="${user.userId}" readonly>-->
                 </div>
                 <div class="item bg-light p-1">
                     <p><h5>생년월일</h5></p>
                     <!--  생년월일   -->
                     <p th:if="${user != null}" th:text="${user.getBirthDate()}"></p>
                 </div>
-                <!--        <input class="input" type="text" th:value="${user.birthDate}" readonly>-->
                 <div class="item bg-light p-1">
                     <p><h5>성별</h5></p>
                     <div th:if="${userDTO != null}">
                         <p th:text="${userDTO.getGender()}"></p>
                     </div>
-                    <!--        <input class="input" type="text" th:value="${user.gender}" readonly>-->
                 </div>
             </div>
 
@@ -84,16 +81,11 @@
                     <!-- 이메일 -->
                     <p th:if="${userDTO != null}" th:text="${userDTO.getEmail()}"></p>
                 </div>
-
-
-                <!--          <input class="input" type="text" th:value="${user.email}" readonly>-->
             </div>
             <div class="item bg-light p-1">
                 <p><h5>전화번호</h5></p>
                 <div class="input-group">
                     <p th:if="${userDTO != null}" th:text="${userDTO.getTel()}"></p>
-
-                    <!--          <input class="input" type="text" th:value="${user?.tell}" readonly>-->
                 </div>
             </div>
         </div>
@@ -118,7 +110,6 @@
             <div class="item bg-light p-1">
                 <p><h5>전화번호</h5></p>
                 <p th:if="${userDTO != null}" th:text="${userDTO.getTel()}"></p>
-                <!--        <input class="input" type="text" value="010-1234-5678" readonly>-->
             </div>
         </div>
     </div>
@@ -126,13 +117,9 @@
     <hr>
     <div class="page">
         <form action="">
-            <!--      <input type="text" name="user" th:value="${#authentication.getPrincipal().userCode}">-->
             <a class="button button-lg button-dark w-100" th:href="@{/logout}">
                 로그아웃
             </a>
-            <!--      <button type="button" class="button button-light"-->
-            <!--              th:onclick="'location.href=\'/question\''">아멘-->
-            <!--      </button>-->
         </form>
     </div>
 
