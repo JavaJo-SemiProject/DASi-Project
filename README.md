@@ -6,7 +6,10 @@
 
 ## 팀 소개
 
-### 또 다른 지속 가능한 혁신, 다시(DASI)
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/ecce8755-5dd6-45c8-a218-5863263505b6)
+
+
+- - -
 
 ### 팀원
 
