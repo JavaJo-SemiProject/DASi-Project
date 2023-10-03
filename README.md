@@ -56,6 +56,9 @@
 
 프로젝트를 실행하기 전에 아래 사전 요구 사항을 확인하세요.
 
+#### 디자인
+[[Figma]](https://www.figma.com/file/ePACHwHqrs8LUguTKrV7r0/dasi-temp-(Copy)?type=design&node-id=45%3A376&mode=design&t=KA5qM1Q0KrA3TcCE-1)
+
 #### 개발 환경
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/7845b3e5-e497-411d-b9f0-605a85986b37)
 
