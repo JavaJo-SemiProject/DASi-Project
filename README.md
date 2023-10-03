@@ -5,7 +5,6 @@
 - - -
 
 ## 팀 소개
-
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/ecce8755-5dd6-45c8-a218-5863263505b6)
 
 
