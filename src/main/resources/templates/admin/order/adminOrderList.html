@@ -48,7 +48,34 @@ ${order.statusNum.status} == '제작 완료' or ${order.statusNum.status} == '�
                             </th:block>
                         </td>
                         <td>
-                            <button id="statusChangeButton" class="button button-dark" style="width: 100%"><strong th:text="${order.statusNum.status}"></strong>
+                            <th:block th:if="${order.statusNum.status} == '제작 요청'">
+                                <button class="button" style="background-color: #C3C5C5; width: 100% ; border: 0px"><strong th:text="${order.statusNum.status}"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '제작 반려'">
+                                <button class="button" style="background-color: #683240; width: 100% ; border: 0px"><strong th:text="${order.statusNum.status}" style="color: white"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '제작 승인'">
+                                <button class="button button-dark" style="width: 100%; border: 0px"><strong th:text="${order.statusNum.status}"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '결제 완료'">
+                                <button class="button" style="background-color: #B4C8BB; width: 100% ; border: 0px"><strong th:text="${order.statusNum.status}" style="color: white"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '제작 중'">
+                                <button class="button button-light" style="width: 100%; border: 0px"><strong th:text="${order.statusNum.status}"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '제작 완료'">
+                                <button class="button" style="background-color: #B4C8BB; width: 100% ; border: 0px"><strong th:text="${order.statusNum.status}"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '배송 중'">
+                                <button class="button button-dark" style="width: 100%; border: 0px"><strong th:text="${order.statusNum.status}"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '배송 완료'">
+                                <button class="button" style="background-color: #B4C8BB; width: 100%; border: 0px"><strong th:text="${order.statusNum.status}" style="color: white"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '주문 취소'">
+                                <button class="button" style="background-color: #683240; width: 100%; border: 0px"><strong th:text="${order.statusNum.status}" style="color: white"></strong></button>
+                            </th:block>
+
                             </button>
                         </td>
                     </tr>

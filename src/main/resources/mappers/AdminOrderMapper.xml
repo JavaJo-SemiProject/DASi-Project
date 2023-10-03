@@ -128,14 +128,25 @@
 
     <update id="editStatus">
         UPDATE ORDER_LIST
-        SET CANCEL_CONTENT = #{cancelContent}
-        <if test="orderPrice != null and orderPrice != 0">
-            , ORDER_PRICE = #{orderPrice}
-        </if>
-        <if test="#{status} != null and #{status} != status ">
-            , STATUS_NUM = #{status}
-        </if>
-        WHERE ORDER_ID = #{orderId}
+        <set>
+            <if test="cancelContent != null">
+                CANCEL_CONTENT = #{cancelContent}
+            </if>
+            <if test="orderPrice != null or orderPrice != 0">
+                ORDER_PRICE = #{orderPrice}
+            </if>
+            <if test="status != null and #{status} != status ">
+                <if test="orderPrice != null or orderPrice != 0">
+                    ,STATUS_NUM = #{status}
+                </if>
+                <if test="orderPrice == null and orderPrice == 0 ">
+                    STATUS_NUM = #{status}
+                </if>
+            </if>
+        </set>
+        <where>
+            ORDER_ID = #{orderId}
+        </where>
     </update>
 
 
