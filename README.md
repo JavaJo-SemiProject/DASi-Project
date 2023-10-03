@@ -1,4 +1,5 @@
-<img width="1438" alt="스크린샷 2023-10-03 오후 7 07 22" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/412ea740-29be-4e69-b4af-41dc38706b43"># 또 다른 지속 가능한 혁신, 다시(DASI) 
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/824ff431-06d8-4b3d-9573-4f4dc63019cf)
+# 또 다른 지속 가능한 혁신, 다시(DASI) 
 ## DOES ANOTHER SUSTAINABLE INNOVATION
 - - -
 
@@ -60,7 +61,8 @@
 [[Project-DASi 디자인 Figma]](https://www.figma.com/file/ePACHwHqrs8LUguTKrV7r0/dasi-temp-(Copy)?type=design&node-id=45%3A376&mode=design&t=KA5qM1Q0KrA3TcCE-1)
 
 #### 개발 환경
-![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/7845b3e5-e497-411d-b9f0-605a85986b37)
+<img width="3400" alt="개발 환경" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/3f26aaf4-d6f2-44e3-941e-d0262f707440">
+
 
 
 #### 구조
@@ -127,15 +129,33 @@
    - 마이페이지 내 '문의 내역'버튼을 클릭하여 1:1문의 등록, 수정, 삭제가 가능합니다.
      ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/206db88e-f751-42ee-8969-5a0d49a8d1b1)
    - <img src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/4dfc714f-87df-4747-ad81-cb32226f141b">
-   - 마이페이지를 들어가고 싶다면 우측 상단에 사람 이모티콘을 누릅니다.
-   - 회원정보의 아이디와 비밀번호를 입력하고 로그인을 합니다.
-  <img alt="스크린샷 2023-10-03 오후 7 07 22" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/459df1c0-e9d6-47b7-a072-8879a9b2b2ee">
-   - 로그인을 하면 우측 상단에 회원의 닉네임이 뜨고 클릭을 하면 마이페이지로 이동을 합니다.
-  <img alt="스크린샷 2023-10-03 오후 7 09 05" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/ae16a204-da6a-45f1-895a-46571afff58b">
- -  마이페이지에 들어가면 회원가입을 할 때 작성한 회원정보를 확인할 수 있습니다.
-<img alt="스크린샷 2023-10-03 오후 7 12 35" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/761f5451-ca14-46fe-8bfd-a1440f28b8fd">
 
- -  하단에 로그아웃 버튼을 누르면 로그아웃이 되며 Index 페이지로 넘어갑니다.
+   <img alt="스크린샷 2023-10-03 오후 8 02 30" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/80c8e41b-570b-4651-ba3b-9ba00b4ffc65">
+   
+
+   - 마이페이지를 들어가고 싶다면 우측 상단에 사람 이모티콘을 누릅니다.
+     
+   - 회원정보의 아이디와 비밀번호를 입력하고 로그인을 합니다.
+     
+     <img alt="스크린샷 2023-10-03 오후 8 02 56" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/5b29c35f-9760-4d06-833c-c727a21e74c6">
+     
+   - 로그인을 하면 우측 상단에 회원의 닉네임이 뜨고 닉네임을 클릭을 하면 마이페이지로 이동을 합니다.
+
+<img alt="스크린샷 2023-10-03 오후 7 09 05" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/6b356ed6-e93b-4b07-a7b1-6c173f6887a1">
+
+   - 마이페이지에 들어가면 회원가입을 할 때 작성한 회원정보를 확인할 수 있습니다.
+   
+<img alt="스크린샷 2023-10-03 오후 8 08 45" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/593ccf3c-bbfa-4d2a-97a2-85593819dfde">
+
+   - 마이페이지에서는 나의 주문 내역을 확인할 수 있습니다
+   
+<img alt="스크린샷 2023-10-03 오후 8 08 59" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/7942f0f2-d1f6-434b-9e2c-261990f2d228">
+
+   - 마이페이지에서는 나의 문의 내역도 확인이 가능합니다.
+ 
+ <img alt="스크린샷 2023-10-03 오후 8 02 30" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/81d9150b-fb8d-41d5-8930-4f8d97315d95">
+ 
+   - 하단에 로그아웃 버튼을 누르면 로그아웃이 되며 Index 페이지로 넘어갑니다.
 
 
 3. **주문 제작**
@@ -185,13 +205,50 @@
 
 ## 기능
 
-프로젝트의 주요 기능과 강점에 대한 설명을 제공합니다. 프로젝트의 핵심 기능을 명확히 나열하고 각 기능에 대한 간단한 설명을 제공합니다.
+프로젝트는 다음과 같은 주요 기능을 제공합니다:
+
+1. **제품 목록 표시**
+
+   - 사용자는 업사이클링된 반려견 제품 디자인을 볼 수 있습니다.
+   - 각 제품은 사진, 제품명, 설명 포함합니다.
+
+2. **제품 제작 요청**
+
+   - 사용자는 제품 디자인을 보고 제품을 커스텀할 수 있는 주문 제작 요청을 할 수 있습니다.
+   - 주문 제작 요청에는 반려견 맞춤 사이즈, 이니셜 등의 커스텀을 제공합니다.
+  
+3. **제품 제작**
+
+   - 관리자가 해당 제품 가격 견적을 결정하면 해당 제품 제작을 진행할 지 선택할 수 있습니다. 
+   - 결제 과정에서 배송 정보를 입력하고 결제를 완료할 수 있습니다.
+  
+4. **마이페이지**
+
+   - 사용자는 나의 정보 및 주문 내역, 문의 내역을 확인할 수 있습니다. 
+   - 나의 주문 내역에서 결제, 배송지 등록, 주문 상태 여부를 확인할 수 있습니다.
+
+5. **회원 가입 및 로그인**
+
+   - 사용자는 회원 가입을 통해 계정을 만들고 로그인할 수 있습니다.
+   - 로그인된 사용자는 제품을 구매하고 주문 내역을 확인할 수 있습니다.
+
+6. **주문 관리**
+
+   - 사용자는 자신의 주문 내역을 확인하고 주문 상태를 추적할 수 있습니다.
+   - 주문 상태 업데이트 및 주문 취소 기능을 제공합니다.
+
+7. **관리자 패널**
+
+   - 관리자는 회원 및 주문, 문의 관리를 위한 관리자 패널에 액세스할 수 있습니다.
+   - 회원 조회 및 주문 관리 기능, 문의 관리 기능을 제공합니다.
+
 <admin 페이지에서의 캡쳐>
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/f4f45184-557c-4f5d-ba35-b16363d8c48e)
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/58d5e40c-1ddd-44c3-ab40-66c4c6cb8aad)
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/53898b3a-3af8-45aa-8471-77d68bc106ba)
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/ba9fac05-ae1d-461b-b7d3-b3954a28a1a3)
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/e89a1b46-9455-45f6-bd34-44480583c94a)
+
 <사용자 페이지에서의 캡쳐>
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/02da1ca7-6ac7-40d1-b4f6-c69b399ff1d2)
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/e7c341b0-c3d2-4bbe-8ec7-5df44d10a660)
