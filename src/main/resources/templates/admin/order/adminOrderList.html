@@ -76,53 +76,6 @@ ${order.statusNum.status} == '제작 완료' or ${order.statusNum.status} == '�
         }
     }
 
-   /* // JavaScript를 사용하여 버튼 색상 변경
-    function setButtonStyle(status) {
-        const button = document.getElementById('statusChangeButton');
-
-        // 모든 버튼 클래스 제거
-        button.classList.remove('requested', 'rejected', 'approved', 'paid', 'in-progress', 'completed', 'shipping', 'delivered', 'cancelled');
-
-        // 상태에 따라 적절한 클래스 추가
-        switch (status) {
-            case '제작 요청':
-                button.classList.add('requested');
-                break;
-            case '제작 반려':
-                button.classList.add('rejected');
-                break;
-            case '제작 승인':
-                button.classList.add('approved');
-                break;
-            case '결제 완료':
-                button.classList.add('paid');
-                break;
-            case '제작 중':
-                button.classList.add('in-progress');
-                break;
-            case '제작 완료':
-                button.classList.add('completed');
-                break;
-            case '배송 중':
-                button.classList.add('shipping');
-                break;
-            case '배송 완료':
-                button.classList.add('delivered');
-                break;
-            case '주문 취소':
-                button.classList.add('cancelled');
-                break;
-            default:
-                button.classList.add('button-dark');
-                break;
-        }
-    }
-
-    window.onload = function() {
-        const initialStatus = '제작 요청';
-        setButtonStyle(initialStatus);
-    };*/
-
 </script>
 
 <div th:insert="/fragments/footer.html"></div>
