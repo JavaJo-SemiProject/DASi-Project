@@ -168,28 +168,28 @@
                 <td class="#table_td" th:text="${order.sizeInfo}"></td>
                 <th class="orderCol">문구 또는 이니셜</th>
                 <td class="#table_td" th:text="${order.phrase}"></td>
+            </tr>
+            <tr>
                 <th class="orderCol">요청 사항</th>
-                <td class="#table_td" th:text="${order.reqIssues}"></td>
+                <td colspan="5" class="#table_td" th:text="${order.reqIssues}"></td>
             </tr>
         </table>
 
-        <div class="items_container" style="display: flex; align-items: center;">
-            <div class="item"><h5>결제 정보</h5></div>
-            <div class="item">
+        <div style="display: flex; align-items: center;">
+            <h5>결제 정보</h5>
                 <th:block th:if="${order.orderPrice > 0} and ${order.payInfo == null}">
-                    <button class="button button-lg button-dark" style="width: 100%;" onclick="requestPay()">결제 하기
+                    <button class="button button-lg button-dark" style="margin-left: 86%;" onclick="requestPay()">결제 하기
                     </button>
                 </th:block>
                 <th:block
                         th:if="${order.payInfo != null} and ${order.statusNum.statusNum} ge '30' and ${order.statusNum.statusNum} lt '50'">
-                    <button class="button button-lg button-dark" style="width: 100%;" onclick="cancelPay()">결제 취소
+                    <button class="button button-lg button-dark" style="margin-left: 86%;" onclick="cancelPay()">결제 취소
                     </button>
                 </th:block>
-            </div>
         </div>
         <table>
             <tr>
-                <th class="orderCol">상품 가격</th>
+                <th class="orderCol" style="text-align: center">상품 가격</th>
                 <td id="orderPrice" name="orderPrice" th:value="${order.orderPrice}" th:text="${order.orderPrice}"></td>
                 <th:block th:if="${order.payInfo} != null">
                     <th class="orderCol">결제 번호</th>
@@ -216,21 +216,19 @@
 
         <th:block
                 th:if="${order.statusNum.status} == '제작 승인' or ${order.statusNum.status} == '결제 완료' or ${order.statusNum.status} == '제작 중' or ${order.statusNum.status} == '제작 완료' or ${order.statusNum.status} == '배송 중' or ${order.statusNum.status} == '배송 완료'">
-            <div class="items_container" style="display: flex; align-items: center;">
-                <div class="item"><h5>배송 정보</h5></div>
+            <div style="display: flex; align-items: center;">
+                <h5>배송 정보</h5>
                 <th:block th:if="${order.zipCode == null} or ${order.zipCode.isEmpty()}">
-                    <div class="item">
-                        <button class="button button-lg button-dark" onclick="saveDeliveryInfo()">배송 정보 등록</button>
-                    </div>
+                        <button class="button button-lg button-dark" style="margin-left: 86%;" onclick="saveDeliveryInfo()">배송 정보 등록</button>
                 </th:block>
             </div>
             <th:block th:if="${order.zipCode} == null or ${order.zipCode.isEmpty()}">
                 <input type="hidden" name="orderId" th:value="${order.orderId}">
                 <table>
                     <tr>
-                        <th class="orderCol">수령인</th>
+                        <th class="orderCol" style="text-align: center">수령인</th>
                         <th>
-                            <input name="receiver" type="text"></th>
+                            <input name="receiver" type="text" style="width: 100%; height: 100%"></th>
                         <th class="orderCol">전화번호</th>
                         <th><input
                                 type="tel"
@@ -315,13 +313,9 @@
 
 
         </th:block>
-        <div class="items_container">
-            <div class="item">
-                <h5>진행 사항 : </h5>
-            </div>
-            <div class="item">
-                <h6 th:text="${order.statusNum.status}"></h6>
-            </div>
+        <div>
+            <h5 style="margin-bottom: 5px;">진행 사항 : </h5>
+            <h1 th:text="${order.statusNum.status}"></h1>
         </div>
 
         <th:block th:if="${order.statusNum.status} == '제작 반려' or ${order.statusNum.status} == '주문취소'">
