@@ -129,19 +129,25 @@
    - 마이페이지를 들어가고 싶다면 우측 상단에 사람 이모티콘을 누릅니다.
      
    - 회원정보의 아이디와 비밀번호를 입력하고 로그인을 합니다.
-   - 
+     
      <img alt="스크린샷 2023-10-03 오후 8 02 56" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/5b29c35f-9760-4d06-833c-c727a21e74c6">
      
    - 로그인을 하면 우측 상단에 회원의 닉네임이 뜨고 닉네임을 클릭을 하면 마이페이지로 이동을 합니다.
 
 <img alt="스크린샷 2023-10-03 오후 7 09 05" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/6b356ed6-e93b-4b07-a7b1-6c173f6887a1">
+
  -  마이페이지에 들어가면 회원가입을 할 때 작성한 회원정보를 확인할 수 있습니다.
+   
 <img alt="스크린샷 2023-10-03 오후 8 08 45" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/593ccf3c-bbfa-4d2a-97a2-85593819dfde">
+
  - 마이페이지에서는 나의 주문 내역을 확인할 수 있습니다
+   
 <img alt="스크린샷 2023-10-03 오후 8 08 59" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/7942f0f2-d1f6-434b-9e2c-261990f2d228">
 
  -마이페이지에서는 나의 문의 내역도 확인이 가능합니다.
+ 
  <img alt="스크린샷 2023-10-03 오후 8 02 30" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/81d9150b-fb8d-41d5-8930-4f8d97315d95">
+ 
  -  하단에 로그아웃 버튼을 누르면 로그아웃이 되며 Index 페이지로 넘어갑니다.
 
 
