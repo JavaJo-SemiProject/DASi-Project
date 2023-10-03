@@ -25,9 +25,9 @@
 
 #### [팀원] 이가현
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/700ff629-b655-43b9-966f-ad2fa5b9edd3)
-- 이메일: 팀원 2 이메일 주소
-- GitHub 프로필: [팀원 2 GitHub 프로필 링크]
-- 역할: 문의 게시판 관리
+- 이메일: dididi121515@gmail.com
+- GitHub 프로필: [[팀원 1 GitHub 프로필 링크]](https://github.com/gahyonii)
+- 역할: FAQ / 1:1문의게시판
   
 #### [팀원] 김민범
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/aac1fa35-3eca-4de1-af79-20edc2d8dd2e)
@@ -123,6 +123,9 @@
 
    - 로그인 성공 시, 마이페이지를 액세스할 수 있습니다.
    - 현재 제공하고 있는 마이페이지 기능은 나의 정보 조회/나의 주문 내역/나의 문의 내역을 제공하고 있습니다.
+   - 마이페이지 내 '문의 내역'버튼을 클릭하여 1:1문의 등록, 수정, 삭제가 가능합니다.
+     ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/206db88e-f751-42ee-8969-5a0d49a8d1b1)
+
 
 3. **주문 제작**
 
@@ -149,6 +152,9 @@
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/221ff3f7-0fa9-4dc4-b53c-eb886f627eed)
 
    - 삭제하려면 항목 목록에서 해당 항목을 선택하고 "삭제"를 클릭합니다.
+   - 문의 관리 안에서 FAQ 등록, 수정, 삭제가 가능합니다.
+    ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/b1a95694-b4cd-44c4-8c59-f008d9fee512)
+
 
 5. **수정 및 삭제**
 
@@ -161,10 +167,24 @@
    - 사용이 끝났을 때, 로그아웃하여 보안을 유지합니다.
    - 오른쪽 상단의 "로그아웃" 버튼을 클릭합니다.
 
+   
+
+     
+
 
 ## 기능
 
 프로젝트의 주요 기능과 강점에 대한 설명을 제공합니다. 프로젝트의 핵심 기능을 명확히 나열하고 각 기능에 대한 간단한 설명을 제공합니다.
+<admin 페이지에서의 캡쳐>
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/f4f45184-557c-4f5d-ba35-b16363d8c48e)
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/58d5e40c-1ddd-44c3-ab40-66c4c6cb8aad)
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/53898b3a-3af8-45aa-8471-77d68bc106ba)
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/ba9fac05-ae1d-461b-b7d3-b3954a28a1a3)
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/e89a1b46-9455-45f6-bd34-44480583c94a)
+<사용자 페이지에서의 캡쳐>
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/02da1ca7-6ac7-40d1-b4f6-c69b399ff1d2)
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/e7c341b0-c3d2-4bbe-8ec7-5df44d10a660)
+
 
 - - -
 
