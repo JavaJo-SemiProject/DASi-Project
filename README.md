@@ -139,10 +139,12 @@
 4. **관리자**
 
    - 회원 리스트/ 회원 주문 내역/문의 내역 기능을 제공하고 있습니다.
-   - 회원 주문 내역을 조회하면서 주문 상태 변경 및 제품 가격을 입력할 수 있습니다.
+   - 회원 주문 내역을 조회하면서 단계별 주문 상태 변경 및 제품 가격을 입력할 수 있습니다.
      ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/02c7187b-d3f6-4d59-bb1b-143a309cd92a)
      ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/747458c1-290b-4203-a140-3eed8967e40e)
-   - 각 항목을 클릭하여 세부 정보를 확인하고 수정할 수 있습니다.
+   - 주문 상태 변경에 따른 기능을 따로 제공하고 있습니다.
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/221ff3f7-0fa9-4dc4-b53c-eb886f627eed)
+
    - 삭제하려면 항목 목록에서 해당 항목을 선택하고 "삭제"를 클릭합니다.
 
 5. **수정 및 삭제**
