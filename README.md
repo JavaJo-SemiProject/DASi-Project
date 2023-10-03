@@ -140,7 +140,7 @@
    
 <img alt="스크린샷 2023-10-03 오후 8 08 45" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/593ccf3c-bbfa-4d2a-97a2-85593819dfde">
 
-   -  마이페이지에서는 나의 주문 내역을 확인할 수 있습니다
+   - 마이페이지에서는 나의 주문 내역을 확인할 수 있습니다
    
 <img alt="스크린샷 2023-10-03 오후 8 08 59" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/7942f0f2-d1f6-434b-9e2c-261990f2d228">
 
