@@ -132,7 +132,8 @@
 
    - 주문 상세 내역에서는 주문 상태 여부 및 견적 결정 시 결제 기능/배송지 등록 기능을 제공하고 있습니다.
      ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/e6ea4624-3b9f-42cc-9769-b7d16d2ccf3b)
-     
+     ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/00b364cc-5ddf-4d49-931e-89e97dc16eb3)
+
    - 주문 취소할 수 있습니다.
 
 4. **관리자**
