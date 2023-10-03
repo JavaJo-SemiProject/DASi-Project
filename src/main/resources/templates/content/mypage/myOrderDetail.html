@@ -170,7 +170,7 @@
     </table>
 
     <div class="items_container" style="display: flex; align-items: center;">
-        <div class="item"> <h5>결제 정보</h5> </div>
+        <div class="item"><h5>결제 정보</h5></div>
         <div class="item">
             <th:block th:if="${order.orderPrice > 0} and ${order.payInfo == null}">
                 <button class="button button-lg button-dark" style="width: 100%;" onclick="requestPay()">결제 하기</button>
@@ -219,7 +219,7 @@
             </th:block>
         </div>
         <th:block th:if="${order.zipCode} == null or ${order.zipCode.isEmpty()}">
-            <input type="hidden" id="orderId" th:value="${order.orderId}">
+            <input type="hidden" name="orderId" th:value="${order.orderId}">
             <table>
                 <tr>
                     <th class="orderCol">수령인</th>
@@ -274,26 +274,26 @@
                     <td th:text="${order.receiver}"></td>
                     <th class="orderCol">전화번호</th>
                     <td th:text="${order.recePhone}"></td>
-                    <th class="orderCol">주소</th>
-                    <td th:text="${order.address}"></td>
-                    <th class="orderCol">상세 주소</th>
-                    <td th:text="${order.addressDetail}"></td>
                     <th class="orderCol">우편번호</th>
                     <td th:text="${order.zipCode}"></td>
+                    <th class="orderCol">주소</th>
+                    <td colspan="3"th:text="${order.address}"></td>
+                    <th class="orderCol">상세 주소</th>
+                    <td colspan="5" th:text="${order.addressDetail}"></td>
                 </tr>
                 <tr>
                     <th:block th:if="${order.invoice != null}">
-                        <th class="orderCol">배송 일자</th>
+                        <th class="orderCol">배송 출발 일자</th>
                         <td th:text="${order.deliverStart}"></td>
                         <th class="orderCol">송장번호</th>
-                        <td th:text="${order.invoice}"></td>
-                        <th:block th:if="${order.deliverEnd} == null">
-                            <th class="orderCol">송장번호</th>
-                            <td> 배송 중 </td>
-                        </th:block>
+                        <td colspan="3" th:text="${order.invoice}"></td>
+                        <th class="orderCol">배송 완료 일자</th>
+                        <td colspan="3" >잠시만 기다려 주세요.</td>
                         <th:block th:if="${order.deliverEnd} != null">
                             <th class="orderCol">송장번호</th>
-                            <td th:text="${order.invoice}"></td>
+                            <td colspan="3" th:text="${order.invoice}"></td>
+                            <th class="orderCol">배송 완료 일자</th>
+                            <td colspan="3" th:text="${order.deliverEnd}"></td>
                         </th:block>
                     </th:block>
                     <th:block th:if="${order.invoice == null}">
@@ -308,9 +308,13 @@
 
 
     </th:block>
-    <div>
+    <div class="items_container">
+        <div class="item">
         <h5>진행 사항 : </h5>
-        <button class="button button-lg button-dark" th:text="${order.statusNum.status}"/>
+        </div>
+        <div class="item">
+            <h6 th:text="${order.statusNum.status}"></h6>
+        </div>
     </div>
 
     <th:block th:if="${order.statusNum.status} == '제작 반려' or ${order.statusNum.status} == '주문취소'">
@@ -330,7 +334,10 @@
         <th:block
                 th:if="${order.statusNum.status} == '제작 요청' or ${order.statusNum.status} == '제작 승인' or ${order.statusNum.status} == '결제 완료'">
             <div class="item" style="width: 100%;">
-                <button class="button button-lg button-dark" type="submit" style="width: 100%;">주문 취소</button>
+                <input type="hidden" id="orderId" th:value="${order.orderId}">
+                <button class="button button-lg button-dark" id="status" name="status" value="90" style="width: 100%;"
+                        onclick="saveCancel()">주문 취소
+                </button>
             </div>
         </th:block>
     </div>

@@ -98,19 +98,22 @@ public class AdminOrderController {
 
     @PostMapping("/deliverEnd")
     @ResponseBody
-    public ResponseEntity<String> recordPayment(@RequestBody OrderListDTO order) {
+    public ResponseEntity<String> deliverEnd(@RequestBody OrderListDTO order) {
 
         JSONObject jsonObject = new JSONObject(order);
 
             String deliverEnd = jsonObject.getString("deliverEnd");
             int orderId = jsonObject.getInt("orderId");
+            String status = jsonObject.getString("status");
             System.out.println("deliverEnd : " + deliverEnd);
             System.out.println("orderId : " + orderId);
+            System.out.println("status : " + status);
 
             try {
                 OrderListDTO orderList = new OrderListDTO();
                 orderList.setDeliverEnd(deliverEnd);
                 orderList.setOrderId(orderId);
+                orderList.setStatus(status);
 
                 adminOrderService.updateDeliver(order);
 

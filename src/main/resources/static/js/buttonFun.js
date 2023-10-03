@@ -1,42 +1,35 @@
-function saveDeliverEnd() {
+
+function saveCancel() {
     var orderId = document.getElementById("orderId").value;
-    var deliverEnd = document.getElementById("deliverEnd").value;
+    var status = document.getElementById("status").value;
 
     console.log("orderId : " + orderId);
-    console.log("deliverEnd : " + deliverEnd);
-
-    if (deliverEnd == '') {
-        alert("날짜를 입력해주세요.");
-        return; // 필수 필드가 비어 있으면 함수를 종료하고 저장 요청을 보내지 않음
-    }
+    console.log("statusNum : " + status);
 
     // 배송 정보를 객체로 만들어서 서버로 전송
-    var deliverEndData = {
+    var statusData = {
         orderId: orderId,
-        deliverEnd: deliverEnd
+        status: status
     };
 
     // AJAX 요청 코드 작성 및 서버로 전송
     $.ajax({
         type: "POST", // POST 요청
-        url: 'invoiceSucess', // 컨트롤러 엔드포인트 URL
+        url: 'cancel', // 컨트롤러 엔드포인트 URL
         contentType: 'application/json',
-        data: JSON.stringify(deliverEndData), // 데이터를 JSON 문자열로 변환하여 전송
+        data: JSON.stringify(statusData), // 데이터를 JSON 문자열로 변환하여 전송
         success: function (data) {
             // 서버에서 응답을 받으면 실행됨
-            console.log('배송 완료 일자 저장 성공:', data);
+            alert('주문 취소가 완료되었습니다.')
+            console.log('주문 취소 성공:', data);
             location.reload(); // 페이지 새로고침
         },
         error: function (xhr, textStatus, errorThrown) {
             // 에러 발생 시 실행됨
-            console.error('배송 완료 일자 저장 실패:', textStatus, errorThrown);
+            console.error('주문 취소 실패:', textStatus, errorThrown);
         }
     });
-
-    // 이벤트 기본 동작 막기
-    event.preventDefault();
 }
-
 
 
 
@@ -360,4 +353,44 @@ function addressFinder() {
         }
     }).open();
 }
+
+function saveDeliverEnd() {
+    var orderId = document.getElementsByName("orderId")[0].value;
+    var deliverEnd = document.getElementById("deliverEnd").value;
+    var status = document.getElementById("status").value;
+
+    console.log("orderId : " + orderId);
+    console.log("deliverEnd : " + deliverEnd);
+    console.log("status : " + status);
+
+    if (deliverEnd == null || deliverEnd == "") {
+        alert("배송 완료 일자를 입력하세요.");
+        return; // 필수 필드가 비어 있으면 함수를 종료하고 저장 요청을 보내지 않음
+    }
+
+    // 배송 정보를 객체로 만들어서 서버로 전송
+    var deliverEndData = {
+        orderId: orderId,
+        deliverEnd: deliverEnd,
+        status: status
+    };
+
+    // AJAX 요청 코드 작성 및 서버로 전송
+    $.ajax({
+        type: "POST", // POST 요청
+        url: 'deliverEnd', // 컨트롤러 엔드포인트 URL
+        contentType: 'application/json',
+        data: JSON.stringify(deliverEndData), // 데이터를 JSON 문자열로 변환하여 전송
+        success: function (data) {
+            // 서버에서 응답을 받으면 실행됨
+            console.log('배송 완료 일자 저장 성공:', data);
+            location.reload(); // 페이지 새로고침
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            // 에러 발생 시 실행됨
+            console.error('배송 완료 일자 저장 실패:', textStatus, errorThrown);
+        }
+    });
+}
+
 
