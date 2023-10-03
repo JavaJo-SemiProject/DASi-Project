@@ -164,23 +164,27 @@
     <update id="updateDeliver">
         UPDATE ORDER_LIST
         <set>
-        <if test="zipCode != null">
-        RECEIVER = #{ receiver }
-        ,ADDRESS = #{ address }
-        ,ADDRESS_DETAIL = #{ addressDetail }
-        ,ZIPCODE = #{ zipCode }
-        ,RECE_PHONE = #{ recePhone }
-        </if>
-        <if test="invoice != null and deliverEnd == null">
-            INVOICE = #{ invoice }
-            ,DELIVER_START = NOW()
-        </if>
-        <if test="deliverEnd != null">
-            deliver_end = #{ deliverEnd }
-        </if>
+            <if test="zipCode != null">
+                RECEIVER = #{ receiver }
+                ,ADDRESS = #{ address }
+                ,ADDRESS_DETAIL = #{ addressDetail }
+                ,ZIPCODE = #{ zipCode }
+                ,RECE_PHONE = #{ recePhone }
+            </if>
+            <if test="invoice != null and deliverEnd == null">
+                INVOICE = #{ invoice }
+                ,DELIVER_START = NOW()
+            </if>
+            <if test="deliverEnd != null">
+                deliver_end = #{ deliverEnd }
+                ,status_num = #{ status }
+            </if>
+            <if test="status != null and deliverEnd == null">
+                status_num = #{ status }
+            </if>
         </set>
         <where>
-         ORDER_ID = #{ orderId }
+            ORDER_ID = #{ orderId }
         </where>
     </update>
 

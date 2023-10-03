@@ -5,8 +5,11 @@ import com.project.dasi.auth.model.dto.UserDTO;
 import com.project.dasi.auth.model.service.UserService;
 import com.project.dasi.mypage.model.service.MypageService;
 import com.project.dasi.order.model.dto.OrderListDTO;
+import org.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -130,6 +133,34 @@ public class MypageController {
         orderService.updateDeliver(order);
 
         return "/content/mypage/myOrderList";
+    }
+
+
+    @PostMapping("/cancel")
+    @ResponseBody
+    public ResponseEntity<String> cancel(@RequestBody OrderListDTO order) {
+
+        JSONObject jsonObject = new JSONObject(order);
+
+        String status = jsonObject.getString("status");
+        int orderId = jsonObject.getInt("orderId");
+        System.out.println("deliverEnd : " + status);
+        System.out.println("orderId : " + orderId);
+
+        try {
+            OrderListDTO orderList = new OrderListDTO();
+            orderList.setStatus(status);
+            orderList.setOrderId(orderId);
+
+            orderService.updateDeliver(order);
+
+            System.out.println("order con : " + orderList);
+
+            return new ResponseEntity<>("주문 취소 성공", HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("주문 취소장 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
