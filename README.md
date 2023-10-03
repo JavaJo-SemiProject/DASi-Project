@@ -1,4 +1,5 @@
-<img width="1438" alt="스크린샷 2023-10-03 오후 7 07 22" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/412ea740-29be-4e69-b4af-41dc38706b43"># 또 다른 지속 가능한 혁신, 다시(DASI) 
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/824ff431-06d8-4b3d-9573-4f4dc63019cf)
+# 또 다른 지속 가능한 혁신, 다시(DASI) 
 ## DOES ANOTHER SUSTAINABLE INNOVATION
 - - -
 
