@@ -132,7 +132,7 @@
             <if test="cancelContent != null">
                 CANCEL_CONTENT = #{cancelContent}
             </if>
-            <if test="orderPrice != null or orderPrice != 0">
+            <if test="orderPrice != null and orderPrice != 0">
                 ORDER_PRICE = #{orderPrice}
             </if>
             <if test="status != null and #{status} != status ">
