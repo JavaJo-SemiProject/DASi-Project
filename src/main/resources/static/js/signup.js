@@ -139,12 +139,17 @@ function signupValidationCheck(){
         return;
     }
 
-    if($("input[name='agreeTou']:checked" == false)){
-        alert("모든 약관에 동의하셔야 다음 단계로 진행이 가능합니다.");
-        return;
-    } else if ($("input[name='agreePp']:checked" == false)) {
-        alert("모든 약관에 동의하셔야 다음 단계로 진행이 가능합니다.");
-        return;
-    }
-
 }
+
+$(document).ready(function(){
+
+    $("#signupButton").click(function(){
+        if($("#agreeTou").is(":checked") == false){
+            alert("모든 약관에 동의하셔야 다음 단계로 진행 가능합니다.");
+            return false;
+        } else if($("#agreePp").is(":checked") == false){
+            alert("모든 약관에 동의하셔야 다음 단계로 진행 가능합니다..");
+            return false;
+        }
+    });
+});
