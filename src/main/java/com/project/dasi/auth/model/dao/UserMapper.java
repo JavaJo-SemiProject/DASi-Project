@@ -32,6 +32,7 @@ public interface UserMapper {
     Integer idAndEmailCheck(String userId, String email);
 
     void modifyPassword(UserDTO member);
+    void updatePassword(String userId, String encodedPassword);
 
 
 }

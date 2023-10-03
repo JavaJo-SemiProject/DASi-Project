@@ -76,22 +76,32 @@ public class MypageController {
     }
 
 
-    @GetMapping("/mypageUpdate")
-    public String mypageUpdate() {
+    @RequestMapping(value = "/content/mypage/mypageUpdate", method = RequestMethod.POST)
+    public String postMypageUpdate(
+            @RequestParam("newPassword") String newPassword,
+            @RequestParam("confirmPassword") String confirmPassword,
+            Principal principal,
+            RedirectAttributes redirectAttributes
+    ) {
+        String userId = principal.getName();
 
-        return "content/mypage/mypageUpdate";
+        if (newPassword.equals(confirmPassword)) {
+            // 비밀번호가 일치하면 비밀번호를 업데이트합니다.
+            mypageService.updatePassword(userId, newPassword);
+            redirectAttributes.addFlashAttribute("successMessage", "비밀번호가 성공적으로 변경되었습니다.");
+        } else {
+            // 비밀번호가 일치하지 않으면 에러 메시지를 표시합니다.
+            redirectAttributes.addFlashAttribute("errorMessage", "비밀번호가 일치하지 않습니다. 다시 시도하세요.");
+        }
+        return "redirect:/content/mypage/mypageMain";
     }
 
-    @PostMapping("/mypageUpdate")
-    public String mypageUpdate(@ModelAttribute UserDTO user, HttpServletRequest request, HttpServletResponse response, RedirectAttributes rttr){
+    @GetMapping("/mypageUpdate")
+    public String goMypageUpdate(HttpServletRequest request, Model model) {
+        String userId = request.getParameter("userId");
 
-        String address = request.getParameter("zicCode") + "$" + request.getParameter("address") + "$" + request.getParameter("addressDetail");
-        user.setAddress(address);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        userService.modifyMember(user);
-
-        return "redirect:/";
+        return "content/mypage/mypageUpdate";
     }
 
     @GetMapping("/myOrderList")
