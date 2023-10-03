@@ -128,8 +128,6 @@
 
    - 마이페이지 내 '문의 내역'버튼을 클릭하여 1:1문의 등록, 수정, 삭제가 가능합니다.
      ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/127739134/206db88e-f751-42ee-8969-5a0d49a8d1b1)
-
-   <img alt="스크린샷 2023-10-03 오후 8 02 30" src="https://github.com/JavaJo-SemiProject/DASi-Project/assets/90394571/80c8e41b-570b-4651-ba3b-9ba00b4ffc65">
    
 
    - 마이페이지를 들어가고 싶다면 우측 상단에 사람 이모티콘을 누릅니다.
