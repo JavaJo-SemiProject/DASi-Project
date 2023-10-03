@@ -1,6 +1,5 @@
 # 또 다른 지속 가능한 혁신, 다시(DASI) 
 ## DOES ANOTHER SUSTAINABLE INNOVATION
-
 - - -
 
 ## 팀 소개
