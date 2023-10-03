@@ -1,12 +1,11 @@
 # 프로젝트 제목
 
-### 또 다른 지속 가능한 혁신, 다시(DASI)
-### DOES ANOTHER SUSTAINABLE INNOVATION
+**굵게** 또 다른 지속 가능한 혁신, 다시(DASI) DOES ANOTHER SUSTAINABLE INNOVATION
 
 
 ## 팀 소개
 
-프로젝트를 개발하고 관리하는 팀에 대한 정보를 제공합니다.
+### 또 다른 지속 가능한 혁신, 다시(DASI)
 
 ### 팀원
 
