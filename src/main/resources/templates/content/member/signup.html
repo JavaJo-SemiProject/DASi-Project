@@ -370,20 +370,14 @@
                 </div>
                 <!--전체 동의-->
                 <div class="agree" id="agreement">
-
-
-
-
-
                     <div class="join-form-area">
                         <span class="input-font text-bold">[필수]이용약관 동의</span>
                         <div class="check_policy">
                             <div th:insert="/fragments/policy2.html"></div>
                         </div>
-                        <span class="input-font">이용약관에 동의하십니까?</span>
                         <form action="" name="termsOfUseAgree" method="" id="termsOfUseAgree">
-                            <input type="radio" name="checkTou" id="agreeTou" value="agree">동의함
-                            <input type="radio" name="checkTou" id="disagreeTou" value="disagree">동의하지 않음
+                            <input type="checkbox" name="checkTou" id="agreeTou" value="agree">이용약관에 동의합니다.
+
                         </form>
                     </div>
 
@@ -393,10 +387,10 @@
                         <div class="check_policy" id="privacyPolicy">
                             <div th:insert="/fragments/policy3.html"></div>
                         </div>
-                        <span class="input-font">이용약관에 동의합니다.</span>
+
                         <form action="" name="privacyPolicyAgree" method="" id="privacyPolicyAgree">
-                            <input type="radio" name="checkPp" id="agreePp" value="agree">동의함
-                            <input type="radio" name="checkPp" id="disagreePp" value="disagree">동의하지 않음
+                            <input type="checkbox" name="checkPp" id="agreePp" value="agree">이용약관에 동의합니다.
+
                         </form>
 
 
@@ -425,4 +419,4 @@
 
 
 </body>
-</html>-->
+</html>
