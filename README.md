@@ -1,6 +1,6 @@
 # 프로젝트 제목
 
-** 또 다른 지속 가능한 혁신, 다시(DASI) DOES ANOTHER SUSTAINABLE INNOVATION **
+**또 다른 지속 가능한 혁신, 다시(DASI) DOES ANOTHER SUSTAINABLE INNOVATION**
 
 - - -
 
