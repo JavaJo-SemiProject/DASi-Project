@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DASi ADMIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/addmin.css">
+    <link rel="stylesheet" href="/css/order.css">
+
+</head>
+<body>
+<div th:insert="/fragments/header.html"></div>
+
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+
+        <h1>주문 내역 관리</h1>
+        <hr>
+
+        <div class="items_container ic1">
+            <div class="item">
+                <table id="listArea">
+                    <thead>
+                    <tr>
+                        <th>주문 ID</th>
+                        <th>주문 날짜</th>
+                        <th>회원 ID</th>
+                        <th>결제 여부</th>
+                        <th>상품 상태</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${orderList}">
+                        <td th:text="${order.orderId}"></td>
+                        <td th:text="${order.orderDate}"></td>
+                        <td th:text="${order.userCode.userId}"></td>
+                        <td>
+                            <th:block th:if="${order.statusNum.status} == '제작 요청' or ${order.statusNum.status} == '제작 반려' or
+${order.statusNum.status} == '제작 승인'"><i class="fa fa-remove"></i>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '결제 완료' or ${order.statusNum.status} == '제작 중' or
+${order.statusNum.status} == '제작 완료' or ${order.statusNum.status} == '배송 중' or ${order.statusNum.status} == '배송 완료'"><i class="fa fa-check"></i>
+                            </th:block>
+                        </td>
+                        <td>
+                            <th:block th:if="${order.statusNum.status} == '제작 요청'">
+                                <button class="button" style="background-color: #C3C5C5; width: 100% ; border: 0px"><strong th:text="${order.statusNum.status}"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '제작 반려'">
+                                <button class="button" style="background-color: #683240; width: 100% ; border: 0px"><strong th:text="${order.statusNum.status}" style="color: white"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '제작 승인'">
+                                <button class="button button-dark" style="width: 100%; border: 0px"><strong th:text="${order.statusNum.status}"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '결제 완료'">
+                                <button class="button" style="background-color: #B4C8BB; width: 100% ; border: 0px"><strong th:text="${order.statusNum.status}" style="color: white"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '제작 중'">
+                                <button class="button button-light" style="width: 100%; border: 0px"><strong th:text="${order.statusNum.status}"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '제작 완료'">
+                                <button class="button" style="background-color: #B4C8BB; width: 100% ; border: 0px"><strong th:text="${order.statusNum.status}"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '배송 중'">
+                                <button class="button button-dark" style="width: 100%; border: 0px"><strong th:text="${order.statusNum.status}"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '배송 완료'">
+                                <button class="button" style="background-color: #B4C8BB; width: 100%; border: 0px"><strong th:text="${order.statusNum.status}" style="color: white"></strong></button>
+                            </th:block>
+                            <th:block th:if="${order.statusNum.status} == '주문 취소'">
+                                <button class="button" style="background-color: #683240; width: 100%; border: 0px"><strong th:text="${order.statusNum.status}" style="color: white"></strong></button>
+                            </th:block>
+
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<script th:inline="javascript">
+
+    if (document.querySelectorAll("#listArea td")) {
+        const $tds = document.querySelectorAll("#listArea td");
+        for (let i = 0; i < $tds.length; i++) {
+
+            $tds[i].onclick = function () {
+                const orderId = this.parentNode.children[0].innerText;
+                location.href = "/admin/order/adminOrderDetail?orderId=" + orderId;
+            }
+        }
+    }
+
+</script>
+
+<div th:insert="/fragments/footer.html"></div>
+<script src="/js/header.js"></script>
+<script src="/js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>

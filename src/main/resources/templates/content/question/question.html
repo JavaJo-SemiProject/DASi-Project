@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>question</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/faq.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+    <div th:include="/fragments/mypageId"></div>
+    <br>
+    <div th:include="/fragments/mypageCategory"></div>
+    <br>
+        <div style="display: flex">
+    <h2>1:1문의</h2> <button type="button" class="button button-dark" style="margin-left: 1%; margin-top: 0.5%; text-align-all: center"  th:onclick="|location.href='/content/question/userquestioncreate'|">1:1문의 추가 등록</button>
+        </div>
+            <hr>
+    <div th:each="question : ${ questionList }">
+        <table class="questions">
+            <input type="hidden" name="userId" th:value="${#authentication.getPrincipal().userId}"/>
+            <br>
+            <input type="hidden" name="questNum" th:value="${ question.questNum }">
+
+            <tr>
+                <td>문의 유형</td>
+                <td th:text="${ question.qCateCode.qCategory }"></td>
+            </tr>
+            <tr>
+                <td>문의 날짜</td>
+                <td colspan="3" th:text="${ question.questDate }"></td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td colspan="3" th:text="${ question.questTitle }" style="rwidth:400px;"></td>
+            </tr>
+            <tr>
+                <td>문의 내용</td>
+                <td colspan="3" th:text="${ question.questContent }"></td>
+            </tr>
+        </table>
+        <br>
+        <div class="items_containers" style="display: flex;">
+            <div class="item" style="width: 100%;">
+                <th:block th:if="${ question.answerContent } == null">
+                    <button th:onclick="|location.href='/content/question/questionUpdate/${question.questNum}'|"
+                            class="button button-light" style="width: 100%;">수정
+
+                    </button>
+                </th:block>
+                </div>
+                <div class="itemss" style="width: 100%;">
+                        <button type="button"
+                            th:onclick="'location.href=\'/content/question/questionDelete?questionNum='+  @{${ question.questNum }} + '\''"
+                            class="button button-light" style="width: 100%;">삭제
+                    </button>
+                </div>
+
+            </div>
+                  <hr>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div th:insert="fragments/footer.html"></div>
+
+<script src="/js/header.js"></script>
+<script src="/js/carousel.js"></script>
+<script src="/js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+
+</body>
+</html>

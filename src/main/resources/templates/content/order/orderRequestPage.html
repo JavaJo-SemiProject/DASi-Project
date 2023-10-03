@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DASi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/order.css">
+
+    <style>
+        /* Textarea Size */
+        textarea {
+            resize: none !important;
+        }
+
+        #orderRegistForm {
+            display: grid;
+            grid-auto-columns: 1fr;
+            grid-gap: 2rem;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div th:insert="/fragments/header.html"></div>
+
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <div class="items_container ic3">
+            <h1>주문제작 견적문의</h1>
+            <div></div>
+            <button type="button" class="button button-light" style="margin-top: 0.25rem"
+                    th:onclick="|location.href='@{/content/order/orderGuidePage}'|">주문제작이 처음이신가요?
+            </button>
+        </div>
+
+        <hr>
+
+        <form id="orderRegistForm" th:action="@{/content/order/orderRequestPage}" th:method="post"
+              enctype="multipart/form-data">
+            <input type="hidden" id="userCode" name="user" th:value="${#authentication.getPrincipal().getUserCode}">
+
+
+            <div class="pt-1 mt-1">
+                <label class="form-label"><h3>카테고리 선택</h3></label>
+                <div class="form_toggle row-vh d-flex flex-row justify-content-between pt-1" style="display: flex;"
+                     id="categoryCode" name="categoryCode">
+
+                    <div class="form_radio_btn radio_clothes">
+                        <input id="radio-1" type="radio" name="categoryCode" value="10" checked>
+                        <label for="radio-1">니트 스웨터</label>
+                    </div>
+
+                    <div class="form_radio_btn" style="margin: 0px 10px 0px 10px;">
+                        <input id="radio-2" type="radio" name="categoryCode" value="20">
+                        <label for="radio-2">가디건</label>
+                    </div>
+
+                    <div class="form_radio_btn">
+                        <input id="radio-3" type="radio" name="categoryCode" value="30">
+                        <label for="radio-3">후드 점퍼</label>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+
+            <div>
+                <label class="form-label"><h3>사이즈 작성</h3></label>
+                <div class="grid-image">
+                    <img src="/img/sub/guide/scale.jpg" alt="강아지 치수 재는 방법">
+                    <img src="/img/sub/guide/scaleGuide.png" alt="강아지 치수 기준" style="width: 60%; height: 50%">
+                </div>
+                <p><textarea class="textarea mt-1" placeholder="사이즈를 작성해주세요." name="sizeInfo"
+                             style="width: 100%; height:200px;"></textarea></p>
+
+                <ul>
+                    <li> &#8901 목둘레는 강아지 옷이나 목걸이를 착용하는 부분입니다. 얼굴과 등의 경게선 길이를 측정해 주세요.</li>
+                    <li> &#8901 등길이는 목둘레 아래부터 꼬리 앞까지의 길이를 측정하시면 됩니다.</li>
+                    <li> &#8901 가슴둘레는 강아지의 몸통에서 가장 굵은 부분을 측정하시면 됩니다.</li>
+                </ul>
+            </div>
+
+
+            <hr>
+
+            <div>
+                <label class="form-label"><h3>이니셜 또는 커스텀 문구</h3></label>
+
+                <p><textarea class="textarea mt-1" id="writeContent" name="phrase" cols="30" rows="10"
+                             placeholder="이니셜 또는 커스텀 문구 10글자 이내로 작성해주세요." style="width: 100%; height:200px;"
+                             maxlength="10"></textarea></p>
+                <div id="writeContent_cnt">(0 / 10)</div>
+            </div>
+
+
+            <hr>
+
+            <div>
+                <label class="form-label"><h3>요청사항</h3></label>
+                <ul>
+                    <li>원하시는 사항을 자유롭게 서술해 주세요.</li>
+                    <li>자세히 설명해주실수록 제작이 용이해집니다.</li>
+                </ul>
+
+                <p><textarea class="textarea mt-1" id="requestOrder" name="reqIssues" cols="30" rows="10"
+                             placeholder="요청사항을 자유롭게 작성해주세요.(200자 이내)"
+                             style="width: 100%; height:200px;" maxlength="200"></textarea></p>
+                <div id="requestOrder_cnt">(0 / 200)</div>
+            </div>
+
+
+            <div class="items_container" style="display: flex;">
+                <button class="button button-lg button-white" style="width: 100%;" type="reset">취소</button>
+                <button class="button button-lg button-dark" style="width: 100%;" type="submit">등록</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div th:insert="/fragments/footer.html"></div>
+<script src="/js/header.js"></script>
+<script src="/js/textLetterLim.js"></script>
+
+</body>
+</html>

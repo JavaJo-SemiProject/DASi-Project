@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 정보 수정</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/order.css">
+</head>
+
+<body>
+
+<div th:insert="/fragments/header"></div>
+<br>
+<br>
+<div class="page">
+    <div th:include="/fragments/mypageId"></div>
+    <br>
+    <div th:include="/fragments/mypageCategory"></div>
+    <div>
+        <hr>
+        <div style="display: flex">
+            <h3 style="width: 20%">기본 정보</h3>
+        </div><!--묶음?-->
+        <!--    회원 정보 수정    -->
+        <div class="items_container ic3">
+            <div class="item bg-light p-1">
+                <form th:action="@{/content/mypage/mypageUpdate}" method="post">
+                    <input
+                            type="hidden"
+                            id="userId"
+                            name="userId"
+                            th:value="${userDTO.getUsername()}"
+                    >
+
+                    <!--                    <input type="hidden" id="userId" name="userId" th:value="${#authentication.getPrincipal().getUserId()}">-->
+                    <div class="item bg-light p-1"><!--아이디 div BOX-->
+                        <div class="item bg-light p-1">
+                            <p><h5>아이디</h5></p>
+                            <p th:text="${userDTO != null ? userDTO.getUsername() : ''}"></p>
+                            <!-- <p th:text="${userDTO.isPresent() ? userDTO.get().getUsername() : ''}"></p>-->
+                        </div>
+
+                    </div><!--ID div BOX End-->
+                    <div class="item bg-light p-1">
+                        <p><h5>생년월일</h5></p>
+                        <p th:text="${userDTO != null ? userDTO.getBirthDate() : ''}"></p>
+                    </div>
+                    <div class="item bg-light p-1">
+                        <p><h5>성별</h5></p>
+                        <p th:text="${userDTO != null ? userDTO.getGender() : ''}"></p>
+                    </div>
+                    <div class="item bg-light p-1">
+                        <span class="input-font">PASSWORD*</span>
+                        <div class="input-group">
+                            <input id="password" type="password" name="newPassword" class="input" placeholder="새로운 비밀번호" minlength="8" maxlength="16">
+                        </div>
+
+                        <span class="input-caption">(영문 대소문자나/숫자/특수문자 중 2가지 이상 조합, 8~16자)를 입력하세요.</span>
+
+                        <!-- 비밀번호 확인 입력 -->
+                        <div class="join-form pt-2">
+                            <span class="input-font">CONFIRM PASSWORD*</span>
+                            <div class="input-group">
+                                <input id="passwordConfirm" type="password" name="confirmPassword" class="input" placeholder="비밀번호 확인" minlength="8"  maxlength="16">
+                            </div>
+                        </div>
+                        <span class="input-caption passwordConfirmed" style="display: none">비밀번호가 일치합니다.</span>
+                        <span class="input-caption passwordRejected" style="display: none">비밀번호가 일치하지 않습니다. 다시 입력해 주세요.</span>
+                    </div><!-- password div BOX end-->
+                    <script>
+                        $('#passwordArea').focusout(function () {
+                            console.log('ddd');
+                            var password = $("#password").val();
+                            var passwordConfirm = $("#passwordConfirm").val();
+
+                            if ( password != '' && passwordConfirm == '' ) {
+                                null;
+                            } else if (password != "" || passwordConfirm != "") {
+                                if (password == passwordConfirm) {
+                                    $('.passwordRejected').css({'display' : 'none'});
+                                    $('.passwordConfirmed').css({'display' : 'inline-block'});
+                                    $('.passwordConfirmed').addClass('text-succ');
+                                } else {
+                                    $('.passwordConfirmed').css({'display' : 'none'});
+                                    $('.passwordRejected').css({'display' : 'inline-block'});
+                                    $('.passwordRejected').addClass('text-dg');
+                                }
+                            }
+                        });
+                    </script>
+                    <div>
+                        <button class="button button-dark" style="width: 12%; margin-left: 85%" id="updateMember">돌아가기</button>
+                        <button type="submit" value="수정하기" class="button button-dark">수정</button>
+                    </div>
+                </form><!--Join form 끝-->
+            </div><!--page 끝-->
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

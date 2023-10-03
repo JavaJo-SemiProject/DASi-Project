@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dasi.admin.order.model.dao.AdminOrderMapper">
+
+    <resultMap id="orderResult" type="com.project.dasi.order.model.dto.OrderListDTO">
+        <id property="orderId" column="ORDER_ID"/>
+        <result property="orderDate" column="ORDER_DATE"/>
+        <result property="cancelContent" column="CANCEL_CONTENT"/>
+        <result property="sizeInfo" column="SIZE_INFO"/>
+        <result property="phrase" column="PHRASE"/>
+        <result property="reqIssues" column="REQ_ISSUES"/>
+        <result property="orderPrice" column="ORDER_PRICE"/>
+        <result property="receiver" column="RECEIVER"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="addressDetail" column="ADDRESS_DETAIL"/>
+        <result property="zipCode" column="ZIPCODE"/>
+        <result property="recePhone" column="RECE_PHONE"/>
+        <result property="invoice" column="INVOICE"/>
+        <result property="deliverStart" column="deliver_start"/>
+        <result property="deliverEnd" column="deliver_end"/>
+        <association property="userCode" resultMap="memberResultMap"/>
+        <association property="payInfo" resultMap="payResultMap"/>
+        <association property="productCategory" resultMap="productResultMap"/>
+        <collection property="statusNum" resultMap="statusResultMap"/>
+    </resultMap>
+
+    <resultMap id="memberResultMap" type="com.project.dasi.auth.model.dto.UserDTO">
+        <id property="userCode" column="USER_CODE"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="name" column="USER_NAME"/>
+        <result property="birthDate" column="BIRTH_DATE"/>
+        <result property="email" column="EMAIL"/>
+        <result property="tel" column="TEL"/>
+        <result property="gender" column="GENDER"/>
+        <result property="joinDate" column="JOIN_DATE"/>
+        <result property="zipCode" column="ZIP_CODE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="addressDetail" column="ADDRESS_DETAIL"/>
+        <result property="role" column="ROLE"/>
+    </resultMap>
+
+    <resultMap id="statusResultMap" type="com.project.dasi.order.model.dto.StatusDTO">
+        <id property="statusNum" column="STATUS_NUM"/>
+        <result property="status" column="STATUS"/>
+    </resultMap>
+
+    <resultMap id="productResultMap" type="com.project.dasi.order.model.dto.PCategoryDTO">
+        <id property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+    </resultMap>
+
+    <resultMap id="payResultMap" type="com.project.dasi.order.model.dto.PayInfoDTO">
+        <id property="payNum" column="PAY_NUM"/>
+        <result property="payDate" column="PAY_DATE"/>
+        <result property="payPrice" column="PAY_PRICE"/>
+        <result property="payMethod" column="PAY_METHOD"/>
+        <result property="buyer" column="BUYER"/>
+    </resultMap>
+
+    <select id="selectAllOrderList" resultMap="orderResult">
+        SELECT
+        A.ORDER_ID
+        ,B.USER_ID
+        ,B.USER_NAME
+        ,A.ORDER_DATE
+        ,D.STATUS_NUM
+        ,D.STATUS
+        ,A.CANCEL_CONTENT
+        ,A.SIZE_INFO
+        ,A.PHRASE
+        ,A.REQ_ISSUES
+        ,A.ORDER_PRICE
+        ,A.deliver_start
+        ,A.deliver_end
+        ,C.PAY_NUM
+        ,C.BUYER
+        ,C.PAY_DATE
+        ,C.PAY_PRICE
+        ,C.PAY_METHOD
+        FROM ORDER_LIST A
+        LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
+        LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+        LEFT JOIN PAY_INFO C ON (A.ORDER_ID = C.ORDER_ID)
+        ORDER BY ORDER_DATE ASC
+    </select>
+
+    <select id="selectOrderDetail" resultMap="orderResult">
+        SELECT
+        A.ORDER_ID
+        ,B.USER_ID
+        ,B.USER_NAME
+        ,A.ORDER_DATE
+        ,D.STATUS_NUM
+        ,D.STATUS
+        ,A.CANCEL_CONTENT
+        ,A.SIZE_INFO
+        ,A.PHRASE
+        ,A.REQ_ISSUES
+        ,A.ORDER_PRICE
+        ,A.RECEIVER
+        ,A.ADDRESS
+        ,A.ADDRESS_DETAIL
+        ,A.ZIPCODE
+        ,A.RECE_PHONE
+        ,A.INVOICE
+        ,A.deliver_start
+        ,A.deliver_end
+        ,C.PAY_NUM
+        ,C.BUYER
+        ,C.PAY_DATE
+        ,C.PAY_PRICE
+        ,C.PAY_METHOD
+        ,E.CATEGORY_CODE
+        ,E.CATEGORY_NAME
+        FROM ORDER_LIST A
+        LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
+        LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+        LEFT JOIN PAY_INFO C ON (A.ORDER_ID = C.ORDER_ID)
+        LEFT JOIN product_category E ON (A.CATEGORY_CODE = E.CATEGORY_CODE)
+        <where>
+            A.ORDER_ID = #{orderId}
+        </where>
+    </select>
+
+
+    <update id="editStatus">
+        UPDATE ORDER_LIST
+        <set>
+            <if test="cancelContent != null">
+                CANCEL_CONTENT = #{cancelContent}
+            </if>
+            <if test="orderPrice != null and orderPrice != 0">
+                ORDER_PRICE = #{orderPrice}
+            </if>
+            <if test="status != null and #{status} != status ">
+                <if test="orderPrice != null or orderPrice != 0">
+                    ,STATUS_NUM = #{status}
+                </if>
+                <if test="orderPrice == null and orderPrice == 0 ">
+                    STATUS_NUM = #{status}
+                </if>
+            </if>
+        </set>
+        <where>
+            ORDER_ID = #{orderId}
+        </where>
+    </update>
+
+
+    <select id="selectMyOrderList" resultMap="orderResult">
+        SELECT
+        A.ORDER_ID
+        ,B.USER_ID
+        ,B.USER_NAME
+        ,A.ORDER_DATE
+        ,D.STATUS_NUM
+        ,D.STATUS
+        ,A.CANCEL_CONTENT
+        ,A.SIZE_INFO
+        ,A.PHRASE
+        ,A.REQ_ISSUES
+        ,A.ORDER_PRICE
+        FROM ORDER_LIST A
+        LEFT JOIN USERS B ON (A.USER_CODE = B.USER_CODE)
+        LEFT JOIN ORDER_STATUS D ON (A.STATUS_NUM = D.STATUS_NUM)
+        <where>
+            B.USER_ID = #{userId}
+        </where>
+        ORDER BY ORDER_DATE ASC
+    </select>
+
+    <update id="updateDeliver">
+        UPDATE ORDER_LIST
+        <set>
+            <if test="zipCode != null">
+                RECEIVER = #{ receiver }
+                ,ADDRESS = #{ address }
+                ,ADDRESS_DETAIL = #{ addressDetail }
+                ,ZIPCODE = #{ zipCode }
+                ,RECE_PHONE = #{ recePhone }
+            </if>
+            <if test="invoice != null and deliverEnd == null">
+                INVOICE = #{ invoice }
+                ,DELIVER_START = NOW()
+            </if>
+            <if test="deliverEnd != null">
+                deliver_end = #{ deliverEnd }
+                ,status_num = #{ status }
+            </if>
+            <if test="status != null and deliverEnd == null">
+                status_num = #{ status }
+            </if>
+        </set>
+        <where>
+            ORDER_ID = #{ orderId }
+        </where>
+    </update>
+
+</mapper>

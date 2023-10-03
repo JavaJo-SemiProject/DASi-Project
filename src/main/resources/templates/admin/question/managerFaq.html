@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>managerFaq</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/managerFaQ.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <h1>문의 관리</h1>
+        <hr/>
+
+        <table class="list-table">
+            <thead>
+            <tr>
+                <th>제목</th>
+                <th>내용</th>
+                <th style="width: 150px">수정 및 삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="faq : ${ faqList }">
+                <td th:text="${ faq.faqTitle }"></td>
+                <td th:text="${ faq.faqContent }"></td>
+                <td>
+                    <button th:onclick="|location.href='/admin/question/managerFaqUpdate/${faq.faqNum}'|"
+                            class="button button-light" style="display: inline">수정
+                    </button>
+                    <button type="button"
+                            th:onclick="'location.href=\'/admin/question/managerFaqDelete?faqNum='+ @{${ faq.faqNum }} + '\''"
+                            class="button button-dark" style="display: inline">삭제
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <button class="button button-dark w-100" th:onclick="|location.href='/admin/question/create'|">FAQ 추가등록</button>
+    </div>
+</div>
+
+<div th:insert="/fragments/footer.html"></div>
+
+
+<script src="/js/header.js"></script>
+<script src="/js/carousel.js"></script>
+<script src="/js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dasi.order.model.dao.OrderMapper">
+
+
+    <insert id="insertOrderContent">
+        INSERT INTO ORDER_LIST (
+        ORDER_ID
+        ,USER_CODE
+        ,CATEGORY_CODE
+        ,SIZE_INFO
+        ,PHRASE
+        ,REQ_ISSUES
+        ,STATUS_NUM
+        ,ORDER_DATE
+        )
+        VALUES (
+        1+FLOOR(RAND()*10000)
+        ,#{ user }
+        ,#{ categoryCode }
+        ,#{ sizeInfo }
+        ,#{ phrase }
+        ,#{ reqIssues }
+        ,'10'
+        ,NOW()
+        )
+
+    </insert>
+
+
+    <insert id="insertPayment">
+        INSERT INTO payment (PAY_NUM, PAY_DATE,PAY_PRICE, PAY_METHOD)
+        VALUES (#{payNum}, #{payDate}, #{payPrice}, #{payMethod})
+    </insert>
+
+
+
+</mapper>

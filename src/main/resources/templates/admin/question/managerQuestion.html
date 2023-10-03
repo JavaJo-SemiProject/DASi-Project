@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>managerQuestionCreate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/default.css">
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+
+
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <div class="items_container ic2">
+            <button class="button button-light" onclick="location.reload();">1:1 문의 관리</button>
+            <button class="button button-dark" th:onclick="'location.href=\'/admin/question/managerFaq\''">FAQ 관리
+            </button>
+        </div>
+        <table class="question" th:each="question : ${ questionList }">
+
+            <input type="hidden" name="questNum" th:value="${ question.questNum }">
+
+            <tr>
+                <td>문의유형</td>
+                <td th:text="${ question.qCateCode.qCategory }"></td>
+            </tr>
+            <tr>
+                <td>문의날짜</td>
+                <td colspan="3" th:text="${ question.questDate }"></td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td colspan="3" th:text="${ question.questTitle }" style="rwidth:400px;"></td>
+            </tr>
+            <tr>
+                <td>문의내용</td>
+                <td colspan="3" th:text="${ question.questContent }"></td>
+            </tr>
+        </table>
+
+
+        <button th:onclick="|location.href='/admin/question/managerQuestionCreate/${question.questNum}'|"
+                class="button button-dark">답변 작성
+        </button>
+    </div>
+</div>
+
+<!-- footer -->
+
+<div th:insert="fragments/footer.html"></div>
+
+<script src="js/header.js"></script>
+<script src="js/carousel.js"></script>
+<script src="js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+</body>
+</html>

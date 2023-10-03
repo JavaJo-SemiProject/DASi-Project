@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>DASi</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/carousel.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/order.css">
+
+</head>
+
+<body>
+
+<div th:insert="/fragments/header"></div>
+
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <div th:include="/fragments/mypageId"></div>
+        <br>
+        <div th:include="/fragments/mypageCategory"></div>
+        <br>
+        <div>
+
+            <hr>
+            <div style="display: flex">
+                <h3 style="width: 20%">기본 정보</h3>
+
+                <input type="hidden" name="userId" th:value="${user.userId}" />
+                <button class="button button-dark" type="button" style="width: 15%; margin-left: 85%" onclick="redirectToMypage()">회원 정보 수정</button>
+
+            </div>
+            <br>
+            <div class="items_container ic3">
+                <div class="item bg-light p-1">
+                    <p><h5>아이디</h5></p>
+                    <div th:if="${user.userId != null}">
+                        <p th:text="${user.userId}"></p>
+
+                    </div>
+                </div>
+                <div class="item bg-light p-1">
+                    <p><h5>생년월일</h5></p>
+                    <p th:if="${user != null}" th:text="${user.getBirthDate()}"></p>
+                </div>
+                <div class="item bg-light p-1">
+                    <p><h5>성별</h5></p>
+                    <div th:if="${userDTO != null}">
+                        <p th:text="${userDTO.getGender()}"></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+
+        <div class="items_container ic3">
+            <div class="item bg-light p-1">
+                <p><h5>비밀번호</h5></p>
+                <div class="input-group">
+                    <input class="input" type="password" name="password" value="1234578901111" readonly>
+                </div>
+            </div>
+            <div class="item bg-light p-1">
+                <p><h5>E-mail</h5></p>
+                <div class="input-group">
+                    <p th:if="${userDTO != null}" th:text="${userDTO.getEmail()}"></p>
+                </div>
+            </div>
+            <div class="item bg-light p-1">
+                <p><h5>전화번호</h5></p>
+                <div class="input-group">
+                    <p th:if="${userDTO != null}" th:text="${userDTO.getTel()}"></p>
+                </div>
+            </div>
+        </div>
+       <!-- <hr>
+        <div class="items_container ic4">
+            <h3>배송지 정보</h3>
+            <div></div>
+            <div></div>
+            <button class="button button-dark"  style="float: right; width: auto" onclick="location.href='/member/mypage/myInfo/mypageAddrEdit'">기본 배송지 변경
+            </button>
+        </div>
+        <br>
+        <div class="items_container ic3">
+            <div class="item bg-light p-1">
+                <p><h5>주소</h5></p>
+                <input class="input" type="text" th:value="${user.address} + ${user.addressDetail}" readonly>
+            </div>
+            <div class="item bg-light p-1">
+                <p><h5>수령인</h5></p>
+                <input class="input" type="text" value="배승수" readonly>
+            </div>
+            <div class="item bg-light p-1">
+                <p><h5>전화번호</h5></p>
+                <p th:if="${userDTO != null}" th:text="${userDTO.getTel()}"></p>
+            </div>
+        </div>-->
+        <hr>
+    </div>
+
+    <div class="page">
+        <form action="">
+            <a class="button button-lg button-dark w-100" th:href="@{/logout}">
+                로그아웃
+            </a>
+        </form>
+    </div>
+
+</div>
+</div>
+</div>
+
+
+<div th:insert="/fragments/footer.html"></div>
+<script src="/js/mypageInfoEdit.js"></script>
+
+<script>
+    function redirectToMypage() {
+        var userIdInput = document.getElementsByName("userId")[0]; // name을 사용하여 userId 값을 가져옵니다.
+        var userIdValue = userIdInput.value; // userId 값을 가져옵니다.
+        var destinationURL = '/content/mypage/mypageUpdate?userId=' + userIdValue; // userId를 포함한 URL을 생성합니다.
+        window.location.href = destinationURL; // 페이지로 이동합니다.
+    }
+</script>
+</body>
+</html>

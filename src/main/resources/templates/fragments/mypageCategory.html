@@ -1,0 +1,22 @@
+<form>
+    <div class="form_toggle items_container ic3">
+
+        <th:block th:if="${#httpServletRequest.requestURI.contains('/content/mypage/mypageMain')}">
+        <a th:href="@{/content/mypage/mypageMain}" class="button button-dark">회원정보</a>
+        <a th:href="@{/content/mypage/myOrderList}" class="button button-light">주문내역</a>
+        <a th:href="@{/content/question/question}" class="button button-light">문의내역</a>
+        </th:block>
+
+        <th:block th:if="${#httpServletRequest.requestURI.contains('/content/mypage/myOrderList')}">
+        <a th:href="@{/content/mypage/mypageMain}" class="button button-light">회원정보</a>
+        <a th:href="@{/content/mypage/myOrderList}" class="button button-dark">주문내역</a>
+        <a th:href="@{/content/question/question}" class="button button-light">문의내역</a>
+        </th:block>
+
+        <th:block th:if="${#httpServletRequest.requestURI.contains('/content/question/question')}">
+        <a th:href="@{/content/mypage/mypageMain}" class="button button-light">회원정보</a>
+        <a th:href="@{/content/mypage/myOrderList}" class="button button-light">주문내역</a>
+        <a th:href="@{/content/question/question}" class="button button-dark">문의내역</a>
+        </th:block>
+    </div>
+</form>

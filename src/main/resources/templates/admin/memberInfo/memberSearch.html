@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+</head>
+<body>
+<!-- 검색 -->
+<!-- header -->
+<div th:insert="/fragments/header.html"></div>
+<div class="wrap">
+    <div class="page pseudo_padding-2">
+        <div class="items_container ic1">
+            <h1>회원 정보 조회</h1>
+            <form action="memberSearch" method="">
+                <div class="items_container ic3 mb-1">
+
+                    <div>
+                        <select class="select" name="keyword" id="keyword">
+                            <option value="userId">id</option>
+                            <option value="name">이름</option>
+                            <option value="birthDate">생일</option>
+                            <option value="email">이메일</option>
+                            <option value="tel">전화번호</option>
+                            <option value="gender">성별</option>
+                            <option value="joinDate">가입일</option>
+                        </select>
+
+                        <script>
+                            $('#keyword').change(function () {
+
+                                var selectedSearchOption = $("#keyword option:selected").val();
+                                if (selectedSearchOption == "birthDate") {
+                                    $('#search').prop("type", "date");
+                                } else if (selectedSearchOption == "joinDate") {
+                                    $('#search').prop("type", "date");
+                                } else if (selectedSearchOption == "email") {
+                                    $('#search').prop("type", "text");
+                                    $('#search').attr('placeholder', "'@'를 포함한 전체 이메일 주소를 입력해주세요.");
+                                } else if (selectedSearchOption == "gender") {
+                                    $('#search').prop("type", "text");
+                                    $('#search').attr('placeholder', "'M' 또는 'W'만 입력 가능합니다.");
+                                }
+                                else {
+                                    $('#search').prop("type", "text");
+                                    $('#search').attr('placeholder', "");
+                                }
+                            })
+
+                        </script>
+
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="search" name="search" class="input">
+                        <button type="submit" class="button-dark button">검색</button>
+                    </div>
+                    <div>
+                        <a th:href="@{/admin/memberInfo/memberSearch}" class="button button-light" style="width:auto; float:right; padding: 0 1rem">초기화</a>
+                    </div>
+
+                </div>
+            </form>
+
+            <!-- 리스트 테이블 -->
+            <table>
+                <thead>
+                <tr>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>생일</th>
+                    <th>이메일</th>
+                    <th>전화번호</th>
+                    <th>성별</th>
+                    <th>가입일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users.getList()}">
+                    <td th:text="${user.getUserId}"></td>
+                    <td th:text="${user.getName}"></td>
+                    <td th:text="${user.getBirthDate}"></td>
+                    <td th:text="${user.getEmail}"></td>
+                    <td th:text="${user.getTel}"></td>
+                    <td th:text="${user.getGender}"></td>
+                    <td th:text="${#dates.format(user.joinDate, 'yyyy-MM-dd')}"></td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(users.getList())}">
+                    <td colspan="11" class="text-c">조건을 만족하는 결과가 없습니다.</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- 페이징 -->
+            <div class="pagination mt-1">
+
+                <ul>
+                    <li th:classappend="${users.getPrePage() == 0} ? 'disabled'">
+                        <a th:href="@{/admin/memberInfo/memberSearch(pageNum=${users.getPrePage()}, keyword=${search.getKeyword()}, search=${search.getSearch()})}"><i class="fa-solid fa fa-angle-left"></i></a>
+                    </li>
+                    <li th:each="page: ${#numbers.sequence(users.getNavigateFirstPage(), users.getNavigateLastPage())}" th:classappend="${page == users.getPageNum()} ? 'active'">
+                        <a th:text="${page}" th:href="@{/admin/memberInfo/memberSearch(pageNum=${page}, keyword=${search.getKeyword()}, search=${search.getSearch()})}"></a>
+                    </li>
+                    <li th:classappend="${users.getNextPage() == 0} ? 'disabled'">
+                        <a th:href="@{/admin/memberInfo/memberSearch(pageNum=${users.getNextPage()}, keyword=${search.getKeyword()}, search=${search.getSearch()})}"><i class="fa-solid fa fa-angle-right"></i></a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div th:insert="fragments/footer.html"></div>
+<script src="js/header.js"></script>
+<script src="js/carousel.js"></script>
+<script src="js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+</body>
+</html>

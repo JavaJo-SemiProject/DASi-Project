@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>questioncreate</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/faq.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+<body>
+<div th:insert="fragments/header.html"></div>
+
+<div class="pages">
+    <br>
+    <br>
+    <br>
+    <h2>1:1문의 작성</h2>
+    <input type="text" name="userId" th:value="${#authentication.getPrincipal().userId}">님, 1:1문의를 남겨주시면 성의껏 답변해드리겠습니다❤
+    <br>
+    <form name="questionRegistForm" th:action="@{/content/question/questioncreate}" method="post">
+        <input type="hidden" name="user" th:value="${#authentication.getPrincipal().userCode}">
+        <table>
+            <tr>
+                <td>문의유형</td>
+                <td>
+                    <select id="qCateCode" name="qCate" style="width: 30%;">
+                        <option value="1">주문제작</option>
+                        <option value="2">결제 및 배송</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td colspan="3"><input type="text" name="questTitle" id="questTitle" style="rwidth:400px;"></td>
+            </tr>
+            <tr>
+                <td>문의내용</td>
+                <td colspan="3">
+                        <textarea name="questContent" id="questContent" cols="60" rows="15"
+                                  style="resize:none;"></textarea>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div class="items_container" style="display: flex;">
+            <div class="item" style="width: 100%;">
+            <button type="submit" class="button button-light" style="width: 100%;">등록</button>
+            </div>
+            <div class="item" style="width: 100%;">
+            <button type="reset" class="button button-light" style="width: 100%;">작성내용 되돌리기</button>
+            </div>
+            <div class="item" style="width: 100%;">
+            <button type="button" class="button button-light"
+                    th:onclick="'location.href=\'/content/question/question\''" style="width: 100%;">취소
+            </button>
+            </div>
+        </div>
+    </form>
+        </div>
+
+    </form>
+</div>
+</div>
+
+
+<div th:insert="fragments/footer.html"></div>
+
+<script>
+    $("#qcategory options:selected").val()
+</script>
+
+
+<script src="js/header.js"></script>
+<script src="js/carousel.js"></script>
+<script src="js/default.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+</body>
+</html>
