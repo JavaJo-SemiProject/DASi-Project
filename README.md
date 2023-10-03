@@ -30,7 +30,7 @@
 - 역할: 문의 게시판 관리
   
 #### [팀원] 김민범
-![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/99724581-142e-4dda-a50d-1157fcb16622)
+![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/aac1fa35-3eca-4de1-af79-20edc2d8dd2e)
 - 이메일: 팀원 2 이메일 주소
 - GitHub 프로필: [팀원 2 GitHub 프로필 링크]
 - 역할: 마이 페이지
