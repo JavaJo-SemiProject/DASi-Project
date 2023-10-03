@@ -26,32 +26,48 @@
         <hr>
         <div style="display: flex">
             <h3 style="width: 20%">기본 정보</h3>
-    </div><!--묶음?-->
-<!--    회원 정보 수정    -->
+        </div><!--묶음?-->
+        <!--    회원 정보 수정    -->
         <div class="items_container ic3">
             <div class="item bg-light p-1">
-                <form id="JoinForm" th:action="@{/mypage/mypageUpdate}" method="post">
+                <form th:action="@{/content/mypage/mypageUpdate}" method="post">
                     <input
                             type="hidden"
                             id="userId"
                             name="userId"
-                            th:value="${ #authentication.getPrincipal().userId}"
+                            th:value="${userDTO.getUsername()}"
                     >
+
+                    <!--                    <input type="hidden" id="userId" name="userId" th:value="${#authentication.getPrincipal().getUserId()}">-->
                     <div class="item bg-light p-1"><!--아이디 div BOX-->
-                        <p><h5>아이디</h5></p>
-                        <p th:text="${ #authentication.getPrincipal().userId}"></p>
+                        <div class="item bg-light p-1">
+                            <p><h5>아이디</h5></p>
+                            <p th:text="${userDTO != null ? userDTO.getUsername() : ''}"></p>
+                            <!-- <p th:text="${userDTO.isPresent() ? userDTO.get().getUsername() : ''}"></p>-->
+                        </div>
 
                     </div><!--ID div BOX End-->
-                    <div class="item bg-light p-1"><!-- password div BOX-->
+                    <div class="item bg-light p-1">
+                        <p><h5>생년월일</h5></p>
+                        <p th:text="${userDTO != null ? userDTO.getBirthDate() : ''}"></p>
+                    </div>
+                    <div class="item bg-light p-1">
+                        <p><h5>성별</h5></p>
+                        <p th:text="${userDTO != null ? userDTO.getGender() : ''}"></p>
+                    </div>
+                    <div class="item bg-light p-1">
                         <span class="input-font">PASSWORD*</span>
                         <div class="input-group">
-                            <input id="password" name="password" type="password" class="input" placeholder="비밀번호" minlength="8" maxlength="16" required>
+                            <input id="password" type="password" name="newPassword" class="input" placeholder="새로운 비밀번호" minlength="8" maxlength="16">
                         </div>
+
                         <span class="input-caption">(영문 대소문자나/숫자/특수문자 중 2가지 이상 조합, 8~16자)를 입력하세요.</span>
+
+                        <!-- 비밀번호 확인 입력 -->
                         <div class="join-form pt-2">
                             <span class="input-font">CONFIRM PASSWORD*</span>
                             <div class="input-group">
-                                <input id="passwordConfirm" name="passwordConfirm" type="password" class="input" placeholder="비밀번호를 재입력해주세요" minlength="8"  maxlength="16" required>
+                                <input id="passwordConfirm" type="password" name="confirmPassword" class="input" placeholder="비밀번호 확인" minlength="8"  maxlength="16">
                             </div>
                         </div>
                         <span class="input-caption passwordConfirmed" style="display: none">비밀번호가 일치합니다.</span>
@@ -79,11 +95,11 @@
                         });
                     </script>
                     <div>
-                    <button class="button button-dark" style="width: 12%; margin-left: 85%" id="updateMember">돌아가기</button>
-                        <input type="submit" value="수정하기" class="button button-dark">
+                        <button class="button button-dark" style="width: 12%; margin-left: 85%" id="updateMember">돌아가기</button>
+                        <button type="submit" value="수정하기" class="button button-dark">수정</button>
                     </div>
                 </form><!--Join form 끝-->
-</div><!--page 끝-->
+            </div><!--page 끝-->
         </div>
     </div>
 </div>
