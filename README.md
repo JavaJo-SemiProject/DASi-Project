@@ -4,31 +4,32 @@
 
 ## 팀 소개
 
-### 프로그래밍 기초 언어인 JAVA 공부를 위한 팀 ## JAVA조 
+### 프로그래밍 기초 언어인 JAVA 공부를 위한 팀 
+## JAVA조 
 
 - - -
 
 ### 팀원
 
-#### [팀장 배승수]
+#### [팀장] 배승수
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/5eea4b67-6152-457b-9920-07b66dde5168)
 - 이메일: bnj021212@gmail.com
 - GitHub 프로필: [[팀원 1 GitHub 프로필 링크]](https://github.com/costudying)
 - 역할: DBA / 제작 주문
 
-#### [팀원 김민주]
+#### [팀원] 김민주
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/33229f3c-c8fa-4673-b6af-2c338eddd3cc)
 - 이메일: 팀원 2 이메일 주소
 - GitHub 프로필: [팀원 2 GitHub 프로필 링크]
 - 역할: 디자인 / 시큐리티
 
-#### [팀원 이가현]
+#### [팀원] 이가현
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/700ff629-b655-43b9-966f-ad2fa5b9edd3)
 - 이메일: 팀원 2 이메일 주소
 - GitHub 프로필: [팀원 2 GitHub 프로필 링크]
 - 역할: 문의 게시판 관리
   
-#### [팀원 김민범]
+#### [팀원] 김민범
 ![image](https://github.com/JavaJo-SemiProject/DASi-Project/assets/132265893/99724581-142e-4dda-a50d-1157fcb16622)
 - 이메일: 팀원 2 이메일 주소
 - GitHub 프로필: [팀원 2 GitHub 프로필 링크]
